@@ -1,4 +1,5 @@
 import { React, Fragment } from 'react'
+import AnggaranDesa from './chart/anggaranDesa'
 
 function Keuangan() {
     return (
@@ -14,7 +15,7 @@ function Keuangan() {
 
                         <div className="col-lg-12">
 
-                            <ul className="container nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                            <ul className="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#bordered-about"
                                         type="button" role="tab" aria-controls="about" aria-selected="true">APBDes</button>
@@ -143,7 +144,7 @@ function Keuangan() {
 
                                     </div>
 
-                                    <div className="col-lg-12 mb-5">
+                                    <div className="mb-5">
                                         <div className="card">
                                             <div className="card-body pb-0">
                                                 <h5 className="card-title-potensi pb-0">GRAFIK VS REALISASI</h5>
@@ -152,15 +153,16 @@ function Keuangan() {
                                                     <button type="button" className="btn btn-primary">Export Report</button>
                                                 </div>
 
-                                                <div className="row g-4">
+                                                <div className="row g-2">
                                                     <div className="col-md-6">
                                                         <div className="stunting-card">
                                                             <div className="box-featured">
-                                                                <h5 className="card-title">BALITA STUNTING DARI TAHUN KE TAHUN</h5>
+                                                                <h5 className="card-title">APBDes</h5>
                                                             </div>
                                                             <div className="card-body">
 
-                                                                <div id="stuntingChart" style={{ minHeight: '400px' }}></div>
+                                                                {/* <div id="stuntingChart" style={{ minHeight: '400px' }}></div> */}
+                                                                <AnggaranDesa />
 
                                                             </div>
                                                         </div>
@@ -170,49 +172,42 @@ function Keuangan() {
 
                                                         <table className="table table-bordered">
                                                             <thead>
-                                                                <tr>
-                                                                    <th scope="col">#</th>
-                                                                    <th scope="col">Name</th>
-                                                                    <th scope="col">Position</th>
-                                                                    <th scope="col">Age</th>
-                                                                    <th scope="col">Start Date</th>
+                                                                <tr style={{ background: '#EDF8F6' }}>
+                                                                    <th scope="col">No</th>
+                                                                    <th scope="col">Kecamatan</th>
+                                                                    <th scope="col">Anggaran</th>
+                                                                    <th scope="col">Realisasi</th>
+                                                                    <th scope="col">Sisa</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
+                                                            <tbody className='small'>
                                                                 <tr>
                                                                     <th scope="row">1</th>
-                                                                    <td>Brandon Jacob</td>
-                                                                    <td>Designer</td>
-                                                                    <td>28</td>
-                                                                    <td>2016-05-25</td>
+                                                                    <td>Kecamatan A</td>
+                                                                    <td>Rp3,320,010,400</td>
+                                                                    <td>Rp3,120,010,400</td>
+                                                                    <td>Rp120,010,400</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">2</th>
-                                                                    <td>Bridie Kessler</td>
-                                                                    <td>Developer</td>
-                                                                    <td>35</td>
-                                                                    <td>2014-12-05</td>
+                                                                    <td>Kecamatan A</td>
+                                                                    <td>Rp3,320,010,400</td>
+                                                                    <td>Rp3,120,010,400</td>
+                                                                    <td>Rp120,010,400</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">3</th>
-                                                                    <td>Ashleigh Langosh</td>
-                                                                    <td>Finance</td>
-                                                                    <td>45</td>
-                                                                    <td>2011-08-12</td>
+                                                                    <td>Kecamatan A</td>
+                                                                    <td>Rp3,320,010,400</td>
+                                                                    <td>Rp3,120,010,400</td>
+                                                                    <td>Rp120,010,400</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th scope="row">4</th>
-                                                                    <td>Angus Grady</td>
-                                                                    <td>HR</td>
-                                                                    <td>34</td>
-                                                                    <td>2012-06-11</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">5</th>
-                                                                    <td>Raheem Lehner</td>
-                                                                    <td>Dynamic Division Officer</td>
-                                                                    <td>47</td>
-                                                                    <td>2011-04-19</td>
+                                                                    <td>Kecamatan A</td>
+                                                                    <td>Rp3,320,010,400</td>
+                                                                    <td>Rp3,120,010,400</td>
+                                                                    <td>Rp120,010,400</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -224,61 +219,160 @@ function Keuangan() {
                                         </div>
                                     </div>
 
-                                    <div className="col-lg-12">
-                                        <div className="card">
-                                            <div className="card-body pb-0">
-                                                <h5 className="card-title-potensi pb-0">RINCIAN KEUANGAN DESA</h5>
+                                    <div className="card">
+                                        <div className="card-body pb-0">
+                                            <h5 className="card-title-potensi pb-0">RINCIAN KEUANGAN DESA</h5>
 
-                                                <table className="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Name</th>
-                                                            <th scope="col">Position</th>
-                                                            <th scope="col">Age</th>
-                                                            <th scope="col">Start Date</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Brandon Jacob</td>
-                                                            <td>Designer</td>
-                                                            <td>28</td>
-                                                            <td>2016-05-25</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Bridie Kessler</td>
-                                                            <td>Developer</td>
-                                                            <td>35</td>
-                                                            <td>2014-12-05</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">3</th>
-                                                            <td>Ashleigh Langosh</td>
-                                                            <td>Finance</td>
-                                                            <td>45</td>
-                                                            <td>2011-08-12</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">4</th>
-                                                            <td>Angus Grady</td>
-                                                            <td>HR</td>
-                                                            <td>34</td>
-                                                            <td>2012-06-11</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">5</th>
-                                                            <td>Raheem Lehner</td>
-                                                            <td>Dynamic Division Officer</td>
-                                                            <td>47</td>
-                                                            <td>2011-04-19</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr style={{ background: '#EDF8F6' }}>
+                                                        <th scope="col">Keterangan</th>
+                                                        <th scope="col">Anggaran</th>
+                                                        <th scope="col">Realisasi</th>
+                                                        <th scope="col">Lebih/Kurang</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN ASLI DESA</td>
+                                                        <td>Rp0</td>
+                                                        <td>Rp0</td>
+                                                        <td>Rp0</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN TRANSFER</p>
+                                                            <ul>
+                                                                <li>Dana Desa</li>
+                                                                <li>Bagi Hasil Pajak dan Retribusi</li>
+                                                                <li>Alokasi Dana Desa</li>
+                                                                <li>Bantuan Keuangan Provinsi</li>
+                                                                <li>Bantuan Keuangan Kabupaten/Kota</li>
+                                                                <li>Pendapatan Lain</li>
+                                                            </ul>
+                                                            <p>JUMLAH PENDAPATAN</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p style={{ color: '#327A6D', weight: '600' }}>BELANJA</p>
+                                                            <ul>
+                                                                <li>Bidang Penyelenggaraan Pemerintahan Desa</li>
+                                                                <li>Bidang Pelaksanaan Pembangunan Desa</li>
+                                                                <li>Bidang Pembinaan Kemasyarakatan</li>
+                                                                <li>Bidang Pemberdayaan Masyarakat</li>
+                                                                <li>Bidang Penanggulangan Bencana, Darurat dan Mendesa Desa</li>
+                                                            </ul>
+                                                            <p>JUMLAH BELANJA</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                            <p>Rp0</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p style={{ color: '#327A6D', weight: '600' }}>PEMBIAYAAN</p>
+                                                            <ul>
+                                                                <li>Penerimaan Pembiayaan</li>
+                                                                <li>Pengeluaran Pembiayaan</li>
+                                                            </ul>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                        </td>
+                                                        <td className='anggaranList'>
+                                                            <p style={{ weight: '600' }}>Rp0</p>
+                                                            <ul className='list-unstyled'>
+                                                                <li>Rp0</li>
+                                                                <li>Rp0</li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colSpan={4}>Sumber : SISKEUDES 2023</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
 
-                                            </div>
                                         </div>
                                     </div>
 
@@ -343,49 +437,75 @@ function Keuangan() {
 
                                                 <table className="table table-bordered">
                                                     <thead>
-                                                        <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">Name</th>
-                                                            <th scope="col">Position</th>
-                                                            <th scope="col">Age</th>
-                                                            <th scope="col">Start Date</th>
+                                                        <tr style={{ background: '#EDF8F6' }}>
+                                                            <th scope="col">No</th>
+                                                            <th scope="col">Kecamatan</th>
+                                                            <th scope="col">Desa</th>
+                                                            <th scope="col">Jenis Proposal</th>
+                                                            <th scope="col">Nominal</th>
+                                                            <th scope="col">Status Proposal</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Brandon Jacob</td>
-                                                            <td>Designer</td>
-                                                            <td>28</td>
-                                                            <td>2016-05-25</td>
+                                                            <th scope='row'>1</th>
+                                                            <td>Manggala</td>
+                                                            <td>Pilanggede</td>
+                                                            <td>DD Tahap 1</td>
+                                                            <td>Rp357,478,384</td>
+                                                            <td>
+                                                                <h5>
+                                                                    <span className="badge bg-prioritas">Prioritas</span>
+                                                                </h5>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Bridie Kessler</td>
-                                                            <td>Developer</td>
-                                                            <td>35</td>
-                                                            <td>2014-12-05</td>
+                                                            <th scope='row'>1</th>
+                                                            <td>Manggala</td>
+                                                            <td>Pilanggede</td>
+                                                            <td>DD Tahap 1</td>
+                                                            <td>Rp357,478,384</td>
+                                                            <td>
+                                                                <h5>
+                                                                    <span className="badge bg-prioritas">Prioritas</span>
+                                                                </h5>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">3</th>
-                                                            <td>Ashleigh Langosh</td>
-                                                            <td>Finance</td>
-                                                            <td>45</td>
-                                                            <td>2011-08-12</td>
+                                                            <th scope='row'>1</th>
+                                                            <td>Manggala</td>
+                                                            <td>Pilanggede</td>
+                                                            <td>DD Tahap 1</td>
+                                                            <td>Rp357,478,384</td>
+                                                            <td>
+                                                                <h5>
+                                                                    <span className="badge bg-prioritas">Prioritas</span>
+                                                                </h5>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">4</th>
-                                                            <td>Angus Grady</td>
-                                                            <td>HR</td>
-                                                            <td>34</td>
-                                                            <td>2012-06-11</td>
+                                                            <th scope='row'>1</th>
+                                                            <td>Manggala</td>
+                                                            <td>Pilanggede</td>
+                                                            <td>DD Tahap 1</td>
+                                                            <td>Rp357,478,384</td>
+                                                            <td>
+                                                                <h5>
+                                                                    <span className="badge bg-prioritas">Prioritas</span>
+                                                                </h5>
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th scope="row">5</th>
-                                                            <td>Raheem Lehner</td>
-                                                            <td>Dynamic Division Officer</td>
-                                                            <td>47</td>
-                                                            <td>2011-04-19</td>
+                                                            <th scope='row'>1</th>
+                                                            <td>Manggala</td>
+                                                            <td>Pilanggede</td>
+                                                            <td>DD Tahap 1</td>
+                                                            <td>Rp357,478,384</td>
+                                                            <td>
+                                                                <h5>
+                                                                    <span className="badge bg-prioritas">Prioritas</span>
+                                                                </h5>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

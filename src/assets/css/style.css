@@ -408,6 +408,10 @@ font-weight: var(--bs-list-group-action-font-weight);
   padding: 0px 20px 20px;
 }
 
+.card-body-chart {
+  padding: 30px 20px 20px;
+}
+
 .card-body-info {
   padding: 10px;
 }
@@ -492,7 +496,7 @@ font-weight: var(--bs-list-group-action-font-weight);
   font-weight: 500;
 }
 
-.btn-primary:hover, .btn-primary:active {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
   background-color: #CDEBE5 !important;
   border: 1px solid #CDEBE5 !important;
   color: #327A6D !important;
@@ -1651,4 +1655,39 @@ font-weight: var(--bs-list-group-action-font-weight);
   line-height: 100vh;
   height: 100vh;
   text-align: center;
+}
+
+#gmap_canvas
+{
+    /* filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="g"><feColorMatrix type="matrix" values="0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0.3 0.3 0.3 0 0 0 0 0 1 0"/></filter></svg>#g');
+    -webkit-filter: grayscale(90%);
+    filter: grayscale(90%);    
+    filter: progid:DXImageTransform.Microsoft.BasicImage(grayScale=1); */
+}
+.map-box2{
+z-index: 1;
+top: 200px;
+right: 50px;
+width: 450px;
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #FFFFFF !important;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.anggaranList ul {
+  padding-left: 0;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
 }

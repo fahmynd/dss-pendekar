@@ -1,4 +1,6 @@
 import { React, Fragment } from 'react'
+import IdmChart from './chart/idm'
+import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
 
 function PerkembanganDesa() {
     return (
@@ -96,7 +98,7 @@ function PerkembanganDesa() {
                                                     <div className='col-md-6'>
                                                         <h4 className="fw-bold mt-4 text-center">Skor IDM Tahun Ke Tahun</h4>
                                                         <div id="idmChart" style={{ minHeight: '500px' }}></div>
-
+                                                        <IdmChart />
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,7 +114,8 @@ function PerkembanganDesa() {
                                 <div className="card-body pb-0">
                                     <h5 className="card-title-potensi pb-0">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
 
-                                    <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas>
+                                    {/* <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas> */}
+                                    <PetaPerkembangan />
 
                                 </div>
                             </div>
@@ -125,7 +128,7 @@ function PerkembanganDesa() {
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Capaian & Potensi</option>
+                                                <option value={'DEFAULT'}>Pilih Tahun</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -133,7 +136,7 @@ function PerkembanganDesa() {
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Capaian & Potensi</option>
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -141,7 +144,7 @@ function PerkembanganDesa() {
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Capaian & Potensi</option>
+                                                <option value={'DEFAULT'}>Semua Desa</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -151,52 +154,83 @@ function PerkembanganDesa() {
 
                                     <table className="table table-bordered">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Position</th>
-                                                <th scope="col">Age</th>
-                                                <th scope="col">Start Date</th>
+                                            <tr style={{ background: '#EDF8F6' }}>
+                                                <th scope="col">Nama Kecamatan</th>
+                                                <th scope="col">Nama Desa</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Skor IDM</th>
+                                                <th scope="col">Skor SDGS</th>
+                                                <th scope="col">Rekomendasi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>Brandon Jacob</td>
-                                                <td>Designer</td>
-                                                <td>28</td>
+                                                <td>Manggala</td>
+                                                <td>Bojong Gede</td>
+                                                <td>
+                                                    <h5>
+                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                    </h5>
+                                                </td>
+                                                <td>0.8308</td>
+                                                <td>26.73</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">Lihat Rekomendasi</button>
+                                                        data-bs-target="#disablebackdrop">
+                                                        Lihat Rekomendasi
+                                                    </button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">2</th>
-                                                <td>Bridie Kessler</td>
-                                                <td>Developer</td>
-                                                <td>35</td>
-                                                <td>2014-12-05</td>
+                                                <td>Manggala</td>
+                                                <td>Bojong Gede</td>
+                                                <td>
+                                                    <h5>
+                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                    </h5>
+                                                </td>
+                                                <td>0.8308</td>
+                                                <td>26.73</td>
+                                                <td>
+                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#disablebackdrop">
+                                                        Lihat Rekomendasi
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">3</th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td>Finance</td>
-                                                <td>45</td>
-                                                <td>2011-08-12</td>
+                                                <td>Manggala</td>
+                                                <td>Bojong Gede</td>
+                                                <td>
+                                                    <h5>
+                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                    </h5>
+                                                </td>
+                                                <td>0.8308</td>
+                                                <td>26.73</td>
+                                                <td>
+                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#disablebackdrop">
+                                                        Lihat Rekomendasi
+                                                    </button>
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">4</th>
-                                                <td>Angus Grady</td>
-                                                <td>HR</td>
-                                                <td>34</td>
-                                                <td>2012-06-11</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td>Raheem Lehner</td>
-                                                <td>Dynamic Division Officer</td>
-                                                <td>47</td>
-                                                <td>2011-04-19</td>
+                                                <td>Manggala</td>
+                                                <td>Bojong Gede</td>
+                                                <td>
+                                                    <h5>
+                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                    </h5>
+                                                </td>
+                                                <td>0.8308</td>
+                                                <td>26.73</td>
+                                                <td>
+                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#disablebackdrop">
+                                                        Lihat Rekomendasi
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -221,7 +255,51 @@ function PerkembanganDesa() {
                         </div>
                         <div className="modal-body">
                             <h5><span className="badge bg-super-prioritas">Super Prioritas</span></h5>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr style={{ background: '#EDEDED' }}>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <h5><span className="badge bg-prioritas">Prioritas</span></h5>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr style={{ background: '#EDEDED' }}>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
+                                        <td>Kesehatan</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

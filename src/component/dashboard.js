@@ -1,6 +1,9 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import '../assets/css/news-ticker.min.css'
+import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
+import BalitaYoY from './chart/balitaStuntingYoY'
+import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
 import { PotensiManusia } from './chart/potensiManusia'
 import PotensiSDA from './chart/potensiSDA'
 
@@ -215,7 +218,7 @@ function Dashboard() {
                                     </div>
                                 </div>
 
-                                <div className="col-md-12">
+                                {/* <div className="col-md-12">
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title-potensi">ARTIKEL DIGIDES</h5>
@@ -256,7 +259,7 @@ function Dashboard() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
                             </div>
 
@@ -280,10 +283,62 @@ function Dashboard() {
                                             <button type="button" className="btn btn-cari"><i className="bi bi-search me-1"></i> Temukan</button>
                                         </div>
                                     </div>
-                                    <iframe title='CCTV'
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63420.99288538326!2d107.54446639281886!3d-6.545400788011531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6916cc19b3a0e9%3A0xd62b494f4f9c4f7b!2sCimayasari%2C%20Kec.%20Cipeundeuy%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1677635547756!5m2!1sid!2sid"
-                                        width="100%" height="600" style={{ border: '0' }} allowFullScreen="" loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"></iframe>
+
+                                    <div className='card shadow position-absolute map-box2'>
+                                        <div className='card-body'>
+                                            <h5 className="card-title-potensi">Desa Cimayasari</h5>
+                                            <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
+                                            <div className="filter-primary">
+                                                <button type="button" className="btn btn-primary"><i className='bx bx-cctv'></i> CCTV</button>
+                                            </div>
+                                            <table className='table table-borderless'>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Capaian</th>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Potensi</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>KD</td>
+                                                        <td>:-</td>
+                                                        <td>SDA</td>
+                                                        <td>:-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>IDM</td>
+                                                        <td>:-</td>
+                                                        <td>IDM</td>
+                                                        <td>:-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SDGS</td>
+                                                        <td>:-</td>
+                                                        <td>SDM</td>
+                                                        <td>:-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>AR</td>
+                                                        <td>:-</td>
+                                                        <td>LK</td>
+                                                        <td>:-</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Program</td>
+                                                        <td>:-</td>
+                                                        <td>Sarana Prasarana</td>
+                                                        <td>:-</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div className="embed-responsive embed-responsive-16by9" style={{ height: '300px !important' }}>
+                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -324,7 +379,7 @@ function Dashboard() {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Potensi Manusia</h5>
                                                 </div>
-                                                <div className="card-body">
+                                                <div className="card-body-chart">
                                                     {/* <canvas id="potensiPieChart" style={{ maxHeight: '400px' }}></canvas> */}
 
                                                     <PotensiManusia />
@@ -338,7 +393,7 @@ function Dashboard() {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Potensi SDA</h5>
                                                 </div>
-                                                <div className="card-body">
+                                                <div className="card-body-chart">
                                                     {/* <div id="potensiBarChart" style={{ minHeight: '400px' }} className="echart"></div> */}
                                                     <PotensiSDA />
 
@@ -373,11 +428,11 @@ function Dashboard() {
                                         <div className="col-md-4">
                                             <div className="potensi-card">
                                                 <div className="box-featured">
-                                                    <h5 className="card-title">Potensi Manusia</h5>
+                                                    <h5 className="card-title">Lembaga Kemasyarakatan</h5>
                                                 </div>
-                                                <div className="card-body">
+                                                <div className="card-body-chart">
                                                     {/* <canvas id="potensiRadarChart" style={{ maxHeight: '400px' }}></canvas> */}
-
+                                                    <LembagaKemasyarakatan />
                                                 </div>
                                             </div>
                                         </div>
@@ -385,12 +440,12 @@ function Dashboard() {
                                         <div className="col-md-5">
                                             <div className="potensi-card">
                                                 <div className="box-featured">
-                                                    <h5 className="card-title">Potensi Manusia</h5>
+                                                    <h5 className="card-title">Sarana & Prasarana</h5>
                                                 </div>
-                                                <div className="card-body">
+                                                <div className="card-body-chart">
 
                                                     {/* <div id="saranaChart" style={{ minHeight: '400px' }} className="echart"></div> */}
-
+                                                    <PotensiSDA />
                                                 </div>
                                             </div>
                                         </div>
@@ -445,6 +500,7 @@ function Dashboard() {
                                                 <div className="card-body">
 
                                                     {/* <div id="stuntingChart" style="min-height: 400px;"></div> */}
+                                                    <BalitaYoY />
 
                                                 </div>
                                             </div>
@@ -458,6 +514,7 @@ function Dashboard() {
                                                 <div className="card-body">
 
                                                     {/* <div id="verticalBarChart" style={{ minHeight: '400px' }} className="echart mt-4"></div> */}
+                                                    <BalitaStuntingJumlah />
 
                                                 </div>
                                             </div>

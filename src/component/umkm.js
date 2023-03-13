@@ -1,4 +1,6 @@
 import { React, Fragment } from 'react'
+import JenisUsaha from './chart/jenisUsaha'
+import UsahaDiWilayah from './chart/usahaDiWilayah'
 
 function Umkm() {
     return (
@@ -16,7 +18,8 @@ function Umkm() {
                                 <div className="card-body pb-0">
                                     <h2 className="card-title-potensi pb-0">USAHA DI WILAYAH</h2>
 
-                                    <div id="usahaChart" style={{ minHeight: '400px' }} className="echart"></div>
+                                    {/* <div id="usahaChart" style={{ minHeight: '400px' }} className="echart"></div> */}
+                                    <UsahaDiWilayah />
 
                                 </div>
                             </div>
@@ -27,7 +30,8 @@ function Umkm() {
                                 <div className="card-body pb-0">
                                     <h2 className="card-title-potensi pb-0">JENIS USAHA</h2>
 
-                                    <div id="jenisChart" style={{ minHeight: '400px' }} className="echart"></div>
+                                    {/* <div id="jenisChart" style={{ minHeight: '400px' }} className="echart"></div> */}
+                                    <JenisUsaha />
 
                                 </div>
                             </div>
