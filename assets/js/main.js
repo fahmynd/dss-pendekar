@@ -219,9 +219,9 @@
 
 })();
 
-$(document).ready(function () {
-  $('#newsTicker9').breakingNews({
-    themeColor: '#f9a828',
-    effect: 'slide-left'
-  });
-});
+// $(document).ready(function () {
+//   $('#newsTicker9').breakingNews({
+//     themeColor: '#f9a828',
+//     effect: 'slide-left'
+//   });
+// });
