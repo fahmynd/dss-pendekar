@@ -123,7 +123,10 @@ function BalitaYoY() {
 
         series1.columns.template.setAll({
             tooltipY: am5.percent(10),
-            templateField: "columnSettings"
+            templateField: "columnSettings",
+            width: 50,
+            cornerRadiusTL: 5,
+            cornerRadiusTR: 5
         });
 
         series1.data.setAll(data);

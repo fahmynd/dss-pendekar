@@ -1,13 +1,25 @@
 import React, { Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 function Sidebar() {
     return (
         <Fragment>
             <aside id="sidebar" className="sidebar">
+                <Link to={'/'} id='pendekar'>
+                    <div className='text-center mb-5'>
+                        <h2 className='text-white fw-bold'>PENDEKAR</h2>
+                        <p className='small' style={{ color: '#DCCD7C' }}>Pemantauan Desa dan Kelurahan Terintegrasi</p>
+                    </div>
+                </Link>
 
+                {/* <a href='/' className='toggle-sidebar-btn'>
+                    <div className='text-center mb-5'>
+                        <h2 className='text-white fw-bold'>PENDEKAR</h2>
+                        <p className='small' style={{ color: '#DCCD7C' }}>Pemantauan Desa dan Kelurahan Terintegrasi</p>
+                    </div>
+                </a> */}
                 <ul className="sidebar-nav" id="sidebar-nav">
-                    <li className="nav-heading">Menu</li>
+                    <li className="nav-heading mb-3">Menu</li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/" end>

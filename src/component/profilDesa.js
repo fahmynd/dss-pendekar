@@ -1,6 +1,10 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
+import profil from '../assets/img/profil.png'
 
-function ProfilDesa() {
+const ProfilDesa = () => {
+    useEffect(() => {
+        document.title = "Profil Desa | PENDEKAR";
+    }, [])
     return (
         <Fragment>
             <main id="main" className="main">
@@ -38,7 +42,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
@@ -57,7 +61,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
@@ -76,7 +80,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
@@ -95,7 +99,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
@@ -114,7 +118,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
@@ -133,7 +137,7 @@ function ProfilDesa() {
                                     <div className="card p-2 mb-3">
                                         <div className="row g-0 align-items-center">
                                             <div className="col-2">
-                                                <img src="assets/img/profil.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">

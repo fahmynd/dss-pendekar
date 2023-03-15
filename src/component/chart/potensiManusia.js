@@ -5,7 +5,7 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-    labels: ['1', '2', '3'],
+    labels: ['Variable 1', 'Variable 2', 'Variable 3'],
     datasets: [
         {
             label: '# of Votes',
@@ -30,7 +30,10 @@ const options = {
     plugins: {
         legend: {
             display: true,
-            position: "bottom"
+            position: "bottom",
+            labels: {
+                usePointStyle: true
+            }
         },
     },
 };

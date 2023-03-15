@@ -39,6 +39,22 @@ export const data = {
     ],
 };
 
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            display: false,
+        },
+    },
+    scales: {
+        r: {
+            angleLines: {
+                display: true
+            },
+        }
+    }
+};
+
 export function LembagaKemasyarakatan() {
-    return <Radar data={data} />;
+    return <Radar data={data} options={options} />;
 }

@@ -1,8 +1,11 @@
-import { React, Fragment } from 'react'
+import { React, Fragment, useEffect } from 'react'
 import IdmChart from './chart/idm'
 import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
 
-function PerkembanganDesa() {
+const PerkembanganDesa = () => {
+    useEffect(() => {
+        document.title = "Perkembangan Desa | PENDEKAR";
+    }, [])
     return (
         <Fragment>
             <main id="main" className="main">

@@ -1,8 +1,13 @@
-import { React, Fragment } from 'react'
+import { React, Fragment, useEffect } from 'react'
 import JenisUsaha from './chart/jenisUsaha'
 import UsahaDiWilayah from './chart/usahaDiWilayah'
+import produk from '../assets/img/produk.png'
+// import '../assets/vendor/boxicons/css/boxicons.min.css'
 
-function Umkm() {
+const Umkm = () => {
+    useEffect(() => {
+        document.title = "UMKM | PENDEKAR";
+    }, [])
     return (
         <Fragment>
             <main id="main" className="main">
@@ -81,7 +86,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -109,7 +114,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -137,7 +142,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -165,7 +170,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -193,7 +198,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -221,7 +226,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -249,7 +254,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -277,7 +282,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">
@@ -305,7 +310,7 @@ function Umkm() {
                                         <div className="row g-0 align-items-center">
                                             <div className="col-5 item">
                                                 <span className="notify-badge">Kuliner Online</span>
-                                                <img src="assets/img/produk.png" className="img-fluid rounded-start" alt="..." />
+                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
                                             </div>
                                             <div className="col-7 direction">
                                                 <div className="card-body-produk">

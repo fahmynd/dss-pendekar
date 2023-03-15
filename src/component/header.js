@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import profilImg from '../assets/img/profile-img.jpg'
 
 function Header() {
     return (
@@ -8,12 +9,12 @@ function Header() {
 
                 <div className="d-flex align-items-center justify-content-between">
                     <Link to="/" className="logo d-flex align-items-center">
-                        <span className="d-none d-lg-block">Pendekar</span>
+                        <span className="d-none d-lg-block">PENDEKAR</span>
                     </Link>
                     <i className="bi bi-list toggle-sidebar-btn"></i>
                 </div>
 
-                <div className="button-bar">
+                <div className="button-bar d-none">
                     <button type="button" className="btn btn-outline-secondary">Peta Interaktif</button>
                     <button type="button" className="btn btn-outline-secondary">Statistik Potensi</button>
                     <button type="button" className="btn btn-outline-secondary">Stunting</button>
@@ -100,7 +101,7 @@ function Header() {
                         <li className="nav-item dropdown pe-3">
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to={'/'} data-bs-toggle="dropdown">
-                                <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" />
+                                <img src={profilImg} alt="Profile" className="rounded-circle" />
                                 <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                             </Link>
 

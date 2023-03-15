@@ -1,7 +1,10 @@
-import { React, Fragment } from 'react'
+import { React, Fragment, useEffect } from 'react'
 import AnggaranDesa from './chart/anggaranDesa'
 
-function Keuangan() {
+const Keuangan = () => {
+    useEffect(() => {
+        document.title = "Keuangan | PENDEKAR";
+    }, [])
     return (
         <Fragment>
             <main id="main" className="main">

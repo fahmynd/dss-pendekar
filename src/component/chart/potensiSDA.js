@@ -4,7 +4,7 @@ const options = {
     grid: { top: 20, right: 40, bottom: 20, left: 40 },
     xAxis: {
         type: "category",
-        data: ["Kopi", "Peternakan", "Sawah"]
+        data: ["Kopi", "Peternakan", "Sawah"],
     },
     yAxis: {
         type: "value"
@@ -26,7 +26,8 @@ const options = {
                 }
             ],
             type: "bar",
-            smooth: true
+            smooth: true,
+            barWidth: '30%'
         }
     ],
     tooltip: {

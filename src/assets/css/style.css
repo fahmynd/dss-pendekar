@@ -941,13 +941,14 @@ font-weight: var(--bs-list-group-action-font-weight);
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 60px;
+  /* top: 60px; */
+  top: 0;
   left: 0;
   bottom: 0;
   width: 206px;
-  z-index: 996;
+  z-index: 999;
   transition: all 0.3s;
-  /* padding: 20px; */
+  padding: 30px 0;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
@@ -956,8 +957,27 @@ font-weight: var(--bs-list-group-action-font-weight);
 }
 
 @media (max-width: 1199px) {
-  .sidebar {
+  /* .sidebar {
     left: -300px;
+  } */
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    /* top: 0; */
+    left: -300px;
+    bottom: 0;
+    width: 206px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 30px 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: #327A6D;
+  }
+  #pendekar {
+    display: none;
   }
 }
 
@@ -1161,7 +1181,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 
 .dashboard .info-card h6 {
   font-size: 18px;
-  color: #012970;
+  color: #1A1A1A;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -1668,7 +1688,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 z-index: 1;
 top: 200px;
 right: 50px;
-width: 450px;
+width: 500px;
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {

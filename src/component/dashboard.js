@@ -1,13 +1,31 @@
-import React, { Fragment } from 'react'
-// import { Link } from 'react-router-dom'
-import '../assets/css/news-ticker.min.css'
+import axios from 'axios'
+import React, { Fragment, useEffect, useState } from 'react'
+import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
 import BalitaYoY from './chart/balitaStuntingYoY'
 import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
 import { PotensiManusia } from './chart/potensiManusia'
 import PotensiSDA from './chart/potensiSDA'
 
-function Dashboard() {
+const Dashboard = () => {
+    const [jml_desa, setJml_desa] = useState();
+    const [jml_dusun, setJml_dusun] = useState();
+    const [jml_umkm, setJml_umkm] = useState();
+    const [jml_program, setJml_program] = useState();
+
+    useEffect(() => {
+        axios.get(BASE_API_URL + '?key=' + KODE_SLUG)
+            // axios.get('https://pendekar.digitaldesa.id/api/?key=sulselprov-barrukab')
+            .then((result) => {
+                // console.log(result.data.data)
+                const data = result.data.data;
+                setJml_desa(data.jml_desa)
+                setJml_dusun(data.jml_dusun)
+                setJml_umkm(data.jml_umkm)
+                setJml_program(data.jml_program)
+            })
+        document.title = "Dashboard | PENDEKAR";
+    }, [])
     return (
         <Fragment>
             <main id="main" className="main">
@@ -46,7 +64,7 @@ function Dashboard() {
                                                 </div>
                                                 <div className="ps-2">
                                                     <span className="text-muted smaller pt-2">DESA & KELURAHAN</span>
-                                                    <h6>300</h6>
+                                                    <h6>{jml_desa}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -78,7 +96,7 @@ function Dashboard() {
                                                 </div>
                                                 <div className="ps-2">
                                                     <span className="text-muted smaller pt-2">UMKM DIGITAL</span>
-                                                    <h6>342</h6>
+                                                    <h6>{jml_umkm}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +112,7 @@ function Dashboard() {
                                                 </div>
                                                 <div className="ps-2">
                                                     <span className="text-muted smaller pt-2">PROGRAM DESA</span>
-                                                    <h6>3,421</h6>
+                                                    <h6>{jml_program}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +130,7 @@ function Dashboard() {
                                                 </div>
                                                 <div className="ps-2">
                                                     <span className="text-muted smaller pt-2">DUSUN/KAMPUNG/RT</span>
-                                                    <h6>3,421</h6>
+                                                    <h6>{jml_dusun}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -286,12 +304,12 @@ function Dashboard() {
 
                                     <div className='card shadow position-absolute map-box2'>
                                         <div className='card-body'>
-                                            <h5 className="card-title-potensi">Desa Cimayasari</h5>
+                                            <h5 className="card-title-potensi" style={{ color: '#327A6D' }}>Desa Cimayasari</h5>
                                             <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
                                             <div className="filter-primary">
                                                 <button type="button" className="btn btn-primary"><i className='bx bx-cctv'></i> CCTV</button>
                                             </div>
-                                            <table className='table table-borderless'>
+                                            {/* <table className='table table-borderless'>
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">Capaian</th>
@@ -332,13 +350,67 @@ function Dashboard() {
                                                         <td>:-</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                            </table> */}
+                                            <div className='row'>
+                                                <div className='col-md-6'>
+                                                    <h5 className='fw-bold'>Capaian</h5>
+                                                    <div className='row g-2'>
+                                                        <div className='col-6'>KD</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>IDM</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>SDGS</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>AR</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>Program</div>
+                                                        <div className='col-6'>:-</div>
+                                                    </div>
+                                                </div>
+                                                <div className='col-md-6'>
+                                                    <h5 className='fw-bold'>Potensi</h5>
+                                                    <div className='row g-2'>
+                                                        <div className='col-6'>SDA</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>IDM</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>SDM</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>LK</div>
+                                                        <div className='col-6'>:-</div>
+                                                        <div className='col-6'>Sarana Prasarana</div>
+                                                        <div className='col-6'>:-</div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className="embed-responsive embed-responsive-16by9" style={{ height: '300px !important' }}>
                                         <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                                     </div>
+                                    <br />
+                                    <div className="row g-0">
+                                        <div className="col-md-2 fw-bold">Keterangan:</div>
+                                        <div className="col-md-3">
+                                            <div className="row">
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#A3FFC2' }}></i> 1.890.063 - 2.515.973</p>
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#518F6B' }}></i> 1.890.063 - 2.515.973</p>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <div className="row">
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#2EA256' }}></i> 1.890.063 - 2.515.973</p>
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#223D2D' }}></i> 1.890.063 - 2.515.973</p>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <div className="row">
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#73C897' }}></i> 1.890.063 - 2.515.973</p>
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#E84C30' }}></i> 1.890.063 - 2.515.973</p>
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
