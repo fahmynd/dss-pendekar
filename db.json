@@ -1,0 +1,30 @@
+{
+    "navbar": {
+        "logo": "sengaselatan.webp"
+    },
+    "footer": {
+        "logo": "logo.png",
+        "telponPenting": [
+            {
+                "nama": "Kapolsek Belopa: "
+            }
+        ]
+    },
+    "potensi": [
+        {
+            "judul": "Rumput Laut Gracilaria",
+            "foto": "gracilaria.jpg"
+        }
+    ],
+    "dashboard": {
+        "keuanganDesa": "Rp312.300.003",
+        "desaDanKelurahan": "7,432",
+        "desaMandiri": "82",
+        "umkmDigital": "203",
+        "programDesa": "7,239",
+        "dusun": "4,902",
+        "peningkatanSkorKab": "34.93%",
+        "tersalurkanRKD": "312",
+        "penerimaProgram": "3,340"
+    }
+}
