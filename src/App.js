@@ -13,6 +13,9 @@ const Sidebar = lazy(() => import("./component/sidebar"));
 const Footer = lazy(() => import("./component/footer"));
 const ScrollToTop = lazy(() => import("./component/scroll-to-top"));
 const Dashboard = lazy(() => import("./component/dashboard"));
+const AdministrasiUmum = lazy(() => import("./component/administrasiUmum"));
+const Kependudukan = lazy(() => import("./component/kependudukan"));
+const Pembangunan = lazy(() => import("./component/pembangunan"));
 const PerkembanganDesa = lazy(() => import("./component/perkembanganDesa"));
 const Keuangan = lazy(() => import("./component/keuangan"));
 const Umkm = lazy(() => import("./component/umkm"));
@@ -37,7 +40,10 @@ export default class App extends Component {
         <Suspense fallback={<div className="lazy-load">Loading...</div>}>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
+            <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
             <Route path="/perkembangan-desa" element={<PerkembanganDesa />} />
+            <Route path="/kependudukan" element={<Kependudukan />} />
+            <Route path="/pembangunan" element={<Pembangunan />} />
             <Route path="/keuangan" element={<Keuangan />} />
             <Route path="/umkm" element={<Umkm />} />
             <Route path="/profil-desa" element={<ProfilDesa />} />

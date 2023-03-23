@@ -64,7 +64,7 @@ h6 {
   text-transform: uppercase;
   margin-bottom: 0;
   font-weight: 700;
-  color: #327A6D;
+  color: #7862B9;
 }
 
 /*--------------------------------------------------------------
@@ -264,9 +264,6 @@ h6 {
   border: 1px solid #E2E2E2;
   border-radius: 5px;
   height: 450px;
-  overflow-y: auto;
-  scrollbar-width: thin !important;
-  scrollbar-color: #aab7cf transparent !important;
 }
 
 .stunting-card {
@@ -375,6 +372,10 @@ h6 {
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
+  height: 350px;
+  overflow-y: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: #aab7cf transparent !important;
 }
 
 .list-group-item, .list-group-item.active {
@@ -490,9 +491,9 @@ font-weight: var(--bs-list-group-action-font-weight);
 }
 
 .btn-primary {
-  background-color: #EDF8F6;
-  border: 1px solid #EDF8F6;
-  color: #327A6D;
+  background-color: #F1ECFF;
+  border: 1px solid #F1ECFF;
+  color: #3B2D64;
   font-weight: 500;
 }
 
@@ -953,7 +954,7 @@ font-weight: var(--bs-list-group-action-font-weight);
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #327A6D;
+  background-color: #3B2D64;
 }
 
 @media (max-width: 1199px) {
@@ -1036,7 +1037,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 .sidebar-nav .nav-heading {
   font-size: 16px;
   text-transform: uppercase;
-  color: #75A69D;
+  color: #7862B9;
   font-weight: 700;
   margin: 10px 0 5px 15px;
 }
@@ -1046,9 +1047,9 @@ font-weight: var(--bs-list-group-action-font-weight);
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #75A69D;
+  color: #7862B9;
   transition: 0.3;
-  background: #327A6D;
+  background: #3B2D64;
   padding: 10px 15px;
   /* border-radius: 4px; */
 }
@@ -1057,14 +1058,14 @@ font-weight: var(--bs-list-group-action-font-weight);
   font-size: 20px;
   font-weight: 400;
   margin-right: 6px;
-  color: #75A69D;
+  color: #7862B9;
 }
 
 .sidebar-nav .nav-link.active {
   /* color: #75A69D;
   background: #327A6D; */
   color: #FFFFFF;
-  background: #4E9F91;
+  background: #7862B9;
 }
 
 .sidebar-nav .nav-link.active i {
@@ -1074,7 +1075,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 
 .sidebar-nav .nav-link:hover {
   color: #FFFFFF;
-  background: #4E9F91;
+  background: #7862B9;
 }
 
 .sidebar-nav .nav-link:hover i {
@@ -1221,8 +1222,8 @@ font-weight: var(--bs-list-group-action-font-weight);
 }
 
 .dashboard .sales-card .card-icon {
-  color: #327A6D;
-  background: rgba(50, 122, 109, 0.05);
+  color: #3B2D64;
+  background: #F1ECFF;
 }
 
 .dashboard .revenue-card .card-icon {

@@ -29,16 +29,30 @@ function Sidebar() {
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/perkembangan-desa">
+                        <NavLink className="nav-link" to="/administrasi-umum">
                             <i className="ri-bar-chart-box-line"></i>
-                            <span>Perkembangan Desa</span>
+                            <span>Administrasi Umum</span>
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/kependudukan">
+                            <i className="ri-bar-chart-box-line"></i>
+                            <span>Kependudukan</span>
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/pembangunan">
+                            <i className="bx bx-wallet"></i>
+                            <span>Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/keuangan">
                             <i className="bx bx-wallet"></i>
-                            <span>Keuangan</span>
+                            <span>Kelembagaan</span>
                         </NavLink>
                     </li>
 
