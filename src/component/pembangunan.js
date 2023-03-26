@@ -7,6 +7,7 @@ import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
 import { PotensiManusia } from './chart/potensiManusia'
 import PotensiSDA from './chart/potensiSDA'
 import axios from 'axios'
+import { BASE_API_URL } from '../utils/api'
 
 const Pembangunan = () => {
 
@@ -57,7 +58,7 @@ const Pembangunan = () => {
 
                                     <div className='card shadow position-absolute map-box2'>
                                         <div className='card-body'>
-                                            <h5 className="card-title-potensi" style={{ color: '#327A6D' }}>Desa Cimayasari</h5>
+                                            <h5 className="card-title-potensi pb-0" style={{ color: '#3B2D64' }}>Desa Cimayasari</h5>
                                             <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
                                             <div className="filter-primary">
                                                 <button type="button" className="btn btn-primary"><i className='bx bx-cctv'></i> CCTV</button>
@@ -138,7 +139,7 @@ const Pembangunan = () => {
                                                         <h4 className="fw-bold mt-4 text-center">Skor IDM Tahun 2022</h4>
                                                         <div className="row mt-4">
                                                             <div className="col-md-12 mb-4">
-                                                                <div className="stunting-card card-idm__skor">
+                                                                <div className="idm-card card-idm__skor">
                                                                     <div className="card-body-info">
                                                                         <div className="row">
                                                                             <div className="col-md-6">
@@ -155,7 +156,7 @@ const Pembangunan = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="col-md-12 mb-4">
-                                                                <div className="stunting-card card-idm__status">
+                                                                <div className="idm-card card-idm__status">
                                                                     <div className="card-body-info">
                                                                         <div className="row">
                                                                             <div className="col-md-6">
@@ -266,7 +267,7 @@ const Pembangunan = () => {
 
                                     <table className="table table-bordered">
                                         <thead>
-                                            <tr style={{ background: '#EDF8F6' }}>
+                                            <tr style={{ background: '#F1ECFF' }}>
                                                 <th scope="col">Nama Kecamatan</th>
                                                 <th scope="col">Nama Desa</th>
                                                 <th scope="col">Status</th>
@@ -281,7 +282,7 @@ const Pembangunan = () => {
                                                 <td>Bojong Gede</td>
                                                 <td>
                                                     <h5>
-                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                        <span className="badge bg-verifikasi">Mandiri</span>
                                                     </h5>
                                                 </td>
                                                 <td>0.8308</td>
@@ -298,7 +299,7 @@ const Pembangunan = () => {
                                                 <td>Bojong Gede</td>
                                                 <td>
                                                     <h5>
-                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                        <span className="badge bg-pengajuan">Maju</span>
                                                     </h5>
                                                 </td>
                                                 <td>0.8308</td>
@@ -315,7 +316,7 @@ const Pembangunan = () => {
                                                 <td>Bojong Gede</td>
                                                 <td>
                                                     <h5>
-                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                        <span className="badge bg-rkd">Berkembang</span>
                                                     </h5>
                                                 </td>
                                                 <td>0.8308</td>
@@ -332,7 +333,24 @@ const Pembangunan = () => {
                                                 <td>Bojong Gede</td>
                                                 <td>
                                                     <h5>
-                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                        <span className="badge bg-prioritas">Tertinggal</span>
+                                                    </h5>
+                                                </td>
+                                                <td>0.8308</td>
+                                                <td>26.73</td>
+                                                <td>
+                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#disablebackdrop">
+                                                        Lihat Rekomendasi
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Manggala</td>
+                                                <td>Bojong Gede</td>
+                                                <td>
+                                                    <h5>
+                                                        <span className="badge bg-super-prioritas">Sangat Tertinggal</span>
                                                     </h5>
                                                 </td>
                                                 <td>0.8308</td>
@@ -517,7 +535,7 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">JUMLAH BALITA STUNTING DI DESA/KELURAHAN</h5>
                                                 </div>
-                                                <div className="card-body">
+                                                <div className="card-body mt-4">
 
                                                     {/* <div id="verticalBarChart" style={{ minHeight: '400px' }} className="echart mt-4"></div> */}
                                                     <BalitaStuntingJumlah />

@@ -19,10 +19,10 @@ const Dashboard = () => {
     const [desa, setDesa] = useState([]);
 
     useEffect(() => {
-        // axios.get(BASE_API_URL)
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
+        axios.get(BASE_API_URL)
+            // axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
             .then((result) => {
-                // console.log(result.data.data)
+                // console.log(result)
                 const data = result.data.data;
                 setDss(result.data.dss)
                 setSummary(data.summary)
@@ -106,7 +106,7 @@ const Dashboard = () => {
 
                                     <div className='card shadow position-absolute map-box2'>
                                         <div className='card-body'>
-                                            <h5 className="card-title-potensi" style={{ color: '#327A6D' }}>Desa Cimayasari</h5>
+                                            <h5 className="card-title-potensi pb-0" style={{ color: '#3B2D64' }}>Desa Cimayasari</h5>
                                             <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
                                             <div className="filter-primary">
                                                 <button type="button" className="btn btn-primary"><i className='bx bx-cctv'></i> CCTV</button>

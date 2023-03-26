@@ -48,7 +48,7 @@ const Umkm = () => {
                                 <div className="col-3">
                                     <div className="search-produk">
                                         <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                            <input type="text" name="query" placeholder="Search" title="Enter search keyword" />
+                                            <input type="text" name="query" placeholder="Cari produk..." title="Enter search keyword" />
                                             <button type="submit" title="Search"><i className="bi bi-search"></i></button>
                                         </form>
                                     </div>
