@@ -4,28 +4,16 @@ import { BASE_API_URL } from '../utils/api';
 import BalitaStuntingJumlah from './chart/balitaStuntingJumlah';
 
 const Kependudukan = () => {
-    const [dss, setDss] = useState();
-    const [summary, setSummary] = useState([]);
-    const [jml_desa, setJml_desa] = useState();
-    const [jml_dusun, setJml_dusun] = useState();
-    const [jml_umkm, setJml_umkm] = useState();
-    const [jml_program, setJml_program] = useState();
-    const [kecamatan, setKecamatan] = useState([]);
+    const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
 
     useEffect(() => {
-        axios.get(BASE_API_URL)
-            // axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
+        // axios.get(BASE_API_URL+'kependudukan')
+        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/kependudukan')
             .then((result) => {
                 // console.log(result.data.data)
                 const data = result.data.data;
-                setDss(result.data.dss)
-                setSummary(data.summary)
-                setJml_desa(data.jml_desa)
-                setJml_dusun(data.jml_dusun)
-                setJml_umkm(data.jml_umkm)
-                setJml_program(data.jml_program)
-                setKecamatan(data.list_desa)
+                setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
 
             })
@@ -41,13 +29,120 @@ const Kependudukan = () => {
                     <h1>Kependudukan</h1>
                 </div>
 
-                <section className="section dashboard">
-                    <div className="row">
+                <div className="filter-update">
+                    <h5>
+                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                    </h5>
+                </div>
 
-                        <div className="col-lg-12">
+                <section className="section dashboard">
+                    <div className="row g-2">
+
+                        <div className="col-md-6">
                             <div className="card">
-                                <div className="card-body pb-0">
-                                    <h5 className="card-title-potensi pb-0">Grafik Kependudukan</h5>
+                                <div className="card-body-demografi pb-0">
+                                    <h5 className="card-title-potensi pb-0">Tampilkan Berdasarkan</h5>
+                                    <div className="row g-1 mb-4">
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Demografi Kependudukan</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode}
+                                                            listkec={kec.kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Desa</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode}
+                                                            listdesa={deskel.deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <table className="table table-bordered scroll-xy">
+                                        <thead>
+                                            <tr style={{ background: '#F1ECFF' }}>
+                                                <th scope="col">No</th>
+                                                <th scope="col">Kecamatan</th>
+                                                <th scope="col">Desa</th>
+                                                <th scope="col">Laki-Laki</th>
+                                                <th scope="col">Perempuan</th>
+                                                <th scope="col">Jumlah Penduduk</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope='row'>1</th>
+                                                <td>Manggala</td>
+                                                <td>Pilanggede</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope='row'>1</th>
+                                                <td>Manggala</td>
+                                                <td>Pilanggede</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope='row'>1</th>
+                                                <td>Manggala</td>
+                                                <td>Pilanggede</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope='row'>1</th>
+                                                <td>Manggala</td>
+                                                <td>Pilanggede</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope='row'>1</th>
+                                                <td>Manggala</td>
+                                                <td>Pilanggede</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-6">
+                            <div className="card">
+                                <div className="card-body-demografi pb-0">
+                                    <h5 className="card-title-potensi pb-0">Statistik Data</h5>
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
@@ -60,17 +155,29 @@ const Kependudukan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode}
+                                                            listkec={kec.kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode}
+                                                            listdesa={deskel.deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -79,7 +186,7 @@ const Kependudukan = () => {
 
                                         <div className="col-12">
                                             <div className="stunting-card">
-                                                <div className="card-body my-4">
+                                                <div className="card-body scroll-y my-4">
                                                     <BalitaStuntingJumlah />
                                                 </div>
                                             </div>
@@ -92,11 +199,11 @@ const Kependudukan = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title-potensi">Tabel Kependudukan</h5>
+                                    <h5 className="card-title-potensi">Rekap Kependudukan</h5>
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Jenis Kependudukan</option>
+                                                <option value={'DEFAULT'}>Demografi Kependudukan</option>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -105,17 +212,29 @@ const Kependudukan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode}
+                                                            listkec={kec.kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode}
+                                                            listdesa={deskel.deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -126,9 +245,11 @@ const Kependudukan = () => {
                                                 <th scope="col">No</th>
                                                 <th scope="col">Kecamatan</th>
                                                 <th scope="col">Desa</th>
-                                                <th scope="col">Total Penduduk</th>
                                                 <th scope="col">Laki-Laki</th>
                                                 <th scope="col">Perempuan</th>
+                                                <th scope="col">Jumlah Penduduk</th>
+                                                <th scope="col">Jumlah KK</th>
+                                                <th scope="col">Wajib KTP</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -136,61 +257,51 @@ const Kependudukan = () => {
                                                 <th scope='row'>1</th>
                                                 <td>Manggala</td>
                                                 <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-prioritas">Revisi dari kecamatan</span>
-                                                    </h5>
-                                                </td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             </tr>
                                             <tr>
                                                 <th scope='row'>1</th>
                                                 <td>Manggala</td>
                                                 <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-pengajuan">Pengajuan</span>
-                                                    </h5>
-                                                </td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             </tr>
                                             <tr>
                                                 <th scope='row'>1</th>
                                                 <td>Manggala</td>
                                                 <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-rkd">Masuk RKD</span>
-                                                    </h5>
-                                                </td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             </tr>
                                             <tr>
                                                 <th scope='row'>1</th>
                                                 <td>Manggala</td>
                                                 <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                    </h5>
-                                                </td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             </tr>
                                             <tr>
                                                 <th scope='row'>1</th>
                                                 <td>Manggala</td>
                                                 <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                    </h5>
-                                                </td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -204,6 +315,18 @@ const Kependudukan = () => {
 
             </main>
         </Fragment>
+    )
+}
+
+function Kecamatan(props) {
+    return (
+        <option value="1">{props.listkec}</option>
+    )
+}
+
+function Desa(props) {
+    return (
+        <option value="1">{props.listdesa}</option>
     )
 }
 

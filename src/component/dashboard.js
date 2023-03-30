@@ -1,43 +1,33 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { rupiah } from '../utils/helper.min'
 import { BASE_API_URL } from '../utils/api'
-import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
-import BalitaYoY from './chart/balitaStuntingYoY'
-import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
-import { PotensiManusia } from './chart/potensiManusia'
-import PotensiSDA from './chart/potensiSDA'
+import { postscribe } from 'postscribe'
+import MarkerPeta from './map'
+import MapPopup from './mapPopup'
+import Map from './mapPopup'
 
 const Dashboard = () => {
-    const [dss, setDss] = useState();
-    const [summary, setSummary] = useState([]);
-    const [jml_desa, setJml_desa] = useState();
-    const [jml_dusun, setJml_dusun] = useState();
-    const [jml_umkm, setJml_umkm] = useState();
-    const [jml_program, setJml_program] = useState();
-    const [kecamatan, setKecamatan] = useState([]);
-    const [desa, setDesa] = useState([]);
+    const [lat, setLat] = useState();
+    const [lng, setLng] = useState();
+
+    const position = [-3.4590744, 119.8815203]
 
     useEffect(() => {
-        axios.get(BASE_API_URL)
-            // axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
+        // axios.get(BASE_API_URL)
+        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
             .then((result) => {
                 // console.log(result)
-                const data = result.data.data;
-                setDss(result.data.dss)
-                setSummary(data.summary)
-                setJml_desa(data.jml_desa)
-                setJml_dusun(data.jml_dusun)
-                setJml_umkm(data.jml_umkm)
-                setJml_program(data.jml_program)
-                setKecamatan(data.list_desa)
-                setDesa(data.list_desa)
+                const data = result.data.dss;
+                setLat(data.lat)
+                setLng(data.lng)
 
+                // postscribe('#mydiv', '<script language="javascript" src="assets/js/jquery-3.3.1.min.js"></script>')
             })
         document.title = "Dashboard | PENDEKAR";
     }, [])
     // console.log(summary[dss.k1 + '.' + dss.k2 + '.' + dss.k3 + '.' + dss.k4])
     // console.log(dss)
+
     return (
         <Fragment>
             <main id="main" className="main">
@@ -94,9 +84,9 @@ const Dashboard = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Capaian & Potensi</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="1">KD</option>
+                                                <option value="2">SDGS</option>
+                                                <option value="3">AR</option>
                                             </select>
                                         </div>
                                         <div className="col-3">
@@ -104,12 +94,14 @@ const Dashboard = () => {
                                         </div>
                                     </div>
 
-                                    <div className='card shadow position-absolute map-box2'>
+                                    {/* <div className='card shadow position-absolute map-box2'>
                                         <div className='card-body'>
                                             <h5 className="card-title-potensi pb-0" style={{ color: '#3B2D64' }}>Desa Cimayasari</h5>
                                             <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
                                             <div className="filter-primary">
-                                                <button type="button" className="btn btn-primary"><i className='bx bx-cctv'></i> CCTV</button>
+                                                <h5>
+                                                    <span className="badge bg-verifikasi"><i className='bx bx-cctv'></i> CCTV</span>
+                                                </h5>
                                             </div>
                                             <div className='row'>
                                                 <div className='col-md-6'>
@@ -146,20 +138,23 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                     <div className="embed-responsive embed-responsive-16by9" style={{ height: '300px !important' }}>
-                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
-                                    </div>
+                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=-3.4590744,119.8815203&hl=es;z=14&amp;output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
+                                    </div> */}
+
+                                    <Map />
+
                                     <br />
                                     <div className="row g-0">
                                         <div className="col-md-2 fw-bold">Keterangan:</div>
                                         <div className="col-md-3">
                                             <div className="row">
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#A3FFC2' }}></i> 1.890.063 - 2.515.973</p>
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#A3FFC2' }}></i> 0</p>
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#518F6B' }}></i> 1.890.063 - 2.515.973</p>
                                             </div>
                                         </div>
                                         <div className="col-md-3">
                                             <div className="row">
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#2EA256' }}></i> 1.890.063 - 2.515.973</p>
+                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#2EA256' }}></i> 0</p>
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#223D2D' }}></i> 1.890.063 - 2.515.973</p>
                                             </div>
                                         </div>

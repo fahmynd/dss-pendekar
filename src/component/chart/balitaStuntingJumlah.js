@@ -26,13 +26,13 @@ const options = {
         data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
     },
     series: [{
-        name: '2011',
+        name: 'Laki-Laki',
         type: 'bar',
         data: [18203, 23489, 29034, 104970, 131744, 630230],
         color: '#327A6D'
     },
     {
-        name: '2012',
+        name: 'Perempuan',
         type: 'bar',
         data: [19325, 23438, 31000, 121594, 134141, 681807],
         color: '#EA9501'

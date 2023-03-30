@@ -98,7 +98,7 @@ const Pembangunan = () => {
                                         </div>
                                     </div>
                                     <div className="embed-responsive embed-responsive-16by9" style={{ height: '300px !important' }}>
-                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
+                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=-3.4590744,119.8815203&hl=es;z=14&amp;output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                                     </div>
                                     <br />
                                     <div className="row g-0">

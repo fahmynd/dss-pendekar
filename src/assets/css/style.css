@@ -263,12 +263,23 @@ h6 {
   color: #3B2D64;
 }
 
+.bg-update {
+  background-color: #7862B9;
+  border-color: #7862B9;
+  color: #FFFFFF;
+}
+
 /* Card */
 .card {
   margin-bottom: 15px;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-map {
+  background: transparent;
+  border: none;
 }
 
 .umkm-card {
@@ -298,6 +309,27 @@ h6 {
   font-weight: 700;
 }
 
+.scroll-xy {
+  width: auto;
+  height: 400px;
+  overflow: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: #aab7cf transparent !important;
+}
+
+.scroll-x {
+  width: auto;
+  overflow-x: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: #aab7cf transparent !important;
+}
+
+.scroll-y {
+  height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: #aab7cf transparent !important;
+}
 
 .keuangan-card {
   margin-bottom: 10px;
@@ -437,6 +469,11 @@ font-weight: var(--bs-list-group-action-font-weight);
   padding: 0px 20px 20px;
 }
 
+.card-body-map {
+  width: 400px;
+  padding: 0;
+}
+
 .card-body-chart {
   padding: 30px 20px 20px;
 }
@@ -464,6 +501,12 @@ font-weight: var(--bs-list-group-action-font-weight);
   border: none;
   height: 90px;
   /* border: 1px solid #EDEDED; */
+}
+
+.card-body-demografi {
+  padding: 0px 20px 20px;
+  border: none;
+  height: 600px;
 }
 
 .progress-bar {
@@ -662,7 +705,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 
 .header {
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1001;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
@@ -970,7 +1013,7 @@ font-weight: var(--bs-list-group-action-font-weight);
   left: 0;
   bottom: 0;
   width: 206px;
-  z-index: 999;
+  z-index: 1002;
   transition: all 0.3s;
   padding: 30px 0;
   overflow-y: auto;
@@ -1161,7 +1204,7 @@ font-weight: var(--bs-list-group-action-font-weight);
   top: 15px;
 }
 
-.dashboard .filter-primary {
+.filter-primary {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -1171,6 +1214,13 @@ font-weight: var(--bs-list-group-action-font-weight);
   position: absolute;
   right: 15px;
   top: 12px;
+  color: #499841;
+}
+
+.filter-update {
+  position: absolute;
+  right: 30px;
+  top: 90px;
   color: #499841;
 }
 
@@ -1741,4 +1791,8 @@ width: 500px;
 .table-borderless > thead > tr > td,
 .table-borderless > thead > tr > th {
     border: none;
+}
+
+.leaflet-popup-content-wrapper {
+  width: 446px;
 }
