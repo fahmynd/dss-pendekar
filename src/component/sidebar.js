@@ -24,49 +24,49 @@ function Sidebar() {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/" end>
                             <i className="ri-funds-box-line"></i>
-                            <span>Dashboard</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Dashboard</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/administrasi-umum">
                             <i className="ri-file-copy-2-line"></i>
-                            <span>Administrasi Umum</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Administrasi Umum</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/kependudukan">
                             <i className="ri-team-line"></i>
-                            <span>Kependudukan</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Kependudukan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/pembangunan">
                             <i className="ri-building-4-line"></i>
-                            <span>Pembangunan</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/keuangan">
                             <i className="ri-bank-line"></i>
-                            <span>Kelembagaan</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Kelembagaan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/umkm">
                             <i className="ri-store-2-line"></i>
-                            <span>UMKM</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">UMKM</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/profil-desa">
                             <i className="ri-profile-line"></i>
-                            <span>Profil Desa</span>
+                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Profil Desa</span>
                         </NavLink>
                     </li>
 

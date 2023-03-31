@@ -94,53 +94,6 @@ const Dashboard = () => {
                                         </div>
                                     </div>
 
-                                    {/* <div className='card shadow position-absolute map-box2'>
-                                        <div className='card-body'>
-                                            <h5 className="card-title-potensi pb-0" style={{ color: '#3B2D64' }}>Desa Cimayasari</h5>
-                                            <p>Kec. Cipeundeuy, Kab. Subang, Prov. Jawa Barat</p>
-                                            <div className="filter-primary">
-                                                <h5>
-                                                    <span className="badge bg-verifikasi"><i className='bx bx-cctv'></i> CCTV</span>
-                                                </h5>
-                                            </div>
-                                            <div className='row'>
-                                                <div className='col-md-6'>
-                                                    <h5 className='fw-bold'>Capaian</h5>
-                                                    <div className='row g-2'>
-                                                        <div className='col-6'>KD</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>IDM</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>SDGS</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>AR</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>Program</div>
-                                                        <div className='col-6'>:-</div>
-                                                    </div>
-                                                </div>
-                                                <div className='col-md-6'>
-                                                    <h5 className='fw-bold'>Potensi</h5>
-                                                    <div className='row g-2'>
-                                                        <div className='col-6'>SDA</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>IDM</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>SDM</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>LK</div>
-                                                        <div className='col-6'>:-</div>
-                                                        <div className='col-6'>Sarana Prasarana</div>
-                                                        <div className='col-6'>:-</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="embed-responsive embed-responsive-16by9" style={{ height: '300px !important' }}>
-                                        <iframe title='CCTV' id="gmap_canvas" src="https://maps.google.com/maps?q=-3.4590744,119.8815203&hl=es;z=14&amp;output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
-                                    </div> */}
-
                                     <Map />
 
                                     <br />

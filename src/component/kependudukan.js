@@ -9,16 +9,18 @@ const Kependudukan = () => {
 
     useEffect(() => {
         // axios.get(BASE_API_URL+'kependudukan')
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/kependudukan')
+        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum')
             .then((result) => {
-                // console.log(result.data.data)
+                console.log(result.data.data)
                 const data = result.data.data;
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
-
             })
+
         document.title = "Kependudukan | PENDEKAR";
+
     }, [])
+
     // console.log(summary[dss.k1 + '.' + dss.k2 + '.' + dss.k3 + '.' + dss.k4])
     // console.log(dss)
     return (
@@ -80,7 +82,7 @@ const Kependudukan = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    <table className="table table-bordered scroll-xy">
+                                    <table className="table table-bordered table-responsive">
                                         <thead>
                                             <tr style={{ background: '#F1ECFF' }}>
                                                 <th scope="col">No</th>
@@ -143,43 +145,9 @@ const Kependudukan = () => {
                             <div className="card">
                                 <div className="card-body-demografi pb-0">
                                     <h5 className="card-title-potensi pb-0">Statistik Data</h5>
-                                    <div className="row g-1 mb-4">
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Jenis Kependudukan</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode}
-                                                            listkec={kec.kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode}
-                                                            listdesa={deskel.deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
+                                    <div className='mb-4'>
+                                        <button type="button" className="btn btn-outline-secondary me-2">Grafik</button>
+                                        <button type="button" className="btn btn-outline-secondary">Statistik</button>
                                     </div>
 
                                     <div className="row g-md-0">
@@ -239,72 +207,74 @@ const Kependudukan = () => {
                                         </div>
                                     </div>
 
-                                    <table className="table table-bordered">
-                                        <thead>
-                                            <tr style={{ background: '#F1ECFF' }}>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Kecamatan</th>
-                                                <th scope="col">Desa</th>
-                                                <th scope="col">Laki-Laki</th>
-                                                <th scope="col">Perempuan</th>
-                                                <th scope="col">Jumlah Penduduk</th>
-                                                <th scope="col">Jumlah KK</th>
-                                                <th scope="col">Wajib KTP</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className='table-responsive'>
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr style={{ background: '#F1ECFF' }}>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Kecamatan</th>
+                                                    <th scope="col">Desa</th>
+                                                    <th scope="col">Laki-Laki</th>
+                                                    <th scope="col">Perempuan</th>
+                                                    <th scope="col">Jumlah Penduduk</th>
+                                                    <th scope="col">Jumlah KK</th>
+                                                    <th scope="col">Wajib KTP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                 </div>
                             </div>

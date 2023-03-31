@@ -1796,3 +1796,17 @@ width: 500px;
 .leaflet-popup-content-wrapper {
   width: 446px;
 }
+
+.table-responsive>.table-bordered {
+  border-color: #EDEDED;
+}
+
+/* .table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  border: 1px solid #DDD;
+} */

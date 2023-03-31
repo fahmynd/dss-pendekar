@@ -172,48 +172,49 @@ const Keuangan = () => {
                                                     </div>
 
                                                     <div className="col-md-6">
-
-                                                        <table className="table table-bordered">
-                                                            <thead>
-                                                                <tr style={{ background: '#EDF8F6' }}>
-                                                                    <th scope="col">No</th>
-                                                                    <th scope="col">Kecamatan</th>
-                                                                    <th scope="col">Anggaran</th>
-                                                                    <th scope="col">Realisasi</th>
-                                                                    <th scope="col">Sisa</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody className='small'>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Kecamatan A</td>
-                                                                    <td>Rp3,320,010,400</td>
-                                                                    <td>Rp3,120,010,400</td>
-                                                                    <td>Rp120,010,400</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Kecamatan A</td>
-                                                                    <td>Rp3,320,010,400</td>
-                                                                    <td>Rp3,120,010,400</td>
-                                                                    <td>Rp120,010,400</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td>Kecamatan A</td>
-                                                                    <td>Rp3,320,010,400</td>
-                                                                    <td>Rp3,120,010,400</td>
-                                                                    <td>Rp120,010,400</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">4</th>
-                                                                    <td>Kecamatan A</td>
-                                                                    <td>Rp3,320,010,400</td>
-                                                                    <td>Rp3,120,010,400</td>
-                                                                    <td>Rp120,010,400</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                        <div className='table-responsive'>
+                                                            <table className="table table-bordered">
+                                                                <thead>
+                                                                    <tr style={{ background: '#EDF8F6' }}>
+                                                                        <th scope="col">No</th>
+                                                                        <th scope="col">Kecamatan</th>
+                                                                        <th scope="col">Anggaran</th>
+                                                                        <th scope="col">Realisasi</th>
+                                                                        <th scope="col">Sisa</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody className='small'>
+                                                                    <tr>
+                                                                        <th scope="row">1</th>
+                                                                        <td>Kecamatan A</td>
+                                                                        <td>Rp3,320,010,400</td>
+                                                                        <td>Rp3,120,010,400</td>
+                                                                        <td>Rp120,010,400</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">2</th>
+                                                                        <td>Kecamatan A</td>
+                                                                        <td>Rp3,320,010,400</td>
+                                                                        <td>Rp3,120,010,400</td>
+                                                                        <td>Rp120,010,400</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">3</th>
+                                                                        <td>Kecamatan A</td>
+                                                                        <td>Rp3,320,010,400</td>
+                                                                        <td>Rp3,120,010,400</td>
+                                                                        <td>Rp120,010,400</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">4</th>
+                                                                        <td>Kecamatan A</td>
+                                                                        <td>Rp3,320,010,400</td>
+                                                                        <td>Rp3,120,010,400</td>
+                                                                        <td>Rp120,010,400</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
 
                                                     </div>
 
@@ -225,156 +226,157 @@ const Keuangan = () => {
                                     <div className="card">
                                         <div className="card-body pb-0">
                                             <h5 className="card-title-potensi pb-0">RINCIAN KEUANGAN DESA</h5>
-
-                                            <table className="table table-bordered">
-                                                <thead>
-                                                    <tr style={{ background: '#EDF8F6' }}>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Anggaran</th>
-                                                        <th scope="col">Realisasi</th>
-                                                        <th scope="col">Lebih/Kurang</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN ASLI DESA</td>
-                                                        <td>Rp0</td>
-                                                        <td>Rp0</td>
-                                                        <td>Rp0</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN TRANSFER</p>
-                                                            <ul>
-                                                                <li>Dana Desa</li>
-                                                                <li>Bagi Hasil Pajak dan Retribusi</li>
-                                                                <li>Alokasi Dana Desa</li>
-                                                                <li>Bantuan Keuangan Provinsi</li>
-                                                                <li>Bantuan Keuangan Kabupaten/Kota</li>
-                                                                <li>Pendapatan Lain</li>
-                                                            </ul>
-                                                            <p>JUMLAH PENDAPATAN</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p style={{ color: '#327A6D', weight: '600' }}>BELANJA</p>
-                                                            <ul>
-                                                                <li>Bidang Penyelenggaraan Pemerintahan Desa</li>
-                                                                <li>Bidang Pelaksanaan Pembangunan Desa</li>
-                                                                <li>Bidang Pembinaan Kemasyarakatan</li>
-                                                                <li>Bidang Pemberdayaan Masyarakat</li>
-                                                                <li>Bidang Penanggulangan Bencana, Darurat dan Mendesa Desa</li>
-                                                            </ul>
-                                                            <p>JUMLAH BELANJA</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                            <p>Rp0</p>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <p style={{ color: '#327A6D', weight: '600' }}>PEMBIAYAAN</p>
-                                                            <ul>
-                                                                <li>Penerimaan Pembiayaan</li>
-                                                                <li>Pengeluaran Pembiayaan</li>
-                                                            </ul>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                        </td>
-                                                        <td className='anggaranList'>
-                                                            <p style={{ weight: '600' }}>Rp0</p>
-                                                            <ul className='list-unstyled'>
-                                                                <li>Rp0</li>
-                                                                <li>Rp0</li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th colSpan={4}>Sumber : SISKEUDES 2023</th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
+                                            <div className='table-responsive'>
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr style={{ background: '#EDF8F6' }}>
+                                                            <th scope="col">Keterangan</th>
+                                                            <th scope="col">Anggaran</th>
+                                                            <th scope="col">Realisasi</th>
+                                                            <th scope="col">Lebih/Kurang</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN ASLI DESA</td>
+                                                            <td>Rp0</td>
+                                                            <td>Rp0</td>
+                                                            <td>Rp0</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style={{ color: '#327A6D', weight: '600' }}>PENDAPATAN TRANSFER</p>
+                                                                <ul>
+                                                                    <li>Dana Desa</li>
+                                                                    <li>Bagi Hasil Pajak dan Retribusi</li>
+                                                                    <li>Alokasi Dana Desa</li>
+                                                                    <li>Bantuan Keuangan Provinsi</li>
+                                                                    <li>Bantuan Keuangan Kabupaten/Kota</li>
+                                                                    <li>Pendapatan Lain</li>
+                                                                </ul>
+                                                                <p>JUMLAH PENDAPATAN</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style={{ color: '#327A6D', weight: '600' }}>BELANJA</p>
+                                                                <ul>
+                                                                    <li>Bidang Penyelenggaraan Pemerintahan Desa</li>
+                                                                    <li>Bidang Pelaksanaan Pembangunan Desa</li>
+                                                                    <li>Bidang Pembinaan Kemasyarakatan</li>
+                                                                    <li>Bidang Pemberdayaan Masyarakat</li>
+                                                                    <li>Bidang Penanggulangan Bencana, Darurat dan Mendesa Desa</li>
+                                                                </ul>
+                                                                <p>JUMLAH BELANJA</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                                <p>Rp0</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <p style={{ color: '#327A6D', weight: '600' }}>PEMBIAYAAN</p>
+                                                                <ul>
+                                                                    <li>Penerimaan Pembiayaan</li>
+                                                                    <li>Pengeluaran Pembiayaan</li>
+                                                                </ul>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                            </td>
+                                                            <td className='anggaranList'>
+                                                                <p style={{ weight: '600' }}>Rp0</p>
+                                                                <ul className='list-unstyled'>
+                                                                    <li>Rp0</li>
+                                                                    <li>Rp0</li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th colSpan={4}>Sumber : SISKEUDES 2023</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -437,81 +439,82 @@ const Keuangan = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <table className="table table-bordered">
-                                                    <thead>
-                                                        <tr style={{ background: '#EDF8F6' }}>
-                                                            <th scope="col">No</th>
-                                                            <th scope="col">Kecamatan</th>
-                                                            <th scope="col">Desa</th>
-                                                            <th scope="col">Jenis Proposal</th>
-                                                            <th scope="col">Nominal</th>
-                                                            <th scope="col">Status Proposal</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope='row'>1</th>
-                                                            <td>Manggala</td>
-                                                            <td>Pilanggede</td>
-                                                            <td>DD Tahap 1</td>
-                                                            <td>Rp357,478,384</td>
-                                                            <td>
-                                                                <h5>
-                                                                    <span className="badge bg-prioritas">Prioritas</span>
-                                                                </h5>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope='row'>1</th>
-                                                            <td>Manggala</td>
-                                                            <td>Pilanggede</td>
-                                                            <td>DD Tahap 1</td>
-                                                            <td>Rp357,478,384</td>
-                                                            <td>
-                                                                <h5>
-                                                                    <span className="badge bg-prioritas">Prioritas</span>
-                                                                </h5>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope='row'>1</th>
-                                                            <td>Manggala</td>
-                                                            <td>Pilanggede</td>
-                                                            <td>DD Tahap 1</td>
-                                                            <td>Rp357,478,384</td>
-                                                            <td>
-                                                                <h5>
-                                                                    <span className="badge bg-prioritas">Prioritas</span>
-                                                                </h5>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope='row'>1</th>
-                                                            <td>Manggala</td>
-                                                            <td>Pilanggede</td>
-                                                            <td>DD Tahap 1</td>
-                                                            <td>Rp357,478,384</td>
-                                                            <td>
-                                                                <h5>
-                                                                    <span className="badge bg-prioritas">Prioritas</span>
-                                                                </h5>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope='row'>1</th>
-                                                            <td>Manggala</td>
-                                                            <td>Pilanggede</td>
-                                                            <td>DD Tahap 1</td>
-                                                            <td>Rp357,478,384</td>
-                                                            <td>
-                                                                <h5>
-                                                                    <span className="badge bg-prioritas">Prioritas</span>
-                                                                </h5>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <div className='table-responsive'>
+                                                    <table className="table table-bordered">
+                                                        <thead>
+                                                            <tr style={{ background: '#EDF8F6' }}>
+                                                                <th scope="col">No</th>
+                                                                <th scope="col">Kecamatan</th>
+                                                                <th scope="col">Desa</th>
+                                                                <th scope="col">Jenis Proposal</th>
+                                                                <th scope="col">Nominal</th>
+                                                                <th scope="col">Status Proposal</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>DD Tahap 1</td>
+                                                                <td>Rp357,478,384</td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>DD Tahap 1</td>
+                                                                <td>Rp357,478,384</td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>DD Tahap 1</td>
+                                                                <td>Rp357,478,384</td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>DD Tahap 1</td>
+                                                                <td>Rp357,478,384</td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>DD Tahap 1</td>
+                                                                <td>Rp357,478,384</td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <span className="badge bg-prioritas">Prioritas</span>
+                                                                    </h5>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
 
                                             </div>
                                         </div>

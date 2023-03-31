@@ -335,81 +335,82 @@ const AdministrasiUmum = () => {
                                             </select>
                                         </div>
                                     </div>
-
-                                    <table id='example' className="table table-bordered">
-                                        <thead>
-                                            <tr style={{ background: '#F1ECFF' }}>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Kecamatan</th>
-                                                <th scope="col">Desa</th>
-                                                <th scope="col">Jenis Peraturan</th>
-                                                <th scope="col">Nominal</th>
-                                                <th scope="col">Status Proposal</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-prioritas">Revisi dari kecamatan</span>
-                                                    </h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-pengajuan">Pengajuan</span>
-                                                    </h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-rkd">Masuk RKD</span>
-                                                    </h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                    </h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope='row'>1</th>
-                                                <td>Manggala</td>
-                                                <td>Pilanggede</td>
-                                                <td>DD Tahap 1</td>
-                                                <td>Rp357,478,384</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                    </h5>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div className='table-responsive'>
+                                        <table id='example' className="table table-bordered">
+                                            <thead>
+                                                <tr style={{ background: '#F1ECFF' }}>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Kecamatan</th>
+                                                    <th scope="col">Desa</th>
+                                                    <th scope="col">Jenis Peraturan</th>
+                                                    <th scope="col">Nominal</th>
+                                                    <th scope="col">Status Proposal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>DD Tahap 1</td>
+                                                    <td>Rp357,478,384</td>
+                                                    <td>
+                                                        <h5>
+                                                            <span className="badge bg-prioritas">Revisi dari kecamatan</span>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>DD Tahap 1</td>
+                                                    <td>Rp357,478,384</td>
+                                                    <td>
+                                                        <h5>
+                                                            <span className="badge bg-pengajuan">Pengajuan</span>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>DD Tahap 1</td>
+                                                    <td>Rp357,478,384</td>
+                                                    <td>
+                                                        <h5>
+                                                            <span className="badge bg-rkd">Masuk RKD</span>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>DD Tahap 1</td>
+                                                    <td>Rp357,478,384</td>
+                                                    <td>
+                                                        <h5>
+                                                            <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope='row'>1</th>
+                                                    <td>Manggala</td>
+                                                    <td>Pilanggede</td>
+                                                    <td>DD Tahap 1</td>
+                                                    <td>Rp357,478,384</td>
+                                                    <td>
+                                                        <h5>
+                                                            <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
+                                                        </h5>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                 </div>
                             </div>
