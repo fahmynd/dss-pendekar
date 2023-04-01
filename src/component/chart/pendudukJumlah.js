@@ -1,6 +1,9 @@
 import ReactEcharts from "echarts-for-react"
 
 const options = {
+    title: {
+        text: 'Keterangan'
+    },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -20,23 +23,30 @@ const options = {
     },
     yAxis: {
         type: 'category',
-        data: ['Usaha 1', 'Usaha 2', 'Usaha 3', 'Usaha 4', 'Usaha 5', 'Usaha 6']
+        data: ['Bangkala', 'Pattondon Salu', 'Tuncung', 'Pasang', 'Salodua', 'Batu Mila']
     },
     series: [{
+        name: 'Laki-Laki',
         type: 'bar',
         data: [18203, 23489, 29034, 104970, 131744, 630230],
+        color: '#327A6D'
+    },
+    {
+        name: 'Perempuan',
+        type: 'bar',
+        data: [19325, 23438, 31000, 121594, 134141, 681807],
         color: '#EA9501'
     }
     ]
 }
 
-function JenisUsaha() {
+function PendudukJumlah() {
     return (
         <ReactEcharts
             option={options}
-            style={{ width: "auto", height: "400px" }}
+            style={{ width: "auto", height: "500px" }}
         ></ReactEcharts>
     )
 }
 
-export default JenisUsaha
+export default PendudukJumlah

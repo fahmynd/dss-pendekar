@@ -22,22 +22,89 @@ export const options = {
 export const data = {
     datasets: [
         {
-            label: 'Red dataset',
-            data: Array.from({ length: 50 }, () => ({
-                x: faker.datatype.number({ min: -100, max: 100 }),
-                y: faker.datatype.number({ min: -100, max: 100 }),
-                r: faker.datatype.number({ min: 5, max: 20 }),
-            })),
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            label: 'Sangat Tertinggal',
+            data: [{
+                x: 5,
+                y: 15,
+                r: 10
+            }, {
+                x: 6,
+                y: 26,
+                r: 30
+            }, {
+                x: 7,
+                y: 37,
+                r: 25
+            }],
+            backgroundColor: 'rgba(232, 76, 48, 0.4)',
         },
         {
-            label: 'Blue dataset',
-            data: Array.from({ length: 50 }, () => ({
-                x: faker.datatype.number({ min: -100, max: 100 }),
-                y: faker.datatype.number({ min: -100, max: 100 }),
-                r: faker.datatype.number({ min: 5, max: 20 }),
-            })),
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            label: 'Tertinggal',
+            data: [{
+                x: 5,
+                y: 7,
+                r: 10
+            }, {
+                x: 6,
+                y: 35,
+                r: 20
+            }, {
+                x: 7,
+                y: 10,
+                r: 25
+            }],
+            backgroundColor: 'rgba(234, 149, 1, 0.4)',
+        },
+        {
+            label: 'Berkembang',
+            data: [{
+                x: 10,
+                y: 7,
+                r: 10
+            }, {
+                x: 11,
+                y: 35,
+                r: 20
+            }, {
+                x: 12,
+                y: 10,
+                r: 25
+            }],
+            backgroundColor: 'rgba(75, 125, 184, 0.4)',
+        },
+        {
+            label: 'Maju',
+            data: [{
+                x: 7,
+                y: 7,
+                r: 10
+            }, {
+                x: 8,
+                y: 35,
+                r: 20
+            }, {
+                x: 9,
+                y: 10,
+                r: 25
+            }],
+            backgroundColor: 'rgba(73, 152, 65, 0.4)',
+        },
+        {
+            label: 'Mandiri',
+            data: [{
+                x: 15,
+                y: 7,
+                r: 10
+            }, {
+                x: 18,
+                y: 35,
+                r: 20
+            }, {
+                x: 20,
+                y: 10,
+                r: 25
+            }],
+            backgroundColor: 'rgba(50, 122, 109, 0.4)',
         },
     ],
 };

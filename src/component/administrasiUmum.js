@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners';
 import { BASE_API_URL } from '../utils/api';
+import AdminTable from './datatable/AdmDataTable';
 
 const AdministrasiUmum = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,29 +29,29 @@ const AdministrasiUmum = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'administrasi-umum')
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum')
+        // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data.jumlah)
                 const data = result.data.data.jumlah;
-                setPeraturan_desa(data.peraturan_desa)
-                setPeraturan_desa_add(data.peraturan_desa_add)
-                setKeputusan_kades(data.keputusan_kades)
-                setKeputusan_kades_add(data.keputusan_kades_add)
-                setInventaris_desa(data.inventaris_desa)
-                setInventaris_desa_add(data.inventaris_desa_add)
-                setAparat_desa(data.aparat_desa)
-                setAparat_desa_add(data.aparat_desa_add)
+                setPeraturan_desa(data.buku_peraturan_di_desa)
+                setPeraturan_desa_add(data.buku_peraturan_di_desa_add)
+                setKeputusan_kades(data.buku_keputusan_kepala_desa)
+                setKeputusan_kades_add(data.buku_keputusan_kepala_desa_add)
+                setInventaris_desa(data.buku_inventaris_dan_kekayaan_desa)
+                setInventaris_desa_add(data.buku_inventaris_dan_kekayaan_desa_add)
+                setAparat_desa(data.buku_aparat_pemerintah_desa)
+                setAparat_desa_add(data.buku_aparat_pemerintah_desa_add)
                 setBuku_agenda(data.buku_agenda)
                 setBuku_agenda_add(data.buku_agenda_add)
                 setBuku_ekspedisi(data.buku_ekspedisi)
                 setBuku_ekspedisi_add(data.buku_ekspedisi_add)
-                setLembaran_desa(data.lembaran_desa)
-                setLembaran_desa_add(data.lembaran_desa_add)
-                setTanah_kas_desa(data.tanah_kas_desa)
-                setTanah_kas_desa_add(data.tanah_kas_desa_add)
-                setLuas_tanah_desa(data.luas_tanah_desa)
-                setLuas_tanah_desa_add(data.luas_tanah_desa_add)
+                setLembaran_desa(data.buku_lembaran_desa_dan_berita_desa)
+                setLembaran_desa_add(data.buku_lembaran_desa_dan_berita_desa_add)
+                setTanah_kas_desa(data.buku_tanah_kas_desa)
+                setTanah_kas_desa_add(data.buku_tanah_kas_desa_add)
+                setLuas_tanah_desa(data.buku_tanah_di_desa)
+                setLuas_tanah_desa_add(data.buku_tanah_di_desa_add)
 
                 const kode = result.data.data;
                 setKec(kode.list_kecamatan)
@@ -88,7 +89,7 @@ const AdministrasiUmum = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
+                                                {/* {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
                                                             key={kec.kode}
@@ -96,13 +97,13 @@ const AdministrasiUmum = () => {
                                                         />
                                                     )
                                                 })
-                                                }
+                                                } */}
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
+                                                {/* {desa.map((deskel) => {
                                                     return (
                                                         <Desa
                                                             key={deskel.kode}
@@ -110,7 +111,7 @@ const AdministrasiUmum = () => {
                                                         />
                                                     )
                                                 })
-                                                }
+                                                } */}
                                             </select>
                                         </div>
                                     </div>
@@ -258,7 +259,7 @@ const AdministrasiUmum = () => {
                                                         </div>
                                                         <div className="ps-2">
                                                             <span className="text-muted pt-2">Tanah Kas Desa</span>
-                                                            <h6>{tanah_kas_desa}</h6>
+                                                            <h6>{tanah_kas_desa}m<sup>2</sup></h6>
                                                         </div>
                                                         <div className="adm-umum small">
                                                             +{tanah_kas_desa_add}/Minggu
@@ -277,7 +278,7 @@ const AdministrasiUmum = () => {
                                                         </div>
                                                         <div className="ps-2">
                                                             <span className="text-muted pt-2">Luas Tanah Desa</span>
-                                                            <h6>{luas_tanah_desa}</h6>
+                                                            <h6>{luas_tanah_desa}m<sup>2</sup></h6>
                                                         </div>
                                                         <div className="adm-umum small">
                                                             +{luas_tanah_desa_add}/Minggu
@@ -296,20 +297,26 @@ const AdministrasiUmum = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title-potensi">Peraturan Desa</h5>
+                                    <h5 className="card-title-potensi">Tampilkan Berdasarkan</h5>
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Jenis Administrasi</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="1">Peraturan Desa</option>
+                                                <option value="2">Keputusan Kepala Desa</option>
+                                                <option value="3">Inventaris Desa</option>
+                                                <option value="4">Aparat Pemerintah Desa</option>
+                                                <option value="5">Buku Agenda</option>
+                                                <option value="6">Surat Ekspedisi</option>
+                                                <option value="7">Lembaran & Berita Desa</option>
+                                                <option value="8">Tanah Kas Desa</option>
+                                                <option value="9">Luas Tanah Desa</option>
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
+                                                {/* {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
                                                             key={kec.kode}
@@ -317,13 +324,13 @@ const AdministrasiUmum = () => {
                                                         />
                                                     )
                                                 })
-                                                }
+                                                } */}
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
+                                                {/* {desa.map((deskel) => {
                                                     return (
                                                         <Desa
                                                             key={deskel.kode}
@@ -331,11 +338,12 @@ const AdministrasiUmum = () => {
                                                         />
                                                     )
                                                 })
-                                                }
+                                                } */}
                                             </select>
                                         </div>
                                     </div>
-                                    <div className='table-responsive'>
+
+                                    <div className='table-responsive d-none'>
                                         <table id='example' className="table table-bordered">
                                             <thead>
                                                 <tr style={{ background: '#F1ECFF' }}>
@@ -350,7 +358,7 @@ const AdministrasiUmum = () => {
                                             <tbody>
                                                 <tr>
                                                     <th scope='row'>1</th>
-                                                    <td>Manggala</td>
+                                                    <td>Maiwa</td>
                                                     <td>Pilanggede</td>
                                                     <td>DD Tahap 1</td>
                                                     <td>Rp357,478,384</td>
@@ -361,8 +369,8 @@ const AdministrasiUmum = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope='row'>1</th>
-                                                    <td>Manggala</td>
+                                                    <th scope='row'>2</th>
+                                                    <td>Maiwa</td>
                                                     <td>Pilanggede</td>
                                                     <td>DD Tahap 1</td>
                                                     <td>Rp357,478,384</td>
@@ -373,8 +381,8 @@ const AdministrasiUmum = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope='row'>1</th>
-                                                    <td>Manggala</td>
+                                                    <th scope='row'>3</th>
+                                                    <td>Maiwa</td>
                                                     <td>Pilanggede</td>
                                                     <td>DD Tahap 1</td>
                                                     <td>Rp357,478,384</td>
@@ -385,8 +393,8 @@ const AdministrasiUmum = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope='row'>1</th>
-                                                    <td>Manggala</td>
+                                                    <th scope='row'>4</th>
+                                                    <td>Maiwa</td>
                                                     <td>Pilanggede</td>
                                                     <td>DD Tahap 1</td>
                                                     <td>Rp357,478,384</td>
@@ -397,8 +405,8 @@ const AdministrasiUmum = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope='row'>1</th>
-                                                    <td>Manggala</td>
+                                                    <th scope='row'>5</th>
+                                                    <td>Maiwa</td>
                                                     <td>Pilanggede</td>
                                                     <td>DD Tahap 1</td>
                                                     <td>Rp357,478,384</td>
@@ -411,6 +419,8 @@ const AdministrasiUmum = () => {
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <AdminTable />
 
                                 </div>
                             </div>

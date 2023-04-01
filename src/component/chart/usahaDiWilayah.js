@@ -20,7 +20,7 @@ const options = {
     },
     yAxis: {
         type: 'category',
-        data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+        data: ['Maiwa', 'Enrekang', 'Baraka', 'Masalle', 'Anggeraja', 'Cendana']
     },
     series: [{
         type: 'bar',

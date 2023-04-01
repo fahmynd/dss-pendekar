@@ -33,23 +33,23 @@ function IdmChart() {
         let data = [
             {
                 year: "2020",
-                skor: 0.6925,
+                skor: 0.6556,
                 info: "(Berkembang)"
             },
             {
                 year: "2021",
-                skor: 0.7281,
-                info: "(Maju)"
+                skor: 0.6563,
+                info: "(Berkembang)"
             },
             {
                 year: "2022",
-                skor: 0.7300,
+                skor: 0.6556,
                 strokeSettings: {
                     stroke: chart.get("colors").getIndex(1),
                     strokeWidth: 3,
                     strokeDasharray: [5, 5]
                 },
-                info: "(Maju)"
+                info: "(Berkembang)"
             }
         ];
 

@@ -23,16 +23,16 @@ const options = {
     },
     yAxis: {
         type: 'category',
-        data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+        data: ['Bangkala', 'Pattondon Salu', 'Tuncung', 'Pasang', 'Salodua', 'Batu Mila']
     },
     series: [{
-        name: 'Laki-Laki',
+        name: 'Jumlah Balita Stunting',
         type: 'bar',
         data: [18203, 23489, 29034, 104970, 131744, 630230],
         color: '#327A6D'
     },
     {
-        name: 'Perempuan',
+        name: 'Persentase',
         type: 'bar',
         data: [19325, 23438, 31000, 121594, 134141, 681807],
         color: '#EA9501'

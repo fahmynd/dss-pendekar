@@ -49,7 +49,7 @@ function Sidebar() {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
+                    <li className="nav-item d-none">
                         <NavLink className="nav-link" to="/keuangan">
                             <i className="ri-bank-line"></i>
                             <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Kelembagaan</span>
@@ -63,7 +63,7 @@ function Sidebar() {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
+                    <li className="nav-item d-none">
                         <NavLink className="nav-link" to="/profil-desa">
                             <i className="ri-profile-line"></i>
                             <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Profil Desa</span>

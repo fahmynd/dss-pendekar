@@ -116,8 +116,8 @@ class Map extends React.Component {
                                         </h5>
                                     </div>
                                     <div className='row'>
-                                        <div className='col-md'>
-                                            <h5 className='fw-bold'>Capaian</h5>
+                                        <div className='col-md fw-bold'>
+                                            <h5 className="fw-bold">Capaian</h5>
                                             <div className='row g-2'>
                                                 <div className='col-6'>KD</div>
                                                 <div className='col-6'>: {kd}</div>
@@ -131,7 +131,7 @@ class Map extends React.Component {
                                                 <div className='col-6'>: {program}</div>
                                             </div>
                                         </div>
-                                        <div className='col-md'>
+                                        <div className='col-md fw-bold'>
                                             <h5 className='fw-bold'>Potensi</h5>
                                             <div className='row g-2'>
                                                 <div className='col-6'>SDA</div>

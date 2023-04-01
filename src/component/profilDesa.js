@@ -29,9 +29,9 @@ const ProfilDesa = () => {
                                 <div className="col-3">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Kecamatan</option>
-                                        <option value="1">One</option>
+                                        {/* <option value="1">One</option>
                                         <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        <option value="3">Three</option> */}
                                     </select>
                                 </div>
                             </div>
@@ -46,10 +46,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Patondon Salu</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>
@@ -65,10 +65,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Ranga</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>
@@ -84,10 +84,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Banti</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>
@@ -103,10 +103,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Bamba Puang</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>
@@ -122,10 +122,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Mata Allo</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>
@@ -141,10 +141,10 @@ const ProfilDesa = () => {
                                             </div>
                                             <div className="col-10 direction">
                                                 <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Pao-Pao</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Barru - Provinsi Sulawesi Selatan</p>
+                                                    <h6 className="fw-bold m-0">Desa Cendana</h6>
+                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
                                                     <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        Kunjungi Website
+                                                        &nbsp; Kunjungi Website
                                                     </a>
                                                 </div>
                                             </div>

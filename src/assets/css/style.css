@@ -304,6 +304,16 @@ h6 {
   border: 1px solid #E2E2E2;
 }
 
+.berita-card {
+  height: 60px;
+  border: 1px solid #E2E2E2;
+  border-radius: 5px;
+}
+
+.berita-card-body {
+  padding: 10px;
+}
+
 .stunting-card h6, .idm-card h6 {
   font-size: 24px;
   font-weight: 700;
@@ -506,7 +516,13 @@ font-weight: var(--bs-list-group-action-font-weight);
 .card-body-demografi {
   padding: 0px 20px 20px;
   border: none;
-  height: 600px;
+  height: 700px;
+}
+
+.card-body-chart {
+  padding: 0px 20px 20px;
+  border: none;
+  height: 500px;
 }
 
 .progress-bar {
@@ -1801,12 +1817,13 @@ width: 500px;
   border-color: #EDEDED;
 }
 
-/* .table-responsive {
-  width: 100%;
-  margin-bottom: 15px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  border: 1px solid #DDD;
-} */
+.form-select:focus {
+  border-color: none;
+  outline: 0;
+  box-shadow: none;
+}
+
+btn:focus {
+  outline: 0;
+  box-shadow: none;
+}

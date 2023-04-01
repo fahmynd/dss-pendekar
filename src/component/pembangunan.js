@@ -47,9 +47,9 @@ const Pembangunan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Capaian & Potensi</option>
-                                                <option value="1">One</option>
+                                                {/* <option value="1">One</option>
                                                 <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="3">Three</option> */}
                                             </select>
                                         </div>
                                         <div className="col-3">
@@ -108,7 +108,7 @@ const Pembangunan = () => {
                                                                                 </p>
                                                                             </div>
                                                                             <div className="col-md-6 text-center center-v">
-                                                                                <p className="card-idm__jumlah">0</p>
+                                                                                <p className="card-idm__jumlah">0.6556</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -125,7 +125,7 @@ const Pembangunan = () => {
                                                                                 </p>
                                                                             </div>
                                                                             <div className="col-md-6 text-center center-v">
-                                                                                <p className="card-idm__infoStatus">Mandiri</p>
+                                                                                <p className="card-idm__infoStatus">Berkembang</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -137,15 +137,15 @@ const Pembangunan = () => {
                                                                 <div className='row'>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Target Status</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">Maju</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor Minimal</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">0.7073</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Penambahan</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">0.0517</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -153,15 +153,15 @@ const Pembangunan = () => {
                                                                 <div className='row'>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKS</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">0.7468</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKE</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">0.576</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKL</p>
-                                                                        <p className="fs-5">0</p>
+                                                                        <p className="fs-5">0.6441</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -201,25 +201,25 @@ const Pembangunan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Pilih Tahun</option>
-                                                <option value="1">One</option>
+                                                {/* <option value="1">One</option>
                                                 <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="3">Three</option> */}
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                <option value="1">One</option>
+                                                {/* <option value="1">One</option>
                                                 <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="3">Three</option> */}
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                <option value="1">One</option>
+                                                {/* <option value="1">One</option>
                                                 <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <option value="3">Three</option> */}
                                             </select>
                                         </div>
                                     </div>
@@ -237,15 +237,15 @@ const Pembangunan = () => {
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>Manggala</td>
-                                                <td>Bojong Gede</td>
+                                                <td>Maiwa</td>
+                                                <td>Patondon Salu</td>
                                                 <td>
                                                     <h5>
                                                         <span className="badge bg-verifikasi">Mandiri</span>
                                                     </h5>
                                                 </td>
-                                                <td>0.8308</td>
-                                                <td>26.73</td>
+                                                <td>0.7229</td>
+                                                <td>31.9</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#disablebackdrop">
@@ -254,14 +254,14 @@ const Pembangunan = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Manggala</td>
-                                                <td>Bojong Gede</td>
+                                                <td>Anggeraja</td>
+                                                <td>Bamba Puang</td>
                                                 <td>
                                                     <h5>
                                                         <span className="badge bg-pengajuan">Maju</span>
                                                     </h5>
                                                 </td>
-                                                <td>0.8308</td>
+                                                <td>0.8057</td>
                                                 <td>26.73</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
@@ -271,14 +271,14 @@ const Pembangunan = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Manggala</td>
-                                                <td>Bojong Gede</td>
+                                                <td>Alla</td>
+                                                <td>Mata Allo</td>
                                                 <td>
                                                     <h5>
                                                         <span className="badge bg-rkd">Berkembang</span>
                                                     </h5>
                                                 </td>
-                                                <td>0.8308</td>
+                                                <td>0.6756</td>
                                                 <td>26.73</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
@@ -288,15 +288,15 @@ const Pembangunan = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Manggala</td>
-                                                <td>Bojong Gede</td>
+                                                <td>Bungin</td>
+                                                <td>Sawito</td>
                                                 <td>
                                                     <h5>
                                                         <span className="badge bg-prioritas">Tertinggal</span>
                                                     </h5>
                                                 </td>
-                                                <td>0.8308</td>
-                                                <td>26.73</td>
+                                                <td>0.5425</td>
+                                                <td>0</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#disablebackdrop">
@@ -305,15 +305,15 @@ const Pembangunan = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td>Manggala</td>
-                                                <td>Bojong Gede</td>
+                                                <td>Bungin</td>
+                                                <td>Bulo</td>
                                                 <td>
                                                     <h5>
                                                         <span className="badge bg-super-prioritas">Sangat Tertinggal</span>
                                                     </h5>
                                                 </td>
-                                                <td>0.8308</td>
-                                                <td>26.73</td>
+                                                <td>0.5914</td>
+                                                <td>0</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#disablebackdrop">
@@ -346,7 +346,7 @@ const Pembangunan = () => {
                                                     {/* <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
                                                         The current button
                                                     </button> */}
-                                                    {kecamatan.map((kec) => {
+                                                    {/* {kecamatan.map((kec) => {
                                                         return (
                                                             <Kecamatan
                                                                 key={kec.kode}
@@ -354,8 +354,17 @@ const Pembangunan = () => {
                                                             />
                                                         )
                                                     })
-                                                    }
-                                                    {/* <button type="button" className="list-group-item list-group-item-action">A second item</button> */}
+                                                    } */}
+                                                    <button type="button" className="list-group-item list-group-item-action">Maiwa</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Enrekang</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Baraka</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Anggeraja</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Bungin</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Cendana</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Curio</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Masalle</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Buntu Batu</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Alla</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -395,7 +404,7 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">DESA/KELURAHAN</h5>
                                                 </div>
                                                 <div className="list-group-potensi mt-3">
-                                                    {desa.map((deskel) => {
+                                                    {/* {desa.map((deskel) => {
                                                         return (
                                                             <Desa
                                                                 key={deskel.kode}
@@ -403,7 +412,17 @@ const Pembangunan = () => {
                                                             />
                                                         )
                                                     })
-                                                    }
+                                                    } */}
+                                                    <button type="button" className="list-group-item list-group-item-action">Bamba Puang</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Temban</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Kadingeh</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Cendana</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Ranga</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Palakka</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Pasang</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Rosoan</button>
+                                                    <button type="button" className="list-group-item list-group-item-action">Mampu</button>
+
                                                 </div>
                                             </div>
                                         </div>
