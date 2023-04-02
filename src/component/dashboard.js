@@ -1,23 +1,20 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
-import { postscribe } from 'postscribe'
-import MarkerPeta from './map'
-import MapPopup from './mapPopup'
 import Map from './mapPopup'
 import NewsTicker from "react-advanced-news-ticker";
-import profilImg from '../assets/img/profile-img.jpg'
 
 const Dashboard = () => {
     const [resultData, setResultData] = useState();
-
-    const position = [-3.4590744, 119.8815203]
+    const [news, setNews] = useState([]);
 
     useEffect(() => {
         // axios.get(BASE_API_URL)
         axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
             .then((result) => {
+                // console.log(result.data.data.list_berita)
                 setResultData(result.data);
+                setNews(result.data.data.list_berita);
 
                 // postscribe('#mydiv', '<script language="javascript" src="assets/js/jquery-3.3.1.min.js"></script>')
             })
@@ -60,82 +57,26 @@ const Dashboard = () => {
                                                     </ul>
                                                 </div> */}
 
-                                                <NewsTicker
+                                                {resultData && <NewsTicker
                                                     maxRows={1}
                                                     rowHeight={60}
                                                     style={{ listStyleType: 'none', marginLeft: '200px', width: '50%' }}
                                                 >
-                                                    <div className="berita-card">
-                                                        <div className="row g-0">
-                                                            <div className="col-md-2">
-                                                                <img src='https://profil.digitaldesa.id/uploads/73.16.09.2007/berita/thumbs/9221f602db1b9ebf08e15ca28af2f8a2.jpg' className="w-100 h-75 ms-2 rounded" alt="..." />
-                                                            </div>
-                                                            <div className="col-md-10">
-                                                                <div className="berita-card-body">
-                                                                    <h6 className='ms-1 fw-bold text-capitalize'>Gotong Royong Perbaikan Saluran Irigasi Dulang</h6>
-                                                                    <a href="https://profil.digitaldesa.id/dulang-enrekang/berita/gotong-royong-perbaikan-saluran-irigasi-dulang-" rel='noreferrer' target={'_blank'} className="stretched-link"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    {news.map((news) => {
+                                                        return (
+                                                            <Berita
+                                                                key={news.id}
+                                                                kode={news.kode_wilayah}
+                                                                judul={news.judul}
+                                                                slug={news.slug}
+                                                                slug_desa={news.slug_desa}
+                                                                foto={news.foto}
+                                                            />
+                                                        )
+                                                    })
+                                                    }
 
-                                                    <div className="berita-card">
-                                                        <div className="row g-0">
-                                                            <div className="col-md-2">
-                                                                <img src='https://profil.digitaldesa.id/uploads/73.16.09.2007/berita/thumbs/3ae0b3b90f6bbd7c360de399723c651d.jpg' className="w-100 h-75 ms-2 rounded" alt="..." />
-                                                            </div>
-                                                            <div className="col-md-10">
-                                                                <div className="berita-card-body">
-                                                                    <h6 className='ms-1 fw-bold text-capitalize'>Musyawarah Penyelenggaraan Pemerintah Desa Dulang Tahun 2022</h6>
-                                                                    <a href="https://profil.digitaldesa.id/dulang-enrekang/berita/musyawarah-penyelenggaraan-pemerintah-desa-dulang-tahun-2022" rel='noreferrer' target={'_blank'} className="stretched-link"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="berita-card">
-                                                        <div className="row g-0">
-                                                            <div className="col-md-2">
-                                                                <img src='https://profil.digitaldesa.id/uploads/73.16.09.2007/berita/thumbs/376b329540c56e0e027a2c7c0db6d007.jpg' className="w-100 h-75 ms-2 rounded" alt="..." />
-                                                            </div>
-                                                            <div className="col-md-10">
-                                                                <div className="berita-card-body">
-                                                                    <h6 className='ms-1 fw-bold text-capitalize'>Musyawarah Desa Perencanaan APBDes 2023</h6>
-                                                                    <a href="https://profil.digitaldesa.id/dulang-enrekang/berita/musyawarah-desa-perencanaan-apbdes-2023" rel='noreferrer' target={'_blank'} className="stretched-link"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="berita-card">
-                                                        <div className="row g-0">
-                                                            <div className="col-md-2">
-                                                                <img src='https://profil.digitaldesa.id/uploads/73.16.04.2010/berita/thumbs/3357f9eaf01bb19719fd490bb596da8c.jpeg' className="w-100 h-75 ms-2 rounded" alt="..." />
-                                                            </div>
-                                                            <div className="col-md-10">
-                                                                <div className="berita-card-body">
-                                                                    <h6 className='ms-1 fw-bold text-capitalize'>Jeritan Warga Enrekang Berhari-hari Terisolir gegara Tanah Bergerak</h6>
-                                                                    <a href="https://profil.digitaldesa.id/tindalun-enrekang/berita/jeritan-warga-enrekang-berhari-hari-terisolir-gegara-tanah-bergerak--" rel='noreferrer' target={'_blank'} className="stretched-link"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="berita-card">
-                                                        <div className="row g-0">
-                                                            <div className="col-md-2">
-                                                                <img src='https://profil.digitaldesa.id/uploads/73.16.04.2010/berita/thumbs/d7b0b4b9084a2801231fb5f0cc0222af.jpeg' className="w-100 h-75 ms-2 rounded" alt="..." />
-                                                            </div>
-                                                            <div className="col-md-10">
-                                                                <div className="berita-card-body">
-                                                                    <h6 className='ms-1 fw-bold text-capitalize'>Pemkab Enrekang Bakal Relokasi Warga Desa Labuku gegara Tanah Bergerak</h6>
-                                                                    <a href="https://profil.digitaldesa.id/tindalun-enrekang/berita/pemkab-enrekang-bakal-relokasi-warga-desa-labuku-gegara-tanah-bergerak--" rel='noreferrer' target={'_blank'} className="stretched-link"></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </NewsTicker>
+                                                </NewsTicker>}
 
                                                 {/* <div className="bn-controls">
                                                     <button><span className="bn-arrow bn-prev"></span></button>
@@ -205,6 +146,24 @@ const Dashboard = () => {
 
             </main>
         </Fragment>
+    )
+}
+
+function Berita(props) {
+    return (
+        <div className="berita-card">
+            <div className="row g-0">
+                <div className="col-md-2">
+                    <img src={`https://profil.digitaldesa.id/uploads/${props.kode}/berita/thumbs/${props.foto}`} className="w-100 h-75 ms-2 rounded" alt="..." />
+                </div>
+                <div className="col-md-10">
+                    <div className="berita-card-body">
+                        <h6 className='ms-1 fw-bold text-capitalize'>{props.judul}</h6>
+                        <a href={`https://profil.digitaldesa.id/${props.slug_desa}/berita/${props.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

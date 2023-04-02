@@ -5,7 +5,6 @@ import './assets/vendor/bootstrap-icons/bootstrap-icons.css'
 import './assets/vendor/boxicons/css/boxicons.min.css'
 import './assets/vendor/remixicon/remixicon.css'
 import './assets/vendor/simple-datatables/style.css'
-import 'https://use.fontawesome.com/releases/v6.1.0/js/all.js'
 import './assets/css/news-ticker.min.css'
 import './assets/css/style.css'
 

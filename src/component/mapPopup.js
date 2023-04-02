@@ -14,86 +14,30 @@ class Map extends React.Component {
         super();
         this.state = {
             resultData: props.resultData,
-            coords: [
-                { lat: -3.7485833, lng: 119.8641634 },
-                { lat: -3.7885159, lng: 119.8699493 },
-                { lat: -3.7196821, lng: 119.9220112 }
-            ],
-            popUPs: [
-                {
-                    "provinsi": "Sulawesi Selatan",
-                    "kabupaten": "Enrekang",
-                    "kecamatan": "Maiwa",
-                    "deskel": "Bangkala",
-                    "kd": 0,
-                    "idm": 0,
-                    "sdgs": 46.23,
-                    "ar": 0,
-                    "program": 21,
-                    "sda": 3,
-                    "sdm": 4335,
-                    "lk": 7,
-                    "sarpras": 4,
-                    "position": [-3.7485833, 119.8641634]
-                },
-                {
-                    "provinsi": "Sulawesi Selatan",
-                    "kabupaten": "Enrekang",
-                    "kecamatan": "Maiwa",
-                    "deskel": "Patondon Salu",
-                    "kd": 0,
-                    "idm": 0.7229,
-                    "sdgs": 46.23,
-                    "ar": 0,
-                    "program": 21,
-                    "sda": 3,
-                    "sdm": 2695,
-                    "lk": 7,
-                    "sarpras": 4,
-                    "position": [-3.7885159, 119.8699493]
-                },
-                {
-                    "provinsi": "Sulawesi Selatan",
-                    "kabupaten": "Enrekang",
-                    "kecamatan": "Maiwa",
-                    "deskel": "Tuncung",
-                    "kd": 0,
-                    "idm": 0.6224,
-                    "sdgs": 46.23,
-                    "ar": 0,
-                    "program": 21,
-                    "sda": 3,
-                    "sdm": 1527,
-                    "lk": 7,
-                    "sarpras": 4,
-                    "position": [-3.7196821, 119.9220112]
-                }
-            ],
             zoom: 10
         };
     }
 
     render() {
-        const { resultData, coords, popUPs, zoom } = this.state;
-        const mergedArrays = coords.map((coord, i) => ({
-            ...coord,
-            provinsi: popUPs[i].provinsi,
-            kabupaten: popUPs[i].kabupaten,
-            kecamatan: popUPs[i].kecamatan,
-            deskel: popUPs[i].deskel,
-            kd: popUPs[i].kd,
-            idm: popUPs[i].idm,
-            sdgs: popUPs[i].sdgs,
-            ar: popUPs[i].ar,
-            program: popUPs[i].program,
-            sda: popUPs[i].sda,
-            sdm: popUPs[i].sdm,
-            lk: popUPs[i].lk,
-            sarpras: popUPs[i].sarpras
+        const { resultData, zoom } = this.state;
+        const mergedArrays = resultData.data.list_desa.map((item) => ({
+            provinsi: resultData.dss.provinsi,
+            kabupaten: resultData.dss.kabkota,
+            kecamatan: item.nama_kecamatan,
+            deskel: item.nama_deskel,
+            lat: item.lat,
+            lng: item.lng,
+            ar: item.capaian.ar,
+            idm: item.capaian.idm,
+            kd: item.capaian.kd,
+            program: item.capaian.program,
+            sdgs: item.capaian.sdgs,
+            lk: item.potensi.lk,
+            sarpras: item.potensi.sarpras,
+            sda: item.potensi.sda,
+            sdm: item.potensi.sdm
+
         }));
-        resultData.data.list_desa.forEach(function (item, index) {
-            console.log(item);
-        })
 
         return (
             <LeafletMap
@@ -113,7 +57,7 @@ class Map extends React.Component {
                             <div className='card-map'>
                                 <div className='card-body-map'>
                                     <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
-                                    <p className='text-capitalize'>Kec. {kecamatan}, Kab. {kabupaten}, Prov. {provinsi}</p>
+                                    <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten}, Prov. {provinsi}</p>
                                     <div className="filter-primary">
                                         <h5>
                                             <span className="badge bg-verifikasi"><i className='bx bx-cctv'></i> CCTV</span>

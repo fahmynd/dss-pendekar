@@ -14,17 +14,16 @@ const Pembangunan = () => {
 
     const [kecamatan, setKecamatan] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [resultData, setResultData] = useState();
 
     useEffect(() => {
         // axios.get(BASE_API_URL)
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum')
+        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/pembangunan?k3=&k4=')
             .then((result) => {
-                // console.log(result.data.data)
-                const data = result.data.data;
-                setKecamatan(data.list_desa)
-                setDesa(data.list_desa)
-
+                // console.log(result.data.data.list_berita)
+                setResultData(result.data);
             })
+
         document.title = "Perkembangan Desa | PENDEKAR";
     }, [])
     return (
@@ -57,7 +56,7 @@ const Pembangunan = () => {
                                         </div>
                                     </div>
 
-                                    <Map />
+                                    {resultData && <Map resultData={resultData} />}
 
                                     <br />
                                     <div className="row g-0">
