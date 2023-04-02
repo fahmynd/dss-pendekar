@@ -9,119 +9,14 @@ import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons/js/buttons.print.js";
 import $ from "jquery";
 
-const names = [
-    {
-        "id": "1",
-        "kecamatan": "Maiwa",
-        "desa": "Patondon Salu",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "2",
-        "kecamatan": "Maiwa",
-        "desa": "Tuncung",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Masuk RKD"
-    },
-    {
-        "id": "3",
-        "kecamatan": "Maiwa",
-        "desa": "Pasang",
-        "peraturan": "Peraturan Bersama",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "4",
-        "kecamatan": "Enrekang",
-        "desa": "Ranga",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "5",
-        "kecamatan": "Enrekang",
-        "desa": "Buttu Batu",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "6",
-        "kecamatan": "Enrekang",
-        "desa": "Tokkonan",
-        "peraturan": "Peraturan Bersama",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "7",
-        "kecamatan": "Baraka",
-        "desa": "Banti",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "8",
-        "kecamatan": "Baraka",
-        "desa": "Bontongan",
-        "peraturan": "Peraturan Kepala Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "9",
-        "kecamatan": "Baraka",
-        "desa": "Salukanan",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "10",
-        "kecamatan": "Anggeraja",
-        "desa": "Mampu",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "11",
-        "kecamatan": "Anggeraja",
-        "desa": "Bamba Puang",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    },
-    {
-        "id": "12",
-        "kecamatan": "Anggeraja",
-        "desa": "Siambo",
-        "peraturan": "Peraturan Desa",
-        "nomor": "8 TAHUN 2017",
-        "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
-    }
-]
-
-
 class AdminTable extends React.Component {
+
+    constructor(props) {
+        super();
+        this.state = {
+            resultData: props.resultData
+        };
+    }
 
     componentDidMount() {
         if (!$.fn.DataTable.isDataTable("#myTable")) {
@@ -146,18 +41,21 @@ class AdminTable extends React.Component {
     }
 
     showTable = () => {
+        const { resultData } = this.state;
         try {
-            return names.map((item, index) => {
+            return resultData.data.list_administrasi.buku_peraturan_di_desa.map((item, index) => {
                 return (
                     <Administrasi
-                        key={item.id}
+                        key={item.lampiran}
                         no={index + 1}
-                        kec={item.kecamatan}
-                        desa={item.desa}
-                        peraturan={item.peraturan}
-                        nomor={item.nomor}
-                        tanggal={item.tanggal}
-                        proposal={item.proposal}
+                        kec={item.nama_kecamatan}
+                        desa={item.nama_deskel}
+                        peraturan={item.jenis_peraturan}
+                        nomor={item.nomor_peraturan}
+                        tanggal={item.tanggal_peraturan}
+                        tentang={item.tentang}
+                        lampiran={item.lampiran}
+                        kode={item.kode_wilayah}
                     />
 
                 );
@@ -179,7 +77,8 @@ class AdminTable extends React.Component {
                             <th>Jenis Peraturan</th>
                             <th>Nomor Peraturan</th>
                             <th>Tanggal Peraturan</th>
-                            <th>Status Proposal</th>
+                            <th>Tentang</th>
+                            <th>Lampiran</th>
                         </tr>
                     </thead>
 
@@ -193,12 +92,6 @@ class AdminTable extends React.Component {
 }
 
 function Administrasi(props) {
-    let statusProposal = {
-        '': { 'class': '' },
-        'Pengajuan': { 'class': 'bg-pengajuan' },
-        'Masuk RKD': { 'class': 'bg-rkd' },
-    };
-
     return (
         <tr>
             <td>{props.no}</td>
@@ -207,10 +100,11 @@ function Administrasi(props) {
             <td>{props.peraturan}</td>
             <td>{props.nomor}</td>
             <td>{props.tanggal}</td>
+            <td>{props.tentang}</td>
             <td>
-                <h5>
-                    <span className={`badge ${statusProposal[props.proposal].class}`}>{props.proposal}</span>
-                </h5>
+                <a href={`https://online.digitaldesa.id/uploads/${props.kode}/buku-peraturan-di-desa/${props.lampiran}`} target={"_blank"} className="btn btn-primary">
+                    Download
+                </a>
             </td>
         </tr>
     )

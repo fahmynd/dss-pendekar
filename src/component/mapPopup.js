@@ -1,5 +1,8 @@
 import React from "react";
 import { MapContainer as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
+import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
 
 const customMarker = new L.Icon({
@@ -14,12 +17,14 @@ class Map extends React.Component {
         super();
         this.state = {
             resultData: props.resultData,
-            zoom: 10
+            zoom: 10,
+            latcenter: props.resultData.dss.lat,
+            lngcenter: props.resultData.dss.lng
         };
     }
 
     render() {
-        const { resultData, zoom } = this.state;
+        const { resultData, zoom, latcenter, lngcenter } = this.state;
         const mergedArrays = resultData.data.list_desa.map((item) => ({
             provinsi: resultData.dss.provinsi,
             kabupaten: resultData.dss.kabkota,
@@ -41,7 +46,7 @@ class Map extends React.Component {
 
         return (
             <LeafletMap
-                center={[-3.4590744, 119.8815203]}
+                center={[latcenter, lngcenter]}
                 zoom={zoom}
                 scrollWheelZoom={false}
                 style={{ height: "500px" }}
@@ -57,7 +62,7 @@ class Map extends React.Component {
                             <div className='card-map'>
                                 <div className='card-body-map'>
                                     <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
-                                    <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten}, Prov. {provinsi}</p>
+                                    <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
                                     <div className="filter-primary">
                                         <h5>
                                             <span className="badge bg-verifikasi"><i className='bx bx-cctv'></i> CCTV</span>

@@ -1,16 +1,17 @@
 import axios from 'axios'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import Map from './mapPopup'
 import NewsTicker from "react-advanced-news-ticker";
 
 const Dashboard = () => {
+    const ref = useRef(null);
     const [resultData, setResultData] = useState();
     const [news, setNews] = useState([]);
 
     useEffect(() => {
-        // axios.get(BASE_API_URL)
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
+        // axios.get(BASE_API_URL+'home?k3=&k4=&limit=')
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/home?k3=&k4=&limit=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 setResultData(result.data);
@@ -45,7 +46,7 @@ const Dashboard = () => {
 
                                             <div className="bn-breaking-news" id="newsTicker9">
                                                 <div className="bn-label">Flash News</div>
-                                                {/* <div className="bn-news">
+                                                <div className="bn-news d-none">
                                                     <ul>
                                                         <li><span className="bn-prefix">Braveheart, 1995 :</span>"They may take our lives, but they'll never
                                                             take our freedom!"</li>
@@ -55,12 +56,13 @@ const Dashboard = () => {
                                                         <li><span className="bn-prefix">Jerry Maguire, 1996 :</span>"You complete me."</li>
                                                         <li><span className="bn-prefix">Jerry Maguire I, 1996 :</span>"You complete me."</li>
                                                     </ul>
-                                                </div> */}
+                                                </div>
 
                                                 {resultData && <NewsTicker
+                                                    ref={ref}
                                                     maxRows={1}
                                                     rowHeight={60}
-                                                    style={{ listStyleType: 'none', marginLeft: '200px', width: '50%' }}
+                                                    style={{ listStyleType: 'none', marginLeft: '200px', width: '75%' }}
                                                 >
                                                     {news.map((news) => {
                                                         return (
@@ -78,10 +80,10 @@ const Dashboard = () => {
 
                                                 </NewsTicker>}
 
-                                                {/* <div className="bn-controls">
-                                                    <button><span className="bn-arrow bn-prev"></span></button>
-                                                    <button><span className="bn-arrow bn-next"></span></button>
-                                                </div> */}
+                                                <div className="bn-controls">
+                                                    <button onClick={() => { ref.current.movePrev(); ref.current.resetInterval(); }}><span className="bn-arrow bn-prev"></span></button>
+                                                    <button onClick={() => { ref.current.moveNext(); ref.current.resetInterval(); }}><span className="bn-arrow bn-next"></span></button>
+                                                </div>
 
                                             </div>
 

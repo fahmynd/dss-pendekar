@@ -5,6 +5,7 @@ import { BASE_API_URL } from '../utils/api';
 import AdminTable from './datatable/AdmDataTable';
 
 const AdministrasiUmum = () => {
+    const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [peraturan_desa, setPeraturan_desa] = useState();
     const [peraturan_desa_add, setPeraturan_desa_add] = useState();
@@ -33,6 +34,7 @@ const AdministrasiUmum = () => {
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data.jumlah)
+                setResultData(result.data);
                 const data = result.data.data.jumlah;
                 setPeraturan_desa(data.buku_peraturan_di_desa)
                 setPeraturan_desa_add(data.buku_peraturan_di_desa_add)
@@ -89,29 +91,29 @@ const AdministrasiUmum = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {/* {kec.map((kec) => {
+                                                {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
-                                                            key={kec.kode}
-                                                            listkec={kec.kecamatan}
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {/* {desa.map((deskel) => {
+                                                {desa.map((deskel) => {
                                                     return (
                                                         <Desa
-                                                            key={deskel.kode}
-                                                            listdesa={deskel.deskel}
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -316,29 +318,29 @@ const AdministrasiUmum = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {/* {kec.map((kec) => {
+                                                {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
-                                                            key={kec.kode}
-                                                            listkec={kec.kecamatan}
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {/* {desa.map((deskel) => {
+                                                {desa.map((deskel) => {
                                                     return (
                                                         <Desa
-                                                            key={deskel.kode}
-                                                            listdesa={deskel.deskel}
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -420,7 +422,7 @@ const AdministrasiUmum = () => {
                                         </table>
                                     </div>
 
-                                    <AdminTable />
+                                    {resultData && <AdminTable resultData={resultData} />}
 
                                 </div>
                             </div>
