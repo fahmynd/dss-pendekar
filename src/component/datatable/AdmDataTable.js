@@ -26,7 +26,7 @@ const names = [
         "peraturan": "Peraturan Desa",
         "nomor": "8 TAHUN 2017",
         "tanggal": "22-02-2022",
-        "proposal": "Pengajuan"
+        "proposal": "Masuk RKD"
     },
     {
         "id": "3",
@@ -193,6 +193,12 @@ class AdminTable extends React.Component {
 }
 
 function Administrasi(props) {
+    let statusProposal = {
+        '': { 'class': '' },
+        'Pengajuan': { 'class': 'bg-pengajuan' },
+        'Masuk RKD': { 'class': 'bg-rkd' },
+    };
+
     return (
         <tr>
             <td>{props.no}</td>
@@ -203,7 +209,7 @@ function Administrasi(props) {
             <td>{props.tanggal}</td>
             <td>
                 <h5>
-                    <span className="badge bg-pengajuan">{props.proposal}</span>
+                    <span className={`badge ${statusProposal[props.proposal].class}`}>{props.proposal}</span>
                 </h5>
             </td>
         </tr>
