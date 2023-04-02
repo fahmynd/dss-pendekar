@@ -10,9 +10,10 @@ const customMarker = new L.Icon({
 });
 
 class Map extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
+            resultData: props.resultData,
             coords: [
                 { lat: -3.7485833, lng: 119.8641634 },
                 { lat: -3.7885159, lng: 119.8699493 },
@@ -73,7 +74,7 @@ class Map extends React.Component {
     }
 
     render() {
-        const { coords, popUPs, zoom } = this.state;
+        const { resultData, coords, popUPs, zoom } = this.state;
         const mergedArrays = coords.map((coord, i) => ({
             ...coord,
             provinsi: popUPs[i].provinsi,
@@ -90,6 +91,9 @@ class Map extends React.Component {
             lk: popUPs[i].lk,
             sarpras: popUPs[i].sarpras
         }));
+        resultData.data.list_desa.forEach(function (item, index) {
+            console.log(item);
+        })
 
         return (
             <LeafletMap

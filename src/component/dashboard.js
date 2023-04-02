@@ -9,8 +9,7 @@ import NewsTicker from "react-advanced-news-ticker";
 import profilImg from '../assets/img/profile-img.jpg'
 
 const Dashboard = () => {
-    const [lat, setLat] = useState();
-    const [lng, setLng] = useState();
+    const [resultData, setResultData] = useState();
 
     const position = [-3.4590744, 119.8815203]
 
@@ -18,10 +17,7 @@ const Dashboard = () => {
         // axios.get(BASE_API_URL)
         axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
             .then((result) => {
-                // console.log(result)
-                const data = result.data.dss;
-                setLat(data.lat)
-                setLng(data.lng)
+                setResultData(result.data);
 
                 // postscribe('#mydiv', '<script language="javascript" src="assets/js/jquery-3.3.1.min.js"></script>')
             })
@@ -175,7 +171,7 @@ const Dashboard = () => {
                                         </div>
                                     </div>
 
-                                    <Map />
+                                    {resultData && <Map resultData={resultData} />}
 
                                     <br />
                                     <div className="row g-0">
