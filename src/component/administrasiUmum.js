@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners';
 import { BASE_API_URL } from '../utils/api';
 import AdminTable from './datatable/AdmDataTable';
+import LoadingSpinner from './LoadingSpinner';
 
 const AdministrasiUmum = () => {
     const [resultData, setResultData] = useState();
@@ -58,15 +59,18 @@ const AdministrasiUmum = () => {
                 const kode = result.data.data;
                 setKec(kode.list_kecamatan)
                 setDesa(kode.list_desa)
-
             })
             .catch(error => {
-                // handle any errors/rejected Promises
+                alert(error.message);
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
+
         document.title = "Administrasi Umum | PENDEKAR";
+
     }, [])
-    if (isLoading) return;
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">

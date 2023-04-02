@@ -9,23 +9,33 @@ import PotensiSDA from './chart/potensiSDA'
 import axios from 'axios'
 import { BASE_API_URL } from '../utils/api'
 import Map from './mapPopup'
+import LoadingSpinner from './LoadingSpinner'
 
 const Pembangunan = () => {
-
-    const [kecamatan, setKecamatan] = useState([]);
-    const [desa, setDesa] = useState([]);
     const [resultData, setResultData] = useState();
+    const [isLoading, setIsLoading] = useState(false);
+    const [kec, setKec] = useState([]);
+    const [desa, setDesa] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         // axios.get(BASE_API_URL)
         axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/pembangunan?k3=&k4=')
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 setResultData(result.data);
             })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
 
         document.title = "Perkembangan Desa | PENDEKAR";
+
     }, [])
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">

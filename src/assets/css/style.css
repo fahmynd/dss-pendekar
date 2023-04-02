@@ -516,7 +516,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 .card-body-demografi {
   padding: 0px 20px 20px;
   border: none;
-  height: 700px;
+  height: 800px;
 }
 
 .card-body-chart {
@@ -1826,4 +1826,28 @@ width: 500px;
 btn:focus {
   outline: 0;
   box-shadow: none;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #3B2D64; /* Purple */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+
+.spinner-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }

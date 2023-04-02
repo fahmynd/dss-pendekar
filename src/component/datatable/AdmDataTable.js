@@ -70,7 +70,7 @@ class AdminTable extends React.Component {
             <div className="table-responsive">
                 <table id="table" className="table table-bordered">
                     <thead>
-                        <tr style={{ background: '#F1ECFF' }}>
+                        <tr className="align-items-center justify-content-center" style={{ background: '#F1ECFF' }}>
                             <th>No</th>
                             <th>Kecamatan</th>
                             <th>Desa</th>
@@ -94,7 +94,7 @@ class AdminTable extends React.Component {
 function Administrasi(props) {
     return (
         <tr>
-            <td>{props.no}</td>
+            <td className="text-center">{props.no}</td>
             <td>{props.kec}</td>
             <td>{props.desa}</td>
             <td>{props.peraturan}</td>

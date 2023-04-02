@@ -4,27 +4,36 @@ import { BASE_API_URL } from '../utils/api';
 import PendudukJumlah from './chart/pendudukJumlah';
 import PendudukTable from './datatable/PdkDataTable';
 import RekapPendudukTable from './datatable/RekapPdkDataTable';
+import LoadingSpinner from './LoadingSpinner';
 
 const Kependudukan = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         // axios.get(BASE_API_URL+'kependudukan')
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/kependudukan?k3=&k4=`)
             .then((result) => {
-                console.log(result.data.data)
+                // console.log(result.data.data)
                 const data = result.data.data;
+                setResultData(data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
             })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
 
         document.title = "Kependudukan | PENDEKAR";
 
     }, [])
 
-    // console.log(summary[dss.k1 + '.' + dss.k2 + '.' + dss.k3 + '.' + dss.k4])
-    // console.log(dss)
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">
@@ -50,42 +59,42 @@ const Kependudukan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Demografi Kependudukan</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
+                                                <option value="1">Jenis Kelamin</option>
+                                                <option value="2">Pendidikan</option>
+                                                <option value="3">Pekerjaan</option>
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {/* {kec.map((kec) => {
+                                                {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
-                                                            key={kec.kode}
-                                                            listkec={kec.kecamatan}
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {/* {desa.map((deskel) => {
+                                                {desa.map((deskel) => {
                                                     return (
                                                         <Desa
-                                                            key={deskel.kode}
-                                                            listdesa={deskel.deskel}
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                     </div>
 
-                                    <PendudukTable />
+                                    {resultData && <PendudukTable resultData={resultData} />}
 
                                 </div>
                             </div>
@@ -130,34 +139,34 @@ const Kependudukan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {/* {kec.map((kec) => {
+                                                {kec.map((kec) => {
                                                     return (
                                                         <Kecamatan
-                                                            key={kec.kode}
-                                                            listkec={kec.kecamatan}
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {/* {desa.map((deskel) => {
+                                                {desa.map((deskel) => {
                                                     return (
                                                         <Desa
-                                                            key={deskel.kode}
-                                                            listdesa={deskel.deskel}
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
                                                         />
                                                     )
                                                 })
-                                                } */}
+                                                }
                                             </select>
                                         </div>
                                     </div>
 
-                                    <RekapPendudukTable />
+                                    {resultData && <RekapPendudukTable resultData={resultData} />}
 
                                 </div>
                             </div>

@@ -3,13 +3,16 @@ import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import Map from './mapPopup'
 import NewsTicker from "react-advanced-news-ticker";
+import LoadingSpinner from './LoadingSpinner';
 
 const Dashboard = () => {
     const ref = useRef(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [news, setNews] = useState([]);
 
     useEffect(() => {
+        setIsLoading(true);
         // axios.get(BASE_API_URL+'home?k3=&k4=&limit=')
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/home?k3=&k4=&limit=`)
             .then((result) => {
@@ -19,10 +22,16 @@ const Dashboard = () => {
 
                 // postscribe('#mydiv', '<script language="javascript" src="assets/js/jquery-3.3.1.min.js"></script>')
             })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
+
         document.title = "Dashboard | PENDEKAR";
+
     }, [])
-    // console.log(summary[dss.k1 + '.' + dss.k2 + '.' + dss.k3 + '.' + dss.k4])
-    // console.log(dss)
+
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <Fragment>

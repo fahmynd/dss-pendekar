@@ -9,107 +9,13 @@ import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons/js/buttons.print.js";
 import $ from "jquery";
 
-const names = [
-    {
-        "id": "1",
-        "kecamatan": "Maiwa",
-        "desa": "Patondon Salu",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "2",
-        "kecamatan": "Maiwa",
-        "desa": "Tuncung",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "3",
-        "kecamatan": "Maiwa",
-        "desa": "Pasang",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "4",
-        "kecamatan": "Enrekang",
-        "desa": "Ranga",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "5",
-        "kecamatan": "Enrekang",
-        "desa": "Buttu Batu",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "6",
-        "kecamatan": "Enrekang",
-        "desa": "Tokkonan",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "7",
-        "kecamatan": "Baraka",
-        "desa": "Banti",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "8",
-        "kecamatan": "Baraka",
-        "desa": "Bontongan",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "9",
-        "kecamatan": "Baraka",
-        "desa": "Salukanan",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "10",
-        "kecamatan": "Anggeraja",
-        "desa": "Mampu",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "11",
-        "kecamatan": "Anggeraja",
-        "desa": "Bamba Puang",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    },
-    {
-        "id": "12",
-        "kecamatan": "Anggeraja",
-        "desa": "Siambo",
-        "laki": 238,
-        "perempuan": 426,
-        "total": "664",
-    }
-]
-
-
 class PendudukTable extends React.Component {
+    constructor(props) {
+        super();
+        this.state = {
+            resultData: props.resultData
+        };
+    }
 
     componentDidMount() {
         if (!$.fn.DataTable.isDataTable("#myTable")) {
@@ -134,17 +40,18 @@ class PendudukTable extends React.Component {
     }
 
     showTable = () => {
+        const { resultData } = this.state;
         try {
-            return names.map((item, index) => {
+            return resultData.list_desa.map((item, index) => {
                 return (
                     <Penduduk
-                        key={item.id}
+                        key={item.kode_wilayah}
                         no={index + 1}
-                        kec={item.kecamatan}
-                        desa={item.desa}
-                        laki={item.laki}
-                        perempuan={item.perempuan}
-                        total={item.total}
+                        kec={item.nama_kecamatan}
+                        desa={item.nama_deskel}
+                        laki={item.pria}
+                        perempuan={item.wanita}
+                        total={item.jumlah_penduduk}
                     />
 
                 );

@@ -1,10 +1,36 @@
-import React, { Fragment, useEffect } from 'react'
+import axios from 'axios';
+import React, { Fragment, useEffect, useState } from 'react'
 import profil from '../assets/img/profil.png'
+import LoadingSpinner from './LoadingSpinner';
 
 const ProfilDesa = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [resultData, setResultData] = useState();
+    const [kec, setKec] = useState([]);
+    const [list_profil, setList_profil] = useState([]);
+
     useEffect(() => {
+        setIsLoading(true);
+        // axios.get(BASE_API_URL+'profil?k3=&k4=&search=')
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
+            .then((result) => {
+                // console.log(result.data.data.list_berita)
+                const data = result.data.data;
+                setResultData(data);
+                setKec(data.list_kecamatan)
+                setList_profil(data.list_desa)
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
+
         document.title = "Profil Desa | PENDEKAR";
+
     }, [])
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">
@@ -29,128 +55,32 @@ const ProfilDesa = () => {
                                 <div className="col-3">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Kecamatan</option>
-                                        {/* <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option> */}
+                                        {kec.map((kec) => {
+                                            return (
+                                                <Kecamatan
+                                                    key={kec.kode_wilayah}
+                                                    listkec={kec.nama_kecamatan}
+                                                />
+                                            )
+                                        })
+                                        }
                                     </select>
                                 </div>
                             </div>
 
                             <div className="row">
 
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Patondon Salu</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Ranga</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Banti</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Bamba Puang</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Mata Allo</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-2">
-                                                <img src={profil} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-10 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Desa Cendana</h6>
-                                                    <p className="fw-bold smaller">Kabupaten Enrekang - Provinsi Sulawesi Selatan</p>
-                                                    <a href="/" className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                                        &nbsp; Kunjungi Website
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {list_profil.map((item, index) => {
+                                    return (
+                                        <ListProfil
+                                            key={index + 1}
+                                            kecamatan={item.nama_kecamatan}
+                                            deskel={item.nama_deskel}
+                                            link={item.link}
+                                        />
+                                    )
+                                })
+                                }
 
                             </div>
 
@@ -161,6 +91,35 @@ const ProfilDesa = () => {
 
             </main>
         </Fragment>
+    )
+}
+
+function Kecamatan(props) {
+    return (
+        <option value="1">{props.listkec}</option>
+    )
+}
+
+function ListProfil(props) {
+    return (
+        <div className="col-12">
+            <div className="card p-2 mb-3">
+                <div className="row g-0 align-items-center">
+                    <div className="col-2">
+                        <img src={profil} className="img-fluid rounded-start" alt="..." />
+                    </div>
+                    <div className="col-10 direction">
+                        <div className="card-body-produk">
+                            <h6 className="fw-bold m-0">Desa {props.deskel}</h6>
+                            <p className="fw-bold smaller">Kecamatan {props.kecamatan}</p>
+                            <a href={props.link} target={'_blank'} rel='noreferrer' className="smaller"><i className="fa-solid fa-earth-asia"></i>
+                                &nbsp; Kunjungi Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

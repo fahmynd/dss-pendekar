@@ -1,13 +1,41 @@
-import { React, Fragment, useEffect } from 'react'
+import { React, Fragment, useEffect, useState } from 'react'
 import JenisUsaha from './chart/jenisUsaha'
 import UsahaDiWilayah from './chart/usahaDiWilayah'
 import produk from '../assets/img/produk.png'
+import axios from 'axios'
+import LoadingSpinner from './LoadingSpinner'
 // import '../assets/vendor/boxicons/css/boxicons.min.css'
 
 const Umkm = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [resultData, setResultData] = useState();
+    const [kec, setKec] = useState([]);
+    const [desa, setDesa] = useState([]);
+    const [list_umkm, setList_umkm] = useState([]);
+
     useEffect(() => {
+        setIsLoading(true);
+        // axios.get(BASE_API_URL+'umkm?k3=&k4=&search=&type=&limit=')
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
+            .then((result) => {
+                // console.log(result.data.data.list_berita)
+                const data = result.data.data;
+                setResultData(data);
+                setKec(data.list_kecamatan)
+                setDesa(data.list_desa)
+                setList_umkm(data.list_umkm)
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
+
         document.title = "UMKM | PENDEKAR";
+
     }, [])
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">
@@ -23,7 +51,6 @@ const Umkm = () => {
                                 <div className="card-body pb-0">
                                     <h2 className="card-title-potensi pb-0">USAHA DI WILAYAH</h2>
 
-                                    {/* <div id="usahaChart" style={{ minHeight: '400px' }} className="echart"></div> */}
                                     <UsahaDiWilayah />
 
                                 </div>
@@ -35,7 +62,6 @@ const Umkm = () => {
                                 <div className="card-body pb-0">
                                     <h2 className="card-title-potensi pb-0">JENIS USAHA</h2>
 
-                                    {/* <div id="jenisChart" style={{ minHeight: '400px' }} className="echart"></div> */}
                                     <JenisUsaha />
 
                                 </div>
@@ -56,282 +82,55 @@ const Umkm = () => {
                                 <div className="col-3">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Kecamatan</option>
-                                        {/* <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option> */}
+                                        {kec.map((kec) => {
+                                            return (
+                                                <Kecamatan
+                                                    key={kec.kode_wilayah}
+                                                    listkec={kec.nama_kecamatan}
+                                                />
+                                            )
+                                        })
+                                        }
                                     </select>
                                 </div>
                                 <div className="col-3">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Desa</option>
-                                        {/* <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option> */}
+                                        {desa.map((deskel) => {
+                                            return (
+                                                <Desa
+                                                    key={deskel.kode_wilayah}
+                                                    listdesa={deskel.nama_deskel}
+                                                />
+                                            )
+                                        })
+                                        }
                                     </select>
                                 </div>
                                 <div className="col-3">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Jenis Usaha</option>
-                                        {/* <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option> */}
+
                                     </select>
                                 </div>
                             </div>
 
                             <div className="row">
 
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Kuliner</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 1</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Patondon Salu, Kec. Maiwa</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="https://www.google.com/maps/place/Lasinrang+Park/data=!4m7!3m6!1s0x2d944cfe16d87bd1:0x2e999a38d17e271d!8m2!3d-3.7914168!4d119.6505235!16s%2Fg%2F11b6bq1lpg!19sChIJ0XvYFv5MlC0RHSd-0TiamS4?authuser=0&hl=en&rclk=1" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Tourism</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 2</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Labuku, Kec. Maiwa</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="https://www.google.com/maps/place/Puncak+Bila/data=!4m7!3m6!1s0x2d95d3471705487d:0x3c2263cf09a5de2a!8m2!3d-3.8213197!4d120.0465144!16s%2Fg%2F11bv30jgz6!19sChIJfUgFF0fTlS0RKt6lCc9jIjw?authuser=0&hl=en&rclk=1" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Market</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 3</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Labuku, Kec. Maiwa</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="https://www.google.com/maps/place/Dante+Pine/data=!4m7!3m6!1s0x2d94134a50c82633:0x274d4480cf59d2fb!8m2!3d-3.4461625!4d119.7922182!16s%2Fg%2F11f046zhw8!19sChIJMybIUEoTlC0R-9JZz4BETSc?authuser=0&hl=en&rclk=1" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Kuliner</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 4</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Tallu Bamba, Kec. Enrekang</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Tourism</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 5</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Kadingeh, Kec. Baraka</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Market</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 6</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Kadingeh, Kec. Baraka</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Kuliner</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 7</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Kadingeh, Kec. Baraka</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Tourism</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 8</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Tallu Bamba, Kec. Enrekang</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-4">
-                                    <div className="card p-2 mb-3">
-                                        <div className="row g-0 align-items-center">
-                                            <div className="col-5 item">
-                                                <span className="notify-badge">Kuliner</span>
-                                                <img src={produk} className="img-fluid rounded-start" alt="..." />
-                                            </div>
-                                            <div className="col-7 direction">
-                                                <div className="card-body-produk">
-                                                    <h6 className="fw-bold m-0">Usaha 9</h6>
-                                                    <p className="fw-bold smaller m-0">Desa Labuku, Kec. Maiwa</p>
-                                                    <div className="smaller">
-                                                        <p className="m-0">Order via:</p>
-                                                        <ul className="m-0">
-                                                            <li>DIGIDES</li>
-                                                            <li>Tokopedia</li>
-                                                            <li>Grab/Goek</li>
-                                                        </ul>
-                                                    </div>
-                                                    <a href="/" target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                        &nbsp; Petunjuk Arah
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {list_umkm.map((item, index) => {
+                                    return (
+                                        <ListUmkm
+                                            key={index + 1}
+                                            kecamatan={item.nama_kecamatan}
+                                            deskel={item.nama_deskel}
+                                            nama={item.nama_usaha}
+                                            tipe={item.tipe_usaha}
+                                            alamat={item.alamat}
+                                            map={item.map}
+                                        />
+                                    )
+                                })
+                                }
 
                             </div>
 
@@ -342,6 +141,50 @@ const Umkm = () => {
 
             </main>
         </Fragment>
+    )
+}
+
+function Kecamatan(props) {
+    return (
+        <option value="1">{props.listkec}</option>
+    )
+}
+
+function Desa(props) {
+    return (
+        <option value="1">{props.listdesa}</option>
+    )
+}
+
+function ListUmkm(props) {
+    return (
+        <div className="col-md-4">
+            <div className="card p-2 mb-3">
+                <div className="row g-0 align-items-center">
+                    <div className="col-5 item">
+                        <span className="notify-badge">{props.tipe}</span>
+                        <img src={produk} className="img-fluid rounded-start" alt="..." />
+                    </div>
+                    <div className="col-7 direction">
+                        <div className="card-body-produk">
+                            <h6 className="fw-bold m-0">{props.nama}</h6>
+                            <p className="fw-bold smaller m-0">Desa {props.deskel}, Kec. {props.kecamatan}</p>
+                            <div className="smaller">
+                                <p className="m-0">Order via:</p>
+                                <ul className="m-0">
+                                    <li>DIGIDES</li>
+                                    <li>Tokopedia</li>
+                                    <li>Grab/Goek</li>
+                                </ul>
+                            </div>
+                            <a href={props.map} target={'_blank'} rel='noreferrer' className="small"><i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
+                                &nbsp; Petunjuk Arah
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

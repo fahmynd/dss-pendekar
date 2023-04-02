@@ -63,7 +63,7 @@ function Sidebar() {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item d-none">
+                    <li className="nav-item">
                         <NavLink className="nav-link" to="/profil-desa">
                             <i className="ri-profile-line"></i>
                             <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Profil Desa</span>

@@ -7,6 +7,7 @@ import './assets/vendor/remixicon/remixicon.css'
 import './assets/vendor/simple-datatables/style.css'
 import './assets/css/news-ticker.min.css'
 import './assets/css/style.css'
+import LoadingSpinner from "./component/LoadingSpinner";
 
 const Header = lazy(() => import("./component/header"));
 const Sidebar = lazy(() => import("./component/sidebar"));
@@ -37,7 +38,7 @@ export default class App extends Component {
         <Header />
         <Sidebar />
         <ScrollToTop />
-        <Suspense fallback={<div className="lazy-load">Loading...</div>}>
+        <Suspense fallback={<LoadingSpinner />}>
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
