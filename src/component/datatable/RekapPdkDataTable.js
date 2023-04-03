@@ -92,7 +92,7 @@ class RekapPendudukTable extends React.Component {
 function Penduduk(props) {
     return (
         <tr>
-            <td>{props.no}</td>
+            <td className="text-center">{props.no}</td>
             <td>{props.kec}</td>
             <td>{props.desa}</td>
             <td>{props.laki}</td>

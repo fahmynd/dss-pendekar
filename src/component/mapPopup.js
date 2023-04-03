@@ -17,7 +17,7 @@ class Map extends React.Component {
         super();
         this.state = {
             resultData: props.resultData,
-            zoom: 10,
+            zoom: 12,
             latcenter: props.resultData.dss.lat,
             lngcenter: props.resultData.dss.lng
         };

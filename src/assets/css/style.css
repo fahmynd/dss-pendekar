@@ -1851,3 +1851,18 @@ btn:focus {
   align-items: center;
   height: 100vh;
 }
+
+.pagination {
+  /* --bs-pagination-bg: transparent; */
+}
+
+.page-link {
+  border: none;
+  color: #202020;
+}
+
+.page-item.active .page-link {
+  background-color: #3B2D64;
+  border-color: #3B2D64;
+  border-radius: 3px;
+}

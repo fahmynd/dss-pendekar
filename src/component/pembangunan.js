@@ -16,6 +16,15 @@ const Pembangunan = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [tahun_now, setTahun_now] = useState([]);
+    const [skor_idm_now, setSkor_idm_now] = useState([]);
+    const [skor_min_now, setSkor_min_now] = useState([]);
+    const [skor_up_now, setSkor_up_now] = useState([]);
+    const [current_status, setCurrent_status] = useState([]);
+    const [target_status, setTarget_status] = useState([]);
+    const [skor_iks_now, setSkor_iks_now] = useState([]);
+    const [skor_ike_now, setSkor_ike_now] = useState([]);
+    const [skor_ikl_now, setSkor_ikl_now] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -23,7 +32,22 @@ const Pembangunan = () => {
         axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/pembangunan?k3=&k4=')
             .then((result) => {
                 // console.log(result.data.data.list_berita)
+                const data = result.data.data;
                 setResultData(result.data);
+                setKec(data.list_kecamatan)
+                setDesa(data.list_desa)
+
+                const idm = result.data.data.idm;
+                setTahun_now(idm[2].tahun)
+                setSkor_idm_now(idm[2].skor_idm)
+                setSkor_min_now(idm[2].skor_min)
+                setSkor_up_now(idm[2].skor_up)
+                setCurrent_status(idm[2].current_status)
+                setTarget_status(idm[2].target_status)
+                setSkor_iks_now(idm[2].skor_iks)
+                setSkor_ike_now(idm[2].skor_ike)
+                setSkor_ikl_now(idm[2].skor_ikl)
+
             })
             .catch(error => {
                 alert(error.message);
@@ -104,7 +128,7 @@ const Pembangunan = () => {
                                             <div className='container'>
                                                 <div className='row'>
                                                     <div className='col-md-6'>
-                                                        <h4 className="fw-bold mt-4 text-center">Skor IDM Tahun 2022</h4>
+                                                        <h4 className="fw-bold mt-4 text-center">Skor IDM Tahun {tahun_now}</h4>
                                                         <div className="row mt-4">
                                                             <div className="col-md-12 mb-4">
                                                                 <div className="idm-card card-idm__skor">
@@ -113,11 +137,11 @@ const Pembangunan = () => {
                                                                             <div className="col-md-6">
                                                                                 <p className="card-idm__text">
                                                                                     Skor IDM <br />
-                                                                                    Tahun <span>2022</span>
+                                                                                    Tahun <span>{tahun_now}</span>
                                                                                 </p>
                                                                             </div>
                                                                             <div className="col-md-6 text-center center-v">
-                                                                                <p className="card-idm__jumlah">0.6556</p>
+                                                                                <p className="card-idm__jumlah">{skor_idm_now}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -130,11 +154,11 @@ const Pembangunan = () => {
                                                                             <div className="col-md-6">
                                                                                 <p className="card-idm__text">
                                                                                     Status IDM <br />
-                                                                                    Tahun <span>2022</span>
+                                                                                    Tahun <span>{tahun_now}</span>
                                                                                 </p>
                                                                             </div>
                                                                             <div className="col-md-6 text-center center-v">
-                                                                                <p className="card-idm__infoStatus">Berkembang</p>
+                                                                                <p className="card-idm__infoStatus">{current_status}</p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -146,15 +170,15 @@ const Pembangunan = () => {
                                                                 <div className='row'>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Target Status</p>
-                                                                        <p className="fs-5">Maju</p>
+                                                                        <p className="fs-5">{target_status}</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor Minimal</p>
-                                                                        <p className="fs-5">0.7073</p>
+                                                                        <p className="fs-5">{skor_min_now}</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Penambahan</p>
-                                                                        <p className="fs-5">0.0517</p>
+                                                                        <p className="fs-5">{skor_up_now}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -162,15 +186,15 @@ const Pembangunan = () => {
                                                                 <div className='row'>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKS</p>
-                                                                        <p className="fs-5">0.7468</p>
+                                                                        <p className="fs-5">{skor_iks_now}</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKE</p>
-                                                                        <p className="fs-5">0.576</p>
+                                                                        <p className="fs-5">{skor_ike_now}</p>
                                                                     </div>
                                                                     <div className="col-6 col-md-4 mb-3">
                                                                         <p className="fw-bold">Skor IKL</p>
-                                                                        <p className="fs-5">0.6441</p>
+                                                                        <p className="fs-5">{skor_ikl_now}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -218,17 +242,29 @@ const Pembangunan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -352,28 +388,15 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">KECAMATAN</h5>
                                                 </div>
                                                 <div className="list-group-potensi mt-3">
-                                                    {/* <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
-                                                        The current button
-                                                    </button> */}
-                                                    {/* {kecamatan.map((kec) => {
+                                                    {kec.map((kec) => {
                                                         return (
-                                                            <Kecamatan
-                                                                key={kec.kode}
-                                                                listkec={kec.kecamatan}
+                                                            <KecamatanPotensi
+                                                                key={kec.kode_wilayah}
+                                                                listkec={kec.nama_kecamatan}
                                                             />
                                                         )
                                                     })
-                                                    } */}
-                                                    <button type="button" className="list-group-item list-group-item-action">Maiwa</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Enrekang</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Baraka</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Anggeraja</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Bungin</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Cendana</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Curio</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Masalle</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Buntu Batu</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Alla</button>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -384,8 +407,6 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">Potensi Manusia</h5>
                                                 </div>
                                                 <div className="card-body-chart">
-                                                    {/* <canvas id="potensiPieChart" style={{ maxHeight: '400px' }}></canvas> */}
-
                                                     <PotensiManusia />
 
                                                 </div>
@@ -398,7 +419,6 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">Potensi SDA</h5>
                                                 </div>
                                                 <div className="card-body-chart">
-                                                    {/* <div id="potensiBarChart" style={{ minHeight: '400px' }} className="echart"></div> */}
                                                     <PotensiSDA />
 
                                                 </div>
@@ -413,25 +433,15 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">DESA/KELURAHAN</h5>
                                                 </div>
                                                 <div className="list-group-potensi mt-3">
-                                                    {/* {desa.map((deskel) => {
+                                                    {desa.map((deskel) => {
                                                         return (
-                                                            <Desa
-                                                                key={deskel.kode}
-                                                                listdesa={deskel.deskel}
+                                                            <DesaPotensi
+                                                                key={deskel.kode_wilayah}
+                                                                listdesa={deskel.nama_deskel}
                                                             />
                                                         )
                                                     })
-                                                    } */}
-                                                    <button type="button" className="list-group-item list-group-item-action">Bamba Puang</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Temban</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Kadingeh</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Cendana</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Ranga</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Palakka</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Pasang</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Rosoan</button>
-                                                    <button type="button" className="list-group-item list-group-item-action">Mampu</button>
-
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -442,7 +452,6 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">Lembaga Kemasyarakatan</h5>
                                                 </div>
                                                 <div className="card-body-chart">
-                                                    {/* <canvas id="potensiRadarChart" style={{ maxHeight: '400px' }}></canvas> */}
                                                     <LembagaKemasyarakatan />
                                                 </div>
                                             </div>
@@ -454,8 +463,6 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">Sarana & Prasarana</h5>
                                                 </div>
                                                 <div className="card-body-chart">
-
-                                                    {/* <div id="saranaChart" style={{ minHeight: '400px' }} className="echart"></div> */}
                                                     <PotensiSDA />
                                                 </div>
                                             </div>
@@ -509,10 +516,7 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">BALITA STUNTING DARI TAHUN KE TAHUN</h5>
                                                 </div>
                                                 <div className="card-body">
-
-                                                    {/* <div id="stuntingChart" style="min-height: 400px;"></div> */}
                                                     <BalitaYoY />
-
                                                 </div>
                                             </div>
                                         </div>
@@ -523,10 +527,7 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">JUMLAH BALITA STUNTING DI DESA/KELURAHAN</h5>
                                                 </div>
                                                 <div className="card-body mt-4">
-
-                                                    {/* <div id="verticalBarChart" style={{ minHeight: '400px' }} className="echart mt-4"></div> */}
                                                     <BalitaStuntingJumlah />
-
                                                 </div>
                                             </div>
                                         </div>
@@ -606,6 +607,19 @@ const Pembangunan = () => {
 
 function Kecamatan(props) {
     return (
+        <option value="1">{props.listkec}</option>
+    )
+}
+
+function Desa(props) {
+    return (
+        <option value="1">{props.listdesa}</option>
+    )
+}
+
+
+function KecamatanPotensi(props) {
+    return (
         // <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
         //     {props.listkec}
         // </button>
@@ -613,7 +627,7 @@ function Kecamatan(props) {
     )
 }
 
-function Desa(props) {
+function DesaPotensi(props) {
     return (
         // <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
         //     {props.listkec}

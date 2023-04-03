@@ -2,12 +2,12 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import profil from '../assets/img/profil.png'
 import LoadingSpinner from './LoadingSpinner';
+import ProfilDesaPagination from './pagination/profilDesaPagination';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
-    const [list_profil, setList_profil] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -16,9 +16,8 @@ const ProfilDesa = () => {
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
-                setResultData(data);
+                setResultData(data.list_desa);
                 setKec(data.list_kecamatan)
-                setList_profil(data.list_desa)
             })
             .catch(error => {
                 alert(error.message);
@@ -67,23 +66,7 @@ const ProfilDesa = () => {
                                     </select>
                                 </div>
                             </div>
-
-                            <div className="row">
-
-                                {list_profil.map((item, index) => {
-                                    return (
-                                        <ListProfil
-                                            key={index + 1}
-                                            kecamatan={item.nama_kecamatan}
-                                            deskel={item.nama_deskel}
-                                            link={item.link}
-                                        />
-                                    )
-                                })
-                                }
-
-                            </div>
-
+                            {resultData && <ProfilDesaPagination resultData={resultData} />}
                         </div>
 
                     </div>
@@ -97,29 +80,6 @@ const ProfilDesa = () => {
 function Kecamatan(props) {
     return (
         <option value="1">{props.listkec}</option>
-    )
-}
-
-function ListProfil(props) {
-    return (
-        <div className="col-12">
-            <div className="card p-2 mb-3">
-                <div className="row g-0 align-items-center">
-                    <div className="col-2">
-                        <img src={profil} className="img-fluid rounded-start" alt="..." />
-                    </div>
-                    <div className="col-10 direction">
-                        <div className="card-body-produk">
-                            <h6 className="fw-bold m-0">Desa {props.deskel}</h6>
-                            <p className="fw-bold smaller">Kecamatan {props.kecamatan}</p>
-                            <a href={props.link} target={'_blank'} rel='noreferrer' className="smaller"><i className="fa-solid fa-earth-asia"></i>
-                                &nbsp; Kunjungi Website
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     )
 }
 
