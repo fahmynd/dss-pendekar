@@ -4,6 +4,7 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 function IdmChart() {
+
     useLayoutEffect(() => {
 
         let root = am5.Root.new("idmChart");
@@ -44,11 +45,11 @@ function IdmChart() {
             {
                 year: "2022",
                 skor: 0.6556,
-                strokeSettings: {
-                    stroke: chart.get("colors").getIndex(1),
-                    strokeWidth: 3,
-                    strokeDasharray: [5, 5]
-                },
+                // strokeSettings: {
+                //     stroke: chart.get("colors").getIndex(1),
+                //     strokeWidth: 3,
+                //     strokeDasharray: [5, 5]
+                // },
                 info: "(Berkembang)"
             }
         ];

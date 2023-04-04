@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import LoadingSpinner from './LoadingSpinner';
 import ProfilDesaPagination from './pagination/profilDesaPagination';
+import { BASE_API_URL } from '../utils/api';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -10,8 +11,8 @@ const ProfilDesa = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL+'profil?k3=&k4=&search=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
+        // axios.get(BASE_API_URL + 'profil?k3=&k4=&search=')
+            axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;

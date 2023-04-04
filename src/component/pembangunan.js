@@ -2,7 +2,7 @@ import { React, Fragment, useEffect, useState } from 'react'
 import IdmChart from './chart/idm'
 import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
 import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
-import BalitaYoY from './chart/balitaStuntingYoY'
+import BalitaYoY from './chart/balitaStuntingYoY_'
 import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
 import { PotensiManusia } from './chart/potensiManusia'
 import PotensiSDA from './chart/potensiSDA'
@@ -25,10 +25,13 @@ const Pembangunan = () => {
     const [skor_iks_now, setSkor_iks_now] = useState([]);
     const [skor_ike_now, setSkor_ike_now] = useState([]);
     const [skor_ikl_now, setSkor_ikl_now] = useState([]);
+    const [jml_stunting_now, setJml_stunting_now] = useState([]);
+    const [persen_stunting_now, setPersen_stunting_now] = useState([]);
+    const [prevalensi_now, setPrevalensi_now] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL)
+        // axios.get(BASE_API_URL + 'pembangunan?k3=&k4=')
         axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/pembangunan?k3=&k4=')
             .then((result) => {
                 // console.log(result.data.data.list_berita)
@@ -47,6 +50,11 @@ const Pembangunan = () => {
                 setSkor_iks_now(idm[2].skor_iks)
                 setSkor_ike_now(idm[2].skor_ike)
                 setSkor_ikl_now(idm[2].skor_ikl)
+
+                const stunting = result.data.data.stunting;
+                setJml_stunting_now(stunting[7].jml_stunting)
+                setPersen_stunting_now(stunting[7].persen_stunting)
+                setPrevalensi_now(stunting[7].prevalensi)
 
             })
             .catch(error => {
@@ -476,7 +484,7 @@ const Pembangunan = () => {
                             <div className="card">
                                 <div className="card-body pb-0">
                                     <h5 className="card-title-potensi pb-0">KESEHATAN - STUNTING</h5>
-                                    <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
+                                    <p>Menampilkan Stunting Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
@@ -488,9 +496,9 @@ const Pembangunan = () => {
                                                     <div className="ps-2">
                                                         <span className="badge-stunting text-muted smaller pt-2">JUMLAH BALITA STUNTING
                                                             <i className="bi bi-info-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="Tooltip on top"></i>
+                                                                title={prevalensi_now}></i>
                                                         </span>
-                                                        <h6>276.069</h6>
+                                                        <h6>{jml_stunting_now}</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -502,9 +510,9 @@ const Pembangunan = () => {
                                                     <div className="ps-2">
                                                         <span className="badge-stunting text-muted smaller pt-2">PERSENTASE BALITA STUNTING
                                                             <i className="bi bi-info-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                                title="Tooltip on top"></i>
+                                                                title={prevalensi_now}></i>
                                                         </span>
-                                                        <h6>9.98%</h6>
+                                                        <h6>{persen_stunting_now}%</h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -515,8 +523,8 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">BALITA STUNTING DARI TAHUN KE TAHUN</h5>
                                                 </div>
-                                                <div className="card-body">
-                                                    <BalitaYoY />
+                                                <div className="card-body-chart mt-4 overflow-auto">
+                                                    {resultData && <BalitaYoY resultData={resultData} />}
                                                 </div>
                                             </div>
                                         </div>
@@ -526,8 +534,8 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">JUMLAH BALITA STUNTING DI DESA/KELURAHAN</h5>
                                                 </div>
-                                                <div className="card-body mt-4">
-                                                    <BalitaStuntingJumlah />
+                                                <div className="card-body-chart my-4 overflow-auto">
+                                                    {resultData && <BalitaStuntingJumlah resultData={resultData} />}
                                                 </div>
                                             </div>
                                         </div>

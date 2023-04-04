@@ -4,6 +4,7 @@ import UsahaDiWilayah from './chart/usahaDiWilayah'
 import axios from 'axios'
 import LoadingSpinner from './LoadingSpinner'
 import UmkmPagination from './pagination/umkmPagination'
+import { BASE_API_URL } from '../utils/api'
 
 const Umkm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +14,8 @@ const Umkm = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL+'umkm?k3=&k4=&search=&type=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
+        // axios.get(BASE_API_URL + 'umkm?k3=&k4=&search=&type=&limit=')
+            axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;

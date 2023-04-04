@@ -14,7 +14,7 @@ const Kependudukan = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL+'kependudukan')
+        // axios.get(BASE_API_URL + 'kependudukan?k3=&k4=')
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/kependudukan?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data)
