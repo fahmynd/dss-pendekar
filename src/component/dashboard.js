@@ -146,8 +146,8 @@ const Dashboard = () => {
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#E84C30' }}></i> &gt; 10.000</p>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
                         </div>
