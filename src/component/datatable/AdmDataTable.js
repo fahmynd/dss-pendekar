@@ -102,7 +102,7 @@ function Administrasi(props) {
             <td>{props.tanggal}</td>
             <td>{props.tentang}</td>
             <td>
-                <a href={`https://online.digitaldesa.id/uploads/${props.kode}/buku-peraturan-di-desa/${props.lampiran}`} target={"_blank"} className="btn btn-primary">
+                <a href={`https://online.digitaldesa.id/uploads/${props.kode}/buku-peraturan-di-desa/${props.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
                     Download
                 </a>
             </td>

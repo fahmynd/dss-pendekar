@@ -163,14 +163,14 @@ const Dashboard = () => {
 function Berita(props) {
     return (
         <div className="berita-card">
-            <div className="row g-0">
-                <div className="col-md-2">
-                    <img src={`https://profil.digitaldesa.id/uploads/${props.kode}/berita/thumbs/${props.foto}`} className="w-100 h-75 ms-2 rounded" alt="..." />
+            <div className="row g-1">
+                <div className="col-md-2 align-items-center justify-content-center">
+                    <img src={`https://profil.digitaldesa.id/uploads/${props.kode}/berita/thumbs/${props.foto}`} className="w-100 mb-2 ms-2 rounded" alt="..." style={{ height: '50px' }} />
                 </div>
                 <div className="col-md-10">
                     <div className="berita-card-body">
                         <h6 className='ms-1 fw-bold text-capitalize'>{props.judul}</h6>
-                        <a href={`https://profil.digitaldesa.id/${props.slug_desa}/berita/${props.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"></a>
+                        <a href={`https://profil.digitaldesa.id/${props.slug_desa}/berita/${props.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
                     </div>
                 </div>
             </div>

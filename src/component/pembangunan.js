@@ -203,7 +203,7 @@ const Pembangunan = () => {
                                                     <div className='col-md-6'>
                                                         <h4 className="fw-bold mt-4 text-center">Skor IDM Tahun Ke Tahun</h4>
                                                         <div id="idmChart" style={{ minHeight: '500px' }}></div>
-                                                        <IdmChart />
+                                                        {resultData && <IdmChart resultData={resultData} />}
                                                     </div>
                                                 </div>
                                             </div>

@@ -18,7 +18,7 @@ const Umkm = () => {
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
-                setResultData(data.list_umkm);
+                setResultData(data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
             })
@@ -45,22 +45,22 @@ const Umkm = () => {
                     <div className="row">
                         <div className="col-md-6">
                             <div className="card">
-                                <div className="card-body pb-0">
-                                    <h2 className="card-title-potensi pb-0">USAHA DI WILAYAH</h2>
-
-                                    <UsahaDiWilayah />
-
+                                <div className="card-body">
+                                    <h2 className="card-title-potensi pb-0 mb-0">USAHA DI WILAYAH</h2>
+                                    <div className='overflow-auto' style={{ height: '400px' }}>
+                                        {resultData && <UsahaDiWilayah resultData={resultData} />}
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div className="col-md-6">
                             <div className="card">
-                                <div className="card-body pb-0">
-                                    <h2 className="card-title-potensi pb-0">JENIS USAHA</h2>
-
-                                    <JenisUsaha />
-
+                                <div className="card-body">
+                                    <h2 className="card-title-potensi pb-0 mb-0">JENIS USAHA</h2>
+                                    <div className='overflow-auto' style={{ height: '400px' }}>
+                                        {resultData && <JenisUsaha resultData={resultData} />}
+                                    </div>
                                 </div>
                             </div>
                         </div>

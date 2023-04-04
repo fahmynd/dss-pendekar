@@ -484,10 +484,6 @@ font-weight: var(--bs-list-group-action-font-weight);
   padding: 0;
 }
 
-.card-body-chart {
-  padding: 30px 20px 20px;
-}
-
 .card-body-info {
   padding: 10px;
 }
@@ -520,9 +516,9 @@ font-weight: var(--bs-list-group-action-font-weight);
 }
 
 .card-body-chart {
-  padding: 0px 20px 20px;
+  padding: 5px;
   border: none;
-  height: 500px;
+  height: 600px;
 }
 
 .progress-bar {

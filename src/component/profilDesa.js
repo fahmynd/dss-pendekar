@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
-import profil from '../assets/img/profil.png'
 import LoadingSpinner from './LoadingSpinner';
 import ProfilDesaPagination from './pagination/profilDesaPagination';
 

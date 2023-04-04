@@ -11,11 +11,11 @@ export default function UmkmPagination(props) {
 
     useEffect(() => {
         const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(resultData.slice(itemOffset, endoffset));
-        setPageCount(Math.ceil(resultData.length / itemsPerPage));
+        setCurrentItems(resultData.list_umkm.slice(itemOffset, endoffset));
+        setPageCount(Math.ceil(resultData.list_umkm.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, resultData]);
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % resultData.length;
+        const newOffset = (event.selected * itemsPerPage) % resultData.list_umkm.length;
         setItemOffset(newOffset);
     };
     return (

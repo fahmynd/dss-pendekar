@@ -14,7 +14,8 @@
 }
 
 .bn-breaking-news *{
-    box-sizing:border-box
+    box-sizing:border-box;
+    align-items: center;
 }
 
 .bn-breaking-news.bn-fixed-top {

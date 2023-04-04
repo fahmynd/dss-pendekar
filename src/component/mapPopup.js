@@ -41,7 +41,6 @@ class Map extends React.Component {
             sarpras: item.potensi.sarpras,
             sda: item.potensi.sda,
             sdm: item.potensi.sdm
-
         }));
 
         return (

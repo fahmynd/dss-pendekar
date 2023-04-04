@@ -113,8 +113,8 @@ const Kependudukan = () => {
 
                                         <div className="col-12">
                                             <div className="stunting-card">
-                                                <div className="card-body-chart my-4 overflow-auto">
-                                                    <PendudukJumlah />
+                                                <div className="card-body-chart mt-4 overflow-auto">
+                                                    {resultData && <PendudukJumlah resultData={resultData} />}
                                                 </div>
                                             </div>
                                         </div>
