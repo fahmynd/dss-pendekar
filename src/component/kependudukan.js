@@ -5,6 +5,7 @@ import PendudukJumlah from './chart/pendudukJumlah';
 import PendudukTable from './datatable/PdkDataTable';
 import RekapPendudukTable from './datatable/RekapPdkDataTable';
 import LoadingSpinner from './LoadingSpinner';
+import MiskinPendudukTable from './datatable/MiskinPdkDataTable';
 
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +40,7 @@ const Kependudukan = () => {
             <main id="main" className="main">
 
                 <div className="pagetitle mt-3 mb-5">
-                    <h1>Kependudukan</h1>
+                    <h1>Administrasi Kependudukan</h1>
                 </div>
 
                 <div className="filter-update">
@@ -119,6 +120,55 @@ const Kependudukan = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-lg-12">
+                            <div className="card">
+                                <div className="card-body">
+                                    <h5 className="card-title-potensi">Kemiskinan Ekstrim</h5>
+                                    <div className="row g-1 mb-4">
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Demografi Kependudukan</option>
+                                                {/* <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option> */}
+                                            </select>
+                                        </div>
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="col-3">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Desa</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    {resultData && <MiskinPendudukTable resultData={resultData} />}
+
                                 </div>
                             </div>
                         </div>

@@ -24,49 +24,68 @@ function Sidebar() {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/" end>
                             <i className="ri-funds-box-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Dashboard</span>
+                            <span>Dashboard</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/administrasi-umum">
+                        <NavLink className="nav-link" data-bs-target="#administrasi-nav" data-bs-toggle="collapse" to="/*">
                             <i className="ri-file-copy-2-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Administrasi Umum</span>
+                            <span>Administrasi</span><i className="bi bi-chevron-right ms-auto"></i>
                         </NavLink>
+                        <ul id="administrasi-nav" className="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <NavLink to="/administrasi-umum">
+                                    <i className="bi bi-circle"></i><span>Umum</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/kependudukan">
+                                    <i className="bi bi-circle"></i><span>Kependudukan</span>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </li>
 
-                    <li className="nav-item">
+                    <li className="nav-item d-none">
                         <NavLink className="nav-link" to="/kependudukan">
                             <i className="ri-team-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Kependudukan</span>
+                            <span>Kependudukan</span>
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item d-none">
+                        <NavLink className="nav-link" to="/pembangunan">
+                            <i className="ri-building-4-line"></i>
+                            <span>Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/pembangunan">
-                            <i className="ri-building-4-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Pembangunan</span>
-                        </NavLink>
-                    </li>
-
-                    <li className="nav-item d-none">
-                        <NavLink className="nav-link" to="/keuangan">
                             <i className="ri-bank-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Kelembagaan</span>
+                            <span>Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/umkm">
+                        <NavLink className="nav-link" to="/potensi">
                             <i className="ri-store-2-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">UMKM</span>
+                            <span>Potensi</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/profil-desa">
                             <i className="ri-profile-line"></i>
-                            <span data-bs-toggle="collapse" data-bs-target=".navbar-collapse">Profil Desa</span>
+                            <span>Profil Desa</span>
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/bantuan-sosial">
+                            <i className="ri-building-4-line"></i>
+                            <span>Bansos</span>
                         </NavLink>
                     </li>
 

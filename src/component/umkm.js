@@ -15,7 +15,7 @@ const Umkm = () => {
     useEffect(() => {
         setIsLoading(true);
         // axios.get(BASE_API_URL + 'umkm?k3=&k4=&search=&type=&limit=')
-            axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
@@ -28,7 +28,7 @@ const Umkm = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "UMKM | PENDEKAR";
+        document.title = "Potensi | PENDEKAR";
 
     }, [])
 

@@ -3,7 +3,7 @@ import AnggaranDesa from './chart/anggaranDesa'
 
 const Keuangan = () => {
     useEffect(() => {
-        document.title = "Keuangan | PENDEKAR";
+        document.title = "Pembangunan | PENDEKAR";
     }, [])
     return (
         <Fragment>

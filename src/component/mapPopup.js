@@ -88,8 +88,6 @@ class Map extends React.Component {
                                             <div className='row g-2'>
                                                 <div className='col-6'>SDA</div>
                                                 <div className='col-6'>: {sda}</div>
-                                                <div className='col-6'>IDM</div>
-                                                <div className='col-6'>: {idm}</div>
                                                 <div className='col-6'>SDM</div>
                                                 <div className='col-6'>: {sdm}</div>
                                                 <div className='col-6'>LK</div>

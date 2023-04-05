@@ -63,7 +63,7 @@ const Pembangunan = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Perkembangan Desa | PENDEKAR";
+        document.title = "Dashboard | PENDEKAR";
 
     }, [])
 
@@ -74,7 +74,7 @@ const Pembangunan = () => {
             <main id="main" className="main">
 
                 <div className="pagetitle mt-3 mb-5">
-                    <h1>Pembangunan Desa</h1>
+                    <h1>Dashboard Utama</h1>
                 </div>
 
                 <section className="section dashboard">
@@ -417,7 +417,7 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Potensi Manusia</h5>
                                                 </div>
-                                                <div className="card-body-chart">
+                                                <div className="card-body-chart m-auto mt-4" style={{ position: 'relative', height: '300px', width: '300px' }}>
                                                     {resultData && <PotensiManusia resultData={resultData} />}
                                                 </div>
                                             </div>
@@ -428,9 +428,8 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Potensi SDA</h5>
                                                 </div>
-                                                <div className="card-body-chart">
+                                                <div className="card-body-chart mt-4">
                                                     <PotensiSDA />
-
                                                 </div>
                                             </div>
                                         </div>
@@ -461,7 +460,7 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Lembaga Kemasyarakatan</h5>
                                                 </div>
-                                                <div className="card-body-chart">
+                                                <div className="card-body-chart m-auto mt-4" style={{ position: 'relative', height: '300px', width: '300px' }}>
                                                     <LembagaKemasyarakatan />
                                                 </div>
                                             </div>
@@ -472,7 +471,7 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">Sarana & Prasarana</h5>
                                                 </div>
-                                                <div className="card-body-chart">
+                                                <div className="card-body-chart mt-4">
                                                     <PotensiSDA />
                                                 </div>
                                             </div>

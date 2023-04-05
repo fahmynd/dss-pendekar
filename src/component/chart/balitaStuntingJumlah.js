@@ -18,7 +18,7 @@ class BalitaStuntingJumlah extends React.Component {
 
         return {
             title: {
-                text: 'Keterangan'
+                text: 'Keterangan:'
             },
             tooltip: {
                 trigger: 'axis',
@@ -26,7 +26,10 @@ class BalitaStuntingJumlah extends React.Component {
                     type: 'shadow'
                 }
             },
-            legend: {},
+            legend: {
+                orient: 'horizontal',
+                left: 150
+            },
             grid: {
                 left: '3%',
                 right: '4%',

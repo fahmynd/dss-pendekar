@@ -32,6 +32,8 @@ export function PotensiManusia(props) {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: true,
+        aspectRatio: 1 | 1,
         plugins: {
             legend: {
                 display: true,
@@ -43,5 +45,9 @@ export function PotensiManusia(props) {
         },
     };
 
-    return <Pie data={data} options={options} />;
+    return <Pie
+        data={data}
+        options={options}
+    // style={{ width: "450px", height: "450px" }}
+    />;
 }

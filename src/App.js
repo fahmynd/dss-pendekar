@@ -40,13 +40,13 @@ export default class App extends Component {
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route exact path="/" element={<Dashboard />} />
+            <Route exact path="/" element={<Pembangunan />} />
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
             <Route path="/perkembangan-desa" element={<PerkembanganDesa />} />
             <Route path="/kependudukan" element={<Kependudukan />} />
-            <Route path="/pembangunan" element={<Pembangunan />} />
-            <Route path="/keuangan" element={<Keuangan />} />
-            <Route path="/umkm" element={<Umkm />} />
+            {/* <Route path="/pembangunan" element={<Pembangunan />} /> */}
+            <Route path="/pembangunan" element={<Keuangan />} />
+            <Route path="/potensi" element={<Umkm />} />
             <Route path="/profil-desa" element={<ProfilDesa />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>

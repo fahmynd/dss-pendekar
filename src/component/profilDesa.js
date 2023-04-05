@@ -3,21 +3,24 @@ import React, { Fragment, useEffect, useState } from 'react'
 import LoadingSpinner from './LoadingSpinner';
 import ProfilDesaPagination from './pagination/profilDesaPagination';
 import { BASE_API_URL } from '../utils/api';
+import ProfilTable from './datatable/ProfilDesaDataTable';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
+    const [desa, setDesa] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
         // axios.get(BASE_API_URL + 'profil?k3=&k4=&search=')
-            axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
                 setResultData(data.list_desa);
                 setKec(data.list_kecamatan)
+                setDesa(data.list_desa)
             })
             .catch(error => {
                 alert(error.message);
@@ -41,7 +44,7 @@ const ProfilDesa = () => {
                 <section className="section dashboard">
                     <div className="row">
 
-                        <div className="col-lg-12">
+                        <div className="col-lg-12 d-none">
                             <div className="row g-1 mb-4">
                                 <div className="col-5">
                                     <div className="search-produk">
@@ -69,6 +72,50 @@ const ProfilDesa = () => {
                             {resultData && <ProfilDesaPagination resultData={resultData} />}
                         </div>
 
+                        <div className="col-lg-12">
+                            <div className="row g-1 mb-4">
+                                <div className="col-3">
+                                    <div className="search-produk">
+                                        <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                            <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                            <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div className="col-3">
+                                    <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                        <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                        {kec.map((kec) => {
+                                            return (
+                                                <Kecamatan
+                                                    key={kec.kode_wilayah}
+                                                    listkec={kec.nama_kecamatan}
+                                                />
+                                            )
+                                        })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="col-3">
+                                    <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                        <option value={'DEFAULT'}>Semua Desa</option>
+                                        {desa.map((deskel) => {
+                                            return (
+                                                <Desa
+                                                    key={deskel.kode_wilayah}
+                                                    listdesa={deskel.nama_deskel}
+                                                />
+                                            )
+                                        })
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            {resultData && <ProfilTable resultData={resultData} />}
+
+                        </div>
+
                     </div>
                 </section>
 
@@ -80,6 +127,12 @@ const ProfilDesa = () => {
 function Kecamatan(props) {
     return (
         <option value="1">{props.listkec}</option>
+    )
+}
+
+function Desa(props) {
+    return (
+        <option value="1">{props.listdesa}</option>
     )
 }
 
