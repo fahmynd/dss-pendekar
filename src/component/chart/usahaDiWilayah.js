@@ -32,11 +32,11 @@ class UsahaDiWilayah extends React.Component {
             },
             yAxis: {
                 type: 'category',
-                data: chart_desa
+                data: chart_desa.reverse()
             },
             series: [{
                 type: 'bar',
-                data: chart_jumlah,
+                data: chart_jumlah.reverse(),
                 color: '#499841'
             }
             ]

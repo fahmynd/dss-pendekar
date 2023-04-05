@@ -24,7 +24,7 @@ export const data = {
         {
             label: 'Sangat Tertinggal',
             data: [{
-                x: 5,
+                x: 20,
                 y: 15,
                 r: 10
             }, {

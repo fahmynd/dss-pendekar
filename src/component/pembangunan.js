@@ -10,6 +10,7 @@ import axios from 'axios'
 import { BASE_API_URL } from '../utils/api'
 import Map from './mapPopup'
 import LoadingSpinner from './LoadingSpinner'
+import RekomendasiTable from './datatable/RekomendasiDataTable'
 
 const Pembangunan = () => {
     const [resultData, setResultData] = useState();
@@ -236,7 +237,7 @@ const Pembangunan = () => {
 
                         <div className="col-lg-12">
                             <div className="card">
-                                <div className="card-body pb-0">
+                                <div className="card-body">
                                     <h5 className="card-title-potensi pb-0">REKOMENDASI PEMBANGUNAN</h5>
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
@@ -277,7 +278,7 @@ const Pembangunan = () => {
                                         </div>
                                     </div>
 
-                                    <table className="table table-bordered">
+                                    <table className="table table-bordered d-none">
                                         <thead>
                                             <tr style={{ background: '#F1ECFF' }}>
                                                 <th scope="col">Nama Kecamatan</th>
@@ -377,6 +378,8 @@ const Pembangunan = () => {
                                         </tbody>
                                     </table>
 
+                                    {resultData && <RekomendasiTable resultData={resultData} />}
+
                                 </div>
                             </div>
                         </div>
@@ -385,7 +388,7 @@ const Pembangunan = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">POTENSI</h5>
-                                    <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
+                                    <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
@@ -548,67 +551,6 @@ const Pembangunan = () => {
                 </section>
 
             </main>
-
-            <div className="modal fade" id="disablebackdrop" tabIndex="-1" data-bs-backdrop="false">
-                <div className="modal-dialog modal-lg shadow-lg rounded">
-                    <div id="item-rekomendasi" className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">Rekomendasi</h5>
-                            <div data-bs-dismiss="modal" aria-label="Close" style={{ cursor: 'pointer' }}>
-                                <span>Tutup</span>
-                            </div>
-                        </div>
-                        <div className="modal-body">
-                            <h5><span className="badge bg-super-prioritas">Super Prioritas</span></h5>
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr style={{ background: '#EDEDED' }}>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Kategori</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5><span className="badge bg-prioritas">Prioritas</span></h5>
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr style={{ background: '#EDEDED' }}>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Kategori</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </Fragment>
     )
 }
