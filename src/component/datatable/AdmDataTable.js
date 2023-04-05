@@ -14,7 +14,8 @@ class AdminTable extends React.Component {
     constructor(props) {
         super();
         this.state = {
-            resultData: props.resultData
+            resultData: props.resultData,
+            jenis: props.jenis,
         };
     }
 
@@ -41,9 +42,9 @@ class AdminTable extends React.Component {
     }
 
     showTable = () => {
-        const { resultData } = this.state;
+        const { resultData, jenis } = this.state;
         try {
-            return resultData.data.list_administrasi.buku_peraturan_di_desa.map((item, index) => {
+            return resultData.data.list_administrasi[jenis].map((item, index) => {
                 return (
                     <Administrasi
                         key={item.lampiran}

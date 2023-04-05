@@ -26,6 +26,7 @@ const AdministrasiUmum = () => {
     const [tanah_kas_desa_add, setTanah_kas_desa_add] = useState();
     const [luas_tanah_desa, setLuas_tanah_desa] = useState();
     const [luas_tanah_desa_add, setLuas_tanah_desa_add] = useState();
+    const [jenis_administrasi, setJenisAdministrasi] = useState([]);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
 
@@ -57,6 +58,7 @@ const AdministrasiUmum = () => {
                 setLuas_tanah_desa_add(data.buku_tanah_di_desa_add)
 
                 const kode = result.data.data;
+                setJenisAdministrasi(kode.jenis_administrasi)
                 setKec(kode.list_kecamatan)
                 setDesa(kode.list_desa)
             })
@@ -93,31 +95,31 @@ const AdministrasiUmum = () => {
                                 <div className="card-body">
                                     <div className="row g-1 my-4">
                                         <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
+                                            <select defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                                                <option value='0'>Semua Kecamatan</option>
+                                                {kec.map((item) => {
                                                     return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_kecamatan}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                         <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
+                                            <select defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                                                <option value='0'>Semua Desa</option>
+                                                {desa.map((item) => {
                                                     return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_deskel}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                     </div>
@@ -303,53 +305,52 @@ const AdministrasiUmum = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title-potensi">Tampilkan Berdasarkan</h5>
+                                    <h5 className="card-title-potensi">Tabel Data Administrasi</h5>
                                     <div className="row g-1 mb-4">
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Jenis Administrasi</option>
-                                                <option value="1">Peraturan Desa</option>
-                                                <option value="2">Keputusan Kepala Desa</option>
-                                                <option value="3">Inventaris Desa</option>
-                                                <option value="4">Aparat Pemerintah Desa</option>
-                                                <option value="5">Buku Agenda</option>
-                                                <option value="6">Surat Ekspedisi</option>
-                                                <option value="7">Lembaran & Berita Desa</option>
-                                                <option value="8">Tanah Kas Desa</option>
-                                                <option value="9">Luas Tanah Desa</option>
+                                        <div className="col-4">
+                                            <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi" onChange={(event) => set_jenis_administrasi(event.target.value)}>
+                                                {jenis_administrasi.map((item) => {
+                                                    return (
+                                                        <SelectOptions
+                                                            key={item.key}
+                                                            value={item.key}
+                                                            title={item.value}
+                                                        />
+                                                    )
+                                                })}
                                             </select>
                                         </div>
                                         <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
+                                            <select defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                                                <option value='0'>Semua Kecamatan</option>
+                                                {kec.map((item) => {
                                                     return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_kecamatan}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                         <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
+                                            <select defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                                                <option value='0'>Semua Desa</option>
+                                                {desa.map((item) => {
                                                     return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_deskel}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div className='table-responsive d-none'>
+                                    {/* <div className='table-responsive d-none'>
                                         <table id='example' className="table table-bordered">
                                             <thead>
                                                 <tr style={{ background: '#F1ECFF' }}>
@@ -424,9 +425,9 @@ const AdministrasiUmum = () => {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> */}
 
-                                    {resultData && <AdminTable resultData={resultData} />}
+                                    {resultData && <AdminTable resultData={resultData} jenis={jenis_administrasi[0].key} />}
 
                                 </div>
                             </div>
@@ -440,15 +441,13 @@ const AdministrasiUmum = () => {
     )
 }
 
-function Kecamatan(props) {
-    return (
-        <option value="1">{props.listkec}</option>
-    )
+function set_jenis_administrasi(value) {
+    console.log(value);
 }
 
-function Desa(props) {
+function SelectOptions(props) {
     return (
-        <option value="1">{props.listdesa}</option>
+        <option value={props.value}>{props.title}</option>
     )
 }
 
