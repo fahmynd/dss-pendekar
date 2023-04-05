@@ -11,104 +11,60 @@ import faker from 'faker';
 
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
-export const options = {
-    scales: {
-        y: {
-            beginAtZero: true,
+export function PetaPerkembangan(props) {
+    let options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
         },
-    },
-};
+    };
 
-export const data = {
-    datasets: [
-        {
-            label: 'Sangat Tertinggal',
-            data: [{
-                x: 20,
-                y: 15,
-                r: 10
-            }, {
-                x: 6,
-                y: 26,
-                r: 30
-            }, {
-                x: 7,
-                y: 37,
-                r: 25
-            }],
-            backgroundColor: 'rgba(232, 76, 48, 0.4)',
-        },
-        {
-            label: 'Tertinggal',
-            data: [{
-                x: 5,
-                y: 7,
-                r: 10
-            }, {
-                x: 6,
-                y: 35,
-                r: 20
-            }, {
-                x: 7,
-                y: 10,
-                r: 25
-            }],
-            backgroundColor: 'rgba(234, 149, 1, 0.4)',
-        },
-        {
-            label: 'Berkembang',
-            data: [{
-                x: 10,
-                y: 7,
-                r: 10
-            }, {
-                x: 11,
-                y: 35,
-                r: 20
-            }, {
-                x: 12,
-                y: 10,
-                r: 25
-            }],
-            backgroundColor: 'rgba(75, 125, 184, 0.4)',
-        },
-        {
-            label: 'Maju',
-            data: [{
-                x: 7,
-                y: 7,
-                r: 10
-            }, {
-                x: 8,
-                y: 35,
-                r: 20
-            }, {
-                x: 9,
-                y: 10,
-                r: 25
-            }],
-            backgroundColor: 'rgba(73, 152, 65, 0.4)',
-        },
-        {
-            label: 'Mandiri',
-            data: [{
-                x: 15,
-                y: 7,
-                r: 10
-            }, {
-                x: 18,
-                y: 35,
-                r: 20
-            }, {
-                x: 20,
-                y: 10,
-                r: 25
-            }],
-            backgroundColor: 'rgba(50, 122, 109, 0.4)',
-        },
-    ],
-};
+    let points = {
+        'SANGAT TERTINGGAL': [],
+        'TERTINGGAL': [],
+        'BERKEMBANG': [],
+        'MAJU': [],
+        'MANDIRI': [],
+    };
 
-export function PetaPerkembangan() {
+    props.resultData.data.list_desa.map((item, index) => {
+        points[item.current_status].push({
+            x: item.capaian.idm,
+            y: item.capaian.sdgs,
+            r: 6,
+        })
+    })
+
+    let data = {
+        datasets: [
+            {
+                label: 'SANGAT TERTINGGAL',
+                data: points['SANGAT TERTINGGAL'],
+                backgroundColor: 'rgba(232, 76, 48, 0.4)',
+            },
+            {
+                label: 'TERTINGGAL',
+                data: points['TERTINGGAL'],
+                backgroundColor: 'rgba(234, 149, 1, 0.4)',
+            },
+            {
+                label: 'BERKEMBANG',
+                data: points['BERKEMBANG'],
+                backgroundColor: 'rgba(75, 125, 184, 0.4)',
+            },
+            {
+                label: 'MAJU',
+                data: points['MAJU'],
+                backgroundColor: 'rgba(73, 152, 65, 0.4)',
+            },
+            {
+                label: 'MANDIRI',
+                data: points['MANDIRI'],
+                backgroundColor: 'rgba(50, 122, 109, 0.4)',
+            },
+        ],
+    };
+
     return <Bubble options={options} data={data} />;
 }

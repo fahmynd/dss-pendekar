@@ -229,7 +229,7 @@ const Pembangunan = () => {
                                     <h5 className="card-title-potensi pb-0">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
 
                                     {/* <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas> */}
-                                    <PetaPerkembangan />
+                                    {resultData && <PetaPerkembangan resultData={resultData} />}
 
                                 </div>
                             </div>
@@ -251,34 +251,34 @@ const Pembangunan = () => {
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
+                                                {kec.map((item) => {
                                                     return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_kecamatan}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
+                                                {desa.map((item) => {
                                                     return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
+                                                        <SelectOptions
+                                                            key={item.kode_wilayah}
+                                                            value={item.kode_wilayah}
+                                                            title={item.nama_deskel}
                                                         />
                                                     )
-                                                })
-                                                }
+                                                })}
                                             </select>
                                         </div>
                                     </div>
 
-                                    <table className="table table-bordered d-none">
+                                    {/* <table className="table table-bordered d-none">
                                         <thead>
                                             <tr style={{ background: '#F1ECFF' }}>
                                                 <th scope="col">Nama Kecamatan</th>
@@ -376,7 +376,7 @@ const Pembangunan = () => {
                                                 </td>
                                             </tr>
                                         </tbody>
-                                    </table>
+                                    </table> */}
 
                                     {resultData && <RekomendasiTable resultData={resultData} />}
 
@@ -555,18 +555,11 @@ const Pembangunan = () => {
     )
 }
 
-function Kecamatan(props) {
+function SelectOptions(props) {
     return (
-        <option value="1">{props.listkec}</option>
+        <option value={props.value}>{props.title}</option>
     )
 }
-
-function Desa(props) {
-    return (
-        <option value="1">{props.listdesa}</option>
-    )
-}
-
 
 function KecamatanPotensi(props) {
     return (
