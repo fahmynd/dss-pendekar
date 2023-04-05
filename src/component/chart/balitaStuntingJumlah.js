@@ -39,18 +39,18 @@ class BalitaStuntingJumlah extends React.Component {
             },
             yAxis: {
                 type: 'category',
-                data: chart_desa
+                data: chart_desa.reverse(),
             },
             series: [{
                 name: 'Jumlah Balita Stunting',
                 type: 'bar',
-                data: chart_jumlah,
+                data: chart_jumlah.reverse(),
                 color: '#327A6D'
             },
             {
                 name: 'Persentase',
                 type: 'bar',
-                data: chart_persen,
+                data: chart_persen.reverse(),
                 color: '#EA9501'
             }
             ]
