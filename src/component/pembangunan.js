@@ -418,8 +418,7 @@ const Pembangunan = () => {
                                                     <h5 className="card-title">Potensi Manusia</h5>
                                                 </div>
                                                 <div className="card-body-chart">
-                                                    <PotensiManusia />
-
+                                                    {resultData && <PotensiManusia resultData={resultData} />}
                                                 </div>
                                             </div>
                                         </div>

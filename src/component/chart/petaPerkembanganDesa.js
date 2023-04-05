@@ -12,14 +12,6 @@ import faker from 'faker';
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend);
 
 export function PetaPerkembangan(props) {
-    let options = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    };
-
     let points = {
         'SANGAT TERTINGGAL': [],
         'TERTINGGAL': [],
@@ -36,7 +28,7 @@ export function PetaPerkembangan(props) {
         })
     })
 
-    let data = {
+    const data = {
         datasets: [
             {
                 label: 'SANGAT TERTINGGAL',
@@ -66,5 +58,13 @@ export function PetaPerkembangan(props) {
         ],
     };
 
-    return <Bubble options={options} data={data} />;
+    const options = {
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
+        },
+    };
+
+    return <Bubble data={data} options={options} />;
 }
