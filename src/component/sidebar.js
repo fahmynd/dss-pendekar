@@ -33,7 +33,7 @@ function Sidebar() {
                             <i className="ri-file-copy-2-line"></i>
                             <span>Administrasi</span><i className="bi bi-chevron-right ms-auto"></i>
                         </NavLink>
-                        <ul id="administrasi-nav" className="nav-content collapse show" data-bs-parent="#sidebar-nav">
+                        <ul id="administrasi-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
                                 <NavLink to="/administrasi-umum">
                                     <i className="bi bi-circle"></i><span>Umum</span>
@@ -69,10 +69,27 @@ function Sidebar() {
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/potensi">
+                        <NavLink className="nav-link" data-bs-target="#potensi-nav" data-bs-toggle="collapse" to="/*">
                             <i className="ri-store-2-line"></i>
-                            <span>Potensi</span>
+                            <span>Potensi</span><i className="bi bi-chevron-right ms-auto"></i>
                         </NavLink>
+                        <ul id="potensi-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <NavLink to="/umkm">
+                                    <i className="bi bi-circle"></i><span>UMKM</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/*">
+                                    <i className="bi bi-circle"></i><span>Wisata</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/*">
+                                    <i className="bi bi-circle"></i><span>Berita</span>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </li>
 
                     <li className="nav-item">

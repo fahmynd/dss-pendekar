@@ -46,7 +46,7 @@ export default class App extends Component {
             <Route path="/kependudukan" element={<Kependudukan />} />
             {/* <Route path="/pembangunan" element={<Pembangunan />} /> */}
             <Route path="/pembangunan" element={<Keuangan />} />
-            <Route path="/potensi" element={<Umkm />} />
+            <Route path="/umkm" element={<Umkm />} />
             <Route path="/profil-desa" element={<ProfilDesa />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>

@@ -93,6 +93,9 @@ const AdministrasiUmum = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
                                     <div className="row g-1 my-4">
                                         <div className="col-3">
                                             <select defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
@@ -201,7 +204,7 @@ const AdministrasiUmum = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-md-4 d-none">
                                             <div className="card info-card sales-card">
                                                 <div className="card-body-info">
                                                     <div className="d-flex align-items-center">
@@ -220,7 +223,7 @@ const AdministrasiUmum = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-md-4 d-none">
                                             <div className="card info-card sales-card">
                                                 <div className="card-body-info">
                                                     <div className="d-flex align-items-center">
@@ -306,6 +309,9 @@ const AdministrasiUmum = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Tabel Data Administrasi</h5>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
                                     <div className="row g-1 mb-4">
                                         <div className="col-4">
                                             <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi" onChange={(event) => set_jenis_administrasi(event.target.value)}>

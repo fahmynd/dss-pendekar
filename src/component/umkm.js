@@ -47,7 +47,48 @@ const Umkm = () => {
                         <div className="col-md-6">
                             <div className="card">
                                 <div className="card-body">
-                                    <h2 className="card-title-potensi pb-0 mb-0">USAHA DI WILAYAH</h2>
+                                    <h2 className="card-title-potensi">USAHA DI WILAYAH</h2>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
+                                    <div className="row g-1 mb-0 pb-0">
+                                        <div className="col">
+                                            <div className="search-produk">
+                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Desa</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div className='overflow-auto' style={{ height: '400px' }}>
                                         {resultData && <UsahaDiWilayah resultData={resultData} />}
                                     </div>
@@ -58,7 +99,48 @@ const Umkm = () => {
                         <div className="col-md-6">
                             <div className="card">
                                 <div className="card-body">
-                                    <h2 className="card-title-potensi pb-0 mb-0">JENIS USAHA</h2>
+                                    <h2 className="card-title-potensi">JENIS USAHA</h2>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
+                                    <div className="row g-1 mb-0 pb-0">
+                                        <div className="col">
+                                            <div className="search-produk">
+                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div className="col">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                                {kec.map((kec) => {
+                                                    return (
+                                                        <Kecamatan
+                                                            key={kec.kode_wilayah}
+                                                            listkec={kec.nama_kecamatan}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                        <div className="col">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Desa</option>
+                                                {desa.map((deskel) => {
+                                                    return (
+                                                        <Desa
+                                                            key={deskel.kode_wilayah}
+                                                            listdesa={deskel.nama_deskel}
+                                                        />
+                                                    )
+                                                })
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div className='overflow-auto' style={{ height: '400px' }}>
                                         {resultData && <JenisUsaha resultData={resultData} />}
                                     </div>
@@ -69,7 +151,7 @@ const Umkm = () => {
                         <div className="col-lg-12">
                             <h5 className="card-title-potensi pb-0">PRODUK UMKM DESA/KELURAHAN</h5>
                             <div className="row g-1 mb-4">
-                                <div className="col-3">
+                                <div className="col">
                                     <div className="search-produk">
                                         <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
                                             <input type="text" name="query" placeholder="Cari produk..." title="Enter search keyword" />
@@ -77,7 +159,7 @@ const Umkm = () => {
                                         </form>
                                     </div>
                                 </div>
-                                <div className="col-3">
+                                <div className="col">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Kecamatan</option>
                                         {kec.map((kec) => {
@@ -91,7 +173,7 @@ const Umkm = () => {
                                         }
                                     </select>
                                 </div>
-                                <div className="col-3">
+                                <div className="col">
                                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                         <option value={'DEFAULT'}>Desa</option>
                                         {desa.map((deskel) => {

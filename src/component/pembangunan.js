@@ -85,6 +85,9 @@ const Pembangunan = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">CAPAIAN & POTENSI DESA</h5>
                                     <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
                                     <div className="row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
@@ -131,7 +134,10 @@ const Pembangunan = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body pb-0">
-                                    <h5 className="card-title-potensi pb-0">SKOR IDM Se Kabupaten</h5>
+                                    <h5 className="card-title-potensi">SKOR IDM Se Kabupaten</h5>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
                                     <div className="stunting-card">
                                         <div className="card-body pb-0">
                                             <div className='container'>
@@ -225,9 +231,11 @@ const Pembangunan = () => {
 
                         <div className="col-lg-12">
                             <div className="card">
-                                <div className="card-body pb-0">
-                                    <h5 className="card-title-potensi pb-0">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
-
+                                <div className="card-body">
+                                    <h5 className="card-title-potensi">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
                                     {/* <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas> */}
                                     {resultData && <PetaPerkembangan resultData={resultData} />}
 
@@ -239,7 +247,18 @@ const Pembangunan = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi pb-0">REKOMENDASI PEMBANGUNAN</h5>
-                                    <div className="row g-1 mb-4">
+                                    <div className="filter-primary">
+                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                    </div>
+                                    <div className="row g-1 my-4">
+                                        <div className="col-3">
+                                            <div className="search-produk">
+                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Pilih Tahun</option>
