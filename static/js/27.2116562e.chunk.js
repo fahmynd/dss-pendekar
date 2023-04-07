@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkdss_pendekar=self.webpackChunkdss_pendekar||[]).push([[27],{90027:function(n,e,s){s.r(e),s.d(e,{default:function(){return a}});s(72791);var r=s(80184);function a(){return(0,r.jsx)("div",{className:"spinner-container",children:(0,r.jsx)("div",{className:"loading-spinner"})})}}}]);
+//# sourceMappingURL=27.2116562e.chunk.js.map
