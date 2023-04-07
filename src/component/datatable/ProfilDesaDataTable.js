@@ -7,6 +7,7 @@ import "datatables.net-buttons/js/buttons.colVis.js";
 import "datatables.net-buttons/js/buttons.flash.js";
 import "datatables.net-buttons/js/buttons.html5.js";
 import "datatables.net-buttons/js/buttons.print.js";
+// import 'datatables.net-plugins/pagination/input.js';
 import $ from "jquery";
 
 class ProfilTable extends React.Component {
@@ -22,12 +23,16 @@ class ProfilTable extends React.Component {
             $(document).ready(function () {
                 setTimeout(function () {
                     $("#profil").DataTable({
-                        // pagingType: "full_numbers",
-                        // processing: true,
-                        // select: {
-                        //     style: "single",
-                        // },
+                        pagingType: 'simple_numbers',
                         pageLength: 10,
+                        // language: {
+                        //     oPaginate: {
+                        //         sNext: '<i class="fa fa-forward"></i>',
+                        //         sPrevious: '<i class="fa fa-backward"></i>',
+                        //         sFirst: '<i class="fa fa-step-backward"></i>',
+                        //         sLast: '<i class="fa fa-step-forward"></i>'
+                        //     }
+                        // },
                         searching: false,
                         dom: "Bfrtip",
                         buttons: [
@@ -91,8 +96,8 @@ function Profil(props) {
             <td>{props.kec}</td>
             <td>{props.desa}</td>
             <td>
-                <a href={props.link} target={'_blank'} rel='noreferrer'><i className="fa-solid fa-earth-asia"></i>
-                    &nbsp; Kunjungi Website
+                <a href={props.link} target={'_blank'} rel='noreferrer' style={{ color: '#3B2D64' }}><i className="fa-solid fa-earth-asia"></i>
+                    &nbsp; Website Desa {props.desa}
                 </a>
             </td>
         </tr>

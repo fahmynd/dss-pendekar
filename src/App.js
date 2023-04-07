@@ -7,13 +7,14 @@ import './assets/vendor/remixicon/remixicon.css'
 import './assets/vendor/simple-datatables/style.css'
 import './assets/css/news-ticker.min.css'
 import './assets/css/style.css'
-import LoadingSpinner from "./component/LoadingSpinner";
 
 const Header = lazy(() => import("./component/header"));
 const Sidebar = lazy(() => import("./component/sidebar"));
 const Footer = lazy(() => import("./component/footer"));
 const ScrollToTop = lazy(() => import("./component/scroll-to-top"));
-const Dashboard = lazy(() => import("./component/dashboard"));
+const LoadingSpinner = lazy(() => import("./component/LoadingSpinner"));
+const BantuanSosial = lazy(() => import("./component/bantuanSosial"));
+const BeritaPage = lazy(() => import("./component/berita"));
 const AdministrasiUmum = lazy(() => import("./component/administrasiUmum"));
 const Kependudukan = lazy(() => import("./component/kependudukan"));
 const Pembangunan = lazy(() => import("./component/pembangunan"));
@@ -44,7 +45,8 @@ export default class App extends Component {
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
             <Route path="/perkembangan-desa" element={<PerkembanganDesa />} />
             <Route path="/kependudukan" element={<Kependudukan />} />
-            {/* <Route path="/pembangunan" element={<Pembangunan />} /> */}
+            <Route path="/bantuan-sosial" element={<BantuanSosial />} />
+            <Route path="/berita" element={<BeritaPage />} />
             <Route path="/pembangunan" element={<Keuangan />} />
             <Route path="/umkm" element={<Umkm />} />
             <Route path="/profil-desa" element={<ProfilDesa />} />

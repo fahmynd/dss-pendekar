@@ -1863,7 +1863,7 @@ btn:focus {
   border-radius: 3px;
 }
 
-// Data Table CSS
+/* Data Table CSS */
 
 table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:after {
     opacity: .6;
@@ -1970,4 +1970,58 @@ table.dataTable {
     color: #fff !important;
     border: 1px solid rgba(0, 0, 0, 0.3);
     background: #3B2D64;
+}
+
+.jum-bantuan {
+  font-weight: 600;
+  font-size: 2.9rem;
+  color: #fff;
+}
+
+.judul-card {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 0;
+  font-weight: 600;
+}
+
+.bg-primary {
+  background-color: #327A6D !important
+}
+
+.bg-secondary {
+  background-color: #F8A23D !important
+}
+
+.b-down {
+  border-bottom: 3px solid #F8A23D
+}
+
+.center-v {
+  margin: auto;
+}
+
+.judul-card-bansos {
+    color: white;
+    font-size: 1.1rem;
+    line-height: 0;
+    font-weight: 600;
+}
+
+#judul {
+  margin: auto;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: #518F83;
+}
+
+@media (max-width: 520px) {
+  .jum-bantuan {
+    font-size: 2.5rem;
+  }
+
+  .judul-card {
+    font-size: 1rem;
+  }
+
 }

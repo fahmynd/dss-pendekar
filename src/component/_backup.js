@@ -248,7 +248,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
 
-                                {/* <div className="col-md-12">
+                                <div className="col-md-12">
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title-potensi">ARTIKEL DIGIDES</h5>
@@ -289,7 +289,7 @@ const Dashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div> */}
+                                </div>
 
                             </div>
 
