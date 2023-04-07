@@ -80,13 +80,13 @@ function Sidebar() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/*">
-                                    <i className="bi bi-circle"></i><span>Wisata</span>
+                                <NavLink to="/berita">
+                                    <i className="bi bi-circle"></i><span>Berita</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/berita">
-                                    <i className="bi bi-circle"></i><span>Berita</span>
+                                <NavLink to="/*">
+                                    <i className="bi bi-circle"></i><span>Wisata</span>
                                 </NavLink>
                             </li>
                         </ul>

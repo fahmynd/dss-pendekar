@@ -10,7 +10,7 @@ const Keuangan = () => {
             <main id="main" className="main">
 
                 <div className="pagetitle mt-3 mb-5">
-                    <h1>Keuangan</h1>
+                    <h1>Pembangunan</h1>
                 </div>
 
                 <section className="section dashboard">
@@ -20,31 +20,29 @@ const Keuangan = () => {
 
                             <ul className="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
                                 <li className="nav-item" role="presentation">
-                                    <button className="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#bordered-about"
-                                        type="button" role="tab" aria-controls="about" aria-selected="true">APBDes</button>
+                                    <button className="nav-link active" id="apbd-tab" data-bs-toggle="tab" data-bs-target="#bordered-apbd"
+                                        type="button" role="tab" aria-controls="apbd" aria-selected="true">APBDes</button>
                                 </li>
                                 <li className="nav-item" role="presentation">
-                                    <button className="nav-link" id="boat-tab" data-bs-toggle="tab" data-bs-target="#bordered-boat" type="button"
-                                        role="tab" aria-controls="boat" aria-selected="false">PROPOSAL</button>
+                                    <button className="nav-link" id="proposal-tab" data-bs-toggle="tab" data-bs-target="#bordered-proposal" type="button"
+                                        role="tab" aria-controls="proposal" aria-selected="false">PROPOSAL</button>
+                                </li>
+                                <li className="nav-item" role="presentation">
+                                    <button className="nav-link" id="rkp-tab" data-bs-toggle="tab" data-bs-target="#bordered-rkp" type="button"
+                                        role="tab" aria-controls="rkp" aria-selected="false">RKP</button>
                                 </li>
                             </ul>
                             <div className="tab-content pt-2" id="borderedTabContent">
-                                <div className="tab-pane fade show active" id="bordered-about" role="tabpanel" aria-labelledby="about-tab">
+                                <div className="tab-pane fade show active" id="bordered-apbd" role="tabpanel" aria-labelledby="apbd-tab">
                                     <div className="row g-1 my-3">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Pilih Tahun</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
                                             </select>
                                         </div>
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Pilih Kecamatan</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
                                             </select>
                                         </div>
                                     </div>
@@ -383,7 +381,7 @@ const Keuangan = () => {
 
                                 </div>
 
-                                <div className="tab-pane fade" id="bordered-boat" role="tabpanel" aria-labelledby="boat-tab">
+                                <div className="tab-pane fade" id="bordered-proposal" role="tabpanel" aria-labelledby="proposal-tab">
 
                                     <div className="col-lg-12 mt-3 mb-5">
                                         <div className="card">
@@ -456,61 +454,56 @@ const Keuangan = () => {
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>DD Tahap 1</td>
-                                                                <td>Rp357,478,384</td>
-                                                                <td>
-                                                                    <h5>
-                                                                        <span className="badge bg-prioritas">Prioritas</span>
-                                                                    </h5>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>DD Tahap 1</td>
-                                                                <td>Rp357,478,384</td>
-                                                                <td>
-                                                                    <h5>
-                                                                        <span className="badge bg-prioritas">Prioritas</span>
-                                                                    </h5>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>DD Tahap 1</td>
-                                                                <td>Rp357,478,384</td>
-                                                                <td>
-                                                                    <h5>
-                                                                        <span className="badge bg-prioritas">Prioritas</span>
-                                                                    </h5>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>DD Tahap 1</td>
-                                                                <td>Rp357,478,384</td>
-                                                                <td>
-                                                                    <h5>
-                                                                        <span className="badge bg-prioritas">Prioritas</span>
-                                                                    </h5>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>DD Tahap 1</td>
-                                                                <td>Rp357,478,384</td>
-                                                                <td>
-                                                                    <h5>
-                                                                        <span className="badge bg-prioritas">Prioritas</span>
-                                                                    </h5>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -521,6 +514,72 @@ const Keuangan = () => {
                                     </div>
 
                                 </div>
+
+                                <div className="tab-pane fade" id="bordered-rkp" role="tabpanel" aria-labelledby="rkp-tab">
+                                    <div className="col-lg-12 mt-3 mb-5">
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title-potensi">Rencana Kerja Pembangunan</h5>
+                                                <div className="filter-primary">
+                                                    <button type="button" className="btn btn-primary">Export Report</button>
+                                                </div>
+                                                <div className="row g-1 mb-4">
+                                                    <div className="col-3">
+                                                        <div className="search-produk">
+                                                            <form className="search-form-produk d-flex align-items-center" method="POST" action="#">
+                                                                <input type="text" name="query" placeholder="Cari..." title="Enter search keyword" />
+                                                                <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                            <option value={'DEFAULT'}>Pilih Kecamatan</option>
+                                                        </select>
+                                                    </div>
+                                                    <div className="col-3">
+                                                        <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                            <option value={'DEFAULT'}>Pilih Desa</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className='table-responsive'>
+                                                    <table className="table table-bordered">
+                                                        <thead>
+                                                            <tr style={{ background: '#EDF8F6' }}>
+                                                                <th scope="col">No</th>
+                                                                <th scope="col">Kecamatan</th>
+                                                                <th scope="col">Desa</th>
+                                                                <th scope="col">Nama Proyek/Kegiatan</th>
+                                                                <th scope="col">Lokasi</th>
+                                                                <th scope="col">Biaya</th>
+                                                                <th scope="col">Manfaat</th>
+                                                                <th scope="col">Tahun</th>
+                                                                <th scope="col">Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th className='text-center'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
 

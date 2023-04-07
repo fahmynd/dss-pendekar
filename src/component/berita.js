@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
-import Map from './mapPopup'
 import NewsTicker from "react-advanced-news-ticker";
 import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router-dom';
@@ -20,8 +19,6 @@ const BeritaPage = () => {
                 // console.log(result.data.data.list_berita)
                 setResultData(result.data);
                 setNews(result.data.data.list_berita);
-
-                // postscribe('#mydiv', '<script language="javascript" src="assets/js/jquery-3.3.1.min.js"></script>')
             })
             .catch(error => {
                 alert(error.message);

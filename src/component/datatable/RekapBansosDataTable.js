@@ -1,0 +1,102 @@
+import React from "react";
+import "jquery/dist/jquery.min.js";
+import "datatables.net-dt/js/dataTables.dataTables";
+// import "datatables.net-dt/css/jquery.dataTables.min.css";
+import "datatables.net-buttons/js/dataTables.buttons.js";
+import "datatables.net-buttons/js/buttons.colVis.js";
+import "datatables.net-buttons/js/buttons.flash.js";
+import "datatables.net-buttons/js/buttons.html5.js";
+import "datatables.net-buttons/js/buttons.print.js";
+import $ from "jquery";
+
+class BansosTable extends React.Component {
+
+    constructor(props) {
+        super();
+        this.state = {
+            resultData: props.resultData,
+            jenis: props.jenis,
+        };
+    }
+
+    componentDidMount() {
+        if (!$.fn.DataTable.isDataTable("#myTable")) {
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $("#table").DataTable({
+                        // pagingType: "full_numbers",
+                        // processing: true,
+                        // select: {
+                        //     style: "single",
+                        // },
+                        pageLength: 10,
+                        searching: false,
+                        dom: "Bfrtip",
+                        buttons: [
+                            ''
+                        ]
+                    });
+                }, 1000);
+            });
+        }
+    }
+
+    showTable = () => {
+        const { resultData, jenis } = this.state;
+        try {
+            return resultData.data.list_administrasi[jenis].map((item, index) => {
+                return (
+                    <Administrasi
+                        key={item.lampiran}
+                        no={index + 1}
+                        kec={item.nama_kecamatan}
+                        desa={item.nama_deskel}
+                        peraturan={item.jenis_peraturan}
+                        nomor={item.nomor_peraturan}
+                        tanggal={item.tanggal_peraturan}
+                        tentang={item.tentang}
+                        lampiran={item.lampiran}
+                        kode={item.kode_wilayah}
+                    />
+
+                );
+            });
+        } catch (e) {
+            alert(e.message);
+        }
+    };
+
+    render() {
+        return (
+            <div className="table-responsive">
+                <table id="table" className="table table-bordered">
+                    <thead>
+                        <tr className="align-items-center justify-content-center" style={{ background: '#F1ECFF' }}>
+                            <th>No</th>
+                            <th>Kecamatan</th>
+                            <th>Desa</th>
+                            <th>Jenis Bantuan</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {this.showTable()}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
+}
+
+function Administrasi(props) {
+    return (
+        <tr>
+            <td className="text-center">{props.no}</td>
+            <td>{props.kec}</td>
+            <td>{props.desa}</td>
+            <td>{props.peraturan}</td>
+        </tr>
+    )
+}
+
+export default BansosTable;

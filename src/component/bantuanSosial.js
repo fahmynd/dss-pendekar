@@ -1,32 +1,14 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api';
-import AdminTable from './datatable/AdmDataTable';
 import LoadingSpinner from './LoadingSpinner';
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
+import BansosTable from './datatable/RekapBansosDataTable';
 
 const BantuanSosial = () => {
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [peraturan_desa, setPeraturan_desa] = useState();
-    const [peraturan_desa_add, setPeraturan_desa_add] = useState();
-    const [keputusan_kades, setKeputusan_kades] = useState();
-    const [keputusan_kades_add, setKeputusan_kades_add] = useState();
-    const [inventaris_desa, setInventaris_desa] = useState();
-    const [inventaris_desa_add, setInventaris_desa_add] = useState();
-    const [aparat_desa, setAparat_desa] = useState();
-    const [aparat_desa_add, setAparat_desa_add] = useState();
-    const [buku_agenda, setBuku_agenda] = useState();
-    const [buku_agenda_add, setBuku_agenda_add] = useState();
-    const [buku_ekspedisi, setBuku_ekspedisi] = useState();
-    const [buku_ekspedisi_add, setBuku_ekspedisi_add] = useState();
-    const [lembaran_desa, setLembaran_desa] = useState();
-    const [lembaran_desa_add, setLembaran_desa_add] = useState();
-    const [tanah_kas_desa, setTanah_kas_desa] = useState();
-    const [tanah_kas_desa_add, setTanah_kas_desa_add] = useState();
-    const [luas_tanah_desa, setLuas_tanah_desa] = useState();
-    const [luas_tanah_desa_add, setLuas_tanah_desa_add] = useState();
     const [jenis_administrasi, setJenisAdministrasi] = useState([]);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
@@ -38,26 +20,6 @@ const BantuanSosial = () => {
             .then((result) => {
                 // console.log(result.data.data.jumlah)
                 setResultData(result.data);
-                const data = result.data.data.jumlah;
-                setPeraturan_desa(data.buku_peraturan_di_desa)
-                setPeraturan_desa_add(data.buku_peraturan_di_desa_add)
-                setKeputusan_kades(data.buku_keputusan_kepala_desa)
-                setKeputusan_kades_add(data.buku_keputusan_kepala_desa_add)
-                setInventaris_desa(data.buku_inventaris_dan_kekayaan_desa)
-                setInventaris_desa_add(data.buku_inventaris_dan_kekayaan_desa_add)
-                setAparat_desa(data.buku_aparat_pemerintah_desa)
-                setAparat_desa_add(data.buku_aparat_pemerintah_desa_add)
-                setBuku_agenda(data.buku_agenda)
-                setBuku_agenda_add(data.buku_agenda_add)
-                setBuku_ekspedisi(data.buku_ekspedisi)
-                setBuku_ekspedisi_add(data.buku_ekspedisi_add)
-                setLembaran_desa(data.buku_lembaran_desa_dan_berita_desa)
-                setLembaran_desa_add(data.buku_lembaran_desa_dan_berita_desa_add)
-                setTanah_kas_desa(data.buku_tanah_kas_desa)
-                setTanah_kas_desa_add(data.buku_tanah_kas_desa_add)
-                setLuas_tanah_desa(data.buku_tanah_di_desa)
-                setLuas_tanah_desa_add(data.buku_tanah_di_desa_add)
-
                 const kode = result.data.data;
                 setJenisAdministrasi(kode.jenis_administrasi)
                 setKec(kode.list_kecamatan)
@@ -173,17 +135,11 @@ const BantuanSosial = () => {
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
                                     <div className="row g-1 mb-4">
-                                        <div className="col-4">
-                                            <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi" onChange={(event) => set_jenis_administrasi(event.target.value)}>
-                                                {jenis_administrasi.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.key}
-                                                            value={item.key}
-                                                            title={item.value}
-                                                        />
-                                                    )
-                                                })}
+                                        <div className="col-3">
+                                            <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Kategori">
+                                                <option value={'DEFAULT'}>Pilih Kategori</option>
+                                                <option value={'1'}>Individu</option>
+                                                <option value={'2'}>KK</option>
                                             </select>
                                         </div>
                                         <div className="col-3">
@@ -215,86 +171,7 @@ const BantuanSosial = () => {
                                             </select>
                                         </div>
                                     </div>
-
-                                    {/* <div className='table-responsive d-none'>
-                                        <table id='example' className="table table-bordered">
-                                            <thead>
-                                                <tr style={{ background: '#F1ECFF' }}>
-                                                    <th scope="col">No</th>
-                                                    <th scope="col">Kecamatan</th>
-                                                    <th scope="col">Desa</th>
-                                                    <th scope="col">Jenis Peraturan</th>
-                                                    <th scope="col">Nominal</th>
-                                                    <th scope="col">Status Proposal</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope='row'>1</th>
-                                                    <td>Maiwa</td>
-                                                    <td>Pilanggede</td>
-                                                    <td>DD Tahap 1</td>
-                                                    <td>Rp357,478,384</td>
-                                                    <td>
-                                                        <h5>
-                                                            <span className="badge bg-prioritas">Revisi dari kecamatan</span>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope='row'>2</th>
-                                                    <td>Maiwa</td>
-                                                    <td>Pilanggede</td>
-                                                    <td>DD Tahap 1</td>
-                                                    <td>Rp357,478,384</td>
-                                                    <td>
-                                                        <h5>
-                                                            <span className="badge bg-pengajuan">Pengajuan</span>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope='row'>3</th>
-                                                    <td>Maiwa</td>
-                                                    <td>Pilanggede</td>
-                                                    <td>DD Tahap 1</td>
-                                                    <td>Rp357,478,384</td>
-                                                    <td>
-                                                        <h5>
-                                                            <span className="badge bg-rkd">Masuk RKD</span>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope='row'>4</th>
-                                                    <td>Maiwa</td>
-                                                    <td>Pilanggede</td>
-                                                    <td>DD Tahap 1</td>
-                                                    <td>Rp357,478,384</td>
-                                                    <td>
-                                                        <h5>
-                                                            <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope='row'>5</th>
-                                                    <td>Maiwa</td>
-                                                    <td>Pilanggede</td>
-                                                    <td>DD Tahap 1</td>
-                                                    <td>Rp357,478,384</td>
-                                                    <td>
-                                                        <h5>
-                                                            <span className="badge bg-verifikasi">Diverifikasi <i className="bx bxs-check-circle"></i></span>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div> */}
-
-                                    {resultData && <AdminTable resultData={resultData} jenis={jenis_administrasi[0].key} />}
-
+                                    {resultData && <BansosTable resultData={resultData} jenis={jenis_administrasi[0].key} />}
                                 </div>
                             </div>
                         </div>

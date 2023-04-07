@@ -36,93 +36,93 @@ function AdmUmur() {
         var data = [
             {
                 age: "85+",
-                laki: -0.1,
-                perempuan: 0.3
+                Laki: -0.1,
+                Perempuan: 0.3
             },
             {
                 age: "80-54",
-                laki: -0.2,
-                perempuan: 0.3
+                Laki: -0.2,
+                Perempuan: 0.3
             },
             {
                 age: "75-79",
-                laki: -0.3,
-                perempuan: 0.6
+                Laki: -0.3,
+                Perempuan: 0.6
             },
             {
                 age: "70-74",
-                laki: -0.5,
-                perempuan: 0.8
+                Laki: -0.5,
+                Perempuan: 0.8
             },
             {
                 age: "65-69",
-                laki: -0.8,
-                perempuan: 1.0
+                Laki: -0.8,
+                Perempuan: 1.0
             },
             {
                 age: "60-64",
-                laki: -1.1,
-                perempuan: 1.3
+                Laki: -1.1,
+                Perempuan: 1.3
             },
             {
                 age: "55-59",
-                laki: -1.7,
-                perempuan: 1.9
+                Laki: -1.7,
+                Perempuan: 1.9
             },
             {
                 age: "50-54",
-                laki: -2.2,
-                perempuan: 2.5
+                Laki: -2.2,
+                Perempuan: 2.5
             },
             {
                 age: "45-49",
-                laki: -2.8,
-                perempuan: 3.0
+                Laki: -2.8,
+                Perempuan: 3.0
             },
             {
                 age: "40-44",
-                laki: -3.4,
-                perempuan: 3.6
+                Laki: -3.4,
+                Perempuan: 3.6
             },
             {
                 age: "35-39",
-                laki: -4.2,
-                perempuan: 4.1
+                Laki: -4.2,
+                Perempuan: 4.1
             },
             {
                 age: "30-34",
-                laki: -5.2,
-                perempuan: 4.8
+                Laki: -5.2,
+                Perempuan: 4.8
             },
             {
                 age: "25-29",
-                laki: -5.6,
-                perempuan: 5.1
+                Laki: -5.6,
+                Perempuan: 5.1
             },
             {
                 age: "20-24",
-                laki: -5.1,
-                perempuan: 5.1
+                Laki: -5.1,
+                Perempuan: 5.1
             },
             {
                 age: "15-19",
-                laki: -3.8,
-                perempuan: 3.8
+                Laki: -3.8,
+                Perempuan: 3.8
             },
             {
                 age: "10-14",
-                laki: -3.2,
-                perempuan: 3.4
+                Laki: -3.2,
+                Perempuan: 3.4
             },
             {
                 age: "5-9",
-                laki: -4.4,
-                perempuan: 4.1
+                Laki: -4.4,
+                Perempuan: 4.1
             },
             {
                 age: "0-4",
-                laki: -5.0,
-                perempuan: 4.8
+                Laki: -5.0,
+                Perempuan: 4.8
             }
         ];
 
@@ -130,6 +130,7 @@ function AdmUmur() {
             am5xy.CategoryAxis.new(root, {
                 categoryField: "age",
                 renderer: am5xy.AxisRendererY.new(root, {
+                    minGridDistance: 0,
                     inversed: true,
                     cellStartLocation: 0.1,
                     cellEndLocation: 0.9
@@ -169,7 +170,7 @@ function AdmUmur() {
             series.columns.template.setAll({
                 height: am5.p100,
                 strokeOpacity: 0,
-                fillOpacity: 0.8
+                fillOpacity: 1,
             });
 
             series.bullets.push(function () {
@@ -187,24 +188,24 @@ function AdmUmur() {
 
             series.data.setAll(data);
             series.appear();
-            series.set("fill", am5.color("#2CA454"));
-            // series.set("stroke", am5.color("#2CA454"));
+            // series.set("fill", am5.color("#2CA454"));
+            series.set("stroke", am5.color("#000"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
             });
             xAxis.createAxisRange(rangeDataItem);
             rangeDataItem.get("grid").setAll({
-                strokeOpacity: 1,
+                strokeOpacity: 0,
                 stroke: series.get("stroke")
             });
 
             var label = rangeDataItem.get("label");
             label.setAll({
-                text: field.toUpperCase(),
-                fontSize: "1.1em",
+                text: field,
+                fontSize: "1em",
                 fill: series.get("stroke"),
-                paddingTop: 10,
+                paddingTop: -20,
                 isMeasured: false,
                 centerX: labelCenterX
             });
@@ -215,8 +216,8 @@ function AdmUmur() {
             return series;
         }
 
-        createSeries("laki", am5.p100, "right", -3);
-        createSeries("perempuan", 0, "left", 4);
+        createSeries("Laki", am5.p100, "right", -2);
+        createSeries("Perempuan", 0, "left", 2);
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
@@ -235,7 +236,7 @@ function AdmUmur() {
     }, []);
 
     return (
-        <div id="admUmurChart" style={{ width: "100%", height: "500px" }}></div>
+        <div id="admUmurChart" style={{ width: "100%", height: "400px" }}></div>
     );
 }
 
