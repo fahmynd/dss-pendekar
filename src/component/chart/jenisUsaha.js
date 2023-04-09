@@ -16,6 +16,9 @@ class JenisUsaha extends React.Component {
         }
 
         return {
+            title: {
+                show: false
+            },
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -24,25 +27,81 @@ class JenisUsaha extends React.Component {
             },
             legend: {},
             grid: {
-                left: '3%',
+                height: '95%',
+                left: '10',
                 right: '4%',
-                bottom: '3%',
+                top: '5%',
+                bottom: '20%',
                 containLabel: true
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 0.01]
+                min: 0,
+                max: 10,
+                boundaryGap: [0, 0.01],
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        width: 0,
+                        type: "dashed"
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: "dashed"
+                    }
+                }
             },
             yAxis: {
                 type: 'category',
-                data: chart_jenis
+                data: chart_jenis,
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 0,
+                        type: "dashed"
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: "dashed"
+                    }
+                },
             },
             series: [{
                 type: 'bar',
                 data: chart_jumlah,
-                color: '#EA9501'
+                color: '#EA9501',
+                label: {
+                    show: true,
+                    position: "right",
+                    formatter: '{c}',
+                    fontSize: 12
+                },
+                itemStyle: {
+                    borderRadius: [0, 5, 5, 0]
+                },
+                cursor: "auto"
             }
-            ]
+            ],
+            dataZoom: [{
+                type: 'inside',
+                id: 'insideY',
+                filterMode: 'weakFilter',
+                yAxisIndex: 0,
+                start: 0,
+                end: 100,
+                zoomOnMouseWheel: false,
+                moveOnMouseMove: true,
+                moveOnMouseWheel: true
+            }]
         }
     }
 

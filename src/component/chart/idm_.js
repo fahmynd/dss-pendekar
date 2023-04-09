@@ -15,43 +15,59 @@ class IdmChart extends React.Component {
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
-                    type: 'cross',
-                    crossStyle: {
-                        color: '#999'
-                    }
+                    type: 'none'
                 }
             },
             legend: {},
             grid: {
-                left: '3%',
+                height: '80%',
+                left: '0',
                 right: '4%',
-                bottom: '3%',
+                top: '5%',
+                bottom: '20%',
                 containLabel: true
             },
             xAxis: [
                 {
                     type: 'category',
                     data: chart_tahun,
-                    axisPointer: {
-                        type: 'shadow'
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            width: 0,
+                            type: "dashed"
+                        }
+                    },
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: "dashed"
+                        }
                     }
                 }
             ],
-            yAxis: [{
-                type: 'category',
-                data: chart_idm,
-            }],
+            yAxis: [
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 1,
+                    splitNumber: 10,
+                    data: chart_idm,
+                    splitLine: {
+                        show: true,
+                        lineStyle: {
+                            type: "dashed"
+                        }
+                    }
+                }
+            ],
             series: [
                 {
-                    name: 'IDM',
                     type: 'line',
-                    yAxisIndex: 1,
-                    tooltip: {
-                        valueFormatter: function (value) {
-                            return value + '%';
-                        }
-                    },
                     data: chart_idm,
+                    symbolSize: 10,
                     color: '#E58B20'
                 },
             ]
@@ -62,7 +78,7 @@ class IdmChart extends React.Component {
         return (
             <ReactEcharts
                 option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "500px" }}
+                style={{ width: "auto", height: "100%" }}
             ></ReactEcharts>
         )
     }

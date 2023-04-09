@@ -24,7 +24,7 @@ export function PetaPerkembangan(props) {
         points[item.current_status].push({
             x: item.capaian.idm,
             y: item.capaian.sdgs,
-            r: 6,
+            r: 10,
         })
     })
 
@@ -62,6 +62,15 @@ export function PetaPerkembangan(props) {
         scales: {
             y: {
                 beginAtZero: true,
+            },
+        },
+        plugins: {
+            legend: {
+                display: true,
+                position: "top",
+                labels: {
+                    usePointStyle: true
+                }
             },
         },
     };

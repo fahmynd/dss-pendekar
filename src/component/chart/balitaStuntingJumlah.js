@@ -28,7 +28,12 @@ class BalitaStuntingJumlah extends React.Component {
             },
             legend: {
                 orient: 'horizontal',
-                left: 150
+                left: 150,
+                top: 2,
+                textStyle: {
+                    fontSize: 13,
+                    fontWeight: "bold"
+                }
             },
             grid: {
                 left: '3%',
@@ -38,25 +43,80 @@ class BalitaStuntingJumlah extends React.Component {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 0.01]
+                boundaryGap: [0, 0.01],
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: "dashed"
+                    }
+                }
             },
             yAxis: {
                 type: 'category',
-                data: chart_desa.reverse(),
+                data: chart_desa,
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 0,
+                        type: "dashed"
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        type: "dashed"
+                    }
+                },
+                inverse: true
             },
             series: [{
                 name: 'Jumlah Balita Stunting',
                 type: 'bar',
-                data: chart_jumlah.reverse(),
-                color: '#327A6D'
+                data: chart_jumlah,
+                color: '#327A6D',
+                label: {
+                    show: true,
+                    position: "right"
+                },
+                itemStyle: {
+                    borderRadius: [0, 5, 5, 0]
+                },
+                cursor: "auto"
             },
             {
                 name: 'Persentase',
                 type: 'bar',
-                data: chart_persen.reverse(),
-                color: '#EA9501'
+                data: chart_persen,
+                color: '#EA9501',
+                tooltip: {
+                    valueFormatter: function (value) {
+                        return value + '%';
+                    }
+                },
+                label: {
+                    show: true,
+                    position: "right",
+                    formatter: '{c}%'
+                },
+                itemStyle: {
+                    borderRadius: [0, 5, 5, 0]
+                },
+                cursor: "auto"
             }
-            ]
+            ],
+            dataZoom: [{
+                type: 'inside',
+                id: 'insideY',
+                yAxisIndex: 0,
+                start: 95,
+                end: 100,
+                zoomOnMouseWheel: false,
+                moveOnMouseMove: true,
+                moveOnMouseWheel: true
+            }]
         }
     }
 
@@ -64,7 +124,7 @@ class BalitaStuntingJumlah extends React.Component {
         return (
             <ReactEcharts
                 option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "500rem" }}
+                style={{ width: "auto", height: "100%" }}
             ></ReactEcharts>
         )
     }
