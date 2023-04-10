@@ -85,8 +85,9 @@ class BalitaYoY extends React.Component {
                     nameTextStyle: {
                         fontWeight: "bold",
                     },
-                    min: 0,
-                    max: 500,
+                    boundaryGap: [0, 5],
+                    // min: 0,
+                    // max: 500,
                     splitLine: {
                         show: true,
                         lineStyle: {
@@ -102,9 +103,9 @@ class BalitaYoY extends React.Component {
                     nameTextStyle: {
                         fontWeight: "bold",
                     },
-                    min: 0,
-                    max: 5,
-                    // interval: 5,
+                    boundaryGap: [0, 3],
+                    // min: 0,
+                    // max: 5,
                     axisLabel: {
                         formatter: '{value}%'
                     },
@@ -149,7 +150,7 @@ class BalitaYoY extends React.Component {
         return (
             <ReactEcharts
                 option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "500px" }}
+                style={{ width: "auto", height: "100%" }}
             ></ReactEcharts>
         )
     }

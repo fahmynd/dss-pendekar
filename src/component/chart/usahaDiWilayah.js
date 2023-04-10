@@ -33,8 +33,9 @@ class UsahaDiWilayah extends React.Component {
             },
             xAxis: {
                 type: 'value',
-                min: 0,
-                max: 10,
+                boundaryGap: [0, 1],
+                // min: 0,
+                // max: 10,
                 axisTick: {
                     show: false
                 },
@@ -53,7 +54,12 @@ class UsahaDiWilayah extends React.Component {
             },
             yAxis: {
                 type: 'category',
-                data: chart_desa,
+                data: chart_desa.reverse(),
+                // axisLabel: {
+                //     formatter: function (param) {
+                //         return param.data == 0 ? '' : param.data;
+                //     },
+                // },
                 axisTick: {
                     show: false
                 },
@@ -70,35 +76,41 @@ class UsahaDiWilayah extends React.Component {
                         type: "dashed"
                     }
                 },
-                inverse: false
+                // inverse: true
             },
-            series: [{
-                type: 'bar',
-                data: chart_jumlah,
-                label: {
-                    show: true,
-                    position: "right",
-                    formatter: '{c}',
-                    fontSize: 12
-                },
-                itemStyle: {
-                    borderRadius: [0, 5, 5, 0]
-                },
-                cursor: "auto",
-                color: '#499841'
-            }
+            series: [
+                {
+                    type: 'bar',
+                    data: chart_jumlah.reverse(),
+                    label: {
+                        show: true,
+                        position: "right",
+                        formatter: function (param) {
+                            return param.data == 0 ? '' : param.data;
+                        },
+                        fontSize: 12
+                    },
+                    itemStyle: {
+                        borderRadius: [0, 5, 5, 0]
+                    },
+                    cursor: "auto",
+                    color: '#499841'
+                }
             ],
-            dataZoom: [{
-                type: 'inside',
-                id: 'insideY',
-                filterMode: 'weakFilter',
-                yAxisIndex: 0,
-                start: 90,
-                end: 100,
-                zoomOnMouseWheel: false,
-                moveOnMouseMove: true,
-                moveOnMouseWheel: true
-            }]
+            dataZoom: [
+                {
+                    type: 'inside',
+                    id: 'insideY',
+                    yAxisIndex: 0,
+                    start: 90,
+                    end: 100,
+                    // minSpan: 1,
+                    // maxSpan: 5,
+                    zoomOnMouseWheel: false,
+                    moveOnMouseMove: true,
+                    moveOnMouseWheel: true
+                }
+            ],
         }
     }
 

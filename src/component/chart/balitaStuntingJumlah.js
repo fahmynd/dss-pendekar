@@ -29,7 +29,7 @@ class BalitaStuntingJumlah extends React.Component {
             legend: {
                 orient: 'horizontal',
                 left: 150,
-                top: 2,
+                top: 0,
                 textStyle: {
                     fontSize: 13,
                     fontWeight: "bold"
@@ -43,7 +43,7 @@ class BalitaStuntingJumlah extends React.Component {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 0.01],
+                boundaryGap: [0, 0.3],
                 splitLine: {
                     show: true,
                     lineStyle: {

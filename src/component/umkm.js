@@ -28,7 +28,7 @@ const Umkm = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Potensi | PENDEKAR";
+        document.title = "UMKM | PENDEKAR";
 
     }, [])
 
@@ -89,7 +89,7 @@ const Umkm = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    <div className='overflow-auto' style={{ height: '400px' }}>
+                                    <div style={{ height: '400px' }}>
                                         {resultData && <UsahaDiWilayah resultData={resultData} />}
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@ const Umkm = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    <div className='overflow-auto' style={{ height: '400px' }}>
+                                    <div style={{ height: '400px' }}>
                                         {resultData && <JenisUsaha resultData={resultData} />}
                                     </div>
                                 </div>

@@ -1,5 +1,5 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import IdmChart from './chart/idm_'
+import IdmChart from './chart/idmYoY'
 import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
 import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
 import BalitaYoY from './chart/balitaStuntingYoY'
@@ -542,7 +542,7 @@ const Pembangunan = () => {
                                                 <div className="box-featured">
                                                     <h5 className="card-title">BALITA STUNTING DARI TAHUN KE TAHUN</h5>
                                                 </div>
-                                                <div className="card-body-chart mt-4 overflow-auto">
+                                                <div className="card-body-chart mt-4">
                                                     {resultData && <BalitaYoY resultData={resultData} />}
                                                 </div>
                                             </div>
@@ -603,6 +603,7 @@ const Pembangunan = () => {
                                                                 })}
                                                             </select>
                                                         </div>
+
                                                     </div>
                                                     {resultData && <BalitaStuntingJumlah resultData={resultData} />}
                                                 </div>

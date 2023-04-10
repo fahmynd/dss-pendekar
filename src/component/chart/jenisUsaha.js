@@ -36,9 +36,9 @@ class JenisUsaha extends React.Component {
             },
             xAxis: {
                 type: 'value',
-                min: 0,
-                max: 10,
-                boundaryGap: [0, 0.01],
+                boundaryGap: [0, 1],
+                // min: 0,
+                // max: 10,
                 axisTick: {
                     show: false
                 },

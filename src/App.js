@@ -18,7 +18,7 @@ const BeritaPage = lazy(() => import("./component/berita"));
 const AdministrasiUmum = lazy(() => import("./component/administrasiUmum"));
 const Kependudukan = lazy(() => import("./component/kependudukan"));
 const Pembangunan = lazy(() => import("./component/pembangunan"));
-const PerkembanganDesa = lazy(() => import("./component/perkembanganDesa"));
+// const PerkembanganDesa = lazy(() => import("./component/perkembanganDesa"));
 const Keuangan = lazy(() => import("./component/keuangan"));
 const Umkm = lazy(() => import("./component/umkm"));
 const ProfilDesa = lazy(() => import("./component/profilDesa"));
@@ -43,7 +43,7 @@ export default class App extends Component {
           <Routes>
             <Route exact path="/" element={<Pembangunan />} />
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
-            <Route path="/perkembangan-desa" element={<PerkembanganDesa />} />
+            {/* <Route path="/perkembangan-desa" element={<PerkembanganDesa />} /> */}
             <Route path="/kependudukan" element={<Kependudukan />} />
             <Route path="/bantuan-sosial" element={<BantuanSosial />} />
             <Route path="/berita" element={<BeritaPage />} />
