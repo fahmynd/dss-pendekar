@@ -1,114 +1,120 @@
-import React from "react";
-import "jquery/dist/jquery.min.js";
-import "datatables.net-dt/js/dataTables.dataTables";
-// import "datatables.net-dt/css/jquery.dataTables.min.css";
-import "datatables.net-buttons/js/dataTables.buttons.js";
-import "datatables.net-buttons/js/buttons.colVis.js";
-import "datatables.net-buttons/js/buttons.flash.js";
-import "datatables.net-buttons/js/buttons.html5.js";
-import "datatables.net-buttons/js/buttons.print.js";
-import $ from "jquery";
+import React, { useMemo, useState } from "react";
+import DataTable from 'react-data-table-component';
 
-class AdminTable extends React.Component {
 
-    constructor(props) {
-        super();
-        this.state = {
-            resultData: props.resultData,
-            jenis: props.jenis,
-        };
-    }
 
-    componentDidMount() {
-        if (!$.fn.DataTable.isDataTable("#myTable")) {
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $("#table").DataTable({
-                        // pagingType: "full_numbers",
-                        // processing: true,
-                        // select: {
-                        //     style: "single",
-                        // },
-                        pageLength: 10,
-                        searching: false,
-                        dom: "Bfrtip",
-                        buttons: [
-                            ''
-                        ]
-                    });
-                }, 1000);
-            });
+const AdminTableNew = (props) => {
+    const {jenis_administrasi,list_kecamatan, list_desa,list_administrasi} = props.resultData.data;
+
+    const [selectedType,setSelectedType] = useState(jenis_administrasi[0].key);
+    const [selectedKec,setSelectedKec] = useState("")
+    const [selectedDesa,setSelectedDesa] = useState("")
+
+    const rows = useMemo(() => {
+        let data = list_administrasi[selectedType];
+        if (selectedKec !== "" && selectedKec !== '0') {
+            data = data.filter(item => {
+                let itemKec = `${item.k1}.${item.k2}.${item.k3}`
+
+                return itemKec === selectedKec
+            })
         }
-    }
 
-    showTable = () => {
-        const { resultData, jenis } = this.state;
-        try {
-            return resultData.data.list_administrasi[jenis].map((item, index) => {
-                return (
-                    <Administrasi
-                        key={item.lampiran}
-                        no={index + 1}
-                        kec={item.nama_kecamatan}
-                        desa={item.nama_deskel}
-                        peraturan={item.jenis_peraturan}
-                        nomor={item.nomor_peraturan}
-                        tanggal={item.tanggal_peraturan}
-                        tentang={item.tentang}
-                        lampiran={item.lampiran}
-                        kode={item.kode_wilayah}
-                    />
+        if (selectedDesa !== "" && selectedDesa !== '0') {
+            data = data.filter(item => {
+                let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
 
-                );
-            });
-        } catch (e) {
-            alert(e.message);
+                return itemDesa === selectedDesa
+            })
         }
-    };
+        return data;
+        
+    },[selectedType,selectedKec,selectedDesa, list_administrasi])
 
-    render() {
-        return (
-            <div className="table-responsive">
-                <table id="table" className="table table-bordered">
-                    <thead>
-                        <tr className="align-items-center justify-content-center" style={{ background: '#F1ECFF' }}>
-                            <th>No</th>
-                            <th>Kecamatan</th>
-                            <th>Desa</th>
-                            <th>Jenis Peraturan</th>
-                            <th>Nomor Peraturan</th>
-                            <th>Tanggal Peraturan</th>
-                            <th>Tentang</th>
-                            <th>Lampiran</th>
-                        </tr>
-                    </thead>
 
-                    <tbody>
-                        {this.showTable()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
-
-function Administrasi(props) {
     return (
-        <tr>
-            <td className="text-center">{props.no}</td>
-            <td>{props.kec}</td>
-            <td>{props.desa}</td>
-            <td>{props.peraturan}</td>
-            <td>{props.nomor}</td>
-            <td>{props.tanggal}</td>
-            <td>{props.tentang}</td>
-            <td>
-                <a href={`https://online.digitaldesa.id/uploads/${props.kode}/buku-peraturan-di-desa/${props.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
-                    Download
-                </a>
-            </td>
-        </tr>
+        <>
+                <div className="row g-1 mb-4">
+                    <div className="col-4">
+                        <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
+                            {jenis_administrasi.map((item,key) => {
+                                return (
+                                    <option key={key} value={item.key}>{item.value}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <div className="col-3">
+                        <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                            <option value='0'>Semua Kecamatan</option>
+                            {list_kecamatan.map((item,key) => {
+                                return (
+                                    <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <div className="col-3">
+                        <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                            <option value='0'>Semua Desa</option>
+                            {list_desa.map((item,key) => {
+                                return (
+                                    <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                </div>
+                <div className="table-responsive">
+                <DataTable
+                    columns={[
+                        {
+                            name: "No",
+                            selector: (row,index) => index + 1 
+                        },
+                        {
+                            name: "Kecamatan",
+                            selector: (row) => row.nama_kecamatan
+                        },
+                        {
+                            name: "Desa",
+                            selector: (row) => row.nama_deskel
+                        },
+                        {
+                            name: "Jenis Peraturan",
+                            selector: (row) => row.jenis_peraturan
+                        },
+                        {
+                            name: "Nomor Perturan",
+                            selector: (row) => row.nomor_peraturan
+                        },
+                        {
+                            name: "Tanggal Peraturan",
+                            selector: (row) => row.tanggal_peraturan
+                        },
+                        {
+                            name: "Tentang",
+                            selector: (row) => row.tentang
+                        },
+                        {
+                            name: "Lampiran",
+                            selector: (row) => row.lampiran,
+                            cell: (row) => {
+                                return (
+                                    <a href={`https://online.digitaldesa.id/uploads/${row.kode}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
+                                        Download
+                                    </a>
+                                )
+                            }
+                        }
+                    ]}
+                    data={rows}
+                    pagination
+                />
+                </div>
+            </>
     )
 }
 
-export default AdminTable;
+
+export default AdminTableNew;

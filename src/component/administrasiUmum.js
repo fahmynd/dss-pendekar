@@ -312,49 +312,6 @@ const AdministrasiUmum = () => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
-                                    <div className="row g-1 mb-4">
-                                        <div className="col-4">
-                                            <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi" onChange={(event) => set_jenis_administrasi(event.target.value)}>
-                                                {jenis_administrasi.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.key}
-                                                            value={item.key}
-                                                            title={item.value}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
-                                                <option value='0'>Semua Kecamatan</option>
-                                                {kec.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue='0' className="form-select" aria-label="Pilih Desa">
-                                                <option value='0'>Semua Desa</option>
-                                                {desa.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_deskel}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     {/* <div className='table-responsive d-none'>
                                         <table id='example' className="table table-bordered">
