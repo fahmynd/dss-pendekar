@@ -22,6 +22,7 @@ const Pembangunan = lazy(() => import("./component/pembangunan"));
 const Keuangan = lazy(() => import("./component/keuangan"));
 const Umkm = lazy(() => import("./component/umkm"));
 const ProfilDesa = lazy(() => import("./component/profilDesa"));
+const Wisata = lazy(() => import("./component/wisata"));
 
 export default class App extends Component {
 
@@ -50,6 +51,7 @@ export default class App extends Component {
             <Route path="/pembangunan" element={<Keuangan />} />
             <Route path="/umkm" element={<Umkm />} />
             <Route path="/profil-desa" element={<ProfilDesa />} />
+            <Route path="/wisata" element={<Wisata />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
         </Suspense>

@@ -4,11 +4,11 @@ import DataTable from 'react-data-table-component';
 
 
 const AdminTableNew = (props) => {
-    const {jenis_administrasi,list_kecamatan, list_desa,list_administrasi} = props.resultData.data;
+    const { jenis_administrasi, list_kecamatan, list_desa, list_administrasi } = props.resultData.data;
 
-    const [selectedType,setSelectedType] = useState(jenis_administrasi[0].key);
-    const [selectedKec,setSelectedKec] = useState("")
-    const [selectedDesa,setSelectedDesa] = useState("")
+    const [selectedType, setSelectedType] = useState(jenis_administrasi[0].key);
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDesa, setSelectedDesa] = useState("")
 
     const rows = useMemo(() => {
         let data = list_administrasi[selectedType];
@@ -28,91 +28,131 @@ const AdminTableNew = (props) => {
             })
         }
         return data;
-        
-    },[selectedType,selectedKec,selectedDesa, list_administrasi])
 
+    }, [selectedType, selectedKec, selectedDesa, list_administrasi])
+
+    const customStyles = {
+        headCells: {
+            style: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+                backgroundColor: '#F1ECFF',
+                borderRight: '1px solid #EDEDED',
+                borderTop: '1px solid #EDEDED',
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '14px',
+                borderRight: '1px solid #EDEDED',
+            },
+        },
+    };
 
     return (
         <>
-                <div className="row g-1 mb-4">
-                    <div className="col-4">
-                        <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
-                            {jenis_administrasi.map((item,key) => {
-                                return (
-                                    <option key={key} value={item.key}>{item.value}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="col-3">
-                        <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
-                            <option value='0'>Semua Kecamatan</option>
-                            {list_kecamatan.map((item,key) => {
-                                return (
-                                    <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <div className="col-3">
-                        <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
-                            <option value='0'>Semua Desa</option>
-                            {list_desa.map((item,key) => {
-                                return (
-                                    <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
+            <div className="row g-1 mb-4">
+                <div className="col-4">
+                    <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
+                        {jenis_administrasi.map((item, key) => {
+                            return (
+                                <option key={key} value={item.key}>{item.value}</option>
+                            )
+                        })}
+                    </select>
                 </div>
-                <div className="table-responsive">
-                <DataTable
-                    columns={[
+                <div className="col-3">
+                    <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                        <option value='0'>Semua Kecamatan</option>
+                        {list_kecamatan.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                        <option value='0'>Semua Desa</option>
+                        {list_desa.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+            </div>
+            <DataTable
+                columns={
+                    [
                         {
                             name: "No",
-                            selector: (row,index) => index + 1 
+                            selector: (row, index) => index + 1,
+                            width: "70px",
+                            style: {
+                                borderLeft: "1px solid #EDEDED"
+                            }
                         },
                         {
                             name: "Kecamatan",
-                            selector: (row) => row.nama_kecamatan
+                            sortable: true,
+                            selector: (row) => row.nama_kecamatan,
+                            maxWidth: "20%",
                         },
                         {
                             name: "Desa",
-                            selector: (row) => row.nama_deskel
+                            sortable: true,
+                            selector: (row) => row.nama_deskel,
+                            maxWidth: "20%",
                         },
                         {
                             name: "Jenis Peraturan",
-                            selector: (row) => row.jenis_peraturan
+                            sortable: true,
+                            selector: (row) => row.jenis_peraturan,
+                            maxWidth: "20%",
                         },
                         {
                             name: "Nomor Perturan",
-                            selector: (row) => row.nomor_peraturan
+                            sortable: true,
+                            selector: (row) => row.nomor_peraturan,
+                            // width: "auto",
                         },
                         {
                             name: "Tanggal Peraturan",
-                            selector: (row) => row.tanggal_peraturan
+                            sortable: true,
+                            selector: (row) => row.tanggal_peraturan,
+                            // width: "auto",
                         },
                         {
                             name: "Tentang",
-                            selector: (row) => row.tentang
+                            sortable: true,
+                            selector: (row) => row.tentang,
+                            wrap: true,
+                            // style: {
+                            //     wordBreak: "break-all",
+                            // },
+                            // width: "auto",
                         },
                         {
                             name: "Lampiran",
+                            sortable: true,
                             selector: (row) => row.lampiran,
                             cell: (row) => {
                                 return (
-                                    <a href={`https://online.digitaldesa.id/uploads/${row.kode}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
+                                    <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
                                         Download
                                     </a>
                                 )
-                            }
+                            },
+                            // width: "auto",
                         }
-                    ]}
-                    data={rows}
-                    pagination
-                />
-                </div>
-            </>
+                    ]
+                }
+                data={rows}
+                customStyles={customStyles}
+                pagination
+            />
+        </>
     )
 }
 

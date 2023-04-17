@@ -3,13 +3,15 @@ import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import NewsTicker from "react-advanced-news-ticker";
 import LoadingSpinner from './LoadingSpinner';
-import { Link } from 'react-router-dom';
+import BeritaPagination from './pagination/beritaPagination';
 
 const BeritaPage = () => {
     const ref = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [news, setNews] = useState([]);
+    // const [kec, setKec] = useState([]);
+    const [desa, setDesa] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -17,8 +19,12 @@ const BeritaPage = () => {
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/home?k3=&k4=&limit=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
-                setResultData(result.data);
+                setResultData(result.data.data.list_berita);
                 setNews(result.data.data.list_berita);
+
+                const data = result.data.data;
+                // setKec(data.list_kecamatan)
+                setDesa(data.list_desa)
             })
             .catch(error => {
                 alert(error.message);
@@ -42,7 +48,7 @@ const BeritaPage = () => {
                 <section className="section dashboard">
                     <div className="row">
 
-                        <div className="col-lg-12">
+                        <div className="d-none col-lg-12">
 
                             <div className="row">
                                 <div className="col-md-12">
@@ -71,10 +77,10 @@ const BeritaPage = () => {
                                                     rowHeight={60}
                                                     style={{ listStyleType: 'none', marginLeft: '200px', width: '75%' }}
                                                 >
-                                                    {news.map((news) => {
+                                                    {news.map((news, key) => {
                                                         return (
                                                             <Berita
-                                                                key={news.id}
+                                                                key={key}
                                                                 kode={news.kode_wilayah}
                                                                 judul={news.judul}
                                                                 slug={news.slug}
@@ -105,42 +111,58 @@ const BeritaPage = () => {
                         <div className="col-md-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title-potensi">ARTIKEL DIGIDES</h5>
-                                    <div className="filter-primary">
+                                    <h5 className="card-title-potensi">BERITA DESA TERBARU</h5>
+                                    <div className="d-none filter-primary">
                                         <button type="button" className="btn btn-primary">Lihat Semua</button>
                                     </div>
-
-                                    <div className="news overflow-auto">
-                                        <div className="post-item clearfix">
-                                            <img src="assets/img/news-1.jpg" alt="News" />
-                                            <h4><Link to={'/'}>Nihil blanditiis at in nihil autem</Link></h4>
-                                            <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+                                    <div className="row mb-4">
+                                        <div className="col-md-4">
+                                            <div className="search-produk">
+                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                                    <input type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
+                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                                </form>
+                                            </div>
                                         </div>
-
-                                        <div className="post-item clearfix">
-                                            <img src="assets/img/news-2.jpg" alt="News" />
-                                            <h4><Link to={'/'}>Quidem autem et impedit</Link></h4>
-                                            <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
+                                        <div className="col-md-4">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
+                                                {desa.map((item, key) => {
+                                                    return (
+                                                        <option key={key}>{item.nama_deskel}</option>
+                                                    )
+                                                })
+                                                }
+                                            </select>
                                         </div>
-
-                                        <div className="post-item clearfix">
-                                            <img src="assets/img/news-3.jpg" alt="News" />
-                                            <h4><Link to={'/'}>Id quia et et ut maxime similique occaecati ut</Link></h4>
-                                            <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
-                                        </div>
-
-                                        <div className="post-item clearfix">
-                                            <img src="assets/img/news-4.jpg" alt="News" />
-                                            <h4><Link to={'/'}>Laborum corporis quo dara net para</Link></h4>
-                                            <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
-                                        </div>
-
-                                        <div className="post-item clearfix">
-                                            <img src="assets/img/news-5.jpg" alt="News" />
-                                            <h4><Link to={'/'}>Et dolores corrupti quae illo quod dolor</Link></h4>
-                                            <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                                        <div className="col-md-4">
+                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
+                                                <option value={'DEFAULT'}>Semua Desa</option>
+                                                {desa.map((item, key) => {
+                                                    return (
+                                                        <option key={key}>{item.nama_deskel}</option>
+                                                    )
+                                                })
+                                                }
+                                            </select>
                                         </div>
                                     </div>
+                                    <div className="news overflow-auto">
+
+                                        {resultData && <BeritaPagination resultData={resultData} />}
+
+                                        {/* {news.map((item, key) => {
+                                            return (
+                                                <div key={key} className="post-item clearfix">
+                                                    <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`} alt="News" />
+                                                    <h4><a href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`} rel='noreferrer' target={'_blank'}>{item.judul}</a></h4>
+                                                    <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+                                                </div>
+                                            )
+                                        })
+                                        } */}
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

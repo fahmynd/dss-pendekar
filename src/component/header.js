@@ -23,7 +23,7 @@ function Header() {
                 <nav className="header-nav ms-auto">
                     <ul className="d-flex align-items-center">
 
-                        <li className="nav-item dropdown">
+                        <li className="d-none nav-item dropdown">
 
                             <Link className="nav-link nav-icon" to={'/'} data-bs-toggle="dropdown">
                                 <i className="bi bi-bell"></i>
@@ -101,20 +101,20 @@ function Header() {
                         <li className="nav-item dropdown pe-3">
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to={'/'} data-bs-toggle="dropdown">
-                                <img src={profilImg} alt="Profile" className="rounded-circle" />
-                                <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                                <img src="https://mitrasulawesi.id/wp-content/uploads/2022/10/IMG_20221014_232402.jpg" alt="Profile" className="rounded-circle" />
+                                <span className="d-none d-md-block dropdown-toggle ps-2">Muslimin Bando</span>
                             </Link>
 
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li className="dropdown-header">
-                                    <h6>Kevin Anderson</h6>
-                                    <span>Web Designer</span>
+                                    <h6>Muslimin Bando</h6>
+                                    <span>Bupati Enrekang</span>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
 
-                                <li>
+                                {/* <li>
                                     <Link className="dropdown-item d-flex align-items-center" to={'/'}>
                                         <i className="bi bi-person"></i>
                                         <span>My Profile</span>
@@ -139,7 +139,7 @@ function Header() {
                                         <i className="bi bi-question-circle"></i>
                                         <span>Need Help?</span>
                                     </Link>
-                                </li>
+                                </li> */}
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>

@@ -11,6 +11,7 @@ import { BASE_API_URL } from '../utils/api'
 import Map from './mapPopup'
 import LoadingSpinner from './LoadingSpinner'
 import RekomendasiTable from './datatable/RekomendasiDataTable'
+import NewsT from './beritaTicker'
 
 const Pembangunan = () => {
     const [resultData, setResultData] = useState();
@@ -79,6 +80,8 @@ const Pembangunan = () => {
 
                 <section className="section dashboard">
                     <div className="row">
+
+                        <NewsT />
 
                         <div className="col-lg-12">
                             <div className="card">

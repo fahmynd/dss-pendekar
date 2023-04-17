@@ -85,7 +85,7 @@ function Sidebar() {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/*">
+                                <NavLink to="/wisata">
                                     <i className="bi bi-circle"></i><span>Wisata</span>
                                 </NavLink>
                             </li>
