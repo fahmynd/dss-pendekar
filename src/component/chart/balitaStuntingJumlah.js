@@ -1,8 +1,8 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"
 
-class BalitaStuntingJumlah extends React.Component {
-    getOptions = (props) => {
+const BalitaStuntingJumlah = (props) => {
+    const options = () => {
         let chart_desa = [];
         props.resultData.data.list_desa.forEach((item, index) => {
             chart_desa[index] = item.nama_deskel
@@ -120,14 +120,12 @@ class BalitaStuntingJumlah extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <ReactEcharts
-                option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "100%" }}
-            ></ReactEcharts>
-        )
-    }
+    return (
+        <ReactEcharts
+            option={options(props)}
+            style={{ width: "auto", height: "100%" }}
+        ></ReactEcharts>
+    )
 }
 
 export default BalitaStuntingJumlah

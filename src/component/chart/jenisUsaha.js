@@ -1,8 +1,8 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"
 
-class JenisUsaha extends React.Component {
-    getOptions = (props) => {
+const JenisUsaha = (props) => {
+    const options = () => {
         let chart_jenis = [];
         for (const key in props.resultData.jenis_umkm) {
             // console.log(`${key}: ${props.resultData.chart_umkm[key]}`);
@@ -105,14 +105,12 @@ class JenisUsaha extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <ReactEcharts
-                option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "100%" }}
-            ></ReactEcharts>
-        )
-    }
+    return (
+        <ReactEcharts
+            option={options(props)}
+            style={{ width: "auto", height: "100%" }}
+        ></ReactEcharts>
+    )
 }
 
 export default JenisUsaha

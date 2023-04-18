@@ -252,7 +252,7 @@ const Pembangunan = () => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
-                                    <div className="row g-1 my-4">
+                                    <div className="d-none row g-1 my-4">
                                         <div className="col-3">
                                             <div className="search-produk">
                                                 <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
@@ -298,106 +298,6 @@ const Pembangunan = () => {
                                             </select>
                                         </div>
                                     </div>
-
-                                    {/* <table className="table table-bordered d-none">
-                                        <thead>
-                                            <tr style={{ background: '#F1ECFF' }}>
-                                                <th scope="col">Nama Kecamatan</th>
-                                                <th scope="col">Nama Desa</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Skor IDM</th>
-                                                <th scope="col">Skor SDGS</th>
-                                                <th scope="col">Rekomendasi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Maiwa</td>
-                                                <td>Patondon Salu</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-verifikasi">Mandiri</span>
-                                                    </h5>
-                                                </td>
-                                                <td>0.7229</td>
-                                                <td>31.9</td>
-                                                <td>
-                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">
-                                                        Lihat Rekomendasi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Anggeraja</td>
-                                                <td>Bamba Puang</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-pengajuan">Maju</span>
-                                                    </h5>
-                                                </td>
-                                                <td>0.8057</td>
-                                                <td>26.73</td>
-                                                <td>
-                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">
-                                                        Lihat Rekomendasi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Alla</td>
-                                                <td>Mata Allo</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-rkd">Berkembang</span>
-                                                    </h5>
-                                                </td>
-                                                <td>0.6756</td>
-                                                <td>26.73</td>
-                                                <td>
-                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">
-                                                        Lihat Rekomendasi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bungin</td>
-                                                <td>Sawito</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-prioritas">Tertinggal</span>
-                                                    </h5>
-                                                </td>
-                                                <td>0.5425</td>
-                                                <td>0</td>
-                                                <td>
-                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">
-                                                        Lihat Rekomendasi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Bungin</td>
-                                                <td>Bulo</td>
-                                                <td>
-                                                    <h5>
-                                                        <span className="badge bg-super-prioritas">Sangat Tertinggal</span>
-                                                    </h5>
-                                                </td>
-                                                <td>0.5914</td>
-                                                <td>0</td>
-                                                <td>
-                                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#disablebackdrop">
-                                                        Lihat Rekomendasi
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table> */}
 
                                     {resultData && <RekomendasiTable resultData={resultData} />}
 

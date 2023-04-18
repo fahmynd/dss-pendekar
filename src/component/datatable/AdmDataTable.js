@@ -1,7 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
-
-
 
 const AdminTableNew = (props) => {
     const { jenis_administrasi, list_kecamatan, list_desa, list_administrasi } = props.resultData.data;
@@ -50,7 +48,7 @@ const AdminTableNew = (props) => {
     };
 
     return (
-        <>
+        <Fragment>
             <div className="row g-1 mb-4">
                 <div className="col-4">
                     <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
@@ -112,7 +110,7 @@ const AdminTableNew = (props) => {
                             maxWidth: "20%",
                         },
                         {
-                            name: "Nomor Perturan",
+                            name: "Nomor Peraturan",
                             sortable: true,
                             selector: (row) => row.nomor_peraturan,
                             // width: "auto",
@@ -152,9 +150,8 @@ const AdminTableNew = (props) => {
                 customStyles={customStyles}
                 pagination
             />
-        </>
+        </Fragment>
     )
 }
-
 
 export default AdminTableNew;

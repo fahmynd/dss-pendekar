@@ -2,6 +2,15 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 function Footer() {
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+            /* you can also use 'auto' behaviour
+               in place of 'smooth' */
+        });
+    };
+
     return (
         <Fragment>
             <footer id="footer" className="footer">
@@ -10,7 +19,7 @@ function Footer() {
                 </div>
             </footer>
 
-            <Link to={'#'} className="back-to-top d-flex align-items-center justify-content-center"><i
+            <Link onClick={scrollToTop} to={'#'} className="back-to-top d-flex align-items-center justify-content-center"><i
                 className="bi bi-arrow-up-short"></i></Link>
         </Fragment>
     )

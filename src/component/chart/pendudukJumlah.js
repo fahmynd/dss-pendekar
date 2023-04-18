@@ -1,8 +1,8 @@
 import ReactEcharts from "echarts-for-react"
 import React from "react"
 
-class PendudukJumlah extends React.Component {
-    getOptions = (props) => {
+const PendudukJumlah = (props) => {
+    const options = () => {
         let chart_desa = [];
         props.resultData.list_desa.forEach((item, index) => {
             chart_desa[index] = item.nama_deskel
@@ -57,14 +57,12 @@ class PendudukJumlah extends React.Component {
         }
     }
 
-    render() {
-        return (
-            <ReactEcharts
-                option={this.getOptions(this.props)}
-                style={{ width: "auto", height: "500rem" }}
-            ></ReactEcharts>
-        )
-    }
+    return (
+        <ReactEcharts
+            option={options(props)}
+            style={{ width: "auto", height: "500rem" }}
+        ></ReactEcharts>
+    )
 }
 
 export default PendudukJumlah
