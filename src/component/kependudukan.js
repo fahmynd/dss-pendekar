@@ -280,7 +280,7 @@ const Kependudukan = () => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
-                                    <div className="row g-1 mb-4">
+                                    <div className="d-none row g-1 mb-4">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Demografi Kependudukan</option>

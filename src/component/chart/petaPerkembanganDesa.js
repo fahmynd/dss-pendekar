@@ -3,14 +3,14 @@ import ReactEcharts from "echarts-for-react"
 
 export const PetaPerkembangan = (props) => {
     const options = () => {
-        // let chart_tahun = [];
-        // props.resultData.data.stunting.forEach((item, index) => {
-        //     chart_tahun[index] = item.tahun
+        // let chart_sdgs = [];
+        // props.resultData.data.list_desa.forEach((item, index) => {
+        //     chart_sdgs[index] = item.capaian.sdgs
         // })
 
-        // let chart_jumlah = [];
-        // props.resultData.data.stunting.forEach((item, index) => {
-        //     chart_jumlah[index] = item.jml_stunting
+        // let chart_idm = [];
+        // props.resultData.data.list_desa.forEach((item, index) => {
+        //     chart_idm[index] = item.capaian.idm
         // })
 
         return {
@@ -37,7 +37,7 @@ export const PetaPerkembangan = (props) => {
                     formatter: "IDM: {value}"
                 },
                 axisPointer: {
-                    type: 'shadow'
+                    type: 'none'
                 },
                 axisTick: {
                     show: false
@@ -83,7 +83,7 @@ export const PetaPerkembangan = (props) => {
                     name: "SANGAT TERTINGGAL",
                     type: "scatter",
                     data: [
-                        [174, 65.6],
+                        [0, 0],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -92,7 +92,7 @@ export const PetaPerkembangan = (props) => {
                     name: "TERTINGGAL",
                     type: "scatter",
                     data: [
-                        [175.3, 71.8],
+                        [0, 0.3],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -101,7 +101,7 @@ export const PetaPerkembangan = (props) => {
                     name: "BERKEMBANG",
                     type: "scatter",
                     data: [
-                        [193.5, 80.7],
+                        [0, 0.3],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -110,7 +110,7 @@ export const PetaPerkembangan = (props) => {
                     name: "MAJU",
                     type: "scatter",
                     data: [
-                        [186.5, 72.6],
+                        [0, 0.3],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -119,10 +119,17 @@ export const PetaPerkembangan = (props) => {
                     name: "MANDIRI",
                     type: "scatter",
                     data: [
-                        [187.2, 78.8],
+                        [0, 0.3],
                     ],
                     symbolSize: 13,
-                    label: {}
+                    label: {
+                        show: false
+                    },
+                    tooltip: {
+                        valueFormatter: function (value) {
+                            return value + '';
+                        }
+                    },
                 },
             ]
         }

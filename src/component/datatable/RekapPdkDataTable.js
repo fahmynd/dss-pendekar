@@ -1,106 +1,129 @@
-import React from "react";
-import "jquery/dist/jquery.min.js";
-import "datatables.net-dt/js/dataTables.dataTables";
-// import "datatables.net-dt/css/jquery.dataTables.min.css";
-import "datatables.net-buttons/js/dataTables.buttons.js";
-import "datatables.net-buttons/js/buttons.colVis.js";
-import "datatables.net-buttons/js/buttons.flash.js";
-import "datatables.net-buttons/js/buttons.html5.js";
-import "datatables.net-buttons/js/buttons.print.js";
-import $ from "jquery";
+import React, { useMemo, useState, Fragment } from "react";
+import DataTable from 'react-data-table-component';
 
-class RekapPendudukTable extends React.Component {
-    constructor(props) {
-        super();
-        this.state = {
-            resultData: props.resultData
-        };
-    }
+const RekapPendudukTable = (props) => {
+    const { list_kecamatan, list_desa } = props.resultData;
 
-    componentDidMount() {
-        if (!$.fn.DataTable.isDataTable("#myTable")) {
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $("#rekap").DataTable({
-                        // pagingType: "full_numbers",
-                        // processing: true,
-                        // select: {
-                        //     style: "single",
-                        // },
-                        pageLength: 10,
-                        searching: false,
-                        dom: "Bfrtip",
-                        buttons: [
-                            ''
-                        ]
-                    });
-                }, 1000);
-            });
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDesa, setSelectedDesa] = useState("")
+
+    const rows = useMemo(() => {
+        let data = list_desa;
+        if (selectedKec !== "" && selectedKec !== '0') {
+            data = data.filter(item => {
+                let itemKec = `${item.k1}.${item.k2}.${item.k3}`
+
+                return itemKec === selectedKec
+            })
         }
-    }
 
-    showTable = () => {
-        const { resultData } = this.state;
-        try {
-            return resultData.list_desa.map((item, index) => {
-                return (
-                    <Penduduk
-                        key={item.kode_wilayah}
-                        no={index + 1}
-                        kec={item.nama_kecamatan}
-                        desa={item.nama_deskel}
-                        laki={item.pria}
-                        perempuan={item.wanita}
-                        total={item.jumlah_penduduk}
-                        kk={item.jumlah_kk}
-                        ktp={item.jml_wktp}
-                    />
+        if (selectedDesa !== "" && selectedDesa !== '0') {
+            data = data.filter(item => {
+                let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
 
-                );
-            });
-        } catch (e) {
-            alert(e.message);
+                return itemDesa === selectedDesa
+            })
         }
+        return data;
+
+    }, [selectedKec, selectedDesa])
+
+    const customStyles = {
+        headCells: {
+            style: {
+                fontSize: '15px',
+                fontWeight: 'bold',
+                backgroundColor: '#F1ECFF',
+                borderRight: '1px solid #EDEDED',
+                borderTop: '1px solid #EDEDED',
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '15px',
+                borderRight: '1px solid #EDEDED',
+            },
+        },
     };
 
-    render() {
-        return (
-            <div className="table-responsive">
-                <table id="rekap" className="table table-bordered">
-                    <thead>
-                        <tr style={{ background: '#F1ECFF' }}>
-                            <th>No</th>
-                            <th>Kecamatan</th>
-                            <th>Desa</th>
-                            <th>Laki-Laki</th>
-                            <th>Perempuan</th>
-                            <th>Jumlah Penduduk</th>
-                            <th>Jumlah KK</th>
-                            <th>Wajib KTP</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {this.showTable()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
-
-function Penduduk(props) {
     return (
-        <tr>
-            <td className="text-center">{props.no}</td>
-            <td>{props.kec}</td>
-            <td>{props.desa}</td>
-            <td>{props.laki}</td>
-            <td>{props.perempuan}</td>
-            <td>{props.total}</td>
-            <td>{props.kk}</td>
-            <td>{props.ktp}</td>
-        </tr>
+        <Fragment>
+            <div className="row g-1 mb-4">
+                <div className="col-3">
+                    <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                        <option value='0'>Semua Kecamatan</option>
+                        {list_kecamatan.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                        <option value='0'>Semua Desa</option>
+                        {list_desa.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+            </div>
+            <DataTable
+                columns={
+                    [
+                        {
+                            name: "No",
+                            selector: (row, index) => index + 1,
+                            width: "70px",
+                            style: {
+                                borderLeft: "1px solid #EDEDED"
+                            }
+                        },
+                        {
+                            name: "Kecamatan",
+                            sortable: true,
+                            selector: (row) => row.nama_kecamatan,
+                        },
+                        {
+                            name: "Desa",
+                            sortable: true,
+                            selector: (row) => row.nama_deskel,
+                        },
+                        {
+                            name: "Laki-Laki",
+                            sortable: true,
+                            selector: (row) => row.pria,
+                        },
+                        {
+                            name: "Perempuan",
+                            sortable: true,
+                            selector: (row) => row.wanita,
+                        },
+                        {
+                            name: "Jumlah Penduduk",
+                            sortable: true,
+                            selector: (row) => row.jumlah_penduduk,
+                        },
+                        {
+                            name: "Jumlah KK",
+                            sortable: true,
+                            selector: (row) => row.jumlah_kk,
+                        },
+                        {
+                            name: "Wajib KTP",
+                            sortable: true,
+                            selector: (row) => row.jml_wktp,
+                        },
+                    ]
+                }
+                data={rows}
+                customStyles={customStyles}
+                pagination
+            />
+
+        </Fragment>
     )
 }
 

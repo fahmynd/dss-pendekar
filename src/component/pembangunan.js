@@ -1,6 +1,6 @@
 import { React, Fragment, useEffect, useState } from 'react'
 import IdmChart from './chart/idmYoY'
-import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
+import { PetaPerkembangan } from './chart/petaPerkembanganDesa copy'
 import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
 import BalitaYoY from './chart/balitaStuntingYoY'
 import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
@@ -12,6 +12,7 @@ import Map from './mapPopup'
 import LoadingSpinner from './LoadingSpinner'
 import RekomendasiTable from './datatable/RekomendasiDataTable'
 import NewsT from './beritaTicker'
+import MapChart from './chart/map'
 
 const Pembangunan = () => {
     const [resultData, setResultData] = useState();
@@ -105,7 +106,9 @@ const Pembangunan = () => {
                                         </div>
                                     </div>
 
-                                    {resultData && <Map resultData={resultData} />}
+                                    <MapChart />
+
+                                    {/* {resultData && <Map resultData={resultData} />} */}
 
                                     <br />
                                     <div className="row g-0">
