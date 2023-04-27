@@ -8,21 +8,21 @@ import './assets/vendor/simple-datatables/style.css'
 import './assets/css/news-ticker.min.css'
 import './assets/css/style.css'
 
-const Header = lazy(() => import("./component/header"));
-const Sidebar = lazy(() => import("./component/sidebar"));
-const Footer = lazy(() => import("./component/footer"));
-const ScrollToTop = lazy(() => import("./component/scroll-to-top"));
-const LoadingSpinner = lazy(() => import("./component/LoadingSpinner"));
-const BantuanSosial = lazy(() => import("./component/bantuanSosial"));
-const BeritaPage = lazy(() => import("./component/berita"));
-const AdministrasiUmum = lazy(() => import("./component/administrasiUmum"));
-const Kependudukan = lazy(() => import("./component/kependudukan"));
-const Pembangunan = lazy(() => import("./component/pembangunan"));
-// const PerkembanganDesa = lazy(() => import("./component/perkembanganDesa"));
-const Keuangan = lazy(() => import("./component/keuangan"));
-const Umkm = lazy(() => import("./component/umkm"));
-const ProfilDesa = lazy(() => import("./component/profilDesa"));
-const Wisata = lazy(() => import("./component/wisata"));
+const Header = lazy(() => import("./layout/header"));
+const Sidebar = lazy(() => import("./layout/sidebar"));
+const Footer = lazy(() => import("./layout/footer"));
+const ScrollToTop = lazy(() => import("./utils/scroll-to-top"));
+const LoadingSpinner = lazy(() => import("./utils/LoadingSpinner"));
+const BantuanSosial = lazy(() => import("./screens/bantuanSosial"));
+const BeritaPage = lazy(() => import("./screens/berita"));
+const AdministrasiUmum = lazy(() => import("./screens/administrasiUmum"));
+const Kependudukan = lazy(() => import("./screens/kependudukan"));
+const Dashboard = lazy(() => import("./screens/dashboard"));
+// const PerkembanganDesa = lazy(() => import("./screens/perkembanganDesa"));
+const Keuangan = lazy(() => import("./screens/keuangan"));
+const Umkm = lazy(() => import("./screens/umkm"));
+const ProfilDesa = lazy(() => import("./screens/profilDesa"));
+const Wisata = lazy(() => import("./screens/wisata"));
 
 export default class App extends Component {
 
@@ -42,7 +42,7 @@ export default class App extends Component {
         <ScrollToTop />
         <Suspense fallback={<LoadingSpinner />}>
           <Routes>
-            <Route exact path="/" element={<Pembangunan />} />
+            <Route exact path="/" element={<Dashboard />} />
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
             {/* <Route path="/perkembangan-desa" element={<PerkembanganDesa />} /> */}
             <Route path="/kependudukan" element={<Kependudukan />} />

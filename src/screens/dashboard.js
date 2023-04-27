@@ -1,20 +1,20 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import IdmChart from './chart/idmYoY'
-import { PetaPerkembangan } from './chart/petaPerkembanganDesa copy'
-import BalitaStuntingJumlah from './chart/balitaStuntingJumlah'
-import BalitaYoY from './chart/balitaStuntingYoY'
-import { LembagaKemasyarakatan } from './chart/lembagaKemasyarakatan'
-import { PotensiManusia } from './chart/potensiManusia'
-import PotensiSDA from './chart/potensiSDA'
+import IdmChart from '../component/chart/idmYoY'
+import { PetaPerkembangan } from '../component/chart/petaPerkembanganDesa'
+import BalitaStuntingJumlah from '../component/chart/balitaStuntingJumlah'
+import BalitaYoY from '../component/chart/balitaStuntingYoY'
+import { LembagaKemasyarakatan } from '../component/chart/lembagaKemasyarakatan'
+import { PotensiManusia } from '../component/chart/potensiManusia'
+import PotensiSDA from '../component/chart/potensiSDA'
 import axios from 'axios'
 import { BASE_API_URL } from '../utils/api'
-import Map from './mapPopup'
-import LoadingSpinner from './LoadingSpinner'
-import RekomendasiTable from './datatable/RekomendasiDataTable'
-import NewsT from './beritaTicker'
-import MapChart from './chart/map'
+import Map from '../component/mapPopup'
+import LoadingSpinner from '../utils/LoadingSpinner'
+import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
+import NewsT from '../component/beritaTicker'
+import MapChart from '../component/chart/map'
 
-const Pembangunan = () => {
+const Dashboard = () => {
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [kec, setKec] = useState([]);
@@ -552,4 +552,4 @@ function DesaPotensi(props) {
     )
 }
 
-export default Pembangunan
+export default Dashboard

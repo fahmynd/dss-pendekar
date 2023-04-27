@@ -28,13 +28,17 @@ export const PetaPerkembangan = (props) => {
                 left: "3%",
                 right: "7%",
                 bottom: "3%",
-                containLabel: true
+                containLabel: true,
+                tooltip: {
+                    trigger: "item",
+                    formatter: '{a}'
+                }
             },
             xAxis: {
-                type: "value",
+                data: ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI'],
                 scale: true,
                 axisLabel: {
-                    formatter: "IDM: {value}"
+                    formatter: "{value}"
                 },
                 axisPointer: {
                     type: 'none'
@@ -57,9 +61,10 @@ export const PetaPerkembangan = (props) => {
             },
             yAxis: {
                 type: "value",
+                name: "SDGS",
                 scale: true,
                 axisLabel: {
-                    formatter: "SDGS: {value}"
+                    formatter: "{value}"
                 },
                 axisTick: {
                     show: false
@@ -101,7 +106,7 @@ export const PetaPerkembangan = (props) => {
                     name: "BERKEMBANG",
                     type: "scatter",
                     data: [
-                        [0, 0.3],
+                        [0, 0.8],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -110,7 +115,7 @@ export const PetaPerkembangan = (props) => {
                     name: "MAJU",
                     type: "scatter",
                     data: [
-                        [0, 0.3],
+                        [0, 1.3],
                     ],
                     symbolSize: 13,
                     label: {}
@@ -119,7 +124,7 @@ export const PetaPerkembangan = (props) => {
                     name: "MANDIRI",
                     type: "scatter",
                     data: [
-                        [0, 0.3],
+                        [0, 2.3],
                     ],
                     symbolSize: 13,
                     label: {

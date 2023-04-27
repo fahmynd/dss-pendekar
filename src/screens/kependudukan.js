@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api';
-import PendudukJumlah from './chart/pendudukJumlah';
-import PendudukTable from './datatable/PdkDataTable';
-import RekapPendudukTable from './datatable/RekapPdkDataTable';
-import LoadingSpinner from './LoadingSpinner';
-import MiskinPendudukTable from './datatable/MiskinPdkDataTable';
-import AdmUmur from './chart/AdmUmur';
+import PendudukJumlah from '../component/chart/pendudukJumlah';
+import PendudukTable from '../component/datatable/PdkDataTable';
+import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
+import LoadingSpinner from '../utils/LoadingSpinner';
+import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
+import AdmUmur from '../component/chart/AdmUmur';
 
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);

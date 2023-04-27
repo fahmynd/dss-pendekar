@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api';
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../utils/LoadingSpinner';
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
-import BansosTable from './datatable/RekapBansosDataTable';
+import BansosTable from '../component/datatable/RekapBansosDataTable';
 
 const BantuanSosial = () => {
     const [resultData, setResultData] = useState();

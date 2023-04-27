@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
-import LoadingSpinner from './LoadingSpinner';
-import ProfilDesaPagination from './pagination/profilDesaPagination';
+import LoadingSpinner from '../utils/LoadingSpinner';
+import ProfilDesaPagination from '../component/pagination/profilDesaPagination';
 import { BASE_API_URL } from '../utils/api';
-import ProfilTable from './datatable/ProfilDesaDataTable';
+import ProfilTable from '../component/datatable/ProfilDesaDataTable';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);

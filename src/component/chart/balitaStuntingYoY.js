@@ -50,7 +50,10 @@ const BalitaYoY = (props) => {
                 left: '3%',
                 right: '4%',
                 bottom: '3%',
-                containLabel: true
+                containLabel: true,
+                // tooltip: {
+                //     trigger: "item"
+                // }
             },
             xAxis: [
                 {

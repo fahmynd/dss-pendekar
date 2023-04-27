@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import NewsTicker from "react-advanced-news-ticker";
-import LoadingSpinner from './LoadingSpinner';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
 const NewsT = () => {
     const ref = useRef(null);

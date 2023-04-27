@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { ClipLoader } from 'react-spinners';
 import { BASE_API_URL } from '../utils/api';
-import AdminTable from './datatable/AdmDataTable';
-import LoadingSpinner from './LoadingSpinner';
+import AdminTable from '../component/datatable/AdmDataTable';
+import LoadingSpinner from '../utils/LoadingSpinner';
 
 const AdministrasiUmum = () => {
     const [resultData, setResultData] = useState();

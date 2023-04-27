@@ -2,8 +2,8 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import NewsTicker from "react-advanced-news-ticker";
-import LoadingSpinner from './LoadingSpinner';
-import BeritaPagination from './pagination/beritaPagination';
+import LoadingSpinner from '../utils/LoadingSpinner';
+import BeritaPagination from '../component/pagination/beritaPagination';
 
 const BeritaPage = () => {
     const ref = useRef(null);

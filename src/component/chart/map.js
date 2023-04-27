@@ -36,9 +36,47 @@ function MapChart() {
         }));
 
         polygonSeries.mapPolygons.template.setAll({
-            tooltipText: "{name}",
+            tooltipHTML: `<h5 class="card-title-potensi p-0" style="color: #3B2D64;">Desa {deskel}</h5>
+                                    <p class='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
+                                    <div class="filter-primary">
+                                        <h5>
+                                            <span class="badge bg-verifikasi"><i class='bx bx-cctv'></i> CCTV</span>
+                                        </h5>
+                                    </div>
+                                    <div class='row'>
+                                        <div class='col-md fw-bold'>
+                                            <h5 class="fw-bold">Capaian</h5>
+                                            <div class='row g-2'>
+                                                <div class='col-6'>KD</div>
+                                                <div class='col-6'>: {kd}</div>
+                                                <div class='col-6'>IDM</div>
+                                                <div class='col-6'>: {idm}</div>
+                                                <div class='col-6'>SDGS</div>
+                                                <div class='col-6'>: {sdgs}</div>
+                                                <div class='col-6'>AR</div>
+                                                <div class='col-6'>: {ar}</div>
+                                                <div class='col-6'>Program</div>
+                                                <div class='col-6'>: {program}</div>
+                                            </div>
+                                        </div>
+                                        <div class='col-md fw-bold'>
+                                            <h5 class='fw-bold'>Potensi</h5>
+                                            <div class='row g-2'>
+                                                <div class='col-6'>SDA</div>
+                                                <div class='col-6'>: {sda}</div>
+                                                <div class='col-6'>SDM</div>
+                                                <div class='col-6'>: {sdm}</div>
+                                                <div class='col-6'>LK</div>
+                                                <div class='col-6'>: {lk}</div>
+                                                <div class='col-6'>Sarana Prasarana</div>
+                                                <div class='col-6'>: {sarpras}</div>
+                                            </div>
+                                        </div>
+                                    </div>`,
             toggleKey: "active",
-            interactive: true
+            fill: am5.color(0xaaaaaa),
+            interactive: true,
+            keepTargetHover: true
         });
 
         polygonSeries.mapPolygons.template.states.create("hover", {

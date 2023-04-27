@@ -1,5 +1,5 @@
 import { React, Fragment, useEffect } from 'react'
-import AnggaranDesa from './chart/anggaranDesa'
+import AnggaranDesa from '../component/chart/anggaranDesa'
 
 const Keuangan = () => {
     useEffect(() => {

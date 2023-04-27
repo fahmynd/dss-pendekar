@@ -1,9 +1,9 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import JenisUsaha from './chart/jenisUsaha'
-import UsahaDiWilayah from './chart/usahaDiWilayah'
+import JenisUsaha from '../component/chart/jenisUsaha'
+import UsahaDiWilayah from '../component/chart/usahaDiWilayah'
 import axios from 'axios'
-import LoadingSpinner from './LoadingSpinner'
-import UmkmPagination from './pagination/umkmPagination'
+import LoadingSpinner from '../utils/LoadingSpinner'
+import UmkmPagination from '../component/pagination/umkmPagination'
 import { BASE_API_URL } from '../utils/api'
 
 const Umkm = () => {

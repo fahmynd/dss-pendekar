@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
-import LoadingSpinner from './LoadingSpinner';
-import BeritaPagination from './pagination/beritaPagination';
+import LoadingSpinner from '../utils/LoadingSpinner';
+import BeritaPagination from '../component/pagination/beritaPagination';
 import FotoWisata from '../assets/img/slides-1.jpg'
 
 const Wisata = () => {

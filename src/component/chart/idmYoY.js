@@ -25,7 +25,10 @@ const IdmChart = (props) => {
                 right: '4%',
                 top: '5%',
                 bottom: '20%',
-                containLabel: true
+                containLabel: true,
+                tooltip: {
+                    trigger: "item"
+                }
             },
             xAxis: [
                 {
