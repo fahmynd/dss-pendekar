@@ -1,106 +1,136 @@
-import React from "react";
-import "jquery/dist/jquery.min.js";
-import "datatables.net-dt/js/dataTables.dataTables";
-// import "datatables.net-dt/css/jquery.dataTables.min.css";
-import "datatables.net-buttons/js/dataTables.buttons.js";
-import "datatables.net-buttons/js/buttons.colVis.js";
-import "datatables.net-buttons/js/buttons.flash.js";
-import "datatables.net-buttons/js/buttons.html5.js";
-import "datatables.net-buttons/js/buttons.print.js";
-// import 'datatables.net-plugins/pagination/input.js';
-import $ from "jquery";
+import React, { useMemo, useState, Fragment } from "react";
+import DataTable from 'react-data-table-component';
 
-class ProfilTable extends React.Component {
-    constructor(props) {
-        super();
-        this.state = {
-            resultData: props.resultData
-        };
-    }
+const ProfilTable = (props) => {
+    const { list_kecamatan, list_desa } = props.resultData;
 
-    componentDidMount() {
-        if (!$.fn.DataTable.isDataTable("#myTable")) {
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $("#profil").DataTable({
-                        pagingType: 'simple_numbers',
-                        pageLength: 10,
-                        // language: {
-                        //     oPaginate: {
-                        //         sNext: '<i class="fa fa-forward"></i>',
-                        //         sPrevious: '<i class="fa fa-backward"></i>',
-                        //         sFirst: '<i class="fa fa-step-backward"></i>',
-                        //         sLast: '<i class="fa fa-step-forward"></i>'
-                        //     }
-                        // },
-                        searching: false,
-                        dom: "Bfrtip",
-                        buttons: [
-                            ''
-                        ]
-                    });
-                }, 1000);
-            });
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDesa, setSelectedDesa] = useState("")
+    const [query, setQuery] = useState("")
+
+    const rows = useMemo(() => {
+        let data = list_desa;
+        if (selectedKec !== "" && selectedKec !== '0') {
+            data = data.filter(item => {
+                let itemKec = `${item.k1}.${item.k2}.${item.k3}`
+
+                return itemKec === selectedKec
+            })
         }
-    }
 
-    showTable = () => {
-        const { resultData } = this.state;
-        try {
-            return resultData.map((item, index) => {
-                return (
-                    <Profil
-                        key={item.kode_wilayah}
-                        no={index + 1}
-                        kode={item.kode_wilayah}
-                        kec={item.nama_kecamatan}
-                        desa={item.nama_deskel}
-                        link={item.link}
-                    />
+        if (selectedDesa !== "" && selectedDesa !== '0') {
+            data = data.filter(item => {
+                let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
 
-                );
-            });
-        } catch (e) {
-            alert(e.message);
+                return itemDesa === selectedDesa
+            })
         }
+
+        if (query !== "" && query !== '0') {
+            data = data.filter(item => {
+                return item.nama_deskel.toLowerCase().includes(query)
+            })
+        }
+
+        return data;
+
+    }, [selectedKec, selectedDesa, query])
+
+    const customStyles = {
+        headCells: {
+            style: {
+                fontSize: '15px',
+                fontWeight: 'bold',
+                backgroundColor: '#F1ECFF',
+                borderRight: '1px solid #EDEDED',
+                borderTop: '1px solid #EDEDED',
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '15px',
+                borderRight: '1px solid #EDEDED',
+            },
+        },
     };
 
-    render() {
-        return (
-            <div className="table-responsive">
-                <table id="profil" className="table table-bordered">
-                    <thead>
-                        <tr style={{ background: '#F1ECFF' }}>
-                            <th>No</th>
-                            <th>Kode Wilayah</th>
-                            <th>Kecamatan</th>
-                            <th>Desa</th>
-                            <th>Website</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {this.showTable()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
-
-function Profil(props) {
     return (
-        <tr>
-            <td className="text-center">{props.no}</td>
-            <td>{props.kode}</td>
-            <td>{props.kec}</td>
-            <td>{props.desa}</td>
-            <td>
-                <a href={props.link} target={'_blank'} rel='noreferrer' style={{ color: '#3B2D64' }}><i className="fa-solid fa-earth-asia"></i>
-                    &nbsp; Website Desa {props.desa}
-                </a>
-            </td>
-        </tr>
+        <Fragment>
+            <div className="row g-1 my-4">
+                <div className="col-3">
+                    <div className="search-produk">
+                        <form className="search-form-produk d-flex align-items-center">
+                            <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
+                            <button title="Search"><i className="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                        <option value='0'>Semua Kecamatan</option>
+                        {list_kecamatan.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                        <option value='0'>Semua Desa</option>
+                        {list_desa.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+            </div>
+            <DataTable
+                columns={
+                    [
+                        {
+                            name: "No",
+                            selector: (row, index) => index + 1,
+                            width: "70px",
+                            style: {
+                                borderLeft: "1px solid #EDEDED"
+                            }
+                        },
+                        {
+                            name: "Kode Wilayah",
+                            sortable: true,
+                            selector: (row) => row.kode_wilayah,
+                        },
+                        {
+                            name: "Kecamatan",
+                            sortable: true,
+                            selector: (row) => row.nama_kecamatan,
+                        },
+                        {
+                            name: "Desa",
+                            sortable: true,
+                            selector: (row) => row.nama_deskel,
+                        },
+                        {
+                            name: "Website",
+                            sortable: true,
+                            selector: (row) => row.link,
+                            cell: (row) => {
+                                return (
+                                    <a href={row.link} target={'_blank'} rel='noreferrer' style={{ color: '#3B2D64' }}><i className="fa-solid fa-earth-asia"></i>
+                                        &nbsp; Website Desa {row.desa}
+                                    </a>
+                                )
+                            },
+                        },
+                    ]
+                }
+                data={rows}
+                customStyles={customStyles}
+                pagination
+            />
+        </Fragment>
     )
 }
 

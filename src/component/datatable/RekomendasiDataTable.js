@@ -6,6 +6,7 @@ const RekomendasiTable = (props) => {
 
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
+    const [query, setQuery] = useState("")
 
     const rows = useMemo(() => {
         let data = list_desa;
@@ -24,9 +25,16 @@ const RekomendasiTable = (props) => {
                 return itemDesa === selectedDesa
             })
         }
+
+        if (query !== "" && query !== '0') {
+            data = data.filter(item => {
+                return item.nama_deskel.toLowerCase().includes(query)
+            })
+        }
+
         return data;
 
-    }, [selectedKec, selectedDesa])
+    }, [selectedKec, selectedDesa, query])
 
     const customStyles = {
         headCells: {
@@ -58,6 +66,14 @@ const RekomendasiTable = (props) => {
     return (
         <Fragment>
             <div className="row g-1 my-4">
+                <div className="col-3">
+                    <div className="search-produk">
+                        <form className="search-form-produk d-flex align-items-center">
+                            <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
+                            <button title="Search"><i className="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                </div>
                 <div className="col-3">
                     <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
                         <option value='0'>Semua Kecamatan</option>

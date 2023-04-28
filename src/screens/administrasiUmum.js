@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { ClipLoader } from 'react-spinners';
 import { BASE_API_URL } from '../utils/api';
 import AdminTable from '../component/datatable/AdmDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
@@ -137,7 +136,7 @@ const AdministrasiUmum = () => {
                                                         </div>
                                                         <div className="ps-2">
                                                             <span className="text-muted pt-2">Peraturan Desa</span>
-                                                            <h6>{isLoading ? <ClipLoader /> : peraturan_desa}</h6>
+                                                            <h6>{peraturan_desa}</h6>
                                                         </div>
                                                         <div className="adm-umum small">
                                                             +{peraturan_desa_add}/Minggu

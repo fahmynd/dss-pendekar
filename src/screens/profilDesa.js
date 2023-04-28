@@ -1,15 +1,13 @@
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import LoadingSpinner from '../utils/LoadingSpinner';
-import ProfilDesaPagination from '../component/pagination/profilDesaPagination';
+// import ProfilDesaPagination from '../component/pagination/profilDesaPagination';
 import { BASE_API_URL } from '../utils/api';
 import ProfilTable from '../component/datatable/ProfilDesaDataTable';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
-    const [kec, setKec] = useState([]);
-    const [desa, setDesa] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -18,9 +16,7 @@ const ProfilDesa = () => {
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
-                setResultData(data.list_desa);
-                setKec(data.list_kecamatan)
-                setDesa(data.list_desa)
+                setResultData(data);
             })
             .catch(error => {
                 alert(error.message);
@@ -44,7 +40,7 @@ const ProfilDesa = () => {
                 <section className="section dashboard">
                     <div className="row">
 
-                        <div className="col-lg-12 d-none">
+                        {/* <div className="col-lg-12 d-none">
                             <div className="row g-1 mb-4">
                                 <div className="col-5">
                                     <div className="search-produk">
@@ -70,49 +66,11 @@ const ProfilDesa = () => {
                                 </div>
                             </div>
                             {resultData && <ProfilDesaPagination resultData={resultData} />}
-                        </div>
+                        </div> */}
 
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <div className="row g-1 my-4">
-                                        <div className="col-3">
-                                            <div className="search-produk">
-                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     {resultData && <ProfilTable resultData={resultData} />}
 
@@ -125,18 +83,6 @@ const ProfilDesa = () => {
 
             </main>
         </Fragment>
-    )
-}
-
-function Kecamatan(props) {
-    return (
-        <option value="1">{props.listkec}</option>
-    )
-}
-
-function Desa(props) {
-    return (
-        <option value="1">{props.listdesa}</option>
     )
 }
 
