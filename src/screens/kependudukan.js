@@ -7,6 +7,12 @@ import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
 import AdmUmur from '../component/chart/AdmUmur';
+import AdmDusun from '../component/chart/AdmDusun';
+import AdmPendidikan from '../component/chart/AdmPendidikan';
+import AdmPekerjaan from '../component/chart/AdmPekerjaan';
+import AdmPerkawinan from '../component/chart/AdmPerkawinan';
+import AdmKeluarga from '../component/chart/AdmKeluarga';
+import AdmAgama from '../component/chart/AdmAgama';
 
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -198,22 +204,22 @@ const Kependudukan = () => {
                                             <AdmUmur />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-dusun" role="tabpanel" aria-labelledby="dusun-tab">
-                                            dusun
+                                            <AdmDusun />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-pendidikan" role="tabpanel" aria-labelledby="pendidikan-tab">
-                                            Pendidikan
+                                            <AdmPendidikan />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-pekerjaan" role="tabpanel" aria-labelledby="pekerjaan-tab">
-                                            Pekerjaan
+                                            <AdmPekerjaan />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-perkawinan" role="tabpanel" aria-labelledby="perkawinan-tab">
-                                            Perkawinan
+                                            <AdmPerkawinan />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-keluarga" role="tabpanel" aria-labelledby="keluarga-tab">
-                                            Keluarga
+                                            <AdmKeluarga />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-agama" role="tabpanel" aria-labelledby="agama-tab">
-                                            Agama
+                                            <AdmAgama />
                                         </div>
                                     </div>
 

@@ -3,10 +3,10 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmUmur() {
+function AdmAgama() {
     useLayoutEffect(() => {
 
-        let root = am5.Root.new("admUmurChart");
+        let root = am5.Root.new("admAgamaChart");
 
         root.setThemes([am5themes_Animated.new(root)]);
 
@@ -35,100 +35,45 @@ function AdmUmur() {
 
         var data = [
             {
-                age: "85+",
+                agama: "Islam",
                 Laki: -1,
                 Perempuan: 1
             },
             {
-                age: "80-54",
-                Laki: -0.2,
-                Perempuan: 0.3
+                agama: "Kristen",
+                Laki: -1,
+                Perempuan: 1
             },
             {
-                age: "75-79",
-                Laki: -0.3,
-                Perempuan: 0.6
+                agama: "Katolik",
+                Laki: -1,
+                Perempuan: 1
             },
             {
-                age: "70-74",
-                Laki: -0.5,
-                Perempuan: 0.8
+                agama: "Hindu",
+                Laki: -1,
+                Perempuan: 1
             },
             {
-                age: "65-69",
-                Laki: -0.8,
-                Perempuan: 1.0
+                agama: "Buddha",
+                Laki: -1,
+                Perempuan: 1
             },
             {
-                age: "60-64",
-                Laki: -1.1,
-                Perempuan: 1.3
+                agama: "Konghuchu",
+                Laki: -1,
+                Perempuan: 1
             },
             {
-                age: "55-59",
-                Laki: -1.7,
-                Perempuan: 1.9
+                agama: "Kepercayaan Lainnya",
+                Laki: -1,
+                Perempuan: 1
             },
-            {
-                age: "50-54",
-                Laki: -2.2,
-                Perempuan: 2.5
-            },
-            {
-                age: "45-49",
-                Laki: -2.8,
-                Perempuan: 3.0
-            },
-            {
-                age: "40-44",
-                Laki: -3.4,
-                Perempuan: 3.6
-            },
-            {
-                age: "35-39",
-                Laki: -4.2,
-                Perempuan: 4.1
-            },
-            {
-                age: "30-34",
-                Laki: -5.2,
-                Perempuan: 4.8
-            },
-            {
-                age: "25-29",
-                Laki: -5.6,
-                Perempuan: 5.1
-            },
-            {
-                age: "20-24",
-                Laki: -5.1,
-                Perempuan: 5.1
-            },
-            {
-                age: "15-19",
-                Laki: -3.8,
-                Perempuan: 3.8
-            },
-            {
-                age: "10-14",
-                Laki: -3.2,
-                Perempuan: 3.4
-            },
-            {
-                age: "5-9",
-                Laki: -4.4,
-                Perempuan: 4.1
-            },
-            {
-                age: "0-4",
-                Laki: -5.0,
-                Perempuan: 4.8
-            }
         ];
 
         var yAxis = chart.yAxes.push(
             am5xy.CategoryAxis.new(root, {
-                categoryField: "age",
+                categoryField: "agama",
                 renderer: am5xy.AxisRendererY.new(root, {
                     minGridDistance: 0,
                     inversed: true,
@@ -157,7 +102,7 @@ function AdmUmur() {
                     xAxis: xAxis,
                     yAxis: yAxis,
                     valueXField: field,
-                    categoryYField: "age",
+                    categoryYField: "agama",
                     sequencedInterpolation: true,
                     clustered: false,
                     tooltip: am5.Tooltip.new(root, {
@@ -236,8 +181,8 @@ function AdmUmur() {
     }, []);
 
     return (
-        <div id="admUmurChart" style={{ width: "100%", height: "400px" }}></div>
+        <div id="admAgamaChart" style={{ width: "100%", height: "400px" }}></div>
     );
 }
 
-export default AdmUmur
+export default AdmAgama

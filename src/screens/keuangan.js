@@ -148,8 +148,8 @@ const Keuangan = () => {
                                     <div className="mb-5">
                                         <div className="card">
                                             <div className="card-body pb-0">
-                                                <h5 className="card-title-potensi pb-0">GRAFIK VS REALISASI</h5>
-                                                <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
+                                                <h5 className="card-title-potensi">GRAFIK VS REALISASI</h5>
+                                                {/* <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p> */}
                                                 <div className="filter-primary">
                                                     <button type="button" className="btn btn-primary">Export Report</button>
                                                 </div>
@@ -299,7 +299,7 @@ const Keuangan = () => {
                                                                     <li>Bidang Pelaksanaan Pembangunan Desa</li>
                                                                     <li>Bidang Pembinaan Kemasyarakatan</li>
                                                                     <li>Bidang Pemberdayaan Masyarakat</li>
-                                                                    <li>Bidang Penanggulangan Bencana, Darurat dan Mendesa Desa</li>
+                                                                    <li>Bidang Penanggulangan Bencana, Darurat dan Mendesak Desa</li>
                                                                 </ul>
                                                                 <p>JUMLAH BELANJA</p>
                                                             </td>
@@ -457,6 +457,11 @@ const Keuangan = () => {
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope='row'>1</th>
+                                                                <td>Manggala</td>
+                                                                <td>Pilanggede</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
@@ -468,9 +473,6 @@ const Keuangan = () => {
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
@@ -479,28 +481,11 @@ const Keuangan = () => {
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope='row'>1</th>
                                                                 <td>Manggala</td>
                                                                 <td>Pilanggede</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope='row'>1</th>
-                                                                <td>Manggala</td>
-                                                                <td>Pilanggede</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
                                                                 <td>-</td>
