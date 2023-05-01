@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ReactEcharts from "echarts-for-react"
 
+const STATUS_DESA = ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI']
+
 export const PetaPerkembangan = (props) => {
-    const options = () => {
-        // let chart_sdgs = [];
-        // props.resultData.data.list_desa.forEach((item, index) => {
-        //     chart_sdgs[index] = item.capaian.sdgs
-        // })
+    const data = useMemo(() => {
+        const {list_desa } = props.resultData.data
 
-        // let chart_idm = [];
-        // props.resultData.data.list_desa.forEach((item, index) => {
-        //     chart_idm[index] = item.capaian.idm
-        // })
+        const transformed = list_desa.map(desa => {
+            
+            return {
+                name: desa.nama_deskel + ` - Skor SDGS ${desa.capaian.sdgs}`,
+                type: "scatter",
+                data: [
+                    [
+                        STATUS_DESA.indexOf(desa.current_status), 
+                        desa.capaian.sdgs
+                    ],
+                ],
+                symbolSize: 13,
+                label: {}
+            }
+        })
+        
+        return transformed;
+    },[props.resultData])
 
+    const chartSettings = useMemo(() => {
         return {
             tooltip: {
                 trigger: 'axis',
@@ -23,19 +37,21 @@ export const PetaPerkembangan = (props) => {
                     }
                 }
             },
-            legend: {},
+            legend: {
+                show: false
+            },
             grid: {
                 left: "3%",
                 right: "7%",
                 bottom: "3%",
-                containLabel: true,
+                // containLabel: true,
                 tooltip: {
                     trigger: "item",
                     formatter: '{a}'
                 }
             },
             xAxis: {
-                data: ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI'],
+                data: STATUS_DESA,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}"
@@ -81,68 +97,15 @@ export const PetaPerkembangan = (props) => {
                     lineStyle: {
                         type: "dashed"
                     }
-                },
+                }
             },
-            series: [
-                {
-                    name: "SANGAT TERTINGGAL",
-                    type: "scatter",
-                    data: [
-                        [0, 0],
-                    ],
-                    symbolSize: 13,
-                    label: {}
-                },
-                {
-                    name: "TERTINGGAL",
-                    type: "scatter",
-                    data: [
-                        [0, 0.3],
-                    ],
-                    symbolSize: 13,
-                    label: {}
-                },
-                {
-                    name: "BERKEMBANG",
-                    type: "scatter",
-                    data: [
-                        [0, 0.8],
-                    ],
-                    symbolSize: 13,
-                    label: {}
-                },
-                {
-                    name: "MAJU",
-                    type: "scatter",
-                    data: [
-                        [0, 1.3],
-                    ],
-                    symbolSize: 13,
-                    label: {}
-                },
-                {
-                    name: "MANDIRI",
-                    type: "scatter",
-                    data: [
-                        [0, 2.3],
-                    ],
-                    symbolSize: 13,
-                    label: {
-                        show: false
-                    },
-                    tooltip: {
-                        valueFormatter: function (value) {
-                            return value + '';
-                        }
-                    },
-                },
-            ]
+            series: data
         }
-    }
+    },[data])
 
     return (
         <ReactEcharts
-            option={options()}
+            option={chartSettings}
             style={{ width: "auto", height: "500px" }}
         ></ReactEcharts>
     )
