@@ -13,6 +13,7 @@ import LoadingSpinner from '../utils/LoadingSpinner'
 import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
 import NewsT from '../component/beritaTicker'
 import MapChart from '../component/chart/map'
+import { Potensi } from '../component/potensi/potensi'
 
 const Dashboard = () => {
     const [resultData, setResultData] = useState();
@@ -308,102 +309,7 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="col-lg-12">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title-potensi">POTENSI</h5>
-                                    <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">KECAMATAN</h5>
-                                                </div>
-                                                <div className="list-group-potensi mt-3">
-                                                    {kec.map((kec) => {
-                                                        return (
-                                                            <KecamatanPotensi
-                                                                key={kec.kode_wilayah}
-                                                                listkec={kec.nama_kecamatan}
-                                                            />
-                                                        )
-                                                    })
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-4">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">Potensi Manusia</h5>
-                                                </div>
-                                                <div className="card-body-chart m-auto mt-4" style={{ position: 'relative', height: '300px', width: '300px' }}>
-                                                    {resultData && <PotensiManusia resultData={resultData} />}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-5">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">Potensi SDA</h5>
-                                                </div>
-                                                <div className="card-body-chart mt-4">
-                                                    {resultData && <PotensiSDA resultData={resultData} />}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md-3">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">DESA/KELURAHAN</h5>
-                                                </div>
-                                                <div className="list-group-potensi mt-3">
-                                                    {desa.map((deskel) => {
-                                                        return (
-                                                            <DesaPotensi
-                                                                key={deskel.kode_wilayah}
-                                                                listdesa={deskel.nama_deskel}
-                                                            />
-                                                        )
-                                                    })
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-4">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">Lembaga Kemasyarakatan</h5>
-                                                </div>
-                                                <div className="card-body-chart m-auto mt-4" style={{ position: 'relative', height: '300px', width: '300px' }}>
-                                                    <LembagaKemasyarakatan />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-5">
-                                            <div className="potensi-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">Sarana & Prasarana</h5>
-                                                </div>
-                                                <div className="card-body-chart mt-4">
-                                                    {resultData && <PotensiSDA resultData={resultData} />}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Potensi desa={desa} kec={kec} resultData={resultData} />
 
                         <div className="col-lg-12">
                             <div className="card">

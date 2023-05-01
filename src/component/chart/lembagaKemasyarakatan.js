@@ -19,26 +19,6 @@ ChartJS.register(
     Legend
 );
 
-export const data = {
-    labels: ['Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [2, 9, 3, 5, 2],
-            backgroundColor: 'rgba(232, 193, 160, 0.25)',
-            borderColor: '#E8C1A0',
-            borderWidth: 1,
-        },
-        {
-            label: '# of Votes 2',
-            data: [7, 2, 5, 6, 3],
-            backgroundColor: 'rgba(103, 197, 135, 0.25)',
-            borderColor: '#67C587',
-            borderWidth: 1,
-        },
-    ],
-};
-
 const options = {
     responsive: true,
     plugins: {
@@ -55,6 +35,24 @@ const options = {
     }
 };
 
-export function LembagaKemasyarakatan() {
+export function LembagaKemasyarakatan(props) {
+    const data = {
+        labels: ['BPD', 'Karang Taruna', 'LPMD', 'PKK', 'Posyandu'],
+        datasets: [
+            {
+                label: '# of Votes',
+                data: [
+                    props?.data.bpd,
+                    props?.data.karang_taruna,
+                    props?.data.lpmd,
+                    props?.data.pkk,
+                    props?.data.posyandu,
+                ],
+                backgroundColor: 'rgba(232, 193, 160, 0.25)',
+                borderColor: '#E8C1A0',
+                borderWidth: 1,
+            }
+        ],
+    };
     return <Radar data={data} options={options} />;
 }

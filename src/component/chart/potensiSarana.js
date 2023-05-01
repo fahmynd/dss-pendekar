@@ -2,7 +2,7 @@ import ReactEcharts from "echarts-for-react"
 
 
 
-function PotensiSDA(props) {
+function PotensiSarana(props) {
     
     const {data} = props
     
@@ -10,7 +10,7 @@ function PotensiSDA(props) {
         grid: { top: 20, right: 40, bottom: 20, left: 40 },
         xAxis: {
             type: "category",
-            data: ["Perikanan", "Pertanian", "Perkebunan"],
+            data: ["Ibadah", "Sekolah", "Umum"],
         },
         yAxis: {
             type: "value"
@@ -19,15 +19,15 @@ function PotensiSDA(props) {
             {
                 data: [
                     {
-                        value: data?.perikanan,
+                        value: data?.ibadah,
                         itemStyle: { color: '#729FE8' },
                     },
                     {
-                        value: data?.pertanian,
+                        value: data?.sekolah,
                         itemStyle: { color: '#FF7723' },
                     },
                     {
-                        value: data?.perkebunan,
+                        value: data?.umum,
                         itemStyle: { color: '#67C587' },
                     }
                 ],
@@ -49,4 +49,4 @@ function PotensiSDA(props) {
     )
 }
 
-export default PotensiSDA
+export default PotensiSarana
