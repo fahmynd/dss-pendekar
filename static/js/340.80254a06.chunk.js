@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkdss_pendekar=self.webpackChunkdss_pendekar||[]).push([[340],{15340:function(n,e,u){u.r(e),u.d(e,{default:function(){return t}});var r=u(72791),s=u(57689);function t(){var n=(0,s.TH)().pathname;return(0,r.useEffect)((function(){window.scrollTo(0,0)}),[n]),null}}}]);
-//# sourceMappingURL=340.80254a06.chunk.js.map
