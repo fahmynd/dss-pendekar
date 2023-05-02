@@ -1,7 +1,8 @@
 import React, { useLayoutEffect } from 'react';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
-import am5geodata_indonesiaLow from "@amcharts/amcharts5-geodata/indonesiaLow";
+// import am5geodata_indonesiaLow from "@amcharts/amcharts5-geodata/indonesiaLow";
+import am5geodata_indonesiaLow from "./mapDataEnrekang";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 function MapChart() {
