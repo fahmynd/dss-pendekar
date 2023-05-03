@@ -43,13 +43,17 @@ const BalitaStuntingJumlah = (props) => {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 0.3],
+                position: "bottom",
+                min: 0,
+                max: function (value) {
+                    return value.max;
+                },
                 splitLine: {
                     show: true,
                     lineStyle: {
                         type: "dashed"
                     }
-                }
+                },
             },
             yAxis: {
                 type: 'category',
@@ -111,8 +115,9 @@ const BalitaStuntingJumlah = (props) => {
                 type: 'inside',
                 id: 'insideY',
                 yAxisIndex: 0,
-                start: 95,
-                end: 100,
+                startValue: 95,
+                endValue: 100,
+                filterMode: 'empty',
                 zoomOnMouseWheel: false,
                 moveOnMouseMove: true,
                 moveOnMouseWheel: true

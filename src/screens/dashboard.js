@@ -417,7 +417,9 @@ const Dashboard = () => {
                                                         </div>
 
                                                     </div>
+
                                                     {resultData && <BalitaStuntingJumlah resultData={resultData} />}
+
                                                 </div>
                                             </div>
                                         </div>

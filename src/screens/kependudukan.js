@@ -7,7 +7,6 @@ import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
 import AdmUmur from '../component/chart/AdmUmur';
-import AdmDusun from '../component/chart/AdmDusun';
 import AdmPendidikan from '../component/chart/AdmPendidikan';
 import AdmPekerjaan from '../component/chart/AdmPekerjaan';
 import AdmPerkawinan from '../component/chart/AdmPerkawinan';
@@ -181,9 +180,6 @@ const Kependudukan = () => {
                                             <button className="nav-link w-100 active" id="umur-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-umur" type="button" role="tab" aria-controls="umur" aria-selected="true">Umur</button>
                                         </li>
                                         <li className="nav-item flex-fill" role="presentation">
-                                            <button className="nav-link w-100" id="dusun-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-dusun" type="button" role="tab" aria-controls="dusun" aria-selected="false">Dusun</button>
-                                        </li>
-                                        <li className="nav-item flex-fill" role="presentation">
                                             <button className="nav-link w-100" id="pendidikan-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-pendidikan" type="button" role="tab" aria-controls="pendidikan" aria-selected="false">Pendidikan</button>
                                         </li>
                                         <li className="nav-item flex-fill" role="presentation">
@@ -202,9 +198,6 @@ const Kependudukan = () => {
                                     <div className="tab-content pt-5" id="borderedTabJustifiedContent">
                                         <div className="tab-pane fade show active" id="bordered-justified-umur" role="tabpanel" aria-labelledby="umur-tab">
                                             <AdmUmur />
-                                        </div>
-                                        <div className="tab-pane fade" id="bordered-justified-dusun" role="tabpanel" aria-labelledby="dusun-tab">
-                                            <AdmDusun />
                                         </div>
                                         <div className="tab-pane fade" id="bordered-justified-pendidikan" role="tabpanel" aria-labelledby="pendidikan-tab">
                                             <AdmPendidikan />

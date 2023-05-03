@@ -2023,3 +2023,10 @@ table.dataTable {
   }
 
 }
+
+.scrolled {
+   height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin !important;
+  scrollbar-color: #aab7cf transparent !important;
+}
