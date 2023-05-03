@@ -42,6 +42,12 @@ const Umkm = () => {
                     <h1>UMKM</h1>
                 </div>
 
+                <div className="filter-update">
+                    <h5>
+                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                    </h5>
+                </div>
+
                 <section className="section dashboard">
                     <div className="row">
                         <div className="col-md-6">

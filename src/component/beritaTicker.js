@@ -54,7 +54,13 @@ const NewsT = () => {
                                 ref={ref}
                                 maxRows={1}
                                 rowHeight={60}
-                                style={{ listStyleType: 'none', marginLeft: '200px', width: '75%' }}
+                                style={
+                                    {
+                                        listStyleType: 'none',
+                                        marginLeft: '200px',
+                                        width: '75%'
+                                    }
+                                }
                             >
                                 {news.map((news, key) => {
                                     return (

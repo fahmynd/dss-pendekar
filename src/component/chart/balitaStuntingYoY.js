@@ -29,14 +29,15 @@ const BalitaYoY = (props) => {
                     }
                 }
             },
-            // toolbox: {
-            //     feature: {
-            //         dataView: { show: true, readOnly: false },
-            //         magicType: { show: true, type: ['line', 'bar'] },
-            //         restore: { show: true },
-            //         saveAsImage: { show: true }
-            //     }
-            // },
+            toolbox: {
+                feature: {
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                },
+                right: 60
+            },
             legend: {
                 orient: 'horizontal',
                 left: 150,

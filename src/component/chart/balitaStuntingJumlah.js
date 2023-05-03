@@ -26,6 +26,15 @@ const BalitaStuntingJumlah = (props) => {
                     type: 'shadow'
                 }
             },
+            toolbox: {
+                feature: {
+                    dataView: { show: true, readOnly: false },
+                    magicType: { show: true, type: ['line', 'bar'] },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                },
+                right: 30
+            },
             legend: {
                 orient: 'horizontal',
                 left: 150,

@@ -5,26 +5,26 @@ const STATUS_DESA = ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'M
 
 export const PetaPerkembangan = (props) => {
     const data = useMemo(() => {
-        const {list_desa } = props.resultData.data
+        const { list_desa } = props.resultData.data
 
         const transformed = list_desa.map(desa => {
-            
+
             return {
                 name: desa.nama_deskel + ` - Skor SDGS ${desa.capaian.sdgs}`,
                 type: "scatter",
                 data: [
                     [
-                        STATUS_DESA.indexOf(desa.current_status), 
+                        STATUS_DESA.indexOf(desa.current_status),
                         desa.capaian.sdgs
                     ],
                 ],
-                symbolSize: 13,
+                symbolSize: 20,
                 label: {}
             }
         })
-        
+
         return transformed;
-    },[props.resultData])
+    }, [props.resultData])
 
     const chartSettings = useMemo(() => {
         return {
@@ -37,6 +37,16 @@ export const PetaPerkembangan = (props) => {
                     }
                 }
             },
+            // toolbox: {
+            //     feature: {
+            //         dataView: { show: true, readOnly: false },
+            //         magicType: { show: true, type: ['line', 'bar'] },
+            //         restore: { show: true },
+            //         saveAsImage: { show: true }
+            //     },
+            //     right: 65,
+            //     top: 20
+            // },
             legend: {
                 show: false
             },
@@ -101,7 +111,7 @@ export const PetaPerkembangan = (props) => {
             },
             series: data
         }
-    },[data])
+    }, [data])
 
     return (
         <ReactEcharts

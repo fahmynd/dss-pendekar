@@ -13,6 +13,12 @@ const Keuangan = () => {
                     <h1>Pembangunan</h1>
                 </div>
 
+                <div className="filter-update">
+                    <h5>
+                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                    </h5>
+                </div>
+
                 <section className="section dashboard">
                     <div className="row">
 
@@ -47,9 +53,9 @@ const Keuangan = () => {
                                         </div>
                                     </div>
 
-                                    <div className="row g-md-0 mb-5">
+                                    <div className="row g-md-0">
 
-                                        <div className="col-md-3">
+                                        {/* <div className="col-md-3">
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan pb-0">
                                                     <h6>JUMLAH DESA</h6>
@@ -111,9 +117,25 @@ const Keuangan = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div> */}
+
+                                        <div className="col-md-3">
+                                            <div className="keuangan-card">
+                                                <div className="card-body-keuangan pb-0">
+                                                    <h6>JUMLAH DESA</h6>
+                                                    <div className="d-flex">
+                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
+                                                            <i className="bx bxs-building-house"></i>
+                                                        </div>
+                                                        <div>
+                                                            <h5 className="fw-bold">54</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-md-3">
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan pb-1">
                                                     <h6>ANGGARAN</h6>
@@ -122,7 +144,7 @@ const Keuangan = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-md-3">
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan pb-1">
                                                     <h6>REALISASI</h6>
@@ -131,7 +153,7 @@ const Keuangan = () => {
                                             </div>
                                         </div>
 
-                                        <div className="col-md-4">
+                                        <div className="col-md-3">
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan">
                                                     <h6>% PENYERAPAN</h6>
@@ -155,7 +177,7 @@ const Keuangan = () => {
                                                 </div>
 
                                                 <div className="row g-2">
-                                                    <div className="col-md-6">
+                                                    <div className="col-12">
                                                         <div className="stunting-card">
                                                             <div className="box-featured">
                                                                 <h5 className="card-title">APBDes</h5>
@@ -169,7 +191,7 @@ const Keuangan = () => {
                                                         </div>
                                                     </div>
 
-                                                    <div className="col-md-6">
+                                                    <div className="col-12">
                                                         <div className='table-responsive'>
                                                             <table className="table table-bordered">
                                                                 <thead>
@@ -221,7 +243,7 @@ const Keuangan = () => {
                                         </div>
                                     </div>
 
-                                    <div className="card">
+                                    <div className="d-none card">
                                         <div className="card-body pb-0">
                                             <h5 className="card-title-potensi pb-0">RINCIAN KEUANGAN DESA</h5>
                                             <div className='table-responsive'>
