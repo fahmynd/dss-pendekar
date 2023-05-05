@@ -127,6 +127,7 @@ const RekomendasiTable = (props) => {
                                     </h5>
                                 )
                             },
+                            width: "200px"
                         },
                         {
                             name: "Skor IDM",

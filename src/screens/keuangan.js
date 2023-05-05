@@ -29,7 +29,7 @@ const Keuangan = () => {
                                     <button className="nav-link active" id="apbd-tab" data-bs-toggle="tab" data-bs-target="#bordered-apbd"
                                         type="button" role="tab" aria-controls="apbd" aria-selected="true">APBDes</button>
                                 </li>
-                                <li className="nav-item" role="presentation">
+                                <li className="d-none nav-item" role="presentation">
                                     <button className="nav-link" id="proposal-tab" data-bs-toggle="tab" data-bs-target="#bordered-proposal" type="button"
                                         role="tab" aria-controls="proposal" aria-selected="false">PROPOSAL</button>
                                 </li>

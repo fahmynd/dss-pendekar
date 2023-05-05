@@ -37,7 +37,7 @@ const NewsT = () => {
                         <h5 className="card-title-potensi">KABAR DESA TERBARU</h5>
 
                         <div className="bn-breaking-news" id="newsTicker9">
-                            <div className="bn-label">Flash News</div>
+                            <div className="bn-label d-none d-lg-block d-xl-block">Flash News</div>
                             <div className="bn-news d-none">
                                 <ul>
                                     <li><span className="bn-prefix">Braveheart, 1995 :</span>"They may take our lives, but they'll never

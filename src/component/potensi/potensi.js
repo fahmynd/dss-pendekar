@@ -5,15 +5,15 @@ import { LembagaKemasyarakatan } from '../chart/lembagaKemasyarakatan'
 import { useEffect, useMemo, useState } from 'react'
 
 export const Potensi = ({ kec, desa, resultData }) => {
-    const [selectedKec,setSelectedKec] = useState()
-    const [selectedDeskel,setSelectedDeskel] = useState()
-    
-    
+    const [selectedKec, setSelectedKec] = useState()
+    const [selectedDeskel, setSelectedDeskel] = useState()
+
+
     useEffect(() => {
         if (kec.length > 0) {
             setSelectedKec(kec[0].kode_wilayah)
         }
-    },[kec,desa])
+    }, [kec, desa])
 
 
     const listDesa = useMemo(() => {
@@ -24,7 +24,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             })
         }
         return []
-    },[desa, selectedKec])
+    }, [desa, selectedKec])
 
 
     const potensiManusia = useMemo(() => {
@@ -37,7 +37,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 maleCount = parseInt(deskel.pria)
                 femaleCount = parseInt(deskel.wanita)
             }
-        }else{
+        } else {
             listDesa.forEach(desa => {
                 maleCount += parseInt(desa.pria);
                 femaleCount += parseInt(desa.wanita);
@@ -48,7 +48,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             maleCount,
             femaleCount
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
 
     const potensiSDA = useMemo(() => {
@@ -63,7 +63,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 perkebunan = deskel.sda_perkebunan
                 pertanian = deskel.sda_pertanian
             }
-        }else{
+        } else {
             listDesa.forEach(desa => {
                 perikanan += parseInt(desa.sda_perikanan)
                 perkebunan += parseInt(desa.sda_perkebunan)
@@ -76,7 +76,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             perkebunan,
             pertanian,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     const potensiSarpas = useMemo(() => {
         let ibadah = 0;
@@ -90,7 +90,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 sekolah = deskel.sarpas_sekolah
                 umum = deskel.sarpas_umum
             }
-        }else{
+        } else {
             listDesa.forEach(desa => {
                 ibadah += parseInt(desa.sarpas_ibadah)
                 sekolah += parseInt(desa.sarpas_sekolah)
@@ -103,7 +103,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             sekolah,
             umum,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     const lembaga = useMemo(() => {
         let bpd = 0;
@@ -121,13 +121,13 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 pkk = deskel.lk_pkk
                 posyandu = deskel.lk_posyandu
             }
-        }else{
+        } else {
             listDesa.forEach(desa => {
-                bpd += parseInt(desa.lk_bpd) 
-                karang_taruna += parseInt(desa.lk_karang_taruna) 
-                lpmd += parseInt(desa.lk_lpmd) 
-                pkk += parseInt(desa.lk_pkk) 
-                posyandu += parseInt(desa.lk_posyandu) 
+                bpd += parseInt(desa.lk_bpd)
+                karang_taruna += parseInt(desa.lk_karang_taruna)
+                lpmd += parseInt(desa.lk_lpmd)
+                pkk += parseInt(desa.lk_pkk)
+                posyandu += parseInt(desa.lk_posyandu)
             })
         }
 
@@ -138,7 +138,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             pkk,
             posyandu,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     return (
         <div className="col-lg-12">
@@ -150,7 +150,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                         <button type="button" className="btn btn-primary">Export Report</button>
                     </div>
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-3 order-md-1">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">KECAMATAN</h5>
@@ -166,7 +166,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-4 order-2">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Potensi Manusia</h5>
@@ -177,7 +177,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-5">
+                        <div className="col-md-5 order-3">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Potensi SDA</h5>
@@ -187,10 +187,8 @@ export const Potensi = ({ kec, desa, resultData }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-3 order-md-4">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">DESA/KELURAHAN</h5>
@@ -206,7 +204,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-4 order-5">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Lembaga Kemasyarakatan</h5>
@@ -217,7 +215,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-5">
+                        <div className="col-md-5 order-6">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Sarana & Prasarana</h5>
