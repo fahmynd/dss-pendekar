@@ -14,7 +14,7 @@ export const PetaPerkembangan = (props) => {
                 type: "scatter",
                 data: [
                     [
-                        STATUS_DESA.indexOf(desa.current_status),
+                        desa.capaian.idm,
                         desa.capaian.sdgs
                     ],
                 ],
@@ -61,7 +61,6 @@ export const PetaPerkembangan = (props) => {
                 }
             },
             xAxis: {
-                data: STATUS_DESA,
                 scale: true,
                 axisLabel: {
                     formatter: "{value}"
