@@ -12,12 +12,14 @@ import AdmPekerjaan from '../component/chart/AdmPekerjaan';
 import AdmPerkawinan from '../component/chart/AdmPerkawinan';
 import AdmKeluarga from '../component/chart/AdmKeluarga';
 import AdmAgama from '../component/chart/AdmAgama';
+import { format_tgl } from '../utils/helper.min';
 
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -29,6 +31,7 @@ const Kependudukan = () => {
                 setResultData(data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
+                setUpdate(data.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -51,7 +54,7 @@ const Kependudukan = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

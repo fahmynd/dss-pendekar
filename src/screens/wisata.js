@@ -4,20 +4,23 @@ import { BASE_API_URL } from '../utils/api'
 import LoadingSpinner from '../utils/LoadingSpinner';
 import BeritaPagination from '../component/pagination/beritaPagination';
 import FotoWisata from '../assets/img/slides-1.jpg'
+import { format_tgl } from '../utils/helper.min';
 
 const Wisata = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
         // axios.get(BASE_API_URL + 'home?k3=&k4=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/umkm?k3=&k4=&search=&type=&limit=`)
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/wisata?k3=&k4=&search=&limit=`)
             .then((result) => {
                 const data = result.data.data;
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
+                setUpdate(data.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -40,7 +43,7 @@ const Wisata = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

@@ -1,10 +1,33 @@
-import { React, Fragment, useEffect } from 'react'
+import { React, Fragment, useEffect, useState } from 'react'
 import AnggaranDesa from '../component/chart/anggaranDesa'
+import axios from 'axios';
+import LoadingSpinner from '../utils/LoadingSpinner';
+import { format_tgl } from '../utils/helper.min';
 
 const Keuangan = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [update, setUpdate] = useState();
+
     useEffect(() => {
+        setIsLoading(true);
+        // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/keuangan?k3=&k4=`)
+            .then((result) => {
+                // console.log(result.data.data)
+                const data = result.data.data;
+                setUpdate(data.last_updated)
+            })
+            .catch(error => {
+                alert(error.message);
+            })
+            .finally(() => setIsLoading(false)); // complete loading success/fail
+
         document.title = "Pembangunan | PENDEKAR";
+
     }, [])
+
+    if (isLoading) return <LoadingSpinner />;
+
     return (
         <Fragment>
             <main id="main" className="main">
@@ -15,7 +38,7 @@ const Keuangan = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

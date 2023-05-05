@@ -11,6 +11,7 @@ import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
 import MapChart from '../component/chart/map'
 import { Potensi } from '../component/potensi/potensi'
 import NewsTicker from "react-advanced-news-ticker";
+import { format_tgl } from '../utils/helper.min';
 
 const Dashboard = () => {
     const ref = useRef(null);
@@ -31,6 +32,7 @@ const Dashboard = () => {
     const [persen_stunting_now, setPersen_stunting_now] = useState([]);
     const [prevalensi_now, setPrevalensi_now] = useState([]);
     const [news, setNews] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -43,6 +45,7 @@ const Dashboard = () => {
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
                 setNews(data.list_berita);
+                setUpdate(data.last_updated)
 
                 const idm = result.data.data.idm;
                 setTahun_now(idm[2].tahun)
@@ -82,7 +85,7 @@ const Dashboard = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

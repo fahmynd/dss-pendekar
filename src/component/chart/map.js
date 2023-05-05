@@ -80,15 +80,15 @@ function MapChart() {
             keepTargetHover: true
         });
 
-        var tooltip = am5.Tooltip.new(root, {
-            getFillFromSprite: false,
-            labelText: "[bold]{name}[/]\n{valueX.formatDate()}: {valueY}"
-        });
+        // var tooltip = am5.Tooltip.new(root, {
+        //     getFillFromSprite: false,
+        //     labelText: "[bold]{name}[/]\n{valueX.formatDate()}: {valueY}"
+        // });
 
-        tooltip.get("background").setAll({
-            fill: am5.color(0xffffff),
-            fillOpacity: 0.8
-        });
+        // tooltip.get("background").setAll({
+        //     fill: am5.color(0xffffff),
+        //     fillOpacity: 0.8
+        // });
 
         polygonSeries.mapPolygons.template.states.create("hover", {
             fill: root.interfaceColors.get("primaryButtonHover"),

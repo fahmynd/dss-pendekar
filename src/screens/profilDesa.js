@@ -4,10 +4,12 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 // import ProfilDesaPagination from '../component/pagination/profilDesaPagination';
 import { BASE_API_URL } from '../utils/api';
 import ProfilTable from '../component/datatable/ProfilDesaDataTable';
+import { format_tgl } from '../utils/helper.min';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -17,6 +19,7 @@ const ProfilDesa = () => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
                 setResultData(data);
+                setUpdate(data.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -39,7 +42,7 @@ const ProfilDesa = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

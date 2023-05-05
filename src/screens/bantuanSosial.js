@@ -5,25 +5,27 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
 import BansosTable from '../component/datatable/RekapBansosDataTable';
+import { format_tgl } from '../utils/helper.min';
 
 const BantuanSosial = () => {
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
-    const [jenis_administrasi, setJenisAdministrasi] = useState([]);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
         // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum?k3=&k4=`)
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/bansos`)
             .then((result) => {
                 // console.log(result.data.data.jumlah)
                 setResultData(result.data);
-                const kode = result.data.data;
-                setJenisAdministrasi(kode.jenis_administrasi)
-                setKec(kode.list_kecamatan)
-                setDesa(kode.list_desa)
+
+                const data = result.data.data;
+                setKec(data.list_kecamatan)
+                setDesa(data.list_desa)
+                setUpdate(data.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -46,7 +48,7 @@ const BantuanSosial = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 
@@ -134,44 +136,7 @@ const BantuanSosial = () => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
-                                    <div className="row g-1 mb-4">
-                                        <div className="col-3">
-                                            <select defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Kategori">
-                                                <option value={'DEFAULT'}>Pilih Kategori</option>
-                                                <option value={'1'}>Individu</option>
-                                                <option value={'2'}>KK</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
-                                                <option value='0'>Semua Kecamatan</option>
-                                                {kec.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue='0' className="form-select" aria-label="Pilih Desa">
-                                                <option value='0'>Semua Desa</option>
-                                                {desa.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_deskel}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    {resultData && <BansosTable resultData={resultData} jenis={jenis_administrasi[0].key} />}
+                                    {resultData && <BansosTable resultData={resultData} />}
                                 </div>
                             </div>
                         </div>
@@ -182,10 +147,6 @@ const BantuanSosial = () => {
             </main>
         </Fragment>
     )
-}
-
-function set_jenis_administrasi(value) {
-    console.log(value);
 }
 
 function SelectOptions(props) {

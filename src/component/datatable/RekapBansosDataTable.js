@@ -1,101 +1,125 @@
-import React from "react";
-import "jquery/dist/jquery.min.js";
-import "datatables.net-dt/js/dataTables.dataTables";
-// import "datatables.net-dt/css/jquery.dataTables.min.css";
-import "datatables.net-buttons/js/dataTables.buttons.js";
-import "datatables.net-buttons/js/buttons.colVis.js";
-import "datatables.net-buttons/js/buttons.flash.js";
-import "datatables.net-buttons/js/buttons.html5.js";
-import "datatables.net-buttons/js/buttons.print.js";
-import $ from "jquery";
+import React, { useMemo, useState, Fragment } from "react";
+import DataTable from 'react-data-table-component';
 
-class BansosTable extends React.Component {
+const BansosTable = (props) => {
+    const { list_kecamatan, list_desa, list_bansos } = props.resultData.data;
 
-    constructor(props) {
-        super();
-        this.state = {
-            resultData: props.resultData,
-            jenis: props.jenis,
-        };
-    }
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDesa, setSelectedDesa] = useState("")
+    const [query, setQuery] = useState("")
 
-    componentDidMount() {
-        if (!$.fn.DataTable.isDataTable("#myTable")) {
-            $(document).ready(function () {
-                setTimeout(function () {
-                    $("#table").DataTable({
-                        // pagingType: "full_numbers",
-                        // processing: true,
-                        // select: {
-                        //     style: "single",
-                        // },
-                        pageLength: 10,
-                        searching: false,
-                        dom: "Bfrtip",
-                        buttons: [
-                            ''
-                        ]
-                    });
-                }, 1000);
-            });
+    const rows = useMemo(() => {
+        let data = list_bansos;
+        if (selectedKec !== "" && selectedKec !== '0') {
+            data = data.filter(item => {
+                let itemKec = `${item.k1}.${item.k2}.${item.k3}`
+
+                return itemKec === selectedKec
+            })
         }
-    }
 
-    showTable = () => {
-        const { resultData, jenis } = this.state;
-        try {
-            return resultData.data.list_administrasi[jenis].map((item, index) => {
-                return (
-                    <Administrasi
-                        key={item.lampiran}
-                        no={index + 1}
-                        kec={item.nama_kecamatan}
-                        desa={item.nama_deskel}
-                        peraturan={item.jenis_peraturan}
-                        nomor={item.nomor_peraturan}
-                        tanggal={item.tanggal_peraturan}
-                        tentang={item.tentang}
-                        lampiran={item.lampiran}
-                        kode={item.kode_wilayah}
-                    />
+        if (selectedDesa !== "" && selectedDesa !== '0') {
+            data = data.filter(item => {
+                let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
 
-                );
-            });
-        } catch (e) {
-            alert(e.message);
+                return itemDesa === selectedDesa
+            })
         }
+
+        if (query !== "" && query !== '0') {
+            data = data.filter(item => {
+                return item.nama_deskel.toLowerCase().includes(query)
+            })
+        }
+
+        return data;
+
+    }, [selectedKec, selectedDesa, query])
+
+    const customStyles = {
+        headCells: {
+            style: {
+                fontSize: '15px',
+                fontWeight: 'bold',
+                backgroundColor: '#F1ECFF',
+                borderRight: '1px solid #EDEDED',
+                borderTop: '1px solid #EDEDED',
+            },
+        },
+        cells: {
+            style: {
+                fontSize: '15px',
+                borderRight: '1px solid #EDEDED',
+            },
+        },
     };
 
-    render() {
-        return (
-            <div className="table-responsive">
-                <table id="table" className="table table-bordered">
-                    <thead>
-                        <tr className="align-items-center justify-content-center" style={{ background: '#F1ECFF' }}>
-                            <th>No</th>
-                            <th>Kecamatan</th>
-                            <th>Desa</th>
-                            <th>Jenis Bantuan</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {this.showTable()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
-}
-
-function Administrasi(props) {
     return (
-        <tr>
-            <td className="text-center">{props.no}</td>
-            <td>{props.kec}</td>
-            <td>{props.desa}</td>
-            <td>{props.peraturan}</td>
-        </tr>
+        <Fragment>
+            <div className="row g-1 mb-4">
+                <div className="col-3">
+                    <div className="search-produk">
+                        <form className="search-form-produk d-flex align-items-center">
+                            <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
+                            <button title="Search"><i className="bi bi-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedKec(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Kecamatan">
+                        <option value='0'>Semua Kecamatan</option>
+                        {list_kecamatan.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+                <div className="col-3">
+                    <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
+                        <option value='0'>Semua Desa</option>
+                        {list_desa.map((item, key) => {
+                            return (
+                                <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
+                            )
+                        })}
+                    </select>
+                </div>
+            </div>
+            <DataTable
+                columns={
+                    [
+                        {
+                            name: "No",
+                            selector: (row, index) => index + 1,
+                            width: "70px",
+                            style: {
+                                borderLeft: "1px solid #EDEDED"
+                            }
+                        },
+                        {
+                            name: "Kecamatan",
+                            sortable: true,
+                            selector: (row) => row.nama_kecamatan,
+                        },
+                        {
+                            name: "Desa",
+                            sortable: true,
+                            selector: (row) => row.nama_deskel,
+                        },
+                        {
+                            name: "Jenis Bantuan",
+                            sortable: true,
+                            selector: (row) => row.jenis_bansos,
+                        },
+                    ]
+                }
+                data={rows}
+                customStyles={customStyles}
+                pagination
+            />
+
+        </Fragment>
     )
 }
 
