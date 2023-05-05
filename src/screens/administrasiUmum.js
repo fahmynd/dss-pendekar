@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api';
 import AdminTable from '../component/datatable/AdmDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
+import { format_tgl } from '../utils/helper.min';
 
 const AdministrasiUmum = () => {
     const [resultData, setResultData] = useState();
@@ -28,6 +29,7 @@ const AdministrasiUmum = () => {
     const [jenis_administrasi, setJenisAdministrasi] = useState([]);
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -60,6 +62,7 @@ const AdministrasiUmum = () => {
                 setJenisAdministrasi(kode.jenis_administrasi)
                 setKec(kode.list_kecamatan)
                 setDesa(kode.list_desa)
+                setUpdate(kode.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -82,7 +85,7 @@ const AdministrasiUmum = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

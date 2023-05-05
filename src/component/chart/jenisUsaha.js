@@ -37,8 +37,10 @@ const JenisUsaha = (props) => {
             xAxis: {
                 type: 'value',
                 boundaryGap: [0, 1],
-                // min: 0,
-                // max: 10,
+                min: 0,
+                max: function (value) {
+                    return value.max;
+                },
                 axisTick: {
                     show: false
                 },
@@ -98,6 +100,7 @@ const JenisUsaha = (props) => {
                 yAxisIndex: 0,
                 start: 0,
                 end: 100,
+                filterMode: 'empty',
                 zoomOnMouseWheel: false,
                 moveOnMouseMove: true,
                 moveOnMouseWheel: true

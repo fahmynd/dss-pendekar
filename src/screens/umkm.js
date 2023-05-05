@@ -5,12 +5,14 @@ import axios from 'axios'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import UmkmPagination from '../component/pagination/umkmPagination'
 import { BASE_API_URL } from '../utils/api'
+import { format_tgl } from '../utils/helper.min';
 
 const Umkm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -22,6 +24,7 @@ const Umkm = () => {
                 setResultData(data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
+                setUpdate(data.last_updated)
             })
             .catch(error => {
                 alert(error.message);
@@ -44,7 +47,7 @@ const Umkm = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 

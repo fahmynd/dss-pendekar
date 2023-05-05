@@ -33,9 +33,11 @@ const UsahaDiWilayah = (props) => {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 1],
-                // min: 0,
-                // max: 10,
+                boundaryGap: [0, 0],
+                min: 0,
+                max: function (value) {
+                    return value.max;
+                },
                 axisTick: {
                     show: false
                 },
@@ -102,10 +104,9 @@ const UsahaDiWilayah = (props) => {
                     type: 'inside',
                     id: 'insideY',
                     yAxisIndex: 0,
-                    start: 90,
+                    start: 50,
                     end: 100,
-                    // minSpan: 1,
-                    // maxSpan: 5,
+                    filterMode: 'empty',
                     zoomOnMouseWheel: false,
                     moveOnMouseMove: true,
                     moveOnMouseWheel: true

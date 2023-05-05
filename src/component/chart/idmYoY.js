@@ -90,7 +90,7 @@ const IdmChart = (props) => {
     return (
         <ReactEcharts
             option={options(props)}
-            style={{ width: "auto", height: "100%" }}
+            style={{ width: "auto", height: "500px" }}
         ></ReactEcharts>
     )
 }

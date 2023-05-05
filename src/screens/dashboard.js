@@ -1,21 +1,20 @@
-import { React, Fragment, useEffect, useState } from 'react'
+import { React, Fragment, useEffect, useState, useRef } from 'react'
 import IdmChart from '../component/chart/idmYoY'
 import { PetaPerkembangan } from '../component/chart/petaPerkembanganDesa'
 import BalitaStuntingJumlah from '../component/chart/balitaStuntingJumlah'
 import BalitaYoY from '../component/chart/balitaStuntingYoY'
-import { LembagaKemasyarakatan } from '../component/chart/lembagaKemasyarakatan'
-import { PotensiManusia } from '../component/chart/potensiManusia'
-import PotensiSDA from '../component/chart/potensiSDA'
 import axios from 'axios'
 import { BASE_API_URL } from '../utils/api'
-import Map from '../component/mapPopup'
+// import Map from '../component/mapPopup'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
-import NewsT from '../component/beritaTicker'
 import MapChart from '../component/chart/map'
 import { Potensi } from '../component/potensi/potensi'
+import NewsTicker from "react-advanced-news-ticker";
+import { format_tgl } from '../utils/helper.min';
 
 const Dashboard = () => {
+    const ref = useRef(null);
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [kec, setKec] = useState([]);
@@ -32,6 +31,8 @@ const Dashboard = () => {
     const [jml_stunting_now, setJml_stunting_now] = useState([]);
     const [persen_stunting_now, setPersen_stunting_now] = useState([]);
     const [prevalensi_now, setPrevalensi_now] = useState([]);
+    const [news, setNews] = useState([]);
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         setIsLoading(true);
@@ -43,6 +44,8 @@ const Dashboard = () => {
                 setResultData(result.data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
+                setNews(data.list_berita);
+                setUpdate(data.last_updated)
 
                 const idm = result.data.data.idm;
                 setTahun_now(idm[2].tahun)
@@ -82,14 +85,65 @@ const Dashboard = () => {
 
                 <div className="filter-update">
                     <h5>
-                        <span className="badge bg-update py-3">Last Update : 3 September 2022, 12:00 PM</span>
+                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
                     </h5>
                 </div>
 
                 <section className="section dashboard">
                     <div className="row">
 
-                        <NewsT />
+                        <div className="col-md-12">
+                            <div className="card">
+
+                                <div className="card-body">
+                                    <h5 className="card-title-potensi">KABAR DESA TERBARU</h5>
+
+                                    <div className="bn-breaking-news" id="newsTicker9">
+                                        <div className="bn-label d-none d-lg-block d-xl-block">Flash News</div>
+
+                                        {resultData && <NewsTicker
+                                            ref={ref}
+                                            maxRows={1}
+                                            rowHeight={60}
+                                            style={
+                                                {
+                                                    listStyleType: 'none',
+                                                    marginLeft: '200px',
+                                                    width: '75%',
+                                                }
+                                            }
+                                        >
+                                            {news.map((item, key) => {
+                                                return (
+                                                    <div className="berita-card" key={key}>
+                                                        <div className="row g-1">
+                                                            <div className="col-2 align-items-center justify-content-center">
+                                                                <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`} className="w-100 mb-2 ms-2 rounded" alt="..." style={{ height: '50px' }} />
+                                                            </div>
+                                                            <div className="col-9">
+                                                                <div className="berita-card-body">
+                                                                    <h6 className='ms-1 fw-bold text-capitalize'>{item.judul}</h6>
+                                                                    <a href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                            }
+
+                                        </NewsTicker>}
+
+                                        <div className="bn-controls">
+                                            <button onClick={() => { ref.current.movePrev(); ref.current.resetInterval(); }}><span className="bn-arrow bn-prev"></span></button>
+                                            <button onClick={() => { ref.current.moveNext(); ref.current.resetInterval(); }}><span className="bn-arrow bn-next"></span></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="col-lg-12">
                             <div className="card">
@@ -119,20 +173,20 @@ const Dashboard = () => {
 
                                     <br />
                                     <div className="row g-0">
-                                        <div className="col-md-2 fw-bold">Keterangan:</div>
-                                        <div className="col-md-3">
+                                        <div className="col-sm-2 fw-bold">Keterangan:</div>
+                                        <div className="col-sm-3">
                                             <div className="row">
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#A3FFC2' }}></i> &lt; 100</p>
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#518F6B' }}></i> 1.001 - 5.000</p>
                                             </div>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-sm-3">
                                             <div className="row">
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#73C897' }}></i> 101 - 500</p>
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#223D2D' }}></i> 5.001 - 10.000</p>
                                             </div>
                                         </div>
-                                        <div className="col-md-3">
+                                        <div className="col-sm-3">
                                             <div className="row">
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#2EA256' }}></i> 501 - 1.000</p>
                                                 <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#E84C30' }}></i> &gt; 10.000</p>
@@ -445,24 +499,6 @@ const Dashboard = () => {
 function SelectOptions(props) {
     return (
         <option value={props.value}>{props.title}</option>
-    )
-}
-
-function KecamatanPotensi(props) {
-    return (
-        // <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
-        //     {props.listkec}
-        // </button>
-        <button type="button" className="list-group-item list-group-item-action">{props.listkec}</button>
-    )
-}
-
-function DesaPotensi(props) {
-    return (
-        // <button type="button" className="list-group-item list-group-item-action active" aria-current="true">
-        //     {props.listkec}
-        // </button>
-        <button type="button" className="list-group-item list-group-item-action">{props.listdesa}</button>
     )
 }
 

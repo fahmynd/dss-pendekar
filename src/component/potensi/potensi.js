@@ -17,7 +17,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             })
         }
         return []
-    },[desa, selectedKec])
+    }, [desa, selectedKec])
 
 
     const potensiManusia = useMemo(() => {
@@ -48,7 +48,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             maleCount,
             femaleCount
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
 
     const potensiSDA = useMemo(() => {
@@ -84,7 +84,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             perkebunan,
             pertanian,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     const potensiSarpas = useMemo(() => {
         let ibadah = 0;
@@ -119,7 +119,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             sekolah,
             umum,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     const lembaga = useMemo(() => {
         let bpd = 0;
@@ -164,7 +164,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
             pkk,
             posyandu,
         }
-    },[listDesa, selectedDeskel])
+    }, [listDesa, selectedDeskel])
 
     return (
         <div className="col-lg-12">
@@ -176,7 +176,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                         <button type="button" className="btn btn-primary">Export Report</button>
                     </div>
                     <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-3 order-md-1">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">KECAMATAN</h5>
@@ -193,7 +193,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-4 order-2">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Potensi Manusia</h5>
@@ -204,7 +204,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-5">
+                        <div className="col-md-5 order-3">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Potensi SDA</h5>
@@ -214,10 +214,8 @@ export const Potensi = ({ kec, desa, resultData }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="row">
-                        <div className="col-md-3">
+                        <div className="col-md-3 order-md-4">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">DESA/KELURAHAN</h5>
@@ -234,7 +232,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-4 order-5">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Lembaga Kemasyarakatan</h5>
@@ -245,7 +243,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                             </div>
                         </div>
 
-                        <div className="col-md-5">
+                        <div className="col-md-5 order-6">
                             <div className="potensi-card">
                                 <div className="box-featured">
                                     <h5 className="card-title">Sarana & Prasarana</h5>
