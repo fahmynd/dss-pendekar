@@ -1,20 +1,72 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import ReactEcharts from "echarts-for-react"
 
+
 const BalitaStuntingJumlah = (props) => {
-    const options = () => {
-        let chart_desa = [];
-        props.resultData.data.list_desa.forEach((item, index) => {
-            chart_desa[index] = item.nama_deskel
+    const [query, setQuery] = useState("");
+    const [selectedKec, setSelectedKec] = useState("");
+    const [selectedDeskel, setSelectedDeskel] = useState("");
+
+    const { data } = props.data
+
+    const listDeskel = useMemo(() => {
+        setSelectedDeskel("");
+        return data.list_desa.filter(desa => {
+            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+            return kode_kec === selectedKec
         })
-        let chart_jumlah = [];
-        props.resultData.data.list_desa.forEach((item, index) => {
-            chart_jumlah[index] = item.jml_stunting_2022
+    }, [data, selectedKec])
+
+    const listKec = useMemo(() => {
+        return data.list_kecamatan
+    },[data])
+
+
+    const dataChart = useMemo(() => {
+        const deskel = data.list_desa.filter(desa => {
+            if (query !== "") {
+                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            if (selectedKec && selectedDeskel) {
+                return desa.kode_wilayah === selectedDeskel
+            }else if(selectedKec){
+                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+                return kode_kec === selectedKec
+            }else{
+                return true
+            }
         })
-        let chart_persen = [];
-        props.resultData.data.list_desa.forEach((item, index) => {
-            chart_persen[index] = item.persen_stunting_2022
+
+        let data_stunting = deskel.map(desa => {
+            return {
+                nama_desa: desa.nama_deskel,
+                jumlah_stunting: desa.jml_stunting_2022,
+                persentasi: desa.persen_stunting_2022
+            }
         })
+        
+        data_stunting.sort((a,b) => {
+            if (a.jumlah_stunting === b.jumlah_stunting) {
+                return 0
+            }
+            if (a.jumlah_stunting > b.jumlah_stunting) {
+                return -1
+            }
+            return 1
+        })
+
+        return data_stunting;
+    },[selectedKec,selectedDeskel,listDeskel, query])
+
+    const options = useMemo(() => {
+
+        let chart_desa = dataChart.map(item => item.nama_desa);
+        let chart_jumlah = dataChart.map(item => item.jumlah_stunting);
+        let chart_persen = dataChart.map(item => item.persentasi);
 
         return {
             title: {
@@ -132,13 +184,64 @@ const BalitaStuntingJumlah = (props) => {
                 moveOnMouseWheel: true
             }]
         }
-    }
+    }, [dataChart])
 
     return (
-        <ReactEcharts
-            option={options(props)}
-            style={{ width: "auto", height: "100%" }}
-        ></ReactEcharts>
+        <div className="card">
+            <div className="card-body pt-4">
+                <div className="row g-md-0">
+                    <div className="col-12">
+                        <div className="stunting-card">
+                            <div className="box-featured">
+                                <h5 className="card-title">JUMLAH BALITA STUNTING DI DESA/KELURAHAN</h5>
+                            </div>
+                            <div className="card-body-chart mt-2 mb-5">
+                                <div className="filter-primary d-none">
+                                    <button type="button" className="btn btn-primary">Export Report</button>
+                                </div>
+                                <div className="row g-1 mb-4">
+                                    <div className="col-3">
+                                        <div className="search-produk">
+                                            <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                                                <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                                <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div className="col-3">
+                                        <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
+                                            <option value={''}>Semua Kecamatan</option>
+                                            {listKec.map((item) => {                                            
+                                                return (
+                                                    <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
+                                                )
+                                            })}
+                                        </select>
+                                    </div>
+                                    <div className="col-3">
+                                        <select onChange={e => setSelectedDeskel(e.target.value)} className="form-select" aria-label="Default select example">
+                                            <option value={''}>Semua Desa</option>
+                                            {listDeskel.map((item) => {
+                                                return (
+                                                    <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedDeskel === item.kode_wilayah}>{item.nama_deskel}</option>
+                                                )
+                                            })}
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <ReactEcharts
+                                    option={options}
+                                    style={{ width: "auto", height: "100%" }}
+                                ></ReactEcharts>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
 

@@ -426,66 +426,7 @@ const Dashboard = () => {
                         </div>
 
                         <div className="col-lg-12">
-                            <div className="card">
-                                <div className="card-body pt-4">
-                                    <div className="row g-md-0">
-                                        <div className="col-12">
-                                            <div className="stunting-card">
-                                                <div className="box-featured">
-                                                    <h5 className="card-title">JUMLAH BALITA STUNTING DI DESA/KELURAHAN</h5>
-                                                </div>
-                                                <div className="card-body-chart mt-2 mb-5">
-                                                    <div className="filter-primary d-none">
-                                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                                    </div>
-                                                    <div className="row g-1 mb-4">
-                                                        <div className="col-3">
-                                                            <div className="search-produk">
-                                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-3">
-                                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                                {kec.map((item) => {
-                                                                    return (
-                                                                        <SelectOptions
-                                                                            key={item.kode_wilayah}
-                                                                            value={item.kode_wilayah}
-                                                                            title={item.nama_kecamatan}
-                                                                        />
-                                                                    )
-                                                                })}
-                                                            </select>
-                                                        </div>
-                                                        <div className="col-3">
-                                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                                {desa.map((item) => {
-                                                                    return (
-                                                                        <SelectOptions
-                                                                            key={item.kode_wilayah}
-                                                                            value={item.kode_wilayah}
-                                                                            title={item.nama_deskel}
-                                                                        />
-                                                                    )
-                                                                })}
-                                                            </select>
-                                                        </div>
-
-                                                    </div>
-
-                                                    {resultData && <BalitaStuntingJumlah resultData={resultData} />}
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {resultData && <BalitaStuntingJumlah data={resultData} />}
                         </div>
 
                     </div>
