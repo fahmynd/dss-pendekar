@@ -5,8 +5,8 @@ import { LembagaKemasyarakatan } from '../chart/lembagaKemasyarakatan'
 import { useEffect, useMemo, useState } from 'react'
 
 export const Potensi = ({ kec, desa, resultData }) => {
-    const [selectedKec,setSelectedKec] = useState("")
-    const [selectedDeskel,setSelectedDeskel] = useState("")
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDeskel, setSelectedDeskel] = useState("")
 
 
     const listDesa = useMemo(() => {
@@ -30,13 +30,13 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 maleCount = parseInt(deskel.pria)
                 femaleCount = parseInt(deskel.wanita)
             }
-        }else{
+        } else {
             if (selectedKec) {
                 listDesa.forEach(desa => {
                     maleCount += parseInt(desa.pria);
                     femaleCount += parseInt(desa.wanita);
                 })
-            }else{
+            } else {
                 desa.forEach(d => {
                     maleCount += parseInt(d.pria);
                     femaleCount += parseInt(d.wanita);
@@ -63,14 +63,14 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 perkebunan = deskel.sda_perkebunan
                 pertanian = deskel.sda_pertanian
             }
-        }else{
-            if (selectedKec) {    
+        } else {
+            if (selectedKec) {
                 listDesa.forEach(desa => {
                     perikanan += parseInt(desa.sda_perikanan)
                     perkebunan += parseInt(desa.sda_perkebunan)
                     pertanian += parseInt(desa.sda_pertanian)
                 })
-            }else {
+            } else {
                 desa.forEach(d => {
                     perikanan += parseInt(d.sda_perikanan)
                     perkebunan += parseInt(d.sda_perkebunan)
@@ -98,14 +98,14 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 sekolah = deskel.sarpras_sekolah
                 umum = deskel.sarpras_umum
             }
-        }else{
+        } else {
             if (selectedKec) {
                 listDesa.forEach(desa => {
                     ibadah += parseInt(desa.sarpras_ibadah)
                     sekolah += parseInt(desa.sarpras_sekolah)
                     umum += parseInt(desa.sarpras_umum)
                 })
-            }else{
+            } else {
                 desa.forEach(d => {
                     ibadah += parseInt(d.sarpras_ibadah)
                     sekolah += parseInt(d.sarpras_sekolah)
@@ -113,7 +113,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 })
             }
         }
-        console.log(ibadah,sekolah,umum)
+        // console.log(ibadah, sekolah, umum)
         return {
             ibadah,
             sekolah,
@@ -137,22 +137,22 @@ export const Potensi = ({ kec, desa, resultData }) => {
                 pkk = deskel.lk_pkk
                 posyandu = deskel.lk_posyandu
             }
-        }else{
+        } else {
             if (selectedKec) {
                 listDesa.forEach(desa => {
-                    bpd += parseInt(desa.lk_bpd) 
-                    karang_taruna += parseInt(desa.lk_karang_taruna) 
-                    lpmd += parseInt(desa.lk_lpmd) 
-                    pkk += parseInt(desa.lk_pkk) 
-                    posyandu += parseInt(desa.lk_posyandu) 
+                    bpd += parseInt(desa.lk_bpd)
+                    karang_taruna += parseInt(desa.lk_karang_taruna)
+                    lpmd += parseInt(desa.lk_lpmd)
+                    pkk += parseInt(desa.lk_pkk)
+                    posyandu += parseInt(desa.lk_posyandu)
                 })
-            }else{
+            } else {
                 desa.forEach(d => {
-                    bpd += parseInt(d.lk_bpd) 
-                    karang_taruna += parseInt(d.lk_karang_taruna) 
-                    lpmd += parseInt(d.lk_lpmd) 
-                    pkk += parseInt(d.lk_pkk) 
-                    posyandu += parseInt(d.lk_posyandu) 
+                    bpd += parseInt(d.lk_bpd)
+                    karang_taruna += parseInt(d.lk_karang_taruna)
+                    lpmd += parseInt(d.lk_lpmd)
+                    pkk += parseInt(d.lk_pkk)
+                    posyandu += parseInt(d.lk_posyandu)
                 })
             }
         }
@@ -182,7 +182,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                                     <h5 className="card-title">KECAMATAN</h5>
                                 </div>
                                 <div className="list-group-potensi mt-3">
-                                    <button onClick={() => setSelectedKec("")} key={""} type="button" className={`list-group-item list-group-item-action ${(selectedKec === "") && "active"}`}>Semua</button>
+                                    <button onClick={() => setSelectedKec("")} key={""} type="button" className={`list-group-item list-group-item-action ${(selectedKec === "") && "active"}`}>Semua Kecamatan</button>
                                     {kec.map((kec) => {
                                         return (
                                             <button onClick={() => setSelectedKec(kec.kode_wilayah)} key={kec.kode_wilayah} type="button" className={`list-group-item list-group-item-action ${(selectedKec === kec.kode_wilayah) && "active"}`}>{kec.nama_kecamatan}</button>
@@ -221,7 +221,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                                     <h5 className="card-title">DESA/KELURAHAN</h5>
                                 </div>
                                 <div className="list-group-potensi mt-3">
-                                    <button onClick={() => setSelectedDeskel("")} key={""} type="button" className={`list-group-item list-group-item-action ${(selectedDeskel === "") && "active"}`}>Semua</button>
+                                    <button onClick={() => setSelectedDeskel("")} key={""} type="button" className={`list-group-item list-group-item-action ${(selectedDeskel === "") && "active"}`}>Semua Desa/Kelurahan</button>
                                     {listDesa.map((deskel) => {
                                         return (
                                             <button onClick={() => setSelectedDeskel(deskel.kode_wilayah)} key={deskel.kode_wilayah} type="button" className={`list-group-item list-group-item-action ${(selectedDeskel === deskel.kode_wilayah) && "active"}`}>{deskel.nama_deskel}</button>

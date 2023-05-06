@@ -3,9 +3,12 @@ import AnggaranDesa from '../component/chart/anggaranDesa'
 import axios from 'axios';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import { format_tgl } from '../utils/helper.min';
+import RKPTable from '../component/datatable/RKPDataTable';
+import APBDTable from '../component/datatable/APBDesDataTable';
 
 const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [resultData, setResultData] = useState();
     const [update, setUpdate] = useState();
 
     useEffect(() => {
@@ -15,6 +18,7 @@ const Keuangan = () => {
             .then((result) => {
                 // console.log(result.data.data)
                 const data = result.data.data;
+                setResultData(data);
                 setUpdate(data.last_updated)
             })
             .catch(error => {
@@ -215,50 +219,7 @@ const Keuangan = () => {
                                                     </div>
 
                                                     <div className="col-12">
-                                                        <div className='table-responsive'>
-                                                            <table className="table table-bordered">
-                                                                <thead>
-                                                                    <tr style={{ background: '#EDF8F6' }}>
-                                                                        <th scope="col">No</th>
-                                                                        <th scope="col">Kecamatan</th>
-                                                                        <th scope="col">Anggaran</th>
-                                                                        <th scope="col">Realisasi</th>
-                                                                        <th scope="col">Sisa</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody className='small'>
-                                                                    <tr>
-                                                                        <th scope="row">1</th>
-                                                                        <td>Kecamatan A</td>
-                                                                        <td>Rp3,320,010,400</td>
-                                                                        <td>Rp3,120,010,400</td>
-                                                                        <td>Rp120,010,400</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">2</th>
-                                                                        <td>Kecamatan A</td>
-                                                                        <td>Rp3,320,010,400</td>
-                                                                        <td>Rp3,120,010,400</td>
-                                                                        <td>Rp120,010,400</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">3</th>
-                                                                        <td>Kecamatan A</td>
-                                                                        <td>Rp3,320,010,400</td>
-                                                                        <td>Rp3,120,010,400</td>
-                                                                        <td>Rp120,010,400</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th scope="row">4</th>
-                                                                        <td>Kecamatan A</td>
-                                                                        <td>Rp3,320,010,400</td>
-                                                                        <td>Rp3,120,010,400</td>
-                                                                        <td>Rp120,010,400</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-
+                                                        {resultData && <APBDTable resultData={resultData} />}
                                                     </div>
 
                                                 </div>
@@ -553,57 +514,7 @@ const Keuangan = () => {
                                                 <div className="filter-primary">
                                                     <button type="button" className="btn btn-primary">Export Report</button>
                                                 </div>
-                                                <div className="row g-1 mb-4">
-                                                    <div className="col-3">
-                                                        <div className="search-produk">
-                                                            <form className="search-form-produk d-flex align-items-center" method="POST" action="#">
-                                                                <input type="text" name="query" placeholder="Cari..." title="Enter search keyword" />
-                                                                <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-3">
-                                                        <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                            <option value={'DEFAULT'}>Pilih Kecamatan</option>
-                                                        </select>
-                                                    </div>
-                                                    <div className="col-3">
-                                                        <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                            <option value={'DEFAULT'}>Pilih Desa</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div className='table-responsive'>
-                                                    <table className="table table-bordered">
-                                                        <thead>
-                                                            <tr style={{ background: '#EDF8F6' }}>
-                                                                <th scope="col">No</th>
-                                                                <th scope="col">Kecamatan</th>
-                                                                <th scope="col">Desa</th>
-                                                                <th scope="col">Nama Proyek/Kegiatan</th>
-                                                                <th scope="col">Lokasi</th>
-                                                                <th scope="col">Biaya</th>
-                                                                <th scope="col">Manfaat</th>
-                                                                <th scope="col">Tahun</th>
-                                                                <th scope="col">Keterangan</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th className='text-center'>1</th>
-                                                                <td>Manggala</td>
-                                                                <td>Pilanggede</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                                <td>-</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-
+                                                {resultData && <RKPTable resultData={resultData} />}
                                             </div>
                                         </div>
                                     </div>

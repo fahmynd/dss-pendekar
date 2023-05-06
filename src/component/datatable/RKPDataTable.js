@@ -1,15 +1,15 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
 
-const BansosTable = (props) => {
-    const { list_kecamatan, list_desa, list_bansos } = props.resultData.data;
+const RKPTable = (props) => {
+    const { list_kecamatan, list_desa, list_rkpdes } = props.resultData;
 
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
     const [query, setQuery] = useState("")
 
     const rows = useMemo(() => {
-        let data = list_bansos;
+        let data = list_rkpdes;
         if (selectedKec !== "" && selectedKec !== '0') {
             data = data.filter(item => {
                 let itemKec = `${item.k1}.${item.k2}.${item.k3}`
@@ -108,19 +108,34 @@ const BansosTable = (props) => {
                             selector: (row) => row.nama_deskel,
                         },
                         {
-                            name: "Jenis Bantuan",
+                            name: "Nama Proyek/Kegiatan",
                             sortable: true,
-                            selector: (row) => row.jenis_bansos,
+                            selector: (row) => row.nama_proyek,
                         },
                         {
-                            name: "Individu",
+                            name: "Lokasi",
                             sortable: true,
-                            selector: (row) => row.jml_penerima,
+                            selector: (row) => row.lokasi,
                         },
                         {
-                            name: "KK",
+                            name: "Biaya",
                             sortable: true,
-                            selector: (row) => row.jml_penerima_kk,
+                            selector: (row) => row.biaya,
+                        },
+                        {
+                            name: "Manfaat",
+                            sortable: true,
+                            selector: (row) => row.manfaat,
+                        },
+                        {
+                            name: "Tahun",
+                            sortable: true,
+                            selector: (row) => row.tahun,
+                        },
+                        {
+                            name: "Pelaksana",
+                            sortable: true,
+                            selector: (row) => row.pelaksana,
                         },
                     ]
                 }
@@ -133,4 +148,4 @@ const BansosTable = (props) => {
     )
 }
 
-export default BansosTable;
+export default RKPTable;

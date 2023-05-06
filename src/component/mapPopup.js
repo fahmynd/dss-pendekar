@@ -12,7 +12,7 @@ const customMarker = new L.Icon({
     popupAnchor: [2, -40]
 });
 
-class Map extends React.Component {
+class MapPopup extends React.Component {
     constructor(props) {
         super();
         this.state = {
@@ -107,4 +107,4 @@ class Map extends React.Component {
     }
 }
 
-export default Map;
+export default MapPopup;
