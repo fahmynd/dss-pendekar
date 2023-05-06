@@ -1,15 +1,15 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
+import { rupiah } from "../../utils/helper.min";
 
-const BansosTable = (props) => {
-    const { list_kecamatan, list_desa, list_bansos } = props.resultData.data;
+const APBDTable = (props) => {
+    const { list_kecamatan } = props.resultData;
 
     const [selectedKec, setSelectedKec] = useState("")
-    const [selectedDesa, setSelectedDesa] = useState("")
     const [query, setQuery] = useState("")
 
     const rows = useMemo(() => {
-        let data = list_bansos;
+        let data = list_kecamatan;
         if (selectedKec !== "" && selectedKec !== '0') {
             data = data.filter(item => {
                 let itemKec = `${item.k1}.${item.k2}.${item.k3}`
@@ -18,23 +18,15 @@ const BansosTable = (props) => {
             })
         }
 
-        if (selectedDesa !== "" && selectedDesa !== '0') {
-            data = data.filter(item => {
-                let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
-
-                return itemDesa === selectedDesa
-            })
-        }
-
         if (query !== "" && query !== '0') {
             data = data.filter(item => {
-                return item.nama_deskel.toLowerCase().includes(query)
+                return item.nama_kecamatan.toLowerCase().includes(query)
             })
         }
 
         return data;
 
-    }, [selectedKec, selectedDesa, query])
+    }, [selectedKec, query])
 
     const customStyles = {
         headCells: {
@@ -60,7 +52,7 @@ const BansosTable = (props) => {
                 <div className="col-3">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
-                            <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
+                            <input type="text" name="query" placeholder="Cari Kecamatan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
                             <button title="Search"><i className="bi bi-search"></i></button>
                         </form>
                     </div>
@@ -71,16 +63,6 @@ const BansosTable = (props) => {
                         {list_kecamatan.map((item, key) => {
                             return (
                                 <option key={key} value={item.kode_wilayah}>{item.nama_kecamatan}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div className="col-3">
-                    <select onChange={e => setSelectedDesa(e.target.value)} defaultValue='0' className="form-select" aria-label="Pilih Desa">
-                        <option value='0'>Semua Desa</option>
-                        {list_desa.map((item, key) => {
-                            return (
-                                <option key={key} value={item.kode_wilayah}>{item.nama_deskel}</option>
                             )
                         })}
                     </select>
@@ -103,24 +85,19 @@ const BansosTable = (props) => {
                             selector: (row) => row.nama_kecamatan,
                         },
                         {
-                            name: "Desa",
+                            name: "Anggaran",
                             sortable: true,
-                            selector: (row) => row.nama_deskel,
+                            selector: (row) => rupiah(row.anggaran_2023),
                         },
                         {
-                            name: "Jenis Bantuan",
+                            name: "Realisasi",
                             sortable: true,
-                            selector: (row) => row.jenis_bansos,
+                            selector: (row) => rupiah(row.realisasi_2023),
                         },
                         {
-                            name: "Individu",
+                            name: "Sisa",
                             sortable: true,
-                            selector: (row) => row.jml_penerima,
-                        },
-                        {
-                            name: "KK",
-                            sortable: true,
-                            selector: (row) => row.jml_penerima_kk,
+                            selector: (row) => rupiah(row.sisa_2023),
                         },
                     ]
                 }
@@ -133,4 +110,4 @@ const BansosTable = (props) => {
     )
 }
 
-export default BansosTable;
+export default APBDTable;

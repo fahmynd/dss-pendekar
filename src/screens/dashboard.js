@@ -12,6 +12,7 @@ import MapChart from '../component/chart/map'
 import { Potensi } from '../component/potensi/potensi'
 import NewsTicker from "react-advanced-news-ticker";
 import { format_tgl } from '../utils/helper.min';
+import MapPopup from '../component/mapPopup'
 
 const Dashboard = () => {
     const ref = useRef(null);
@@ -153,7 +154,7 @@ const Dashboard = () => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
                                     </div>
-                                    <div className="row g-1 mb-4">
+                                    <div className="row g-1 mb-4 d-none">
                                         <div className="col-3">
                                             <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                                                 <option value={'DEFAULT'}>Capaian & Potensi</option>
@@ -167,9 +168,9 @@ const Dashboard = () => {
                                         </div>
                                     </div>
 
-                                    <MapChart />
+                                    {/* <MapChart /> */}
 
-                                    {/* {resultData && <Map resultData={resultData} />} */}
+                                    {resultData && <MapPopup resultData={resultData} />}
 
                                     <br />
                                     <div className="row g-0">

@@ -2,12 +2,12 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import LoadingSpinner from '../utils/LoadingSpinner';
-import BeritaPagination from '../component/pagination/beritaPagination';
-import FotoWisata from '../assets/img/slides-1.jpg'
 import { format_tgl } from '../utils/helper.min';
+import WisataPagination from '../component/pagination/wisataPagination';
 
 const Wisata = () => {
     const [isLoading, setIsLoading] = useState(false);
+    const [resultData, setResultData] = useState();
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
     const [update, setUpdate] = useState();
@@ -18,6 +18,7 @@ const Wisata = () => {
         axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/wisata?k3=&k4=&search=&limit=`)
             .then((result) => {
                 const data = result.data.data;
+                setResultData(data);
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
                 setUpdate(data.last_updated)
@@ -82,19 +83,8 @@ const Wisata = () => {
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="card">
-                                <img src={FotoWisata} className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">Wisata Di Enrekang</h5>
-                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
-                                </div>
-                            </div>
-                        </div>
+                    {resultData && <WisataPagination resultData={resultData} />}
 
-                    </div>
                 </section>
 
             </main>
