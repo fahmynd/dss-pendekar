@@ -53,7 +53,7 @@ const APBDTable = (props) => {
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
                             <input type="text" name="query" placeholder="Cari Kecamatan..." title="Enter search keyword" onChange={e => setQuery(e.target.value)} />
-                            <button title="Search"><i className="bi bi-search"></i></button>
+                            <button title="Search" disabled><i className="bi bi-search"></i></button>
                         </form>
                     </div>
                 </div>

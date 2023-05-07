@@ -68,7 +68,7 @@ const BansosTable = (props) => {
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
                             <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                            <button type="submit" title="Search"><i className="bi bi-search"></i></button>
+                            <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
                         </form>
                     </div>
                 </div>
