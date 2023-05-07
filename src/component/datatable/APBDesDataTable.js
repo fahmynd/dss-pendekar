@@ -48,7 +48,7 @@ const APBDTable = (props) => {
 
     return (
         <Fragment>
-            <div className="row g-1 mb-4">
+            <div className="d-none row g-1 mb-4">
                 <div className="col-3">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
