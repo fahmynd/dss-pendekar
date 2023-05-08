@@ -46,7 +46,7 @@ const RKPTable = (props) => {
     const customStyles = {
         headCells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 fontWeight: 'bold',
                 backgroundColor: '#F1ECFF',
                 borderRight: '1px solid #EDEDED',
@@ -55,7 +55,7 @@ const RKPTable = (props) => {
         },
         cells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 borderRight: '1px solid #EDEDED',
             },
         },
@@ -100,7 +100,7 @@ const RKPTable = (props) => {
                         {
                             name: "No",
                             selector: (row, index) => index + 1,
-                            width: "70px",
+                            width: "60px",
                             style: {
                                 borderLeft: "1px solid #EDEDED"
                             }
@@ -109,41 +109,57 @@ const RKPTable = (props) => {
                             name: "Kecamatan",
                             sortable: true,
                             selector: (row) => row.nama_kecamatan,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Desa",
                             sortable: true,
                             selector: (row) => row.nama_deskel,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Nama Proyek/Kegiatan",
                             sortable: true,
                             selector: (row) => row.nama_proyek,
+                            width: "220px",
+                            wrap: true,
                         },
                         {
                             name: "Lokasi",
                             sortable: true,
                             selector: (row) => row.lokasi,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Biaya",
                             sortable: true,
                             selector: (row) => row.biaya,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Manfaat",
                             sortable: true,
                             selector: (row) => row.manfaat,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Tahun",
                             sortable: true,
                             selector: (row) => row.tahun,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Pelaksana",
                             sortable: true,
                             selector: (row) => row.pelaksana,
+                            width: "180px",
+                            wrap: true,
                         },
                     ]
                 }

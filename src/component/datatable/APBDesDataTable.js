@@ -31,7 +31,7 @@ const APBDTable = (props) => {
     const customStyles = {
         headCells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 fontWeight: 'bold',
                 backgroundColor: '#F1ECFF',
                 borderRight: '1px solid #EDEDED',
@@ -40,7 +40,7 @@ const APBDTable = (props) => {
         },
         cells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 borderRight: '1px solid #EDEDED',
             },
         },
@@ -74,7 +74,7 @@ const APBDTable = (props) => {
                         {
                             name: "No",
                             selector: (row, index) => index + 1,
-                            width: "70px",
+                            width: "60px",
                             style: {
                                 borderLeft: "1px solid #EDEDED"
                             }
@@ -83,21 +83,25 @@ const APBDTable = (props) => {
                             name: "Kecamatan",
                             sortable: true,
                             selector: (row) => row.nama_kecamatan,
+                            wrap: true,
                         },
                         {
                             name: "Anggaran",
                             sortable: true,
                             selector: (row) => rupiah(row.anggaran_2023),
+                            wrap: true,
                         },
                         {
                             name: "Realisasi",
                             sortable: true,
                             selector: (row) => rupiah(row.realisasi_2023),
+                            wrap: true,
                         },
                         {
                             name: "Sisa",
                             sortable: true,
                             selector: (row) => rupiah(row.sisa_2023),
+                            wrap: true,
                         },
                     ]
                 }

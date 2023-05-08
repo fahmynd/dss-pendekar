@@ -86,7 +86,7 @@ const JenisUsaha = (props) => {
             legend: {},
             grid: {
                 height: '95%',
-                left: '10',
+                left: '3%',
                 right: '4%',
                 top: '5%',
                 bottom: '20%',
@@ -94,7 +94,7 @@ const JenisUsaha = (props) => {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 1],
+                boundaryGap: [0, 0],
                 min: 0,
                 max: function (value) {
                     return value.max;
@@ -152,18 +152,19 @@ const JenisUsaha = (props) => {
                 cursor: "auto"
             }
             ],
-            dataZoom: [{
-                type: 'inside',
-                id: 'insideY',
-                filterMode: 'weakFilter',
-                yAxisIndex: 0,
-                start: 0,
-                end: 100,
-                filterMode: 'empty',
-                zoomOnMouseWheel: false,
-                moveOnMouseMove: true,
-                moveOnMouseWheel: true
-            }]
+            dataZoom: [
+                {
+                    type: 'inside',
+                    id: 'insideY',
+                    yAxisIndex: 0,
+                    start: 0,
+                    end: 100,
+                    filterMode: 'empty',
+                    zoomOnMouseWheel: false,
+                    moveOnMouseMove: true,
+                    moveOnMouseWheel: true
+                }
+            ]
         }
     }, [dataChart])
 

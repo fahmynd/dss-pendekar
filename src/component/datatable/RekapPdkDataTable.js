@@ -46,7 +46,7 @@ const RekapPendudukTable = (props) => {
     const customStyles = {
         headCells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 fontWeight: 'bold',
                 backgroundColor: '#F1ECFF',
                 borderRight: '1px solid #EDEDED',
@@ -55,7 +55,7 @@ const RekapPendudukTable = (props) => {
         },
         cells: {
             style: {
-                fontSize: '15px',
+                fontSize: '14px',
                 borderRight: '1px solid #EDEDED',
             },
         },
@@ -100,7 +100,7 @@ const RekapPendudukTable = (props) => {
                         {
                             name: "No",
                             selector: (row, index) => index + 1,
-                            width: "70px",
+                            width: "60px",
                             style: {
                                 borderLeft: "1px solid #EDEDED"
                             }
@@ -109,36 +109,50 @@ const RekapPendudukTable = (props) => {
                             name: "Kecamatan",
                             sortable: true,
                             selector: (row) => row.nama_kecamatan,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Desa",
                             sortable: true,
                             selector: (row) => row.nama_deskel,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Laki-Laki",
                             sortable: true,
                             selector: (row) => row.pria,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Perempuan",
                             sortable: true,
                             selector: (row) => row.wanita,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Jumlah Penduduk",
                             sortable: true,
                             selector: (row) => row.jumlah_penduduk,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Jumlah KK",
                             sortable: true,
                             selector: (row) => row.jumlah_kk,
+                            width: "180px",
+                            wrap: true,
                         },
                         {
                             name: "Wajib KTP",
                             sortable: true,
                             selector: (row) => row.jml_wktp,
+                            width: "180px",
+                            wrap: true,
                         },
                     ]
                 }

@@ -78,7 +78,7 @@ const UsahaDiWilayah = (props) => {
             legend: {},
             grid: {
                 height: '95%',
-                left: '0',
+                left: '3%',
                 right: '4%',
                 top: '5%',
                 bottom: '20%',

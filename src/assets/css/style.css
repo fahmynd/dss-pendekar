@@ -490,6 +490,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 
 .card-body-produk {
   padding: 0px 10px;
+  /* height: 140px; */
 }
 
 .card-body-kesehatan {
