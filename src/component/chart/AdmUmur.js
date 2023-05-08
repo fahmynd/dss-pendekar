@@ -36,82 +36,82 @@ function AdmUmur(props) {
         var data = [
             {
                 age: "75+",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u75.perempuan
             },
             {
                 age: "70-74",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u70.perempuan
             },
             {
                 age: "65-69",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u65.perempuan
             },
             {
                 age: "60-64",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u60.perempuan
             },
             {
                 age: "55-59",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u55.perempuan
             },
             {
                 age: "50-54",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u50.perempuan
             },
             {
                 age: "45-49",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u45.perempuan
             },
             {
                 age: "40-44",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u40.perempuan
             },
             {
                 age: "35-39",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u35.perempuan
             },
             {
                 age: "30-34",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u30.perempuan
             },
             {
                 age: "25-29",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u25.perempuan
             },
             {
                 age: "20-24",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u20.perempuan
             },
             {
                 age: "15-19",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u15.perempuan
             },
             {
                 age: "10-14",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u10.perempuan
             },
             {
                 age: "5-9",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u5.perempuan
             },
             {
                 age: "0-4",
-                Laki: 0,
+                Laki: -0,
                 Perempuan: props.data.u0.perempuan
             }
         ];

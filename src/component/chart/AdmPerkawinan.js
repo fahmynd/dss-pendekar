@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmPerkawinan() {
+function AdmPerkawinan(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admPerkawinanChart");
@@ -36,23 +36,23 @@ function AdmPerkawinan() {
         var data = [
             {
                 perkawinan: "Belum Kawin",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.belum_kawin.perempuan
             },
             {
                 perkawinan: "Kawin",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.kawin.perempuan
             },
             {
                 perkawinan: "Cerai Hidup",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.cerai_hidup.perempuan
             },
             {
                 perkawinan: "Cerai Mati",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.cerai_mati.perempuan
             },
         ];
 
@@ -163,7 +163,7 @@ function AdmPerkawinan() {
         return () => {
             root.dispose();
         };
-    }, []);
+    }, [props.data]);
 
     return (
         <div id="admPerkawinanChart" style={{ width: "100%", height: "400px" }}></div>

@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmPekerjaan() {
+function AdmPekerjaan(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admPekerjaanChart");
@@ -36,23 +36,58 @@ function AdmPekerjaan() {
         var data = [
             {
                 pekerjaan: "Belum/Tidak Bekerja",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.belum_tidak_bekerja.perempuan
             },
             {
                 pekerjaan: "Mengurus Rumah Tangga",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.mengurus_rumah_tangga.perempuan
             },
             {
                 pekerjaan: "Pelajar/Mahasiswa",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.pelajar_mahasiswa.perempuan
             },
             {
                 pekerjaan: "Pensiunan",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.pensiunan.perempuan
+            },
+            {
+                pekerjaan: "Perdagangan",
+                Laki: -0,
+                Perempuan: props.data.perdagangan.perempuan
+            },
+            {
+                pekerjaan: "Perawat",
+                Laki: -0,
+                Perempuan: props.data.perawat.perempuan
+            },
+            {
+                pekerjaan: "Nelayan/Perikanan",
+                Laki: -0,
+                Perempuan: props.data.nelayan.perempuan
+            },
+            {
+                pekerjaan: "Guru",
+                Laki: -0,
+                Perempuan: props.data.guru.perempuan
+            },
+            {
+                pekerjaan: "Wiraswasta",
+                Laki: -0,
+                Perempuan: props.data.wiraswasta.perempuan
+            },
+            {
+                pekerjaan: "Pengacara",
+                Laki: -0,
+                Perempuan: props.data.pengacara.perempuan
+            },
+            {
+                pekerjaan: "Lainnya",
+                Laki: -0,
+                Perempuan: props.data.lainnya.perempuan
             },
         ];
 
@@ -163,7 +198,7 @@ function AdmPekerjaan() {
         return () => {
             root.dispose();
         };
-    }, []);
+    }, [props.data]);
 
     return (
         <div id="admPekerjaanChart" style={{ width: "100%", height: "400px" }}></div>

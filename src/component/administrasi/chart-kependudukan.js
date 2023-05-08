@@ -13,7 +13,7 @@ const ChartKependudukan = (props) => {
 
     const { data } = props
 
-    console.log(data);
+    // console.log(data);
 
     const listDeskel = useMemo(() => {
         setSelectedDeskel("");
@@ -32,36 +32,36 @@ const ChartKependudukan = (props) => {
         const result = data.list_desa.filter(desa => {
             if (selectedKec && selectedDeskel) {
                 return desa.kode_wilayah = selectedDeskel;
-            }else if(selectedKec){
+            } else if (selectedKec) {
                 let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
                 return kode_kec === selectedKec
-            }else{
+            } else {
                 return true;
             }
         })
 
         return result;
-    },[data, selectedDeskel, selectedKec])
+    }, [data, selectedDeskel, selectedKec])
 
 
     const umur = useMemo(() => {
         let result = {
-            u0: {laki: 0, perempuan: 0},
-            u5: {laki: 0, perempuan: 0},
-            u10: {laki: 0, perempuan: 0},
-            u15: {laki: 0, perempuan: 0},
-            u20: {laki: 0, perempuan: 0},
-            u25: {laki: 0, perempuan: 0},
-            u30: {laki: 0, perempuan: 0},
-            u35: {laki: 0, perempuan: 0},
-            u40: {laki: 0, perempuan: 0},
-            u45: {laki: 0, perempuan: 0},
-            u50: {laki: 0, perempuan: 0},
-            u55: {laki: 0, perempuan: 0},
-            u60: {laki: 0, perempuan: 0},
-            u65: {laki: 0, perempuan: 0},
-            u70: {laki: 0, perempuan: 0},
-            u75: {laki: 0, perempuan: 0},
+            u0: { laki: 0, perempuan: 0 },
+            u5: { laki: 0, perempuan: 0 },
+            u10: { laki: 0, perempuan: 0 },
+            u15: { laki: 0, perempuan: 0 },
+            u20: { laki: 0, perempuan: 0 },
+            u25: { laki: 0, perempuan: 0 },
+            u30: { laki: 0, perempuan: 0 },
+            u35: { laki: 0, perempuan: 0 },
+            u40: { laki: 0, perempuan: 0 },
+            u45: { laki: 0, perempuan: 0 },
+            u50: { laki: 0, perempuan: 0 },
+            u55: { laki: 0, perempuan: 0 },
+            u60: { laki: 0, perempuan: 0 },
+            u65: { laki: 0, perempuan: 0 },
+            u70: { laki: 0, perempuan: 0 },
+            u75: { laki: 0, perempuan: 0 },
         };
 
         filtered_desa.forEach(desa => {
@@ -84,7 +84,111 @@ const ChartKependudukan = (props) => {
         })
 
         return result;
-    },[filtered_desa])
+    }, [filtered_desa])
+
+    const pendidikan = useMemo(() => {
+        let result = {
+            tidak_blm_sekolah: { laki: 0, perempuan: 0 },
+            belum_tamat_sd: { laki: 0, perempuan: 0 },
+            tamat_sd: { laki: 0, perempuan: 0 },
+            sltp: { laki: 0, perempuan: 0 },
+            slta: { laki: 0, perempuan: 0 },
+            d1_dan_d2: { laki: 0, perempuan: 0 },
+            d3: { laki: 0, perempuan: 0 },
+            s1: { laki: 0, perempuan: 0 },
+            s2: { laki: 0, perempuan: 0 },
+            s3: { laki: 0, perempuan: 0 },
+        };
+
+        filtered_desa.forEach(desa => {
+            result.tidak_blm_sekolah.perempuan += parseInt(desa.tidak_blm_sekolah)
+            result.belum_tamat_sd.perempuan += parseInt(desa.belum_tamat_sd)
+            result.tamat_sd.perempuan += parseInt(desa.tamat_sd)
+            result.sltp.perempuan += parseInt(desa.sltp)
+            result.slta.perempuan += parseInt(desa.slta)
+            result.d1_dan_d2.perempuan += parseInt(desa.d1_dan_d2)
+            result.d3.perempuan += parseInt(desa.d3)
+            result.s1.perempuan += parseInt(desa.s1)
+            result.s2.perempuan += parseInt(desa.s2)
+            result.s3.perempuan += parseInt(desa.s3)
+        })
+
+        return result;
+    }, [filtered_desa])
+
+    const pekerjaan = useMemo(() => {
+        let result = {
+            belum_tidak_bekerja: { laki: 0, perempuan: 0 },
+            mengurus_rumah_tangga: { laki: 0, perempuan: 0 },
+            pelajar_mahasiswa: { laki: 0, perempuan: 0 },
+            pensiunan: { laki: 0, perempuan: 0 },
+            perdagangan: { laki: 0, perempuan: 0 },
+            perawat: { laki: 0, perempuan: 0 },
+            nelayan: { laki: 0, perempuan: 0 },
+            guru: { laki: 0, perempuan: 0 },
+            wiraswasta: { laki: 0, perempuan: 0 },
+            pengacara: { laki: 0, perempuan: 0 },
+            lainnya: { laki: 0, perempuan: 0 },
+        };
+
+        filtered_desa.forEach(desa => {
+            result.belum_tidak_bekerja.perempuan += parseInt(desa.belum_tidak_bekerja)
+            result.mengurus_rumah_tangga.perempuan += parseInt(desa.mengurus_rumah_tangga)
+            result.pelajar_mahasiswa.perempuan += parseInt(desa.pelajar_mahasiswa)
+            result.pensiunan.perempuan += parseInt(desa.pensiunan)
+            result.perdagangan.perempuan += parseInt(desa.perdagangan)
+            result.perawat.perempuan += parseInt(desa.perawat)
+            result.nelayan.perempuan += parseInt(desa.nelayan)
+            result.guru.perempuan += parseInt(desa.guru)
+            result.wiraswasta.perempuan += parseInt(desa.wiraswasta)
+            result.pengacara.perempuan += parseInt(desa.pengacara)
+            result.lainnya.perempuan += parseInt(desa.lainnya)
+        })
+
+        return result;
+    }, [filtered_desa])
+
+    const perkawinan = useMemo(() => {
+        let result = {
+            belum_kawin: { laki: 0, perempuan: 0 },
+            kawin: { laki: 0, perempuan: 0 },
+            cerai_hidup: { laki: 0, perempuan: 0 },
+            cerai_mati: { laki: 0, perempuan: 0 },
+        };
+
+        filtered_desa.forEach(desa => {
+            result.belum_kawin.perempuan += parseInt(desa.belum_kawin)
+            result.kawin.perempuan += parseInt(desa.kawin)
+            result.cerai_hidup.perempuan += parseInt(desa.cerai_hidup)
+            result.cerai_mati.perempuan += parseInt(desa.cerai_mati)
+        })
+
+        return result;
+    }, [filtered_desa])
+
+    const agama = useMemo(() => {
+        let result = {
+            islam: { laki: 0, perempuan: 0 },
+            kristen: { laki: 0, perempuan: 0 },
+            katholik: { laki: 0, perempuan: 0 },
+            hindu: { laki: 0, perempuan: 0 },
+            budha: { laki: 0, perempuan: 0 },
+            konghucu: { laki: 0, perempuan: 0 },
+            kepercayaan: { laki: 0, perempuan: 0 },
+        };
+
+        filtered_desa.forEach(desa => {
+            result.islam.perempuan += parseInt(desa.islam)
+            result.kristen.perempuan += parseInt(desa.kristen)
+            result.katholik.perempuan += parseInt(desa.katholik)
+            result.hindu.perempuan += parseInt(desa.hindu)
+            result.budha.perempuan += parseInt(desa.budha)
+            result.konghucu.perempuan += parseInt(desa.konghucu)
+            result.kepercayaan.perempuan += parseInt(desa.kepercayaan)
+        })
+
+        return result;
+    }, [filtered_desa])
 
     return (
         <div className="card">
@@ -148,19 +252,19 @@ const ChartKependudukan = (props) => {
                         <AdmUmur data={umur} />
                     </div>
                     <div className="tab-pane fade" id="bordered-justified-pendidikan" role="tabpanel" aria-labelledby="pendidikan-tab">
-                        <AdmPendidikan />
+                        <AdmPendidikan data={pendidikan} />
                     </div>
                     <div className="tab-pane fade" id="bordered-justified-pekerjaan" role="tabpanel" aria-labelledby="pekerjaan-tab">
-                        <AdmPekerjaan />
+                        <AdmPekerjaan data={pekerjaan} />
                     </div>
                     <div className="tab-pane fade" id="bordered-justified-perkawinan" role="tabpanel" aria-labelledby="perkawinan-tab">
-                        <AdmPerkawinan />
+                        <AdmPerkawinan data={perkawinan} />
                     </div>
                     <div className="tab-pane fade" id="bordered-justified-keluarga" role="tabpanel" aria-labelledby="keluarga-tab">
                         <AdmKeluarga />
                     </div>
                     <div className="tab-pane fade" id="bordered-justified-agama" role="tabpanel" aria-labelledby="agama-tab">
-                        <AdmAgama />
+                        <AdmAgama data={agama} />
                     </div>
                 </div>
 

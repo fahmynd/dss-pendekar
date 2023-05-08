@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmAgama() {
+function AdmAgama(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admAgamaChart");
@@ -36,38 +36,38 @@ function AdmAgama() {
         var data = [
             {
                 agama: "Islam",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.islam.perempuan
             },
             {
                 agama: "Kristen",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.kristen.perempuan
             },
             {
                 agama: "Katolik",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.katholik.perempuan
             },
             {
                 agama: "Hindu",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.hindu.perempuan
             },
             {
                 agama: "Buddha",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.budha.perempuan
             },
             {
                 agama: "Konghuchu",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.konghucu.perempuan
             },
             {
                 agama: "Kepercayaan Lainnya",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.kepercayaan.perempuan
             },
         ];
 
@@ -178,7 +178,7 @@ function AdmAgama() {
         return () => {
             root.dispose();
         };
-    }, []);
+    }, [props.data]);
 
     return (
         <div id="admAgamaChart" style={{ width: "100%", height: "400px" }}></div>

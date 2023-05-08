@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmPendidikan() {
+function AdmPendidikan(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admPendidikanChart");
@@ -36,53 +36,53 @@ function AdmPendidikan() {
         var data = [
             {
                 pendidikan: "Tidak/Belum Sekolah",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.tidak_blm_sekolah.perempuan
             },
             {
                 pendidikan: "Belum Tamat SD/Sederajat",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.belum_tamat_sd.perempuan
             },
             {
                 pendidikan: "Tamat SD/Sederajat",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.tamat_sd.perempuan
             },
             {
                 pendidikan: "SLTP/Sederajat",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.sltp.perempuan
             },
             {
                 pendidikan: "SLTA/Sederajat",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.slta.perempuan
             },
             {
                 pendidikan: "Diploma I/II",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.d1_dan_d2.perempuan
             },
             {
                 pendidikan: "Diploma III/Sarjana Muda",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.d3.perempuan
             },
             {
                 pendidikan: "Diploma IV/Strata I",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.s1.perempuan
             },
             {
                 pendidikan: "Strata II",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.s2.perempuan
             },
             {
                 pendidikan: "Strata III",
-                Laki: -1,
-                Perempuan: 1
+                Laki: -0,
+                Perempuan: props.data.s3.perempuan
             },
         ];
 
@@ -193,7 +193,7 @@ function AdmPendidikan() {
         return () => {
             root.dispose();
         };
-    }, []);
+    }, [props.data]);
 
     return (
         <div id="admPendidikanChart" style={{ width: "100%", height: "400px" }}></div>
