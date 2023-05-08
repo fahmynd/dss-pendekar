@@ -1,5 +1,5 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import JenisUsaha from '../component/chart/jenisUsaha'
+import JenisUsaha from '../component/chart/jenisUsaha copy'
 import UsahaDiWilayah from '../component/chart/usahaDiWilayah'
 import axios from 'axios'
 import LoadingSpinner from '../utils/LoadingSpinner'
@@ -54,107 +54,11 @@ const Umkm = () => {
                 <section className="section dashboard">
                     <div className="row">
                         <div className="col-md-6">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h2 className="card-title-potensi">USAHA DI WILAYAH</h2>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="row g-1 mb-0 pb-0">
-                                        <div className="col">
-                                            <div className="search-produk">
-                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div style={{ height: '400px' }}>
-                                        {resultData && <UsahaDiWilayah resultData={resultData} />}
-                                    </div>
-                                </div>
-                            </div>
+                            {resultData && <UsahaDiWilayah resultData={resultData} />}
                         </div>
 
                         <div className="col-md-6">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h2 className="card-title-potensi">JENIS USAHA</h2>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="row g-1 mb-0 pb-0">
-                                        <div className="col">
-                                            <div className="search-produk">
-                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div style={{ height: '400px' }}>
-                                        {resultData && <JenisUsaha resultData={resultData} />}
-                                    </div>
-                                </div>
-                            </div>
+                            {resultData && <JenisUsaha resultData={resultData} />}
                         </div>
 
                         <div className="col-lg-12">

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import ReactEcharts from "echarts-for-react"
 
-const UsahaDiWilayah = (props) => {
+const JenisUsaha = (props) => {
     const [query, setQuery] = useState("");
     const [selectedKec, setSelectedKec] = useState("");
     const [selectedDeskel, setSelectedDeskel] = useState("");
@@ -41,17 +41,26 @@ const UsahaDiWilayah = (props) => {
         })
 
         let data_umkm = deskel.map(desa => {
+            let jenis_umkm = [];
+            for (const key in props.resultData.jenis_umkm) {
+                jenis_umkm.push(props.resultData.jenis_umkm[key])
+            }
+
+            let chart_umkm = [];
+            for (const key in props.resultData.chart_umkm) {
+                chart_umkm.push(props.resultData.chart_umkm[key])
+            }
             return {
-                nama_desa: desa.nama_deskel,
-                jumlah_umkm: desa.jml_umkm,
+                jenis_umkm: desa.kuliner,
+                chart_umkm: desa.market,
             }
         })
 
         data_umkm.sort((a, b) => {
-            if (a.jumlah_umkm === b.jumlah_umkm) {
+            if (a.chart_umkm === b.chart_umkm) {
                 return 0
             }
-            if (a.jumlah_umkm > b.jumlah_umkm) {
+            if (a.chart_umkm > b.chart_umkm) {
                 return -1
             }
             return 1
@@ -61,9 +70,18 @@ const UsahaDiWilayah = (props) => {
     }, [selectedKec, selectedDeskel, listDeskel, query])
 
     const options = useMemo(() => {
+        // let chart_jenis = [];
+        // for (const key in dataChart.jenis_umkm) {
+        //     dataChart.map(item => item.jenis_umkm[key])
+        // }
 
-        let chart_desa = dataChart.map(item => item.nama_desa);
-        let chart_jumlah = dataChart.map(item => item.jumlah_umkm);
+        // let chart_jumlah = [];
+        // for (const key in dataChart.chart_umkm) {
+        //     dataChart.map(item => item.chart_umkm[key])
+        // }
+
+        let chart_jenis = dataChart.map(item => item.jenis_umkm);
+        let chart_jumlah = dataChart.map(item => item.chart_umkm);
 
         return {
             title: {
@@ -78,7 +96,7 @@ const UsahaDiWilayah = (props) => {
             legend: {},
             grid: {
                 height: '95%',
-                left: '0',
+                left: '10',
                 right: '4%',
                 top: '5%',
                 bottom: '20%',
@@ -86,7 +104,7 @@ const UsahaDiWilayah = (props) => {
             },
             xAxis: {
                 type: 'value',
-                boundaryGap: [0, 0],
+                boundaryGap: [0, 1],
                 min: 0,
                 max: function (value) {
                     return value.max;
@@ -109,12 +127,7 @@ const UsahaDiWilayah = (props) => {
             },
             yAxis: {
                 type: 'category',
-                data: chart_desa.reverse(),
-                // axisLabel: {
-                //     formatter: function (param) {
-                //         return param.data == 0 ? '' : param.data;
-                //     },
-                // },
+                data: chart_jenis,
                 axisTick: {
                     show: false
                 },
@@ -131,47 +144,42 @@ const UsahaDiWilayah = (props) => {
                         type: "dashed"
                     }
                 },
-                // inverse: true
             },
-            series: [
-                {
-                    type: 'bar',
-                    data: chart_jumlah.reverse(),
-                    label: {
-                        show: true,
-                        position: "right",
-                        formatter: function (param) {
-                            return param.data == 0 ? '' : param.data;
-                        },
-                        fontSize: 12
-                    },
-                    itemStyle: {
-                        borderRadius: [0, 5, 5, 0]
-                    },
-                    cursor: "auto",
-                    color: '#499841'
-                }
+            series: [{
+                type: 'bar',
+                data: chart_jumlah,
+                color: '#EA9501',
+                label: {
+                    show: true,
+                    position: "right",
+                    formatter: '{c}',
+                    fontSize: 12
+                },
+                itemStyle: {
+                    borderRadius: [0, 5, 5, 0]
+                },
+                cursor: "auto"
+            }
             ],
-            dataZoom: [
-                {
-                    type: 'inside',
-                    id: 'insideY',
-                    yAxisIndex: 0,
-                    start: 50,
-                    end: 100,
-                    filterMode: 'empty',
-                    zoomOnMouseWheel: false,
-                    moveOnMouseMove: true,
-                    moveOnMouseWheel: true
-                }
-            ],
+            dataZoom: [{
+                type: 'inside',
+                id: 'insideY',
+                filterMode: 'weakFilter',
+                yAxisIndex: 0,
+                start: 0,
+                end: 100,
+                filterMode: 'empty',
+                zoomOnMouseWheel: false,
+                moveOnMouseMove: true,
+                moveOnMouseWheel: true
+            }]
         }
     }, [dataChart])
 
     return (
         <div className="card">
             <div className="card-body">
-                <h2 className="card-title-potensi">USAHA DI WILAYAH</h2>
+                <h2 className="card-title-potensi">JENIS USAHA</h2>
                 <div className="filter-primary">
                     <button type="button" className="btn btn-primary">Export Report</button>
                 </div>
@@ -217,4 +225,4 @@ const UsahaDiWilayah = (props) => {
     )
 }
 
-export default UsahaDiWilayah
+export default JenisUsaha

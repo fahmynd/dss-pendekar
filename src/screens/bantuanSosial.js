@@ -5,7 +5,7 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
 import BansosTable from '../component/datatable/RekapBansosDataTable';
-import { format_tgl } from '../utils/helper.min';
+import { formatAngka, format_tgl } from '../utils/helper.min';
 
 const BantuanSosial = () => {
     const [resultData, setResultData] = useState();
@@ -13,6 +13,8 @@ const BantuanSosial = () => {
     const [kec, setKec] = useState([]);
     const [desa, setDesa] = useState([]);
     const [update, setUpdate] = useState();
+    const [individu, setIndividu] = useState([]);
+    const [keluarga, setKeluarga] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,6 +28,8 @@ const BantuanSosial = () => {
                 setKec(data.list_kecamatan)
                 setDesa(data.list_desa)
                 setUpdate(data.last_updated)
+                setIndividu(data.list_kabupaten[0].jml_penerima)
+                setKeluarga(data.list_kabupaten[0].jml_penerima_kk)
             })
             .catch(error => {
                 alert(error.message);
@@ -98,7 +102,7 @@ const BantuanSosial = () => {
                                                 <div className="card-body rounded-2 bg-primary">
                                                     <div className="row px-4 py-2">
                                                         <div className="col-6">
-                                                            <span className="jum-bantuan timer count-title count-number">0</span> <br />
+                                                            <span className="jum-bantuan timer count-title count-number">{formatAngka(individu)}</span> <br />
                                                             <span className="judul-card-bansos">Penduduk Mendapat Bantuan</span>
                                                         </div>
                                                         <div className="col-6 text-right center-v">
@@ -113,7 +117,7 @@ const BantuanSosial = () => {
                                                 <div className="card-body rounded-2 bg-secondary">
                                                     <div className="row px-4 py-2">
                                                         <div className="col-6">
-                                                            <span className="jum-bantuan timer count-title count-number">1</span> <br />
+                                                            <span className="jum-bantuan timer count-title count-number">{formatAngka(keluarga)}</span> <br />
                                                             <span className="judul-card-bansos">Kepala Keluarga Mendapat Bantuan</span>
                                                         </div>
                                                         <div className="col-6 text-right center-v">

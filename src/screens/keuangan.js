@@ -1,8 +1,8 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import AnggaranDesa from '../component/chart/anggaranDesa'
+import AnggaranDesa from '../component/chart/APBDes'
 import axios from 'axios';
 import LoadingSpinner from '../utils/LoadingSpinner';
-import { format_tgl } from '../utils/helper.min';
+import { format_tgl, rupiah } from '../utils/helper.min';
 import RKPTable from '../component/datatable/RKPDataTable';
 import APBDTable from '../component/datatable/APBDesDataTable';
 
@@ -10,6 +10,10 @@ const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [update, setUpdate] = useState();
+    const [online, setOnline] = useState([]);
+    const [anggaran, setAnggaran] = useState([]);
+    const [realisasi, setRealisasi] = useState([]);
+    const [penyerapan, setPenyerapan] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -20,6 +24,10 @@ const Keuangan = () => {
                 const data = result.data.data;
                 setResultData(data);
                 setUpdate(data.last_updated)
+                setOnline(data.list_kabupaten[0].online)
+                setAnggaran(data.list_kabupaten[0].anggaran_2023)
+                setRealisasi(data.list_kabupaten[0].realisasi_2023)
+                setPenyerapan(data.list_kabupaten[0].penyerapan_2023)
             })
             .catch(error => {
                 alert(error.message);
@@ -155,7 +163,7 @@ const Keuangan = () => {
                                                             <i className="bx bxs-building-house"></i>
                                                         </div>
                                                         <div>
-                                                            <h5 className="fw-bold">54</h5>
+                                                            <h5 className="fw-bold">{online}</h5>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,7 +174,7 @@ const Keuangan = () => {
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan pb-1">
                                                     <h6>ANGGARAN</h6>
-                                                    <h5 className="fw-bold">Rp150,232,431,100</h5>
+                                                    <h5 className="fw-bold">{rupiah(anggaran)}</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,7 +183,7 @@ const Keuangan = () => {
                                             <div className="keuangan-card">
                                                 <div className="card-body-keuangan pb-1">
                                                     <h6>REALISASI</h6>
-                                                    <h5 className="fw-bold">Rp10,232,431,100</h5>
+                                                    <h5 className="fw-bold">{rupiah(realisasi)}</h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -185,8 +193,8 @@ const Keuangan = () => {
                                                 <div className="card-body-keuangan">
                                                     <h6>% PENYERAPAN</h6>
                                                     <div className="progress">
-                                                        <div className="progress-bar" role="progressbar" style={{ width: '75%' }} aria-valuenow="75"
-                                                            aria-valuemin="0" aria-valuemax="100">75%</div>
+                                                        <div className="progress-bar" role="progressbar" style={{ width: `${penyerapan}%` }} aria-valuenow={penyerapan}
+                                                            aria-valuemin="0" aria-valuemax="100">{penyerapan}%</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,7 +220,7 @@ const Keuangan = () => {
                                                             <div className="card-body">
 
                                                                 {/* <div id="stuntingChart" style={{ minHeight: '400px' }}></div> */}
-                                                                <AnggaranDesa />
+                                                                {resultData && <AnggaranDesa resultData={resultData} />}
 
                                                             </div>
                                                         </div>

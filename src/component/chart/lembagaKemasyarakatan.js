@@ -40,7 +40,7 @@ export function LembagaKemasyarakatan(props) {
         labels: ['BPD', 'Karang Taruna', 'LPMD', 'PKK', 'Posyandu'],
         datasets: [
             {
-                label: '# of Votes',
+                // label: '# of Votes',
                 data: [
                     props?.data.bpd,
                     props?.data.karang_taruna,

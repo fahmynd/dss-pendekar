@@ -53,7 +53,7 @@ export const PetaPerkembangan = (props) => {
             grid: {
                 left: "3%",
                 right: "7%",
-                bottom: "3%",
+                bottom: "6%",
                 // containLabel: true,
                 tooltip: {
                     trigger: "item",
