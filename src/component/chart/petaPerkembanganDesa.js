@@ -10,7 +10,7 @@ export const PetaPerkembangan = (props) => {
         const transformed = list_desa.map(desa => {
 
             return {
-                name: desa.nama_deskel + ` - Skor SDGS ${desa.capaian.sdgs}`,
+                name: `${desa.nama_deskel}: SDGS ${desa.capaian.sdgs} | IDM ${desa.capaian.idm} (${desa.current_status})`,
                 type: "scatter",
                 data: [
                     [
@@ -18,8 +18,8 @@ export const PetaPerkembangan = (props) => {
                         desa.capaian.sdgs
                     ],
                 ],
-                symbolSize: 20,
-                label: {}
+                symbolSize: 25,
+                colorBy: 'data',
             }
         })
 

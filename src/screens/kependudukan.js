@@ -6,12 +6,6 @@ import PendudukTable from '../component/datatable/PdkDataTable';
 import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
-import AdmUmur from '../component/chart/AdmUmur';
-import AdmPendidikan from '../component/chart/AdmPendidikan';
-import AdmPekerjaan from '../component/chart/AdmPekerjaan';
-import AdmPerkawinan from '../component/chart/AdmPerkawinan';
-import AdmKeluarga from '../component/chart/AdmKeluarga';
-import AdmAgama from '../component/chart/AdmAgama';
 import { format_tgl } from '../utils/helper.min';
 import ChartKependudukan from '../component/administrasi/chart-kependudukan';
 
@@ -135,7 +129,7 @@ const Kependudukan = () => {
                         </div>
 
                         <div className="col-lg-12">
-                           {resultData && <ChartKependudukan data={resultData} />}
+                            {resultData && <ChartKependudukan data={resultData} />}
                         </div>
 
                         <div className="col-lg-12">
@@ -144,44 +138,6 @@ const Kependudukan = () => {
                                     <h5 className="card-title-potensi">Kemiskinan Ekstrim</h5>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="row g-1 mb-4">
-                                        <div className="col-3">
-                                            <div className="search-produk">
-                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
                                     </div>
 
                                     {resultData && <MiskinPendudukTable resultData={resultData} />}
@@ -196,44 +152,6 @@ const Kependudukan = () => {
                                     <h5 className="card-title-potensi">Rekap Kependudukan</h5>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="d-none row g-1 mb-4">
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Demografi Kependudukan</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((kec) => {
-                                                    return (
-                                                        <Kecamatan
-                                                            key={kec.kode_wilayah}
-                                                            listkec={kec.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((deskel) => {
-                                                    return (
-                                                        <Desa
-                                                            key={deskel.kode_wilayah}
-                                                            listdesa={deskel.nama_deskel}
-                                                        />
-                                                    )
-                                                })
-                                                }
-                                            </select>
-                                        </div>
                                     </div>
 
                                     {resultData && <RekapPendudukTable resultData={resultData} />}

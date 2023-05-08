@@ -240,7 +240,7 @@ const ChartKependudukan = (props) => {
                     <li className="nav-item flex-fill" role="presentation">
                         <button className="nav-link w-100" id="perkawinan-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-perkawinan" type="button" role="tab" aria-controls="perkawinan" aria-selected="false">Perkawinan</button>
                     </li>
-                    <li className="nav-item flex-fill" role="presentation">
+                    <li className="d-none nav-item flex-fill" role="presentation">
                         <button className="nav-link w-100" id="keluarga-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-keluarga" type="button" role="tab" aria-controls="keluarga" aria-selected="false">Keluarga</button>
                     </li>
                     <li className="nav-item flex-fill" role="presentation">
