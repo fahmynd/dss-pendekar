@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmUmur() {
+function AdmUmur(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admUmurChart");
@@ -35,94 +35,84 @@ function AdmUmur() {
 
         var data = [
             {
-                age: "85+",
-                Laki: -1,
-                Perempuan: 1
-            },
-            {
-                age: "80-54",
-                Laki: -0.2,
-                Perempuan: 0.3
-            },
-            {
-                age: "75-79",
-                Laki: -0.3,
-                Perempuan: 0.6
+                age: "75+",
+                Laki: 0,
+                Perempuan: props.data.u75.perempuan
             },
             {
                 age: "70-74",
-                Laki: -0.5,
-                Perempuan: 0.8
+                Laki: 0,
+                Perempuan: props.data.u70.perempuan
             },
             {
                 age: "65-69",
-                Laki: -0.8,
-                Perempuan: 1.0
+                Laki: 0,
+                Perempuan: props.data.u65.perempuan
             },
             {
                 age: "60-64",
-                Laki: -1.1,
-                Perempuan: 1.3
+                Laki: 0,
+                Perempuan: props.data.u60.perempuan
             },
             {
                 age: "55-59",
-                Laki: -1.7,
-                Perempuan: 1.9
+                Laki: 0,
+                Perempuan: props.data.u55.perempuan
             },
             {
                 age: "50-54",
-                Laki: -2.2,
-                Perempuan: 2.5
+                Laki: 0,
+                Perempuan: props.data.u50.perempuan
             },
             {
                 age: "45-49",
-                Laki: -2.8,
-                Perempuan: 3.0
+                Laki: 0,
+                Perempuan: props.data.u45.perempuan
             },
             {
                 age: "40-44",
-                Laki: -3.4,
-                Perempuan: 3.6
+                Laki: 0,
+                Perempuan: props.data.u40.perempuan
             },
             {
                 age: "35-39",
-                Laki: -4.2,
-                Perempuan: 4.1
+                Laki: 0,
+                Perempuan: props.data.u35.perempuan
             },
             {
                 age: "30-34",
-                Laki: -5.2,
-                Perempuan: 4.8
+                Laki: 0,
+                Perempuan: props.data.u30.perempuan
             },
             {
                 age: "25-29",
-                Laki: -5.6,
-                Perempuan: 5.1
+                Laki: 0,
+                Perempuan: props.data.u25.perempuan
             },
             {
                 age: "20-24",
-                Laki: -5.1,
-                Perempuan: 5.1
+                Laki: 0,
+                Perempuan: props.data.u20.perempuan
             },
             {
                 age: "15-19",
-                Laki: -3.8,
-                Perempuan: 3.8
+                Laki: 0,
+                Perempuan: props.data.u15.perempuan
             },
             {
                 age: "10-14",
-                Laki: -3.2,
-                Perempuan: 3.4
+                Laki: 0,
+                Perempuan: props.data.u10.perempuan
             },
             {
                 age: "5-9",
-                Laki: -4.4,
-                Perempuan: 4.1
+                Laki: 0,
+                Perempuan: props.data.u5.perempuan
             },
             {
                 age: "0-4",
-                Laki: -5.0,
-                Perempuan: 4.8
+                Laki: 0,
+                Perempuan: props.data.u0.perempuan
             }
         ];
 
@@ -233,7 +223,7 @@ function AdmUmur() {
         return () => {
             root.dispose();
         };
-    }, []);
+    }, [props.data]);
 
     return (
         <div id="admUmurChart" style={{ width: "100%", height: "400px" }}></div>
