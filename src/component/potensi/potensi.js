@@ -94,7 +94,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
         if (selectedKec && selectedDeskel) {
             const deskel = listDesa.find(d => d.kode_wilayah === selectedDeskel)
             if (deskel) {
-                ibadah = deskel.sarpars_ibadah
+                ibadah = deskel.sarpras_ibadah
                 sekolah = deskel.sarpras_sekolah
                 umum = deskel.sarpras_umum
             }

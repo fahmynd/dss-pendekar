@@ -1,10 +1,11 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
+import { tgl_indo } from "../../utils/helper.min";
 
 const AdminTableNew = (props) => {
     const { jenis_administrasi, list_kecamatan, list_desa, list_administrasi } = props.resultData.data;
 
-    const [selectedType, setSelectedType] = useState(jenis_administrasi[0].key);
+    const [selectedType, setSelectedType] = useState(jenis_administrasi[1].key);
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
 
@@ -51,7 +52,7 @@ const AdminTableNew = (props) => {
         <Fragment>
             <div className="row g-1 mb-4">
                 <div className="col-4">
-                    <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
+                    <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_keputusan_kepala_desa' className="form-select" aria-label="Pilih Jenis Administrasi">
                         {jenis_administrasi.map((item, key) => {
                             return (
                                 <option key={key} value={item.key}>{item.value}</option>
@@ -104,21 +105,22 @@ const AdminTableNew = (props) => {
                             maxWidth: "20%",
                         },
                         {
-                            name: "Jenis Peraturan",
+                            name: "Tanggal Input",
                             sortable: true,
-                            selector: (row) => row.jenis_peraturan,
+                            selector: (row) => tgl_indo(row.tanggal_input),
                             maxWidth: "20%",
                         },
                         {
-                            name: "Nomor Peraturan",
+                            name: "Nomor Keputusan",
                             sortable: true,
-                            selector: (row) => row.nomor_peraturan,
+                            selector: (row) => row.nomor_keputusan,
+                            wrap: true,
                             // width: "auto",
                         },
                         {
-                            name: "Tanggal Peraturan",
+                            name: "Tanggal Keputusan",
                             sortable: true,
-                            selector: (row) => row.tanggal_peraturan,
+                            selector: (row) => tgl_indo(row.tanggal_keputusan),
                             // width: "auto",
                         },
                         {
@@ -137,7 +139,7 @@ const AdminTableNew = (props) => {
                             selector: (row) => row.lampiran,
                             cell: (row) => {
                                 return (
-                                    <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
+                                    <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-keputusan-kepala-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
                                         Download
                                     </a>
                                 )

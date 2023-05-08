@@ -24,11 +24,11 @@ export default function WisataPagination(props) {
                     return (
                         <div key={key} className="col-md-4">
                             <div className="card">
-                                <img src={item.foto} className="card-img-top" alt="..." />
+                                <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/wisata/${item.foto}`} className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <h5 className="card-title">{item.judul}</h5>
                                     <p className="card-text">{item.subjudul}</p>
-                                    <a href={item.slug} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
+                                    <a href={`https://profil.digitaldesa.id/${item.slug_desa}/wisata/${item.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
                                 </div>
                             </div>
                         </div>

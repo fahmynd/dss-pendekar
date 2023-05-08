@@ -28,7 +28,7 @@ export default function UmkmPagination(props) {
                                 <div className="row g-0 align-items-center">
                                     <div className="col-5 item">
                                         <span className="notify-badge">{item.tipe_usaha}</span>
-                                        <img src={produk} className="img-fluid rounded-start" alt="..." />
+                                        <img src={`https://api.digitaldesa.id/uploads/belanja/${item.foto}`} className="img-fluid rounded-start" alt="..." />
                                     </div>
                                     <div className="col-7 direction">
                                         <div className="card-body-produk">
