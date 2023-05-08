@@ -1,5 +1,5 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import JenisUsaha from '../component/chart/jenisUsaha copy'
+import JenisUsaha from '../component/chart/jenisUsaha'
 import UsahaDiWilayah from '../component/chart/usahaDiWilayah'
 import axios from 'axios'
 import LoadingSpinner from '../utils/LoadingSpinner'

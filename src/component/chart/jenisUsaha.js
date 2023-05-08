@@ -1,19 +1,77 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import ReactEcharts from "echarts-for-react"
 
 const JenisUsaha = (props) => {
-    const options = () => {
-        let chart_jenis = [];
-        for (const key in props.resultData.jenis_umkm) {
-            // console.log(`${key}: ${props.resultData.chart_umkm[key]}`);
-            chart_jenis.push(props.resultData.jenis_umkm[key])
+    const [query, setQuery] = useState("");
+    const [selectedKec, setSelectedKec] = useState("");
+    const [selectedDeskel, setSelectedDeskel] = useState("");
+
+    const { list_desa, list_kecamatan, jenis_umkm } = props.resultData
+
+    const listDeskel = useMemo(() => {
+        setSelectedDeskel("");
+        return list_desa.filter(desa => {
+            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+            return kode_kec === selectedKec
+        })
+    }, [list_desa, selectedKec])
+
+    const listKec = useMemo(() => {
+        return list_kecamatan
+    }, [list_kecamatan])
+
+
+    const dataChart = useMemo(() => {
+        const deskel = list_desa.filter(desa => {
+            if (query !== "") {
+                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            if (selectedKec && selectedDeskel) {
+                return desa.kode_wilayah === selectedDeskel
+            } else if (selectedKec) {
+                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+                return kode_kec === selectedKec
+            } else {
+                return true
+            }
+        })
+
+        let data_umkm = [];
+        for (const key in jenis_umkm) {
+            let jml = 0;
+            deskel.forEach(el => {
+                for (const key2 in el) {
+                    if (key == key2) {
+                        jml += parseInt(el[key2]);
+                    }
+                }
+            });
+            data_umkm.push({
+                jenis_umkm: jenis_umkm[key],
+                chart_umkm: jml,
+            })
         }
 
-        let chart_jumlah = [];
-        for (const key in props.resultData.chart_umkm) {
-            // console.log(`${key}: ${props.resultData.chart_umkm[key]}`);
-            chart_jumlah.push(props.resultData.chart_umkm[key])
-        }
+        data_umkm.sort((a, b) => {
+            if (a.chart_umkm === b.chart_umkm) {
+                return 0
+            }
+            if (a.chart_umkm > b.chart_umkm) {
+                return -1
+            }
+            return 1
+        })
+
+        return data_umkm;
+    }, [selectedKec, selectedDeskel, listDeskel, query])
+
+    const options = useMemo(() => {
+        let chart_jenis = dataChart.map(item => item.jenis_umkm);
+        let chart_jumlah = dataChart.map(item => item.chart_umkm);
 
         return {
             title: {
@@ -76,6 +134,7 @@ const JenisUsaha = (props) => {
                         type: "dashed"
                     }
                 },
+                inverse: true
             },
             series: [{
                 type: 'bar',
@@ -106,13 +165,54 @@ const JenisUsaha = (props) => {
                 moveOnMouseWheel: true
             }]
         }
-    }
+    }, [dataChart])
 
     return (
-        <ReactEcharts
-            option={options(props)}
-            style={{ width: "auto", height: "100%" }}
-        ></ReactEcharts>
+        <div className="card">
+            <div className="card-body">
+                <h2 className="card-title-potensi">JENIS USAHA</h2>
+                <div className="filter-primary">
+                    <button type="button" className="btn btn-primary">Export Report</button>
+                </div>
+                <div className="row g-1 mb-0 pb-0">
+                    <div className="d-none col">
+                        <div className="search-produk">
+                            <form className="search-form-produk d-flex align-items-center">
+                                <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
+                                <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
+                            <option value={''}>Semua Kecamatan</option>
+                            {listKec.map((item) => {
+                                return (
+                                    <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <div className="col">
+                        <select onChange={e => setSelectedDeskel(e.target.value)} className="form-select" aria-label="Default select example">
+                            <option value={''}>Semua Desa</option>
+                            {listDeskel.map((item) => {
+                                return (
+                                    <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedDeskel === item.kode_wilayah}>{item.nama_deskel}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+
+                </div>
+                <div style={{ height: '400px' }}>
+                    <ReactEcharts
+                        option={options}
+                        style={{ width: "auto", height: "100%" }}
+                    ></ReactEcharts>
+                </div>
+            </div>
+        </div>
     )
 }
 

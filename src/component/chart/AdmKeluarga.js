@@ -3,7 +3,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-function AdmKeluarga() {
+function AdmKeluarga(props) {
     useLayoutEffect(() => {
 
         let root = am5.Root.new("admKeluargaChart");
@@ -154,7 +154,7 @@ function AdmKeluarga() {
             series.data.setAll(data);
             series.appear();
             // series.set("fill", am5.color("#2CA454"));
-            series.set("stroke", am5.color("#000"));
+            series.set("stroke", am5.color("#00FFFFFF"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
@@ -181,7 +181,7 @@ function AdmKeluarga() {
             return series;
         }
 
-        createSeries("Laki", am5.p100, "right", -2);
+        // createSeries("Laki", am5.p100, "right", -2);
         createSeries("Perempuan", 0, "left", 2);
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));

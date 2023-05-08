@@ -1,9 +1,10 @@
 import React from "react";
-import { MapContainer as LeafletMap, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer as LeafletMap, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
+import { polygonEnrekang } from "./mapEnrekang";
 
 const customMarker = new L.Icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
@@ -19,12 +20,13 @@ class MapPopup extends React.Component {
             resultData: props.resultData,
             zoom: 12,
             latcenter: props.resultData.dss.lat,
-            lngcenter: props.resultData.dss.lng
+            lngcenter: props.resultData.dss.lng,
+            polygonEnrekang: polygonEnrekang
         };
     }
 
     render() {
-        const { resultData, zoom, latcenter, lngcenter } = this.state;
+        const { resultData, zoom, latcenter, lngcenter, polygonEnrekang } = this.state;
         const mergedArrays = resultData.data.list_desa.map((item) => ({
             provinsi: resultData.dss.provinsi,
             kabupaten: resultData.dss.kabkota,
@@ -40,20 +42,26 @@ class MapPopup extends React.Component {
             lk: item.potensi.lk,
             sarpras: item.potensi.sarpras,
             sda: item.potensi.sda,
-            sdm: item.potensi.sdm
+            sdm: item.potensi.sdm,
         }));
+
+        // var polygon = L.polygon(polygonEnrekang, { color: 'red' });
 
         return (
             <LeafletMap
-                center={[latcenter, lngcenter]}
+                // center={[latcenter, lngcenter]}
                 zoom={zoom}
                 scrollWheelZoom={false}
                 style={{ height: "500px" }}
+                bounds={polygonEnrekang}
+                boundsOptions={{ padding: [1, 1] }}
             >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
+
+                <Polygon positions={polygonEnrekang} />
 
                 {mergedArrays.map(({ lat, lng, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
                     <Marker position={[lat, lng]} icon={customMarker} key={index}>

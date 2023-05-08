@@ -247,7 +247,7 @@ const ChartKependudukan = (props) => {
                         <button className="nav-link w-100" id="agama-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-agama" type="button" role="tab" aria-controls="agama" aria-selected="false">Agama</button>
                     </li>
                 </ul>
-                <div className="tab-content pt-5" id="borderedTabJustifiedContent">
+                <div className="tab-content pt-2" id="borderedTabJustifiedContent">
                     <div className="tab-pane fade show active" id="bordered-justified-umur" role="tabpanel" aria-labelledby="umur-tab">
                         <AdmUmur data={umur} />
                     </div>
