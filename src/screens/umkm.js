@@ -10,8 +10,6 @@ import { format_tgl } from '../utils/helper.min';
 const Umkm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
-    const [kec, setKec] = useState([]);
-    const [desa, setDesa] = useState([]);
     const [update, setUpdate] = useState();
 
     useEffect(() => {
@@ -22,8 +20,6 @@ const Umkm = () => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;
                 setResultData(data);
-                setKec(data.list_kecamatan)
-                setDesa(data.list_desa)
                 setUpdate(data.last_updated)
             })
             .catch(error => {
@@ -63,50 +59,6 @@ const Umkm = () => {
 
                         <div className="col-lg-12">
                             <h5 className="card-title-potensi pb-0">PRODUK UMKM DESA/KELURAHAN</h5>
-                            <div className="row g-1 mb-4">
-                                <div className="col">
-                                    <div className="search-produk">
-                                        <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                            <input type="text" name="query" placeholder="Cari produk..." title="Enter search keyword" />
-                                            <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div className="col">
-                                    <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                        <option value={'DEFAULT'}>Kecamatan</option>
-                                        {kec.map((kec) => {
-                                            return (
-                                                <Kecamatan
-                                                    key={kec.kode_wilayah}
-                                                    listkec={kec.nama_kecamatan}
-                                                />
-                                            )
-                                        })
-                                        }
-                                    </select>
-                                </div>
-                                <div className="col">
-                                    <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                        <option value={'DEFAULT'}>Desa</option>
-                                        {desa.map((deskel) => {
-                                            return (
-                                                <Desa
-                                                    key={deskel.kode_wilayah}
-                                                    listdesa={deskel.nama_deskel}
-                                                />
-                                            )
-                                        })
-                                        }
-                                    </select>
-                                </div>
-                                <div className="col-3">
-                                    <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                        <option value={'DEFAULT'}>Jenis Usaha</option>
-
-                                    </select>
-                                </div>
-                            </div>
 
                             {resultData && <UmkmPagination resultData={resultData} />}
 
@@ -117,18 +69,6 @@ const Umkm = () => {
 
             </main>
         </Fragment>
-    )
-}
-
-function Kecamatan(props) {
-    return (
-        <option value="1">{props.listkec}</option>
-    )
-}
-
-function Desa(props) {
-    return (
-        <option value="1">{props.listdesa}</option>
     )
 }
 

@@ -73,7 +73,7 @@ const ProfilTable = (props) => {
                     </div>
                 </div>
                 <div className="col-3">
-                    <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
+                    <select value={selectedKec} onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
                         <option value={''}>Semua Kecamatan</option>
                         {listKec.map((item) => {
                             return (
@@ -83,7 +83,7 @@ const ProfilTable = (props) => {
                     </select>
                 </div>
                 <div className="col-3">
-                    <select onChange={e => setSelectedDesa(e.target.value)} className="form-select" aria-label="Default select example">
+                    <select value={selectedDesa} onChange={e => setSelectedDesa(e.target.value)} className="form-select" aria-label="Default select example">
                         <option value={''}>Semua Desa</option>
                         {listDeskel.map((item) => {
                             return (

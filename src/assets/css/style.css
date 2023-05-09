@@ -1047,7 +1047,7 @@ font-weight: var(--bs-list-group-action-font-weight);
     left: -300px;
     bottom: 0;
     width: 206px;
-    z-index: 996;
+    z-index: 1001;
     transition: all 0.3s;
     padding: 30px 0;
     overflow-y: auto;

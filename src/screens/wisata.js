@@ -8,8 +8,6 @@ import WisataPagination from '../component/pagination/wisataPagination';
 const Wisata = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
-    const [kec, setKec] = useState([]);
-    const [desa, setDesa] = useState([]);
     const [update, setUpdate] = useState();
 
     useEffect(() => {
@@ -19,8 +17,6 @@ const Wisata = () => {
             .then((result) => {
                 const data = result.data.data;
                 setResultData(data);
-                setKec(data.list_kecamatan)
-                setDesa(data.list_desa)
                 setUpdate(data.last_updated)
             })
             .catch(error => {
@@ -49,39 +45,6 @@ const Wisata = () => {
                 </div>
 
                 <section className="section dashboard">
-
-                    <div className="row mb-4">
-                        <div className="col-md-4">
-                            <div className="search-produk">
-                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                    <input type="text" name="query" placeholder="Cari Wisata..." title="Enter search keyword" />
-                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                {kec.map((item, key) => {
-                                    return (
-                                        <option key={key}>{item.nama_kecamatan}</option>
-                                    )
-                                })
-                                }
-                            </select>
-                        </div>
-                        <div className="col-md-4">
-                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                <option value={'DEFAULT'}>Semua Desa</option>
-                                {desa.map((item, key) => {
-                                    return (
-                                        <option key={key}>{item.nama_deskel}</option>
-                                    )
-                                })
-                                }
-                            </select>
-                        </div>
-                    </div>
 
                     {resultData && <WisataPagination resultData={resultData} />}
 
