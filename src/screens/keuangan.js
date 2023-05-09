@@ -5,6 +5,7 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 import { format_tgl, rupiah } from '../utils/helper.min';
 import RKPTable from '../component/datatable/RKPDataTable';
 import APBDTable from '../component/datatable/APBDesDataTable';
+import FilterAPBD from '../component/filterAPBD';
 
 const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -201,6 +202,8 @@ const Keuangan = () => {
                                         </div>
 
                                     </div>
+
+                                    {resultData && <FilterAPBD resultData={resultData} />}
 
                                     <div className="mb-5">
                                         <div className="card">
