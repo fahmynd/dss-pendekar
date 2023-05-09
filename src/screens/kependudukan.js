@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api';
-import PendudukJumlah from '../component/chart/pendudukJumlah';
-import PendudukTable from '../component/datatable/PdkDataTable';
+// import PendudukJumlah from '../component/chart/pendudukJumlah';
+// import PendudukTable from '../component/datatable/PdkDataTable';
 import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
@@ -56,7 +56,7 @@ const Kependudukan = () => {
                 <section className="section dashboard">
                     <div className="row g-2">
 
-                        <div className="col-md-6 d-none">
+                        {/* <div className="col-md-6 d-none">
                             <div className="card">
                                 <div className="card-body-demografi pb-0">
                                     <h5 className="card-title-potensi pb-0">Tampilkan Berdasarkan</h5>
@@ -126,7 +126,7 @@ const Kependudukan = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="col-lg-12">
                             {resultData && <ChartKependudukan data={resultData} />}

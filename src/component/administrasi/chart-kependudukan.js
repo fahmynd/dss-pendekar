@@ -31,7 +31,7 @@ const ChartKependudukan = (props) => {
     const filtered_desa = useMemo(() => {
         const result = data.list_desa.filter(desa => {
             if (selectedKec && selectedDeskel) {
-                return desa.kode_wilayah = selectedDeskel;
+                return desa.kode_wilayah === selectedDeskel;
             } else if (selectedKec) {
                 let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
                 return kode_kec === selectedKec

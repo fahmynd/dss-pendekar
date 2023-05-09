@@ -2031,3 +2031,8 @@ table.dataTable {
   scrollbar-width: thin !important;
   scrollbar-color: #aab7cf transparent !important;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}

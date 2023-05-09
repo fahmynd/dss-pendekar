@@ -209,8 +209,8 @@ const BalitaStuntingJumlah = (props) => {
                                         </div>
                                     </div>
                                     <div className="col-3">
-                                        <select defaultValue={'0'} onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
-                                            <option value={'0'} selected>Semua Kecamatan</option>
+                                        <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
+                                            <option value={''} selected>Semua Kecamatan</option>
                                             {listKec.map((item) => {
                                                 return (
                                                     <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
@@ -219,8 +219,8 @@ const BalitaStuntingJumlah = (props) => {
                                         </select>
                                     </div>
                                     <div className="col-3">
-                                        <select defaultValue={'0'} onChange={e => setSelectedDeskel(e.target.value)} className="form-select" aria-label="Default select example">
-                                            <option value={'0'} selected>Semua Desa</option>
+                                        <select onChange={e => setSelectedDeskel(e.target.value)} className="form-select" aria-label="Default select example">
+                                            <option value={''} selected>Semua Desa</option>
                                             {listDeskel.map((item) => {
                                                 return (
                                                     <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedDeskel === item.kode_wilayah}>{item.nama_deskel}</option>

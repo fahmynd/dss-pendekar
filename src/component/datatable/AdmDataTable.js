@@ -122,8 +122,14 @@ const AdminTableNew = (props) => {
                     sortable: true,
                     selector: (row) => row.lampiran,
                     cell: (row) => {
+
+                        let download = {
+                            '': { 'class': '' },
+                            'null': { 'class': 'disabled' },
+                        };
+
                         return (
-                            <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className="btn btn-primary">
+                            <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className={`btn btn-primary`}>
                                 Download
                             </a>
                         )
