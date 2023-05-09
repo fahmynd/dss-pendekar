@@ -179,7 +179,7 @@ function AdmUmur(props) {
             series.data.setAll(data);
             series.appear();
             // series.set("fill", am5.color("#2CA454"));
-            series.set("stroke", am5.color("#00FFFFFF"));
+            // series.set("stroke", am5.color("rgba(255,0,0,0)"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
@@ -207,7 +207,7 @@ function AdmUmur(props) {
         }
 
         // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", 2);
+        createSeries("Perempuan", 0, "left", -20);
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {

@@ -162,7 +162,7 @@ function AdmAgama(props) {
         }
 
         // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", 2);
+        createSeries("Perempuan", 0, "left", -20);
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
