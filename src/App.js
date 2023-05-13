@@ -11,6 +11,7 @@ import './assets/css/style.css'
 const Header = lazy(() => import("./layout/header"));
 const Sidebar = lazy(() => import("./layout/sidebar"));
 const Footer = lazy(() => import("./layout/footer"));
+const Setting = lazy(() => import("./layout/setting"));
 const ScrollToTop = lazy(() => import("./utils/scroll-to-top"));
 const LoadingSpinner = lazy(() => import("./utils/LoadingSpinner"));
 const BantuanSosial = lazy(() => import("./screens/bantuanSosial"));
@@ -18,7 +19,6 @@ const BeritaPage = lazy(() => import("./screens/berita"));
 const AdministrasiUmum = lazy(() => import("./screens/administrasiUmum"));
 const Kependudukan = lazy(() => import("./screens/kependudukan"));
 const Dashboard = lazy(() => import("./screens/dashboard"));
-// const PerkembanganDesa = lazy(() => import("./screens/perkembanganDesa"));
 const Keuangan = lazy(() => import("./screens/keuangan"));
 const Umkm = lazy(() => import("./screens/umkm"));
 const ProfilDesa = lazy(() => import("./screens/profilDesa"));
@@ -44,7 +44,7 @@ export default class App extends Component {
           <Routes>
             <Route exact path="/" element={<Dashboard />} />
             <Route path="/administrasi-umum" element={<AdministrasiUmum />} />
-            {/* <Route path="/perkembangan-desa" element={<PerkembanganDesa />} /> */}
+            <Route path="/pengaturan" element={<Setting />} />
             <Route path="/kependudukan" element={<Kependudukan />} />
             <Route path="/bantuan-sosial" element={<BantuanSosial />} />
             <Route path="/berita" element={<BeritaPage />} />

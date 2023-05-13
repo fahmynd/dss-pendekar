@@ -2,7 +2,7 @@ import { React, Fragment, useEffect, useState } from 'react'
 import AnggaranDesa from '../component/chart/APBDes'
 import axios from 'axios';
 import LoadingSpinner from '../utils/LoadingSpinner';
-import { format_tgl, rupiah } from '../utils/helper.min';
+import { format_tgl } from '../utils/helper.min';
 import RKPTable from '../component/datatable/RKPDataTable';
 import APBDTable from '../component/datatable/APBDesDataTable';
 import FilterAPBD from '../component/filterAPBD';
@@ -11,10 +11,6 @@ const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
     const [update, setUpdate] = useState();
-    const [online, setOnline] = useState([]);
-    const [anggaran, setAnggaran] = useState([]);
-    const [realisasi, setRealisasi] = useState([]);
-    const [penyerapan, setPenyerapan] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
@@ -25,10 +21,6 @@ const Keuangan = () => {
                 const data = result.data.data;
                 setResultData(data);
                 setUpdate(data.last_updated)
-                setOnline(data.list_kabupaten[0].online)
-                setAnggaran(data.list_kabupaten[0].anggaran_2023)
-                setRealisasi(data.list_kabupaten[0].realisasi_2023)
-                setPenyerapan(data.list_kabupaten[0].penyerapan_2023)
             })
             .catch(error => {
                 alert(error.message);
@@ -76,132 +68,6 @@ const Keuangan = () => {
                             </ul>
                             <div className="tab-content pt-2" id="borderedTabContent">
                                 <div className="tab-pane fade show active" id="bordered-apbd" role="tabpanel" aria-labelledby="apbd-tab">
-                                    <div className="row g-1 my-3">
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Pilih Tahun</option>
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Pilih Kecamatan</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="row g-md-0">
-
-                                        {/* <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-0">
-                                                    <h6>JUMLAH DESA</h6>
-                                                    <div className="d-flex">
-                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
-                                                            <i className="bx bxs-building-house"></i>
-                                                        </div>
-                                                        <div>
-                                                            <h5 className="fw-bold">54</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-0">
-                                                    <h6>TOTAL DANA DESA</h6>
-                                                    <div className="d-flex">
-                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
-                                                            <i className="bx bx-money"></i>
-                                                        </div>
-                                                        <div>
-                                                            <h5 className="fw-bold">Rp312.300.003</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-0">
-                                                    <h6>TOTAL PENDAPATAN</h6>
-                                                    <div className="d-flex">
-                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
-                                                            <i className="bx bxs-archive-in"></i>
-                                                        </div>
-                                                        <div>
-                                                            <h5 className="fw-bold">Rp312.300.003</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-0">
-                                                    <h6>TOTAL BELANJA</h6>
-                                                    <div className="d-flex">
-                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
-                                                            <i className="bx bx-cart"></i>
-                                                        </div>
-                                                        <div>
-                                                            <h5 className="fw-bold">Rp312.300.003</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-0">
-                                                    <h6>JUMLAH DESA</h6>
-                                                    <div className="d-flex">
-                                                        <div className="card-icon1 rounded-circle d-flex justify-content-center">
-                                                            <i className="bx bxs-building-house"></i>
-                                                        </div>
-                                                        <div>
-                                                            <h5 className="fw-bold">{online}</h5>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-1">
-                                                    <h6>ANGGARAN</h6>
-                                                    <h5 className="fw-bold">{rupiah(anggaran)}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan pb-1">
-                                                    <h6>REALISASI</h6>
-                                                    <h5 className="fw-bold">{rupiah(realisasi)}</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-3">
-                                            <div className="keuangan-card">
-                                                <div className="card-body-keuangan">
-                                                    <h6>% PENYERAPAN</h6>
-                                                    <div className="progress">
-                                                        <div className="progress-bar" role="progressbar" style={{ width: `${penyerapan}%` }} aria-valuenow={penyerapan}
-                                                            aria-valuemin="0" aria-valuemax="100">{penyerapan}%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
 
                                     {resultData && <FilterAPBD resultData={resultData} />}
 

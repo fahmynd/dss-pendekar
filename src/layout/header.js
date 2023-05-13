@@ -122,27 +122,24 @@ function Header() {
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
-                                </li>
+                                </li> */}
 
                                 <li>
-                                    <Link className="dropdown-item d-flex align-items-center" to={'/'}>
+                                    <Link className="dropdown-item d-flex align-items-center" to={'/pengaturan'}>
                                         <i className="bi bi-gear"></i>
-                                        <span>Account Settings</span>
+                                        <span>Pengaturan</span>
                                     </Link>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <hr className="dropdown-divider" />
-                                </li>
+                                </li> */}
 
-                                <li>
+                                {/* <li>
                                     <Link className="dropdown-item d-flex align-items-center" to={'/'}>
                                         <i className="bi bi-question-circle"></i>
                                         <span>Need Help?</span>
                                     </Link>
                                 </li> */}
-                                <li>
-                                    <hr className="dropdown-divider" />
-                                </li>
 
                                 <li>
                                     <Link className="dropdown-item d-flex align-items-center" to={'/'}>
