@@ -3,7 +3,8 @@ import ReactPaginate from "react-paginate";
 
 export default function WisataPagination(props) {
 
-    const { list_kecamatan, list_desa, list_wisata } = props.resultData
+    const { list_kecamatan, list_desa } = props.resultData
+    let { list_wisata } = props.resultData
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -45,6 +46,11 @@ export default function WisataPagination(props) {
             }
         })
 
+        const endoffset = itemOffset + itemsPerPage;
+        setCurrentItems(deskel.slice(itemOffset, endoffset));
+        setPageCount(Math.ceil(deskel.length / itemsPerPage));
+        list_wisata = deskel;
+
         return deskel;
 
     }, [selectedKec, selectedDesa, query, listDeskel])
@@ -54,10 +60,12 @@ export default function WisataPagination(props) {
         setCurrentItems(list_wisata.slice(itemOffset, endoffset));
         setPageCount(Math.ceil(list_wisata.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, list_wisata]);
-    const handlePageClick = (event) => {
+
+    let handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % list_wisata.length;
         setItemOffset(newOffset);
     };
+
     return (
         <Fragment>
             <div className="row mb-4">
