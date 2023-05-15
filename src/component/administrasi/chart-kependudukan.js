@@ -195,7 +195,7 @@ const ChartKependudukan = (props) => {
             <div className="card-body">
                 <h5 className="card-title-potensi">Statistik Data Penduduk</h5>
                 <div className="filter-primary">
-                    <button type="button" className="btn btn-primary">Export Report</button>
+                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/kependudukan')}>Export Report</button>
                 </div>
                 <div className="row g-1 mb-4">
                     {/* <div className="col-3">

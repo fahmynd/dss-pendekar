@@ -13,12 +13,11 @@ const BeritaPage = () => {
     useEffect(() => {
         setIsLoading(true);
         // axios.get(BASE_API_URL + 'home?k3=&k4=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/berita?k3=&k4=&search=&limit=`)
+        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/berita`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
-                setResultData(result.data.data);
-
                 const data = result.data.data;
+                setResultData(data);
                 setUpdate(data.last_updated)
             })
             .catch(error => {
@@ -56,7 +55,7 @@ const BeritaPage = () => {
                                     <div className="d-none filter-primary">
                                         <button type="button" className="btn btn-primary">Lihat Semua</button>
                                     </div>
-                                    <div className="news overflow-auto">
+                                    <div className="news">
 
                                         {resultData && <BeritaPagination resultData={resultData} />}
 

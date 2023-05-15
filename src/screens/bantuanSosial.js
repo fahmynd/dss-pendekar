@@ -67,7 +67,7 @@ const BantuanSosial = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Rekap Penerima Bantuan Sosial</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rekap_bansos')}>Export Report</button>
                                     </div>
                                     {resultData && <BansosTable resultData={resultData} />}
                                 </div>

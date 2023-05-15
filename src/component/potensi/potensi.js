@@ -173,7 +173,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                     <h5 className="card-title-potensi">POTENSI</h5>
                     <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
                     <div className="filter-primary">
-                        <button type="button" className="btn btn-primary">Export Report</button>
+                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/potensi')}>Export Report</button>
                     </div>
                     <div className="row">
                         <div className="col-md-3 order-md-1">

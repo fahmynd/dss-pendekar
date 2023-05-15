@@ -58,7 +58,7 @@ const Umkm = () => {
                         </div>
 
                         <div className="col-lg-12">
-                            <h5 className="card-title-potensi pb-0">PRODUK UMKM DESA/KELURAHAN</h5>
+                            <h5 className="card-title-potensi">PRODUK UMKM DESA/KELURAHAN</h5>
 
                             {resultData && <UmkmPagination resultData={resultData} />}
 

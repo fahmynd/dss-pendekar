@@ -151,7 +151,7 @@ const Kependudukan = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Rekap Kependudukan</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rekap_kependudukan')}>Export Report</button>
                                     </div>
 
                                     {resultData && <RekapPendudukTable resultData={resultData} />}
@@ -165,18 +165,6 @@ const Kependudukan = () => {
 
             </main>
         </Fragment>
-    )
-}
-
-function Kecamatan(props) {
-    return (
-        <option value="1">{props.listkec}</option>
-    )
-}
-
-function Desa(props) {
-    return (
-        <option value="1">{props.listdesa}</option>
     )
 }
 

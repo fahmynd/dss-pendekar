@@ -655,6 +655,9 @@ const AdminTableNew = (props) => {
 
     return (
         <Fragment>
+            <div className="filter-primary">
+                <button type="button" className="btn btn-primary" onClick={() => window.open(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/${selectedType}`)}>Export Report</button>
+            </div>
             <div className="row g-1 mb-4">
                 <div className="col-3">
                     <select onChange={e => setSelectedType(e.target.value)} defaultValue='buku_peraturan_di_desa' className="form-select" aria-label="Pilih Jenis Administrasi">

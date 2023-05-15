@@ -204,7 +204,7 @@ const Dashboard = () => {
                                 <div className="card-body pb-0">
                                     <h5 className="card-title-potensi">SKOR IDM Se Kabupaten</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/idm')}>Export Report</button>
                                     </div>
                                     <div className="stunting-card">
                                         <div className="card-body pb-0">
@@ -301,7 +301,7 @@ const Dashboard = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/peta_perkembangan')}>Export Report</button>
                                     </div>
                                     {/* <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas> */}
                                     {resultData && <PetaPerkembangan resultData={resultData} />}
@@ -315,53 +315,7 @@ const Dashboard = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi pb-0">REKOMENDASI PEMBANGUNAN</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
-                                    <div className="d-none row g-1 my-4">
-                                        <div className="col-3">
-                                            <div className="search-produk">
-                                                <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
-                                                    <input type="text" name="query" placeholder="Cari Desa/Kelurahan..." title="Enter search keyword" />
-                                                    <button type="submit" title="Search"><i className="bi bi-search"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Pilih Tahun</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Kecamatan</option>
-                                                {kec.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_kecamatan}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Semua Desa</option>
-                                                {desa.map((item) => {
-                                                    return (
-                                                        <SelectOptions
-                                                            key={item.kode_wilayah}
-                                                            value={item.kode_wilayah}
-                                                            title={item.nama_deskel}
-                                                        />
-                                                    )
-                                                })}
-                                            </select>
-                                        </div>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rekomendasi_pembangunan')}>Export Report</button>
                                     </div>
 
                                     {resultData && <RekomendasiTable resultData={resultData} />}
@@ -378,7 +332,7 @@ const Dashboard = () => {
                                     <h5 className="card-title-potensi pb-0">KESEHATAN - STUNTING</h5>
                                     <p>Menampilkan Stunting Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/stunting')}>Export Report</button>
                                     </div>
 
                                     <div className="row g-md-0">
@@ -435,12 +389,6 @@ const Dashboard = () => {
 
             </main>
         </Fragment>
-    )
-}
-
-function SelectOptions(props) {
-    return (
-        <option value={props.value}>{props.title}</option>
     )
 }
 

@@ -60,9 +60,6 @@ const AdministrasiUmum = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Tabel Data Administrasi</h5>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
 
                                     {resultData && <AdminTable resultData={resultData} jenis={jenis_administrasi[0].key} />}
 

@@ -63,7 +63,7 @@ export default function WisataPagination(props) {
             <div className="row mb-4">
                 <div className="col">
                     <div className="search-produk">
-                        <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                        <form className="search-form-produk d-flex align-items-center">
                             <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Wisata..." title="Enter search keyword" />
                             <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
                         </form>
@@ -89,7 +89,9 @@ export default function WisataPagination(props) {
                         })}
                     </select>
                 </div>
-
+                <div className="col-2 text-end">
+                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/wisata')}>Export Report</button>
+                </div>
             </div>
             <div className="row">
                 {currentItems.map((item, key) => {

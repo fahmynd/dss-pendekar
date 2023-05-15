@@ -29,7 +29,7 @@ export default function BeritaPagination(props) {
     const data = useMemo(() => {
         const deskel = list_berita.filter(desa => {
             if (query !== "") {
-                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                     return true;
                 } else {
                     return false;
@@ -63,7 +63,7 @@ export default function BeritaPagination(props) {
             <div className="row mb-4">
                 <div className="col">
                     <div className="search-produk">
-                        <form className="search-form-produk d-flex align-items-center" method="POST" action="/">
+                        <form className="search-form-produk d-flex align-items-center">
                             <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
                             <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
                         </form>

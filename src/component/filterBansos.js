@@ -57,7 +57,7 @@ const FilterBansos = (props) => {
                 <div className="card">
                     <div className="card-body">
                         <div className="filter-primary">
-                            <button type="button" className="btn btn-primary">Export Report</button>
+                            <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/bansos')}>Export Report</button>
                         </div>
                         <div className="row g-1 my-4">
                             <div className="col-3">
