@@ -2,21 +2,14 @@ import React, { useMemo, useState, Fragment } from "react";
 import { rupiah } from "../utils/helper.min";
 
 const FilterAPBD = (props) => {
-    const { list_kecamatan } = props.resultData;
-
-    const [selectedTahun, setSelectedTahun] = useState("")
+    const { tahun, list_kecamatan } = props.resultData;
+    const [selectedTahun, setSelectedTahun] = useState(tahun)
     const [selectedKec, setSelectedKec] = useState("")
 
-    const listKec = useMemo(() => {
-        setSelectedKec("")
-        if (selectedTahun) {
-            return list_kecamatan.filter(d => {
-                return d.kode_wilayah.startsWith(selectedTahun)
-            })
-        }
-        return []
-    }, [list_kecamatan, selectedTahun])
-
+    const list_tahun = [];
+    for (let year = parseInt(tahun); year > tahun - 3; year--) {
+        list_tahun.push(year);
+    }
 
     const APBD = useMemo(() => {
         let desa = 0;
@@ -24,28 +17,26 @@ const FilterAPBD = (props) => {
         let realisasi = 0;
         let penyerapan = 0;
 
-        if (selectedTahun && selectedKec) {
-            const kec = listKec.find(d => d.kode_wilayah === selectedKec)
-            if (kec) {
-                desa = parseInt(kec.online)
-                anggaran = parseInt(kec.anggaran_2023)
-                realisasi = parseInt(kec.realisasi_2023)
-                penyerapan = parseInt(kec.penyerapan_2023)
-            }
-        } else {
-            if (selectedTahun) {
-                listKec.forEach(item => {
-                    desa += parseInt(item.online);
-                    anggaran += parseInt(item.anggaran_2023);
-                    realisasi += parseInt(item.realisasi_2023);
-                    penyerapan += parseInt(item.penyerapan_2023);
-                })
+        if (selectedTahun) {
+            if (selectedKec) {
+                const kec = list_kecamatan.find(d => d.kode_wilayah === selectedKec)
+                if (kec) {
+                    if (!kec[`anggaran_${selectedTahun}`]) kec[`anggaran_${selectedTahun}`] = 0;
+                    if (!kec[`realisasi_${selectedTahun}`]) kec[`realisasi_${selectedTahun}`] = 0;
+                    if (!kec[`penyerapan_${selectedTahun}`]) kec[`penyerapan_${selectedTahun}`] = 0;
+                    desa = parseInt(kec.online)
+                    anggaran = parseInt(kec[`anggaran_${selectedTahun}`])
+                    realisasi = parseInt(kec[`realisasi_${selectedTahun}`])
+                    penyerapan = parseFloat(kec[`penyerapan_${selectedTahun}`]).toFixed(2)
+                }
             } else {
                 list_kecamatan.forEach(d => {
+                    if (!d[`anggaran_${selectedTahun}`]) d[`anggaran_${selectedTahun}`] = 0;
+                    if (!d[`realisasi_${selectedTahun}`]) d[`realisasi_${selectedTahun}`] = 0;
                     desa += parseInt(d.online);
-                    anggaran += parseInt(d.anggaran_2023);
-                    realisasi += parseInt(d.realisasi_2023);
-                    penyerapan += parseInt(d.penyerapan_2023);
+                    anggaran += parseInt(d[`anggaran_${selectedTahun}`]);
+                    realisasi += parseInt(d[`realisasi_${selectedTahun}`]);
+                    penyerapan = parseFloat(realisasi / anggaran * 100).toFixed(2);
                 })
             }
         }
@@ -56,17 +47,16 @@ const FilterAPBD = (props) => {
             realisasi,
             penyerapan
         }
-    }, [listKec, selectedKec])
+    }, [list_tahun, selectedKec])
 
     return (
         <Fragment>
             <div className="row g-1 my-4">
                 <div className="col-3">
-                    <select onChange={e => setSelectedTahun(e.target.value)} className="form-select" aria-label="Default select example">
-                        <option value={''}>Pilih Tahun</option>
-                        {list_kecamatan.map((item) => {
+                    <select defaultValue={tahun} onChange={e => setSelectedTahun(e.target.value)} className="form-select" aria-label="Default select example">
+                        {list_tahun.map((item) => {
                             return (
-                                <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedTahun === item.kode_wilayah}>{item.tahun}</option>
+                                <option key={item} value={item} selected={selectedTahun === item}>{item}</option>
                             )
                         })}
                     </select>
@@ -74,7 +64,7 @@ const FilterAPBD = (props) => {
                 <div className="col-3">
                     <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
                         <option value={''}>Semua Kecamatan</option>
-                        {listKec.map((item) => {
+                        {list_kecamatan.map((item) => {
                             return (
                                 <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
                             )
