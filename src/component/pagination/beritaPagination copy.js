@@ -1,33 +1,29 @@
 import React, { useEffect, useState, Fragment, useMemo } from "react";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
 
 export default function BeritaPagination(props) {
 
-    const { list_kecamatan, list_desa } = props.resultData
-    let { list_berita } = props.resultData
+    const { list_kecamatan, list_desa, list_berita } = props.resultData
 
-    const [currentItems, setCurrentItems] = useState([]);
-    const [pageCount, setPageCount] = useState(0);
-    const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 6;
+    const [news, setNews] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filterCompleted, setFilterCompleted] = useState("");
 
-    const [selectedKec, setSelectedKec] = useState("")
-    const [selectedDesa, setSelectedDesa] = useState("")
-    const [query, setQuery] = useState("")
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalNews, setTotalNews] = useState(0);
+    const newsPerPage = 10;
 
-    const listDeskel = useMemo(() => {
-        setSelectedDesa("");
-        return list_desa.filter(desa => {
-            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
-            return kode_kec === selectedKec
-        })
-    }, [list_desa, selectedKec])
+    useEffect(() => {
+        setNews(list_berita)
+    }, []);
 
-    const listKec = useMemo(() => {
-        return list_kecamatan
-    }, [list_kecamatan])
+    const pageNumbers = [];
 
-    const data = useMemo(() => {
+    for (let i = 1; i <= Math.ceil(totalNews / newsPerPage); i++) {
+        pageNumbers.push(i);
+    }
+
+    const newsData = useMemo(() => {
         const deskel = list_berita.filter(desa => {
             if (query !== "") {
                 if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
@@ -46,24 +42,48 @@ export default function BeritaPagination(props) {
             }
         })
 
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(deskel.slice(itemOffset, endoffset));
-        setPageCount(Math.ceil(deskel.length / itemsPerPage));
-        list_berita = deskel;
 
-        return deskel;
 
-    }, [selectedKec, selectedDesa, query, listDeskel])
 
-    useEffect(() => {
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(list_berita.slice(itemOffset, endoffset));
-        setPageCount(Math.ceil(list_berita.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage, list_berita]);
+        let computedNews = news;
 
-    let handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % list_berita.length;
-        setItemOffset(newOffset);
+        if (searchTerm) {
+            computedNews = computedNews.filter(
+                item =>
+                    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        if (filterCompleted === "true") {
+            computedNews = computedNews.filter(
+                item =>
+                    filterCompleted === "true" && item.completed === true
+            )
+        }
+
+        if (filterCompleted === "false") {
+            computedNews = computedNews.filter(
+                item =>
+                    filterCompleted === "false" && item.completed === false
+            )
+        }
+
+        setTotalNews(computedNews.length);
+
+        //Current Page slice
+        return computedNews.slice(
+            (currentPage - 1) * newsPerPage,
+            (currentPage - 1) * newsPerPage + newsPerPage
+        );
+    }, [news, currentPage, searchTerm, filterCompleted]);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const resetFilter = () => {
+        setSearchTerm("");
+        setFilterCompleted("");
+        setCurrentPage(1);
     };
 
     return (
@@ -72,7 +92,11 @@ export default function BeritaPagination(props) {
                 <div className="col">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
-                            <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
+                            <input value={searchTerm}
+                                onChange={(e) => {
+                                    setSearchTerm(e.target.value);
+                                    setCurrentPage(1);
+                                }} type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
                             <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
                         </form>
                     </div>
@@ -109,7 +133,18 @@ export default function BeritaPagination(props) {
                 )
             })
             }
-            <ReactPaginate
+            <nav>
+                <ul className="pagination">
+                    {pageNumbers.map((number) => (
+                        <li key={number} className="page-item">
+                            <button onClick={() => paginate(number)} className="page-link">
+                                {number}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+            {/* <ReactPaginate
                 className="pagination justify-content-center"
                 nextLabel="Next >"
                 onPageChange={handlePageClick}
@@ -129,7 +164,7 @@ export default function BeritaPagination(props) {
                 containerClassName="pagination"
                 activeClassName="active"
                 renderOnZeroPageCount={null}
-            />
+            /> */}
         </Fragment>
     );
 }

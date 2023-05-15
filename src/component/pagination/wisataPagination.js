@@ -30,7 +30,7 @@ export default function WisataPagination(props) {
     const data = useMemo(() => {
         const deskel = list_wisata.filter(desa => {
             if (query !== "") {
-                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                     return true;
                 } else {
                     return false;

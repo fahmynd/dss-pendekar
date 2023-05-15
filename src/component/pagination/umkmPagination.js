@@ -4,7 +4,8 @@ import produk from '../../assets/img/produk.png'
 
 export default function UmkmPagination(props) {
 
-    const { list_kecamatan, list_desa, list_umkm } = props.resultData
+    const { list_kecamatan, list_desa } = props.resultData
+    let { list_umkm } = props.resultData
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -30,7 +31,7 @@ export default function UmkmPagination(props) {
     const data = useMemo(() => {
         const deskel = list_umkm.filter(desa => {
             if (query !== "") {
-                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                if (desa.nama_usaha.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                     return true;
                 } else {
                     return false;
@@ -46,6 +47,11 @@ export default function UmkmPagination(props) {
             }
         })
 
+        const endoffset = itemOffset + itemsPerPage;
+        setCurrentItems(deskel.slice(itemOffset, endoffset));
+        setPageCount(Math.ceil(deskel.length / itemsPerPage));
+        list_umkm = deskel;
+
         return deskel;
 
     }, [selectedKec, selectedDesa, query, listDeskel])
@@ -55,7 +61,8 @@ export default function UmkmPagination(props) {
         setCurrentItems(list_umkm.slice(itemOffset, endoffset));
         setPageCount(Math.ceil(list_umkm.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, list_umkm]);
-    const handlePageClick = (event) => {
+
+    let handlePageClick = (event) => {
         const newOffset = (event.selected * itemsPerPage) % list_umkm.length;
         setItemOffset(newOffset);
     };
