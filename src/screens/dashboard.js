@@ -152,7 +152,7 @@ const Dashboard = () => {
                                     <h5 className="card-title-potensi">CAPAIAN & POTENSI DESA</h5>
                                     <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/pembangunan')}>Export Report</button>
                                     </div>
                                     <div className="row g-1 mb-4 d-none">
                                         <div className="col-3">
