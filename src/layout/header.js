@@ -1,8 +1,50 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import profilImg from '../assets/img/profile-img.jpg'
+import { React, Fragment, useEffect, useState } from 'react'
+import SweetAlert from 'react-bootstrap-sweetalert';
+import { Link, Navigate } from 'react-router-dom'
 
-function Header() {
+const Header = (props) => {
+    const [username, setUsername] = useState(props.name);
+    const [board, setBoard] = useState([]);
+    const [boardItem, setBoardItem] = useState("");
+    const [toggle, setToggle] = useState(false);
+    const [submit, setSubmit] = useState(true);
+    const [logout, setLogout] = useState(false);
+    const [loggedInUserObj, setLoggedInUserObj] = useState({});
+
+    const _ = require("lodash");
+
+    const onLogoutYes = () => {
+        setSubmit({ submit: false });
+        setToggle({ toggle: true });
+        const userObj = JSON.parse(
+            localStorage.getItem(_.get(loggedInUserObj, "userName", ""))
+        );
+        userObj.isUserLoggedIn = false;
+        localStorage.setItem(
+            _.get(loggedInUserObj, "userName", ""),
+            JSON.stringify(userObj)
+        );
+    };
+
+    const onLogout = () => {
+        setLogout({
+            logout: !logout,
+        });
+    };
+
+    useEffect(() => {
+        const loggedInUserName = _.get(props.location, "userName", {});
+        setLoggedInUserObj({
+            loggedInUserObj: JSON.parse(localStorage.getItem(loggedInUserName)),
+        });
+    }, [])
+
+    const localUname = `${_.get(
+        loggedInUserObj,
+        "firstName",
+        ""
+    )} ${_.get(loggedInUserObj, "lastName", "")}`;
+
     return (
         <Fragment>
             <header id="header" className="header fixed-top d-flex align-items-center">
@@ -142,10 +184,11 @@ function Header() {
                                 </li> */}
 
                                 <li>
-                                    <Link className="dropdown-item d-flex align-items-center" to={'/'}>
+                                    <button className="dropdown-item d-flex align-items-center"
+                                        onClick={onLogout}>
                                         <i className="bi bi-box-arrow-right"></i>
                                         <span>Sign Out</span>
-                                    </Link>
+                                    </button>
                                 </li>
 
                             </ul>
@@ -155,6 +198,21 @@ function Header() {
                 </nav>
 
             </header>
+            {!submit ? <Navigate to={`/`} /> : null}
+            {logout ? (
+                <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes"
+                    confirmBtnBsStyle="danger"
+                    title="Are you sure?"
+                    onConfirm={onLogoutYes}
+                    onCancel={onLogout}
+                    focusCancelBtn
+                ></SweetAlert>
+            ) : (
+                ""
+            )}
         </Fragment>
     )
 }

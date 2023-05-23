@@ -14,7 +14,7 @@ import NewsTicker from "react-advanced-news-ticker";
 import { format_tgl } from '../utils/helper.min';
 import MapPopup from '../component/mapPopup'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     const ref = useRef(null);
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
