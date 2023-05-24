@@ -1,17 +1,18 @@
 import React, { useEffect, useState, Fragment, useMemo } from "react";
-// import ReactPaginate from "react-paginate";
 
 export default function BeritaPagination(props) {
 
     const { list_kecamatan, list_desa, list_berita } = props.resultData
 
     const [news, setNews] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [filterCompleted, setFilterCompleted] = useState("");
+
+    const [selectedKec, setSelectedKec] = useState("")
+    const [selectedDesa, setSelectedDesa] = useState("")
+    const [query, setQuery] = useState("")
 
     const [currentPage, setCurrentPage] = useState(1);
     const [totalNews, setTotalNews] = useState(0);
-    const newsPerPage = 10;
+    const newsPerPage = 6;
 
     useEffect(() => {
         setNews(list_berita)
@@ -23,8 +24,20 @@ export default function BeritaPagination(props) {
         pageNumbers.push(i);
     }
 
+    const listDeskel = useMemo(() => {
+        setSelectedDesa("");
+        return list_desa.filter(desa => {
+            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+            return kode_kec === selectedKec
+        })
+    }, [list_desa, selectedKec])
+
+    const listKec = useMemo(() => {
+        return list_kecamatan
+    }, [list_kecamatan])
+
     const newsData = useMemo(() => {
-        const deskel = list_berita.filter(desa => {
+        const news = list_berita.filter(desa => {
             if (query !== "") {
                 if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                     return true;
@@ -42,49 +55,17 @@ export default function BeritaPagination(props) {
             }
         })
 
-
-
-
-        let computedNews = news;
-
-        if (searchTerm) {
-            computedNews = computedNews.filter(
-                item =>
-                    item.judul.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        }
-
-        if (filterCompleted === "true") {
-            computedNews = computedNews.filter(
-                item =>
-                    filterCompleted === "true" && item.completed === true
-            )
-        }
-
-        if (filterCompleted === "false") {
-            computedNews = computedNews.filter(
-                item =>
-                    filterCompleted === "false" && item.completed === false
-            )
-        }
-
-        setTotalNews(computedNews.length);
+        setTotalNews(news.length);
 
         //Current Page slice
-        return computedNews.slice(
+        return news.slice(
             (currentPage - 1) * newsPerPage,
             (currentPage - 1) * newsPerPage + newsPerPage
         );
-    }, [news, currentPage, searchTerm, filterCompleted]);
+    }, [news, currentPage, selectedKec, selectedDesa, query, listDeskel]);
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const resetFilter = () => {
-        setSearchTerm("");
-        setFilterCompleted("");
-        setCurrentPage(1);
-    };
 
     return (
         <Fragment>
@@ -92,9 +73,9 @@ export default function BeritaPagination(props) {
                 <div className="col">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
-                            <input value={searchTerm}
+                            <input value={query}
                                 onChange={(e) => {
-                                    setSearchTerm(e.target.value);
+                                    setQuery(e.target.value);
                                     setCurrentPage(1);
                                 }} type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
                             <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
@@ -123,7 +104,7 @@ export default function BeritaPagination(props) {
                 </div>
 
             </div>
-            {currentItems.map((item, key) => {
+            {newsData.map((item, key) => {
                 return (
                     <div key={key} className="post-item clearfix">
                         <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`} alt="News" />
@@ -133,8 +114,8 @@ export default function BeritaPagination(props) {
                 )
             })
             }
-            <nav>
-                <ul className="pagination">
+            <nav aria-label="Page navigation example">
+                <ul className="pagination justify-content-center">
                     {pageNumbers.map((number) => (
                         <li key={number} className="page-item">
                             <button onClick={() => paginate(number)} className="page-link">
@@ -144,27 +125,6 @@ export default function BeritaPagination(props) {
                     ))}
                 </ul>
             </nav>
-            {/* <ReactPaginate
-                className="pagination justify-content-center"
-                nextLabel="Next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                renderOnZeroPageCount={null}
-            /> */}
         </Fragment>
     );
 }

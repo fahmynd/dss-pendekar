@@ -101,12 +101,12 @@ export default function UmkmPagination(props) {
                         })}
                     </select>
                 </div>
-                <div className="col">
+                {/* <div className="col">
                     <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
                         <option value={'DEFAULT'}>Jenis Usaha</option>
 
                     </select>
-                </div>
+                </div> */}
 
             </div>
             <div className="row">
