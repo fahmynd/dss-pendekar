@@ -1,5 +1,6 @@
 import DashboardShell from "../layout/dashboard"
 import Setting from "../layout/setting";
+import Dashboard from "../screens/dashboard";
 import BantuanSosial from "../screens/bantuanSosial";
 import BeritaPage from "../screens/berita";
 import AdministrasiUmum from "../screens/administrasiUmum";
@@ -14,16 +15,22 @@ import useAuth from "../context/Auth/hooks/useAuth";
 
 const DashboardRoute = () => {
     const auth = useAuth()
-    
+
     if (!auth.isLogged) {
         return <Navigate to={"/login"} />
     }
 
+    const script = document.createElement("script");
+    script.src = "/assets/js/main.js";
+    script.async = true;
+    document.body.appendChild(script);
+
     return (
         <DashboardShell>
-            <Routes> 
-                <Route index element={<AdministrasiUmum />} />
+            <Routes>
+                <Route index element={<Dashboard />} />
                 <Route path="pengaturan" element={<Setting />} />
+                <Route path="administrasi-umum" element={<AdministrasiUmum />} />
                 <Route path="kependudukan" element={<Kependudukan />} />
                 <Route path="bantuan-sosial" element={<BantuanSosial />} />
                 <Route path="berita" element={<BeritaPage />} />

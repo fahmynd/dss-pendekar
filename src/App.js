@@ -13,12 +13,12 @@ import AuthProvider from "./context/Auth/AuthProvider";
 
 export default class App extends Component {
 
-  componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "/assets/js/main.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }
+  // componentDidMount() {
+  //   const script = document.createElement("script");
+  //   script.src = "/assets/js/main.js";
+  //   script.async = true;
+  //   document.body.appendChild(script);
+  // }
 
   render() {
 

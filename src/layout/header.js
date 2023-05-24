@@ -1,5 +1,5 @@
 import { React, Fragment, useEffect, useState } from 'react'
-import SweetAlert from 'react-bootstrap-sweetalert';
+// import SweetAlert from 'react-bootstrap-sweetalert';
 import { Link, Navigate } from 'react-router-dom'
 import useAuth from '../context/Auth/hooks/useAuth';
 
@@ -190,7 +190,7 @@ const Header = (props) => {
                                     <button className="dropdown-item d-flex align-items-center"
                                         onClick={onLogout}>
                                         <i className="bi bi-box-arrow-right"></i>
-                                        <span>Sign Out</span>
+                                        <span>Keluar</span>
                                     </button>
                                 </li>
 
@@ -201,7 +201,7 @@ const Header = (props) => {
                 </nav>
 
             </header>
-            {!submit ? <Navigate to={`/`} /> : null}
+            {/* {!submit ? <Navigate to={`/`} /> : null}
             {logout ? (
                 <SweetAlert
                     warning
@@ -215,7 +215,7 @@ const Header = (props) => {
                 ></SweetAlert>
             ) : (
                 ""
-            )}
+            )} */}
         </Fragment>
     )
 }
