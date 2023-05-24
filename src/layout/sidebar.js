@@ -22,25 +22,25 @@ function Sidebar() {
                     <li className="nav-heading mb-3">Menu</li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/" end>
+                        <NavLink className="nav-link" to="" end>
                             <i className="ri-funds-box-line"></i>
                             <span>Dashboard</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" data-bs-target="#administrasi-nav" data-bs-toggle="collapse" to="/*">
+                        <NavLink className="nav-link" data-bs-target="#administrasi-nav" data-bs-toggle="collapse" to="*">
                             <i className="ri-file-copy-2-line"></i>
                             <span>Administrasi</span><i className="bi bi-chevron-right ms-auto"></i>
                         </NavLink>
                         <ul id="administrasi-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <NavLink to="/administrasi-umum">
+                                <NavLink to="administrasi-umum">
                                     <i className="bi bi-circle"></i><span>Umum</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/kependudukan">
+                                <NavLink to="kependudukan">
                                     <i className="bi bi-circle"></i><span>Kependudukan</span>
                                 </NavLink>
                             </li>
@@ -48,44 +48,44 @@ function Sidebar() {
                     </li>
 
                     <li className="nav-item d-none">
-                        <NavLink className="nav-link" to="/kependudukan">
+                        <NavLink className="nav-link" to="kependudukan">
                             <i className="ri-team-line"></i>
                             <span>Kependudukan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item d-none">
-                        <NavLink className="nav-link" to="/pembangunan">
+                        <NavLink className="nav-link" to="pembangunan">
                             <i className="ri-building-4-line"></i>
                             <span>Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/pembangunan">
+                        <NavLink className="nav-link" to="pembangunan">
                             <i className="ri-bank-line"></i>
                             <span>Pembangunan</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" data-bs-target="#potensi-nav" data-bs-toggle="collapse" to="/*">
+                        <NavLink className="nav-link" data-bs-target="#potensi-nav" data-bs-toggle="collapse" to="*">
                             <i className="ri-store-2-line"></i>
                             <span>Potensi</span><i className="bi bi-chevron-right ms-auto"></i>
                         </NavLink>
                         <ul id="potensi-nav" className="nav-content collapse" data-bs-parent="#sidebar-nav">
                             <li>
-                                <NavLink to="/umkm">
+                                <NavLink to="umkm">
                                     <i className="bi bi-circle"></i><span>UMKM</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/berita">
+                                <NavLink to="berita">
                                     <i className="bi bi-circle"></i><span>Berita</span>
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/wisata">
+                                <NavLink to="wisata">
                                     <i className="bi bi-circle"></i><span>Wisata</span>
                                 </NavLink>
                             </li>
@@ -93,14 +93,14 @@ function Sidebar() {
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/profil-desa">
+                        <NavLink className="nav-link" to="profil-desa">
                             <i className="ri-profile-line"></i>
                             <span>Profil Desa</span>
                         </NavLink>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/bantuan-sosial">
+                        <NavLink className="nav-link" to="bantuan-sosial">
                             <i className="ri-building-4-line"></i>
                             <span>Bansos</span>
                         </NavLink>

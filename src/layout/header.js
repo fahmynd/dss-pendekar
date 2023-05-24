@@ -1,8 +1,10 @@
 import { React, Fragment, useEffect, useState } from 'react'
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { Link, Navigate } from 'react-router-dom'
+import useAuth from '../context/Auth/hooks/useAuth';
 
 const Header = (props) => {
+    const auth = useAuth()
     const [username, setUsername] = useState(props.name);
     const [board, setBoard] = useState([]);
     const [boardItem, setBoardItem] = useState("");
@@ -30,6 +32,7 @@ const Header = (props) => {
         setLogout({
             logout: !logout,
         });
+        auth.doLogout()
     };
 
     useEffect(() => {

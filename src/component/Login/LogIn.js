@@ -1,10 +1,51 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import "./LogIn.css"
 import Frame from "../../assets/frame_login_ilustrasi.png"
 import Back from "../../assets/back.svg"
-import { Navigate, Link } from "react-router-dom";
+import { BASE_API_URL } from "../../utils/api";
+import useAuth from "../../context/Auth/hooks/useAuth";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
+  const auth = useAuth()
+  const navigate = useNavigate()
+  const [username,setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error,setError] = useState("")
+  const [isLoading, setLoading] = useState("");
+
+  useEffect(() => {
+    if (auth.isLogged) {
+      navigate("/")
+    }
+  },[auth])
+
+  const loginHandler = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError("")
+    
+    let form = new FormData()
+    form.append("username",username)
+    form.append("password",password)
+    
+    await fetch(BASE_API_URL + 'auth/login-post',{
+      method: "POST",
+      body: form
+    }).then(res => res.json()).then(res => {
+      if (res.success) {
+        auth.handleLogin(res.data.token)
+      }else{
+        setError(res.message)
+      }
+    }).catch((err) => {
+      console.log(err,"error")
+    })
+    
+    setLoading(false)
+  }
+
 
   return (
     <Fragment>
@@ -15,26 +56,40 @@ const LogIn = () => {
           <div className="login-content">
 
             <p className="title_logo text-center">Pemantauan Desa dan Kelurahan Terintegrasi</p>
-
+            
             <div className="login-form">
-              <form action="login" method="post">
+              <form onSubmit={loginHandler}>
                 <input type="hidden" name="" value="" />
                 <h1>Masuk Akun</h1>
+                {
+              error &&
+              <div className="alert alert-danger">
+                {error}
+              </div>
+            }
                 <div className="form-group">
                   <label className="text-dark">Username</label>
-                  <input className="form-control" type="text" name="username" placeholder="Masukkan Username" autoComplete="off" />
+                  <input value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" type="text" name="username" placeholder="Masukkan Username" autoComplete="off" />
                   <i className="far fa-user icons-custom"></i>
                 </div>
                 <div className="form-group">
                   <div>
                     <label className="text-dark pt-2">Password</label>
                   </div>
-                  <input className="form-control" id="password" type="password" name="password" autoComplete="off"
+                  <input value={password} onChange={e => setPassword(e.target.value)} className="form-control" id="password" type="password" name="password" autoComplete="off"
                     placeholder="Masukkan Password" />
                   <i id="eye" className="far fa-eye icons-custom"></i>
                 </div>
                 <div className="pb-lg-0 pb-5">
-                  <button type="submit" className="btn btn-general btn-block font-size-h6 px-8 py-4 my-3 mr-3">Masuk Akun
+                  <button disabled={isLoading} type="submit" className="btn btn-general btn-block font-size-h6 px-8 py-4 my-3 mr-3">
+                    {
+                      isLoading ?
+                      <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                      :
+                      "Masuk Akun"
+                    }
                   </button>
                 </div>
               </form>
