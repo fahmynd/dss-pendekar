@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import ReactEcharts from "echarts-for-react"
+import { BASE_API_URL } from "../../utils/api";
 
 const UsahaDiWilayah = (props) => {
     const [query, setQuery] = useState("");
@@ -173,7 +174,7 @@ const UsahaDiWilayah = (props) => {
             <div className="card-body">
                 <h2 className="card-title-potensi">USAHA DI WILAYAH</h2>
                 <div className="filter-primary">
-                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/usaha_di_wilayah')}>Export Report</button>
+                    <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/usaha_di_wilayah`)}>Export Report</button>
                 </div>
                 <div className="row g-1 mb-0 pb-0">
                     <div className="col">

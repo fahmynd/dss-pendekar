@@ -13,8 +13,7 @@ const ProfilDesa = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'profil?k3=&k4=&search=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/profil?k3=&k4=&search=`)
+        axios.get(`${BASE_API_URL}profil?k3=&k4=&search=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;

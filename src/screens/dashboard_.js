@@ -13,8 +13,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'home?k3=&k4=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/home?k3=&k4=&limit=`)
+        axios.get(`${BASE_API_URL}home?k3=&k4=&limit=`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 setResultData(result.data);

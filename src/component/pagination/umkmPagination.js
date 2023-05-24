@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Fragment, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 import produk from '../../assets/img/produk.png'
+import { BASE_API_URL } from "../../utils/api";
 
 export default function UmkmPagination(props) {
 
@@ -69,7 +70,7 @@ export default function UmkmPagination(props) {
     return (
         <Fragment>
             <div className="filter-primary">
-                <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/umkm')}>Export Report</button>
+                <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/umkm`)}>Export Report</button>
             </div>
             <div className="row g-1 mb-4">
                 <div className="col">

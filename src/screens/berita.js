@@ -12,8 +12,7 @@ const BeritaPage = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'home?k3=&k4=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/berita`)
+        axios.get(`${BASE_API_URL}berita`)
             .then((result) => {
                 // console.log(result.data.data.list_berita)
                 const data = result.data.data;

@@ -6,6 +6,7 @@ import { format_tgl } from '../utils/helper.min';
 import RKPTable from '../component/datatable/RKPDataTable';
 import APBDTable from '../component/datatable/APBDesDataTable';
 import FilterAPBD from '../component/filterAPBD';
+import { BASE_API_URL } from '../utils/api';
 
 const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -14,8 +15,7 @@ const Keuangan = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/keuangan?k3=&k4=`)
+        axios.get(`${BASE_API_URL}keuangan?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data)
                 const data = result.data.data;
@@ -77,7 +77,7 @@ const Keuangan = () => {
                                                 <h5 className="card-title-potensi">GRAFIK VS REALISASI</h5>
                                                 {/* <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p> */}
                                                 <div className="filter-primary">
-                                                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/apbdes')}>Export Report</button>
+                                                    <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/apbdes`)}>Export Report</button>
                                                 </div>
 
                                                 <div className="row g-2">
@@ -389,7 +389,7 @@ const Keuangan = () => {
                                             <div className="card-body">
                                                 <h5 className="card-title-potensi">Rencana Kerja Pembangunan</h5>
                                                 <div className="filter-primary">
-                                                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rkpdes')}>Export Report</button>
+                                                    <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/rkpdes`)}>Export Report</button>
                                                 </div>
                                                 {resultData && <RKPTable resultData={resultData} />}
                                             </div>

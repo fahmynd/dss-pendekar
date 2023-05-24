@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment, useMemo } from "react";
 import ReactPaginate from "react-paginate";
+import { BASE_API_URL } from "../../utils/api";
 
 export default function WisataPagination(props) {
 
@@ -98,7 +99,7 @@ export default function WisataPagination(props) {
                     </select>
                 </div>
                 <div className="col-2 text-end">
-                    <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/wisata')}>Export Report</button>
+                    <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/wisata`)}>Export Report</button>
                 </div>
             </div>
             <div className="row">

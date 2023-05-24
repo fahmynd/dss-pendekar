@@ -3,6 +3,7 @@ import PotensiSDA from '../chart/potensiSDA'
 import PotensiSarana from '../chart/potensiSarana'
 import { LembagaKemasyarakatan } from '../chart/lembagaKemasyarakatan'
 import { useEffect, useMemo, useState } from 'react'
+import { BASE_API_URL } from '../../utils/api'
 
 export const Potensi = ({ kec, desa, resultData }) => {
     const [selectedKec, setSelectedKec] = useState("")
@@ -173,7 +174,7 @@ export const Potensi = ({ kec, desa, resultData }) => {
                     <h5 className="card-title-potensi">POTENSI</h5>
                     <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
                     <div className="filter-primary">
-                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/potensi')}>Export Report</button>
+                        <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/potensi`)}>Export Report</button>
                     </div>
                     <div className="row">
                         <div className="col-md-3 order-md-1">

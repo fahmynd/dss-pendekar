@@ -19,8 +19,7 @@ const Dashboard = () => {
     const [desa, setDesa] = useState([]);
 
     useEffect(() => {
-        // axios.get(BASE_API_URL)
-        axios.get('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/')
+        axios.get(BASE_API_URL)
             .then((result) => {
                 // console.log(result.data.data)
                 const data = result.data.data;

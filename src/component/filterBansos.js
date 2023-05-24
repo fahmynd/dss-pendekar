@@ -1,6 +1,7 @@
 import React, { useMemo, useState, Fragment } from "react";
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
+import { BASE_API_URL } from "../utils/api";
 
 const FilterBansos = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
@@ -57,7 +58,7 @@ const FilterBansos = (props) => {
                 <div className="card">
                     <div className="card-body">
                         <div className="filter-primary">
-                            <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/bansos')}>Export Report</button>
+                            <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/bansos`)}>Export Report</button>
                         </div>
                         <div className="row g-1 my-4">
                             <div className="col-3">

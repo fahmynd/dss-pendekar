@@ -1,4 +1,5 @@
 import React, { useMemo, useState, Fragment } from "react";
+import { BASE_API_URL } from "../utils/api";
 
 const FilterAdministrasi = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
@@ -132,7 +133,7 @@ const FilterAdministrasi = (props) => {
             <div className="card">
                 <div className="card-body">
                     <div className="filter-primary">
-                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/administrasi_umum_summary')}>Export Report</button>
+                        <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/administrasi_umum_summary`)}>Export Report</button>
                     </div>
                     <div className="row g-1 my-4">
                         <div className="col-3">

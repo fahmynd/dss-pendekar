@@ -1,6 +1,7 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
 import { tgl_indo } from "../../utils/helper.min";
+import { BASE_API_URL } from "../../utils/api";
 
 const AdminTableNew = (props) => {
     const { jenis_administrasi, list_kecamatan, list_desa, list_administrasi } = props.resultData.data;
@@ -656,7 +657,7 @@ const AdminTableNew = (props) => {
     return (
         <Fragment>
             <div className="filter-primary">
-                <button type="button" className="btn btn-primary" onClick={() => window.open(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/${selectedType}`)}>Export Report</button>
+                <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/${selectedType}`)}>Export Report</button>
             </div>
             <div className="row g-1 mb-4">
                 <div className="col-3">

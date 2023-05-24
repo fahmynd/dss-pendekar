@@ -14,8 +14,7 @@ const AdministrasiUmum = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/administrasi-umum?k3=&k4=`)
+        axios.get(`${BASE_API_URL}administrasi-umum?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data.jumlah)
                 setResultData(result.data);

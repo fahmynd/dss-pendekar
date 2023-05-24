@@ -19,8 +19,7 @@ const BantuanSosial = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'administrasi-umum?k3=&k4=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/bansos`)
+        axios.get(`${BASE_API_URL}bansos`)
             .then((result) => {
                 // console.log(result.data.data.jumlah)
                 setResultData(result.data);
@@ -67,7 +66,7 @@ const BantuanSosial = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Rekap Penerima Bantuan Sosial</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rekap_bansos')}>Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/rekap_bansos`)}>Export Report</button>
                                     </div>
                                     {resultData && <BansosTable resultData={resultData} />}
                                 </div>

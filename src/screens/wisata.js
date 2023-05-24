@@ -12,8 +12,7 @@ const Wisata = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'home?k3=&k4=&limit=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/wisata?k3=&k4=&search=&limit=`)
+        axios.get(`${BASE_API_URL}wisata?k3=&k4=&search=&limit=`)
             .then((result) => {
                 const data = result.data.data;
                 setResultData(data);

@@ -18,8 +18,7 @@ const Kependudukan = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        // axios.get(BASE_API_URL + 'kependudukan?k3=&k4=')
-        axios.get(`https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/kependudukan?k3=&k4=`)
+        axios.get(`${BASE_API_URL}kependudukan?k3=&k4=`)
             .then((result) => {
                 // console.log(result.data.data)
                 const data = result.data.data;
@@ -151,7 +150,7 @@ const Kependudukan = () => {
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Rekap Kependudukan</h5>
                                     <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary" onClick={() => window.open('https://sulselprov-enrekangkab.pendekar.digitaldesa.id/api/export/rekap_kependudukan')}>Export Report</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/rekap_kependudukan`)}>Export Report</button>
                                     </div>
 
                                     {resultData && <RekapPendudukTable resultData={resultData} />}
