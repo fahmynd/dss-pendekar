@@ -19,6 +19,9 @@ const LogIn = () => {
     if (auth.isLogged) {
       navigate("/")
     }
+
+    document.title = "Login | PENDEKAR";
+
   }, [auth])
 
   const loginHandler = async (e) => {

@@ -4,6 +4,19 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+// $(function () {
+//   $('#eye').on('click', function () {
+//     if ($('#password').prop('type') == 'password') {
+//       $(this).addClass(' fa-eye-slash');
+//       $('#password').attr('type', 'text');
+//     } else {
+//       $(this).removeClass(' fa-eye-slash');
+//       $('#password').attr('type', 'password');
+//     }
+//   })
+// })
+
 (function () {
   "use strict";
 
@@ -225,15 +238,3 @@
 //     effect: 'slide-left'
 //   });
 // });
-
-// $(function () {
-//   $('#eye').on('click', function () {
-//     if ($('#password').prop('type') == 'password') {
-//       $(this).addClass(' fa-eye-slash');
-//       $('#password').attr('type', 'text');
-//     } else {
-//       $(this).removeClass(' fa-eye-slash');
-//       $('#password').attr('type', 'password');
-//     }
-//   })
-// })
