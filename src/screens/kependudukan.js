@@ -131,7 +131,7 @@ const Kependudukan = () => {
                             {resultData && <ChartKependudukan data={resultData} />}
                         </div>
 
-                        <div className="col-lg-12">
+                        <div className="d-none col-lg-12">
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">Kemiskinan Ekstrim</h5>

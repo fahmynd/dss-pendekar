@@ -1,11 +1,11 @@
-// export const KODE_SLUG = window.location.hostname.split('.')[0]
-export const KODE_SLUG = `sulselprov-enrekangkab`
+const SERVER = window.location.hostname.split('.')[0]
+const KODE_SLUG = SERVER === 'localhost' ? 'enrekangkab' : window.location.hostname.split('.')[0]
 export const BASE_API_URL = `https://${KODE_SLUG}.pendekar.digital/api/`
 
 const TOKEN_KEY = "api_token"
 
 export function setApiToken(token) {
-    localStorage.setItem(TOKEN_KEY,token)
+    localStorage.setItem(TOKEN_KEY, token)
 }
 
 export function getApiToken() {

@@ -149,7 +149,7 @@ const Dashboard = (props) => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">CAPAIAN & POTENSI DESA</h5>
-                                    <p>Menampilkan potensi Kecamatan, Desa/Kelurahan</p>
+                                    <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/pembangunan`)}>Export Report</button>
                                     </div>

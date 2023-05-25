@@ -20,10 +20,10 @@ const DashboardRoute = () => {
         return <Navigate to={"/login"} />
     }
 
-    const script = document.createElement("script");
-    script.src = "/assets/js/main.js";
-    script.async = true;
-    document.body.appendChild(script);
+    // const script = document.createElement("script");
+    // script.src = "/assets/js/main.js";
+    // script.async = true;
+    // document.body.appendChild(script);
 
     return (
         <DashboardShell>

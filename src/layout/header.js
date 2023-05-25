@@ -40,6 +40,13 @@ const Header = (props) => {
         setLoggedInUserObj({
             loggedInUserObj: JSON.parse(localStorage.getItem(loggedInUserName)),
         });
+
+
+        const script = document.createElement("script");
+        script.src = "/assets/js/main.js";
+        script.async = true;
+        document.body.appendChild(script);
+
     }, [])
 
     const localUname = `${_.get(
@@ -170,7 +177,7 @@ const Header = (props) => {
                                 </li> */}
 
                                 <li>
-                                    <Link className="dropdown-item d-flex align-items-center" to={'/pengaturan'}>
+                                    <Link className="d-none dropdown-item d-flex align-items-center" to={'pengaturan'}>
                                         <i className="bi bi-gear"></i>
                                         <span>Pengaturan</span>
                                     </Link>
