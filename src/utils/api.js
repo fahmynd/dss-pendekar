@@ -1,5 +1,5 @@
-const SERVER = window.location.hostname.split('.')[0]
-const KODE_SLUG = SERVER === 'localhost' ? 'enrekangkab' : window.location.hostname.split('.')[0]
+const KODE_SLUG = window.location.hostname.split('.')[0]
+// const KODE_SLUG = 'enrekangkab'
 export const BASE_API_URL = `https://${KODE_SLUG}.pendekar.digital/api/`
 
 const TOKEN_KEY = "api_token"
