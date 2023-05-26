@@ -6,6 +6,8 @@ import { BASE_API_URL } from "../../utils/api";
 import useAuth from "../../context/Auth/hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import showPwdImg from "../../assets/show-password.svg"
+import hidePwdImg from "../../assets/hide-password.svg"
 
 const LogIn = () => {
   const auth = useAuth()
@@ -14,6 +16,7 @@ const LogIn = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("")
   const [isLoading, setLoading] = useState("");
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   useEffect(() => {
     if (auth.isLogged) {
@@ -75,13 +78,17 @@ const LogIn = () => {
                   <input value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" type="text" name="username" placeholder="Masukkan Username" autoComplete="off" />
                   <i className="far fa-user icons-custom"></i>
                 </div>
-                <div className="form-group">
+                <div className="form-group pwd-container">
                   <div>
                     <label className="text-dark pt-2">Password</label>
                   </div>
-                  <input value={password} onChange={e => setPassword(e.target.value)} className="form-control" id="password" type="password" name="password" autoComplete="off"
+                  <input value={password} onChange={e => setPassword(e.target.value)} className="form-control" id="password" type={isRevealPwd ? "text" : "password"} name="password" autoComplete="off"
                     placeholder="Masukkan Password" />
-                  <i id="eye" className="far fa-eye icons-custom"></i>
+                  <img
+                    title={isRevealPwd ? "Hide password" : "Show password"}
+                    src={isRevealPwd ? hidePwdImg : showPwdImg}
+                    onClick={() => setIsRevealPwd(prevState => !prevState)}
+                  />
                 </div>
                 <div className="pb-lg-0 pb-5">
                   <button disabled={isLoading} type="submit" className="btn btn-general btn-block font-size-h6 px-8 py-3 my-3 mr-3">

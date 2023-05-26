@@ -2,67 +2,61 @@ import React, { useEffect, useState, Fragment, useMemo } from "react";
 import ReactPaginate from "react-paginate";
 
 export default function BeritaPagination(props) {
-
-    const { list_kecamatan, list_desa } = props.resultData
-    let { list_berita } = props.resultData
+    const { list_kecamatan, list_desa } = props.resultData;
+    let { list_berita } = props.resultData;
 
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 6;
 
-    const [selectedKec, setSelectedKec] = useState("")
-    const [selectedDesa, setSelectedDesa] = useState("")
-    const [query, setQuery] = useState("")
+    const [selectedKec, setSelectedKec] = useState("");
+    const [selectedDesa, setSelectedDesa] = useState("");
+    const [query, setQuery] = useState("");
 
     const listDeskel = useMemo(() => {
         setSelectedDesa("");
-        return list_desa.filter(desa => {
-            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
-            return kode_kec === selectedKec
-        })
-    }, [list_desa, selectedKec])
+        return list_desa.filter((desa) => {
+            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+            return kode_kec === selectedKec;
+        });
+    }, [list_desa, selectedKec]);
 
     const listKec = useMemo(() => {
-        return list_kecamatan
-    }, [list_kecamatan])
+        return list_kecamatan;
+    }, [list_kecamatan]);
 
-    const data = useMemo(() => {
-        const deskel = list_berita.filter(desa => {
+    const filteredBerita = useMemo(() => {
+        const deskel = list_berita.filter((desa) => {
             if (query !== "") {
-                if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1;
             }
             if (selectedKec && selectedDesa) {
-                return desa.kode_wilayah === selectedDesa
+                return desa.kode_wilayah === selectedDesa;
             } else if (selectedKec) {
-                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
-                return kode_kec === selectedKec
+                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+                return kode_kec === selectedKec;
             } else {
-                return true
+                return true;
             }
-        })
+        });
 
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(deskel.slice(itemOffset, endoffset));
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(deskel.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(deskel.length / itemsPerPage));
         list_berita = deskel;
 
         return deskel;
-
-    }, [selectedKec, selectedDesa, query, listDeskel])
+    }, [selectedKec, selectedDesa, query, itemOffset, list_berita, itemsPerPage]);
 
     useEffect(() => {
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(list_berita.slice(itemOffset, endoffset));
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(list_berita.slice(itemOffset, endOffset));
         setPageCount(Math.ceil(list_berita.length / itemsPerPage));
     }, [itemOffset, itemsPerPage, list_berita]);
 
-    let handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % list_berita.length;
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * itemsPerPage;
         setItemOffset(newOffset);
     };
 
@@ -72,43 +66,77 @@ export default function BeritaPagination(props) {
                 <div className="col">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
-                            <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Berita..." title="Enter search keyword" />
-                            <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
+                            <input
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                type="text"
+                                name="query"
+                                placeholder="Cari Berita..."
+                                title="Enter search keyword"
+                            />
+                            <button type="submit" title="Search" disabled>
+                                <i className="bi bi-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
                 <div className="col">
-                    <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
-                        <option value={''}>Semua Kecamatan</option>
-                        {listKec.map((item) => {
-                            return (
-                                <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
-                            )
-                        })}
+                    <select
+                        value={selectedKec}
+                        onChange={(e) => setSelectedKec(e.target.value)}
+                        className="form-select"
+                        aria-label="Default select example"
+                    >
+                        <option value={""}>Semua Kecamatan</option>
+                        {listKec.map((item) => (
+                            <option
+                                key={item.kode_wilayah}
+                                value={item.kode_wilayah}
+                                selected={selectedKec === item.kode_wilayah}
+                            >
+                                {item.nama_kecamatan}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="col">
-                    <select onChange={e => setSelectedDesa(e.target.value)} className="form-select" aria-label="Default select example">
-                        <option value={''}>Semua Desa</option>
-                        {listDeskel.map((item) => {
-                            return (
-                                <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedDesa === item.kode_wilayah}>{item.nama_deskel}</option>
-                            )
-                        })}
+                    <select
+                        value={selectedDesa}
+                        onChange={(e) => setSelectedDesa(e.target.value)}
+                        className="form-select"
+                        aria-label="Default select example"
+                    >
+                        <option value={""}>Semua Desa</option>
+                        {listDeskel.map((item) => (
+                            <option
+                                key={item.kode_wilayah}
+                                value={item.kode_wilayah}
+                                selected={selectedDesa === item.kode_wilayah}
+                            >
+                                {item.nama_deskel}
+                            </option>
+                        ))}
                     </select>
                 </div>
-
             </div>
-            {currentItems.map((item, key) => {
-                return (
-                    <div key={key} className="post-item clearfix">
-                        <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`} alt="News" />
-                        <h4><a href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`} rel='noreferrer' target={'_blank'}>{item.judul}</a></h4>
-                        <p>{item.isi}</p>
-                    </div>
-                )
-            })
-            }
+            {currentItems.map((item, key) => (
+                <div key={key} className="post-item clearfix">
+                    <img
+                        src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`}
+                        alt="News"
+                    />
+                    <h4>
+                        <a
+                            href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`}
+                            rel="noreferrer"
+                            target={"_blank"}
+                        >
+                            {item.judul}
+                        </a>
+                    </h4>
+                    <p>{item.isi}</p>
+                </div>
+            ))}
             <ReactPaginate
                 className="pagination justify-content-center"
                 nextLabel="Next >"

@@ -303,3 +303,16 @@
     width: 620px;
   }
 } */
+
+.pwd-container {
+  position: relative;
+  width: auto;
+}
+
+.pwd-container img {
+  cursor: pointer;
+  position: absolute;
+  width: 20px;
+  right: 8px;
+  top: 42px;
+}
