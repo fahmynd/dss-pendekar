@@ -27,33 +27,32 @@ export default function BeritaPagination(props) {
     }, [list_kecamatan]);
 
     const filteredBerita = useMemo(() => {
-        const deskel = list_berita.filter((desa) => {
+        const filtered = list_berita.filter((berita) => {
             if (query !== "") {
-                return desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1;
+                return berita.judul.toLowerCase().indexOf(query.toLowerCase()) > -1;
             }
             if (selectedKec && selectedDesa) {
-                return desa.kode_wilayah === selectedDesa;
+                return berita.kode_wilayah === selectedDesa;
             } else if (selectedKec) {
-                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+                let kode_kec = `${berita.k1}.${berita.k2}.${berita.k3}`;
                 return kode_kec === selectedKec;
             } else {
                 return true;
             }
         });
 
-        const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(deskel.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(deskel.length / itemsPerPage));
-        list_berita = deskel;
+        setPageCount(Math.ceil(filtered.length / itemsPerPage));
+        return filtered;
+    }, [selectedKec, selectedDesa, query, list_berita, itemsPerPage]);
 
-        return deskel;
-    }, [selectedKec, selectedDesa, query, itemOffset, list_berita, itemsPerPage]);
+    useEffect(() => {
+        setItemOffset(0);
+    }, [selectedKec, selectedDesa, query, filteredBerita]);
 
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(list_berita.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(list_berita.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage, list_berita]);
+        setCurrentItems(filteredBerita.slice(itemOffset, endOffset));
+    }, [itemOffset, itemsPerPage, filteredBerita]);
 
     const handlePageClick = (event) => {
         const newOffset = event.selected * itemsPerPage;
@@ -92,7 +91,6 @@ export default function BeritaPagination(props) {
                             <option
                                 key={item.kode_wilayah}
                                 value={item.kode_wilayah}
-                                selected={selectedKec === item.kode_wilayah}
                             >
                                 {item.nama_kecamatan}
                             </option>
@@ -111,7 +109,6 @@ export default function BeritaPagination(props) {
                             <option
                                 key={item.kode_wilayah}
                                 value={item.kode_wilayah}
-                                selected={selectedDesa === item.kode_wilayah}
                             >
                                 {item.nama_deskel}
                             </option>
@@ -156,6 +153,7 @@ export default function BeritaPagination(props) {
                 breakLinkClassName="page-link"
                 containerClassName="pagination"
                 activeClassName="active"
+                forcePage={itemOffset / itemsPerPage}
                 renderOnZeroPageCount={null}
             />
         </Fragment>

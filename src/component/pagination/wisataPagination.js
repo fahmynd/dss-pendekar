@@ -28,42 +28,36 @@ export default function WisataPagination(props) {
         return list_kecamatan
     }, [list_kecamatan])
 
-    const data = useMemo(() => {
-        const deskel = list_wisata.filter(desa => {
+    const filteredWisata = useMemo(() => {
+        const filtered = list_wisata.filter((wisata) => {
             if (query !== "") {
-                if (desa.judul.toLowerCase().indexOf(query.toLowerCase()) > -1) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return wisata.judul.toLowerCase().indexOf(query.toLowerCase()) > -1;
             }
             if (selectedKec && selectedDesa) {
-                return desa.kode_wilayah === selectedDesa
+                return wisata.kode_wilayah === selectedDesa;
             } else if (selectedKec) {
-                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
-                return kode_kec === selectedKec
+                let kode_kec = `${wisata.k1}.${wisata.k2}.${wisata.k3}`;
+                return kode_kec === selectedKec;
             } else {
-                return true
+                return true;
             }
-        })
+        });
 
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(deskel.slice(itemOffset, endoffset));
-        setPageCount(Math.ceil(deskel.length / itemsPerPage));
-        list_wisata = deskel;
-
-        return deskel;
-
-    }, [selectedKec, selectedDesa, query, listDeskel])
+        setPageCount(Math.ceil(filtered.length / itemsPerPage));
+        return filtered;
+    }, [selectedKec, selectedDesa, query, list_wisata, itemsPerPage]);
 
     useEffect(() => {
-        const endoffset = itemOffset + itemsPerPage;
-        setCurrentItems(list_wisata.slice(itemOffset, endoffset));
-        setPageCount(Math.ceil(list_wisata.length / itemsPerPage));
-    }, [itemOffset, itemsPerPage, list_wisata]);
+        setItemOffset(0);
+    }, [selectedKec, selectedDesa, query, filteredWisata]);
 
-    let handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % list_wisata.length;
+    useEffect(() => {
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(filteredWisata.slice(itemOffset, endOffset));
+    }, [itemOffset, itemsPerPage, filteredWisata]);
+
+    const handlePageClick = (event) => {
+        const newOffset = event.selected * itemsPerPage;
         setItemOffset(newOffset);
     };
 
@@ -73,33 +67,58 @@ export default function WisataPagination(props) {
                 <div className="col">
                     <div className="search-produk">
                         <form className="search-form-produk d-flex align-items-center">
-                            <input value={query} onChange={e => setQuery(e.target.value)} type="text" name="query" placeholder="Cari Wisata..." title="Enter search keyword" />
-                            <button type="submit" title="Search" disabled><i className="bi bi-search"></i></button>
+                            <input
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                type="text"
+                                name="query"
+                                placeholder="Cari Wisata..."
+                                title="Enter search keyword"
+                            />
+                            <button type="submit" title="Search" disabled>
+                                <i className="bi bi-search"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
                 <div className="col">
-                    <select onChange={e => setSelectedKec(e.target.value)} className="form-select" aria-label="Default select example">
-                        <option value={''}>Semua Kecamatan</option>
-                        {listKec.map((item) => {
-                            return (
-                                <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedKec === item.kode_wilayah}>{item.nama_kecamatan}</option>
-                            )
-                        })}
+                    <select
+                        value={selectedKec}
+                        onChange={(e) => setSelectedKec(e.target.value)}
+                        className="form-select"
+                        aria-label="Default select example"
+                    >
+                        <option value={""}>Semua Kecamatan</option>
+                        {listKec.map((item) => (
+                            <option
+                                key={item.kode_wilayah}
+                                value={item.kode_wilayah}
+                            >
+                                {item.nama_kecamatan}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="col">
-                    <select onChange={e => setSelectedDesa(e.target.value)} className="form-select" aria-label="Default select example">
-                        <option value={''}>Semua Desa</option>
-                        {listDeskel.map((item) => {
-                            return (
-                                <option key={item.kode_wilayah} value={item.kode_wilayah} selected={selectedDesa === item.kode_wilayah}>{item.nama_deskel}</option>
-                            )
-                        })}
+                    <select
+                        value={selectedDesa}
+                        onChange={(e) => setSelectedDesa(e.target.value)}
+                        className="form-select"
+                        aria-label="Default select example"
+                    >
+                        <option value={""}>Semua Desa</option>
+                        {listDeskel.map((item) => (
+                            <option
+                                key={item.kode_wilayah}
+                                value={item.kode_wilayah}
+                            >
+                                {item.nama_deskel}
+                            </option>
+                        ))}
                     </select>
                 </div>
                 <div className="col-2 text-end">
-                    <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/wisata`)}>Export Report</button>
+                    <button type="button" className="btn btn-primary bg-white" onClick={() => window.open(`${BASE_API_URL}export/wisata`)}>Export Report</button>
                 </div>
             </div>
             <div className="row">
@@ -138,6 +157,7 @@ export default function WisataPagination(props) {
                 breakLinkClassName="page-link"
                 containerClassName="pagination"
                 activeClassName="active"
+                forcePage={itemOffset / itemsPerPage}
                 renderOnZeroPageCount={null}
             />
         </Fragment>

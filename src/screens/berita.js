@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL } from '../utils/api'
 import LoadingSpinner from '../utils/LoadingSpinner';
-import BeritaPagination from '../component/pagination/beritaPagination copy';
+import BeritaPagination from '../component/pagination/beritaPagination';
 import { format_tgl } from '../utils/helper.min';
 
 const BeritaPage = () => {
