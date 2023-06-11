@@ -1,5 +1,4 @@
 import { NavLink, NavLinkProps } from "@mantine/core"
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 interface Props extends NavLinkProps {
@@ -26,7 +25,6 @@ const NavItem = ({ path = "", ...props }: Props) => {
             {...props}
             onClick={navigate}
             styles={(theme) => {
-                const selectedColor = "white";
                 const color = theme.colors.base[2]
                 return {
                     root: {

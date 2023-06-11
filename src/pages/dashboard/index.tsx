@@ -6,7 +6,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         router.replace("/dashboard/index")
-    },[])
+    },[router])
 
     return <></>
 }

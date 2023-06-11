@@ -4,6 +4,7 @@ import AdministrasiUmumPage from "@/features/dashboard/administrasi-umum";
 import MainDashboardPage from "@/features/dashboard/main";
 import { AppShell } from "@mantine/core";
 import { useRouter } from "next/router";
+import React from "react";
 
 type Page = {
     path: string;

@@ -1,4 +1,5 @@
 import { RiBankLine, RiBuilding4Line, RiFileCopy2Line, RiFundsBoxLine, RiProfileLine, RiStore2Line } from "react-icons/ri";
+import React from "react";
 
 export type MenuItem = {
     title: string;

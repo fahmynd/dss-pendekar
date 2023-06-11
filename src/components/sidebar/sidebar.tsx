@@ -1,7 +1,5 @@
-import { Box, Button, Group, NavLink, Navbar, Text, Title } from "@mantine/core";
-import { RiFundsBoxLine, RiFileCopy2Line, RiBankLine, RiStore2Line, RiProfileLine, RiBuilding4Line } from "react-icons/ri";
+import { Box, Navbar, Text, Title } from "@mantine/core";
 import { BsDot } from "react-icons/bs";
-import { useParams } from 'next/navigation'
 import { MENU_ITEM } from "@/constants";
 import NavItem from "./nav-item";
 import { MenuItem } from "@/constants/menu";

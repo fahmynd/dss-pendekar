@@ -1,4 +1,4 @@
-import { Avatar, Box, Burger, Group, Header, Menu, Stack, Text } from "@mantine/core";
+import { Avatar, Box, Burger, Group, Header, Menu, Text } from "@mantine/core";
 import { BsBoxArrowRight } from "react-icons/bs";
 
 // TODO: Handle burger menu and user profile
