@@ -4,7 +4,7 @@ import { BsBoxArrowRight } from "react-icons/bs";
 // TODO: Handle burger menu and user profile
 const DashboardHeader = () => {
     return (
-        <Header p={"sm"} height={"auto"}>
+        <Header p={"sm"} height={60}>
             <Group position="apart">
                 <Group>
                     <Burger
