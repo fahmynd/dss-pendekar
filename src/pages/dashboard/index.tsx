@@ -1,14 +1,14 @@
-import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
-    const router = useRouter()
+  const router = useRouter();
 
-    useEffect(() => {
-        router.replace("/dashboard/index")
-    },[router])
+  useEffect(() => {
+    router.replace('/dashboard/index');
+  }, [router]);
 
-    return <></>
-}
+  return <></>;
+};
 
 export default Dashboard;

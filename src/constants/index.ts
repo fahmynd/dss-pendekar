@@ -1,5 +1,3 @@
-import MENU_ITEM from "./menu";
+import MENU_ITEM from './menu';
 
-export {
-    MENU_ITEM
-}
+export { MENU_ITEM };

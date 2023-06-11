@@ -1,50 +1,49 @@
-import DashboardHeader from "@/components/header/dashboard-header";
-import SideBar from "@/components/sidebar/sidebar";
-import AdministrasiUmumPage from "@/features/dashboard/administrasi-umum";
-import MainDashboardPage from "@/features/dashboard/main";
-import { AppShell } from "@mantine/core";
-import { useRouter } from "next/router";
-import React from "react";
+import DashboardHeader from '@/components/header/dashboard-header';
+import SideBar from '@/components/sidebar/sidebar';
+import AdministrasiUmumPage from '@/features/dashboard/administrasi-umum';
+import MainDashboardPage from '@/features/dashboard/main';
+import { AppShell } from '@mantine/core';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 type Page = {
-    path: string;
-    component: React.ReactNode
-}
+  path: string;
+  component: React.ReactNode;
+};
 
 const PAGES: Page[] = [
-    {
-        path: "index",
-        component: <MainDashboardPage />
-    },
-    {
-        path: "administrasi",
-        component: <AdministrasiUmumPage />
-    }
-]
+  {
+    path: 'index',
+    component: <MainDashboardPage />,
+  },
+  {
+    path: 'administrasi',
+    component: <AdministrasiUmumPage />,
+  },
+];
 
 const Dashboard = () => {
+  const { query } = useRouter();
+  const currentPage = query?.page || 'index';
 
-    const { query } = useRouter()
-    const currentPage = query?.page || "index"
-    
-    const getPage = () => {
-        const page = PAGES.find((item) => item.path === currentPage)
-        if (page) {
-            return page.component
-        }
-
-        return null
+  const getPage = () => {
+    const page = PAGES.find((item) => item.path === currentPage);
+    if (page) {
+      return page.component;
     }
 
-    return (
-        <AppShell
-            layout="alt"
-            header={<DashboardHeader />}
-            navbar={<SideBar active={currentPage as string} />}
-        >
-            {getPage()}
-        </AppShell>
-    )
-}
+    return null;
+  };
+
+  return (
+    <AppShell
+      layout='alt'
+      header={<DashboardHeader />}
+      navbar={<SideBar active={currentPage as string} />}
+    >
+      {getPage()}
+    </AppShell>
+  );
+};
 
 export default Dashboard;
