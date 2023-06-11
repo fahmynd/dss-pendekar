@@ -39,7 +39,7 @@ const Dashboard = () => {
         <AppShell
             layout="alt"
             header={<DashboardHeader />}
-            navbar={<SideBar active={"index"} />}
+            navbar={<SideBar active={currentPage as string} />}
         >
             {getPage()}
         </AppShell>
