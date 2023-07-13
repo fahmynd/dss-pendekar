@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
 import "./LogIn.css"
 import Frame from "../../assets/frame_login_ilustrasi.png"
-import Back from "../../assets/back.svg"
-import { BASE_API_URL } from "../../utils/api";
+import { KODE_SLUG, BASE_API_URL } from "../../utils/api";
+import { STRINGS } from "../../config/strings";
 import useAuth from "../../context/Auth/hooks/useAuth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -111,10 +111,10 @@ const LogIn = () => {
           <div className="jumbotron_">
 
             <div className="header_jumbotron">
-              <img src={Back} className="logo_ me-3" alt="" />
-              <img src="https://online.digitaldesa.id/templates/homepage/img/logo_desa_emas_enrekang.svg?1684910196" className="logo_" alt="" />
+              <img src={STRINGS[KODE_SLUG].logo_kab_url} className="logo_ me-3" alt="" />
+              <img src={STRINGS[KODE_SLUG].logo_dss_url} className="logo_" alt="" />
               <hr className="hr_line" />
-              <h4>Desa Emas <br /> Kabupaten Enrekang</h4>
+              <h4>{STRINGS[KODE_SLUG].title}<br />{STRINGS[KODE_SLUG].kabkota}</h4>
             </div>
 
 
@@ -128,7 +128,7 @@ const LogIn = () => {
 
               <div className="d-flex justify-content-center">
                 <div className="bugisse_text">
-                  Tana Rigalla' Tana Riabussungi
+                  {STRINGS[KODE_SLUG].slogan}
                 </div>
               </div>
             </div>
