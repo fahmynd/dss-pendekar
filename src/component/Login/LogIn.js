@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import showPwdImg from "../../assets/show-password.svg"
 import hidePwdImg from "../../assets/hide-password.svg"
 
+
 const LogIn = () => {
   const auth = useAuth()
   const navigate = useNavigate()
@@ -21,6 +22,16 @@ const LogIn = () => {
   useEffect(() => {
     if (auth.isLogged) {
       navigate("/")
+    }
+
+    const logoFirst = `${STRINGS[KODE_SLUG].logo_first}`;
+    if (logoFirst === "gap") {
+      document.getElementById("logo-first").classList = "logo_ me-3";
+    }
+
+    const logoSecond = `${STRINGS[KODE_SLUG].logo_hide}`;
+    if (logoSecond === "hide") {
+      document.getElementById("logo-dss").style.display = "none";
     }
 
     document.title = "Login | PENDEKAR";
@@ -51,7 +62,6 @@ const LogIn = () => {
 
     setLoading(false)
   }
-
 
   return (
     <Fragment>
@@ -111,18 +121,18 @@ const LogIn = () => {
           <div className="jumbotron_">
 
             <div className="header_jumbotron">
-              <img src={STRINGS[KODE_SLUG].logo_kab_url} className="logo_ me-3" alt="" />
-              <img src={STRINGS[KODE_SLUG].logo_dss_url} className="logo_" alt="" />
+              <img id="logo-first" src={STRINGS[KODE_SLUG].logo_kab_url} className="logo_" alt="" />
+              <img id="logo-dss" src={STRINGS[KODE_SLUG].logo_dss_url} className="logo_" alt="" />
               <hr className="hr_line" />
               <h4>{STRINGS[KODE_SLUG].title}<br />{STRINGS[KODE_SLUG].kabkota}</h4>
             </div>
 
 
             <div className="content_jumbotron_">
-              <h1 className="text-center">Selamat datang, PENDEKAR</h1>
+              <h1 className="text-center mb-3">Selamat datang, PENDEKAR</h1>
               <div className="d-flex justify-content-center">
                 <div id="slide-login">
-                  <img src={Frame} alt="" />
+                  <img src={STRINGS[KODE_SLUG].bg_jumbotron} alt="" />
                 </div>
               </div>
 

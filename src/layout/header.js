@@ -2,6 +2,8 @@ import { React, Fragment, useEffect, useState } from 'react'
 // import SweetAlert from 'react-bootstrap-sweetalert';
 import { Link, Navigate } from 'react-router-dom'
 import useAuth from '../context/Auth/hooks/useAuth';
+import { STRINGS } from '../config/strings';
+import { KODE_SLUG } from '../utils/api';
 
 const Header = (props) => {
     const auth = useAuth()
@@ -153,14 +155,14 @@ const Header = (props) => {
                         <li className="nav-item dropdown pe-3">
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to={'/'} data-bs-toggle="dropdown">
-                                <img src="https://mitrasulawesi.id/wp-content/uploads/2022/10/IMG_20221014_232402.jpg" alt="Profile" className="rounded-circle" />
-                                <span className="d-none d-md-block dropdown-toggle ps-2">Muslimin Bando</span>
+                                <img src={STRINGS[KODE_SLUG].foto_profil} alt="Profile" className="rounded-circle" />
+                                <span className="d-none d-md-block dropdown-toggle ps-2">{STRINGS[KODE_SLUG].nama_user}</span>
                             </Link>
 
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li className="dropdown-header">
-                                    <h6>Muslimin Bando</h6>
-                                    <span>Bupati Enrekang</span>
+                                    <h6>{STRINGS[KODE_SLUG].nama_user}</h6>
+                                    <span>{STRINGS[KODE_SLUG].jabatan_user}</span>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
