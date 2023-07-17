@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-function Sidebar() {
+const Sidebar = () => {
     return (
         <Fragment>
             <aside id="sidebar" className="sidebar">

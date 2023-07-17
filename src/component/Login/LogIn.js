@@ -34,7 +34,18 @@ const LogIn = () => {
       document.getElementById("logo-dss").style.display = "none";
     }
 
+    const favicon = document.querySelector('link[rel="icon"]');
+    favicon.href = `${STRINGS[KODE_SLUG].logo_kab_url}`;
+
     document.title = "Login | PENDEKAR";
+
+    const button = document.getElementById("button")
+    button.style.backgroundColor = `${STRINGS[KODE_SLUG].background_color}`;
+    button.style.color = `${STRINGS[KODE_SLUG].font_color}`;
+
+    const jumbotron = document.getElementById("content_jumbotron")
+    jumbotron.style.backgroundColor = `${STRINGS[KODE_SLUG].bg_color_jumbotron}`;
+    jumbotron.style.color = `${STRINGS[KODE_SLUG].font_color_jumbotron}`;
 
   }, [auth])
 
@@ -101,7 +112,7 @@ const LogIn = () => {
                   />
                 </div>
                 <div className="pb-lg-0 pb-5">
-                  <button disabled={isLoading} type="submit" className="btn btn-general btn-block font-size-h6 px-8 py-3 my-3 mr-3">
+                  <button disabled={isLoading} type="submit" className="btn btn-general btn-block font-size-h6 px-8 py-3 my-3 mr-3" id="button">
                     {
                       isLoading ?
                         <div className="spinner-border text-primary" role="status">

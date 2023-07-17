@@ -19,7 +19,7 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 28px;
-  color: #ffffff;
+  /* color: #ffffff; */
 
   position: relative;
   bottom: 12px;
@@ -47,7 +47,7 @@
 
   /* Base/Light */
 
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 .header_jumbotron > img,
@@ -82,7 +82,7 @@
   margin-top: 1rem;
   font-family: "Inter", sans-serif;
   font-style: oblique;
-  color: #ffffff;
+  /* color: #ffffff; */
   /* font-weight: 800; */
   font-size: 32px;
 }
