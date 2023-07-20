@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
 import L from "leaflet";
-import { polygonEnrekang } from "./mapEnrekang";
+import { polygon } from "../config/mapPolygons";
 
 const customMarker = new L.Icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
@@ -21,12 +21,12 @@ class MapPopup extends React.Component {
             zoom: 12,
             latcenter: props.resultData.dss.lat,
             lngcenter: props.resultData.dss.lng,
-            polygonEnrekang: polygonEnrekang
+            polygon: polygon[props.resultData.dss.slug_kabkota]
         };
     }
 
     render() {
-        const { resultData, zoom, latcenter, lngcenter, polygonEnrekang } = this.state;
+        const { resultData, zoom, latcenter, lngcenter, polygon } = this.state;
         const mergedArrays = resultData.data.list_desa.map((item) => ({
             provinsi: resultData.dss.provinsi,
             kabupaten: resultData.dss.kabkota,
@@ -45,7 +45,7 @@ class MapPopup extends React.Component {
             sdm: item.potensi.sdm,
         }));
 
-        // var polygon = L.polygon(polygonEnrekang, { color: 'red' });
+        // var polygon = L.polygon(polygon, { color: 'red' });
 
         return (
             <LeafletMap
@@ -53,7 +53,7 @@ class MapPopup extends React.Component {
                 zoom={zoom}
                 scrollWheelZoom={false}
                 style={{ height: "500px" }}
-                bounds={polygonEnrekang}
+                bounds={polygon}
                 boundsOptions={{ padding: [1, 1] }}
             >
                 <TileLayer
@@ -61,7 +61,7 @@ class MapPopup extends React.Component {
                     url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
                 />
 
-                <Polygon positions={polygonEnrekang} />
+                <Polygon positions={polygon} />
 
                 {mergedArrays.map(({ lat, lng, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
                     <Marker position={[lat, lng]} icon={customMarker} key={index}>
