@@ -4,7 +4,7 @@ import { PetaPerkembangan } from '../component/chart/petaPerkembanganDesa'
 import BalitaStuntingJumlah from '../component/chart/balitaStuntingJumlah'
 import BalitaYoY from '../component/chart/balitaStuntingYoY'
 import axios from 'axios'
-import { BASE_API_URL } from '../utils/api'
+import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 // import Map from '../component/mapPopup'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
@@ -13,6 +13,7 @@ import { Potensi } from '../component/potensi/potensi'
 import NewsTicker from "react-advanced-news-ticker";
 import { format_tgl } from '../utils/helper.min';
 import MapPopup from '../component/mapPopup'
+import { STRINGS } from '../config/strings'
 
 const Dashboard = (props) => {
     const ref = useRef(null);
@@ -69,7 +70,7 @@ const Dashboard = (props) => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Dashboard | PENDEKAR";
+        document.title = `Dashboard | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

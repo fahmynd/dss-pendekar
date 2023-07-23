@@ -4,8 +4,9 @@ import UsahaDiWilayah from '../component/chart/usahaDiWilayah'
 import axios from 'axios'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import UmkmPagination from '../component/pagination/umkmPagination'
-import { BASE_API_URL } from '../utils/api'
+import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 import { format_tgl } from '../utils/helper.min';
+import { STRINGS } from '../config/strings'
 
 const Umkm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +27,7 @@ const Umkm = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "UMKM | PENDEKAR";
+        document.title = `UMKM | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

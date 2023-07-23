@@ -1,10 +1,12 @@
 import { React, Fragment, useEffect } from 'react'
 import IdmChart from './chart/idm'
 import { PetaPerkembangan } from './chart/petaPerkembanganDesa'
+import { STRINGS } from '../config/strings'
+import { KODE_SLUG } from '../utils/api'
 
 const PerkembanganDesa = () => {
     useEffect(() => {
-        document.title = "Perkembangan Desa | PENDEKAR";
+        document.title = `Perkembangan Desa | ${STRINGS[KODE_SLUG].title}`;
     }, [])
     return (
         <Fragment>

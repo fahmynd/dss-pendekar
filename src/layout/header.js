@@ -63,7 +63,7 @@ const Header = (props) => {
 
                 <div className="d-flex align-items-center justify-content-between">
                     <Link to="/" className="logo d-flex align-items-center">
-                        <span className="d-none d-lg-block">PENDEKAR</span>
+                        <span className="d-none d-lg-block">{STRINGS[KODE_SLUG].title}</span>
                     </Link>
                     <i className="bi bi-list toggle-sidebar-btn"></i>
                 </div>

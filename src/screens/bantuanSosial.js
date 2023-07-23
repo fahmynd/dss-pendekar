@@ -1,12 +1,13 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL, KODE_SLUG } from '../utils/api';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import Bantuan from '../../src/assets/icon/mendapatBantuan.svg'
 import KK from '../../src/assets/icon/kk.svg'
 import BansosTable from '../component/datatable/RekapBansosDataTable';
 import { formatAngka, format_tgl } from '../utils/helper.min';
 import FilterBansos from '../component/filterBansos'
+import { STRINGS } from '../config/strings';
 
 const BantuanSosial = () => {
     const [resultData, setResultData] = useState();
@@ -36,7 +37,7 @@ const BantuanSosial = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Bantuan Sosial | PENDEKAR";
+        document.title = `Bantuan Sosial | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

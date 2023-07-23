@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { STRINGS } from '../config/strings'
+import { KODE_SLUG } from '../utils/api'
 
 const Sidebar = () => {
     return (
@@ -7,8 +9,8 @@ const Sidebar = () => {
             <aside id="sidebar" className="sidebar">
                 <Link to={'/'} id='pendekar'>
                     <div className='text-center mb-5'>
-                        <h2 className='text-white fw-bold'>PENDEKAR</h2>
-                        <p className='small' style={{ color: '#DCCD7C' }}>Pemantauan Desa dan Kelurahan Terintegrasi</p>
+                        <h2 className='text-white fw-bold'>{STRINGS[KODE_SLUG].title}</h2>
+                        <p className='small' style={{ color: '#DCCD7C' }}>{STRINGS[KODE_SLUG].desc}</p>
                     </div>
                 </Link>
 

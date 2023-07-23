@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL, KODE_SLUG } from '../utils/api';
 // import PendudukJumlah from '../component/chart/pendudukJumlah';
 // import PendudukTable from '../component/datatable/PdkDataTable';
 import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
@@ -8,6 +8,7 @@ import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
 import { format_tgl } from '../utils/helper.min';
 import ChartKependudukan from '../component/administrasi/chart-kependudukan';
+import { STRINGS } from '../config/strings';
 
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +33,7 @@ const Kependudukan = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Kependudukan | PENDEKAR";
+        document.title = `Kependudukan | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

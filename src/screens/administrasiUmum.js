@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL, KODE_SLUG } from '../utils/api';
 import AdminTable from '../component/datatable/AdmDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import { format_tgl } from '../utils/helper.min';
 import FilterAdministrasi from '../component/filterAdministrasi';
+import { STRINGS } from '../config/strings';
 
 const AdministrasiUmum = () => {
     const [resultData, setResultData] = useState();
@@ -28,7 +29,7 @@ const AdministrasiUmum = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Administrasi Umum | PENDEKAR";
+        document.title = `Administrasi Umum | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

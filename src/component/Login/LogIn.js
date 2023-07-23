@@ -24,6 +24,11 @@ const LogIn = () => {
       navigate("/")
     }
 
+    const desaEmas = `${STRINGS[KODE_SLUG].logo_second_size}`;
+    if (desaEmas === "enrekang") {
+      document.getElementById("logo-dss").classList = "logo_";
+    }
+
     const logoFirst = `${STRINGS[KODE_SLUG].logo_first}`;
     if (logoFirst === "gap") {
       document.getElementById("logo-first").classList = "logo_ me-3";
@@ -34,10 +39,12 @@ const LogIn = () => {
       document.getElementById("logo-dss").style.display = "none";
     }
 
+    document.getElementById("hr_").style.borderLeft = `4px solid ${STRINGS[KODE_SLUG].font_color_jumbotron}`;
+
     const favicon = document.querySelector('link[rel="icon"]');
     favicon.href = `${STRINGS[KODE_SLUG].logo_kab_url}`;
 
-    document.title = "Login | PENDEKAR";
+    document.title = `Login | ${STRINGS[KODE_SLUG].title}`;
 
     const button = document.getElementById("button")
     button.style.backgroundColor = `${STRINGS[KODE_SLUG].background_color}`;
@@ -82,7 +89,13 @@ const LogIn = () => {
 
           <div className="login-content">
 
-            <p className="title_logo text-center">Pemantauan Desa dan Kelurahan Terintegrasi</p>
+            <div className="text-center">
+
+              <img alt="Logo" src="https://digitaldesa.id/templates/homepage/media/misc/favicon/digides.png" className="w-25" />
+
+            </div>
+
+            <p className="title_logo text-center">{STRINGS[KODE_SLUG].desc}</p>
 
             <div className="login-form">
               <form onSubmit={loginHandler}>
@@ -133,14 +146,14 @@ const LogIn = () => {
 
             <div className="header_jumbotron">
               <img id="logo-first" src={STRINGS[KODE_SLUG].logo_kab_url} className="logo_" alt="" />
-              <img id="logo-dss" src={STRINGS[KODE_SLUG].logo_dss_url} className="logo_" alt="" />
-              <hr className="hr_line" />
+              <img id="logo-dss" src={STRINGS[KODE_SLUG].logo_dss_url} className="logo_dss" alt="" />
+              <hr id="hr_" className="hr_line" />
               <h4>{STRINGS[KODE_SLUG].title}<br />{STRINGS[KODE_SLUG].kabkota}</h4>
             </div>
 
 
             <div className="content_jumbotron_">
-              <h1 className="text-center mb-3">Selamat datang, PENDEKAR</h1>
+              <h1 className="text-center mb-3">Selamat datang, {STRINGS[KODE_SLUG].nama}</h1>
               <div className="d-flex justify-content-center">
                 <div id="slide-login">
                   <img src={STRINGS[KODE_SLUG].bg_jumbotron} alt="" />

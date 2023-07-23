@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react'
 import LoadingSpinner from '../utils/LoadingSpinner';
 // import ProfilDesaPagination from '../component/pagination/profilDesaPagination';
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL, KODE_SLUG } from '../utils/api';
 import ProfilTable from '../component/datatable/ProfilDesaDataTable';
 import { format_tgl } from '../utils/helper.min';
+import { STRINGS } from '../config/strings';
 
 const ProfilDesa = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,7 @@ const ProfilDesa = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Profil Desa | PENDEKAR";
+        document.title = `Profil Desa | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

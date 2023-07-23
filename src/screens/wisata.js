@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL } from '../utils/api'
+import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 import LoadingSpinner from '../utils/LoadingSpinner';
 import { format_tgl } from '../utils/helper.min';
 import WisataPagination from '../component/pagination/wisataPagination';
+import { STRINGS } from '../config/strings';
 
 const Wisata = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +24,7 @@ const Wisata = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Wisata Desa | PENDEKAR";
+        document.title = `Wisata Desa | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

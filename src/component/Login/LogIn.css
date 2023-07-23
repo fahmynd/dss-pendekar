@@ -66,10 +66,17 @@
   border-top: none;
   border-radius: 2px;
   margin-left: 24px;
+  opacity: 1;
 }
 
 .logo_ {
   width: 55px;
+  position: relative;
+  bottom: 28px;
+}
+
+.logo_dss {
+  width: 110px;
   position: relative;
   bottom: 28px;
 }

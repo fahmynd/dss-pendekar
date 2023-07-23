@@ -6,7 +6,8 @@ import { format_tgl } from '../utils/helper.min';
 import RKPTable from '../component/datatable/RKPDataTable';
 import APBDTable from '../component/datatable/APBDesDataTable';
 import FilterAPBD from '../component/filterAPBD';
-import { BASE_API_URL } from '../utils/api';
+import { BASE_API_URL, KODE_SLUG } from '../utils/api';
+import { STRINGS } from '../config/strings';
 
 const Keuangan = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +28,7 @@ const Keuangan = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Pembangunan | PENDEKAR";
+        document.title = `Pembangunan | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 

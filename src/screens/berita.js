@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL } from '../utils/api'
+import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 import LoadingSpinner from '../utils/LoadingSpinner';
 import BeritaPagination from '../component/pagination/beritaPagination';
 import { format_tgl } from '../utils/helper.min';
+import { STRINGS } from '../config/strings';
 
 const BeritaPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +25,7 @@ const BeritaPage = () => {
             })
             .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = "Berita | PENDEKAR";
+        document.title = `Berita | ${STRINGS[KODE_SLUG].title}`;
 
     }, [])
 
