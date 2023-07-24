@@ -49,6 +49,13 @@ const Header = (props) => {
         script.async = true;
         document.body.appendChild(script);
 
+        // document.getElementById("logo_").style.fontSize = `${STRINGS[KODE_SLUG].font_color_jumbotron}`;
+
+        const desaEmas = `${STRINGS[KODE_SLUG].logo_second_size}`;
+        if (desaEmas === "enrekang") {
+            document.getElementById("logo_").style.fontSize = "23px";
+        }
+
     }, [])
 
     const localUname = `${_.get(
@@ -63,7 +70,7 @@ const Header = (props) => {
 
                 <div className="d-flex align-items-center justify-content-between">
                     <Link to="/" className="logo d-flex align-items-center">
-                        <span className="d-none d-lg-block">{STRINGS[KODE_SLUG].title}</span>
+                        <span id='logo_' className="d-none d-lg-block">{STRINGS[KODE_SLUG].title}</span>
                     </Link>
                     <i className="bi bi-list toggle-sidebar-btn"></i>
                 </div>

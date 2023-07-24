@@ -722,14 +722,14 @@ font-weight: var(--bs-list-group-action-font-weight);
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
-  padding-left: 20px;
+  padding-left: 30px;
   /* Toggle Sidebar Button */
   /* Search Bar */
 }
 
 .header .toggle-sidebar-btn {
   font-size: 32px;
-  padding-left: 10px;
+  padding-left: 67px;
   cursor: pointer;
   color: #012970;
 }
@@ -1025,7 +1025,7 @@ font-weight: var(--bs-list-group-action-font-weight);
   top: 0;
   left: 0;
   bottom: 0;
-  width: 206px;
+  width: 275px;
   z-index: 1002;
   transition: all 0.3s;
   padding: 30px 0;
@@ -1046,7 +1046,7 @@ font-weight: var(--bs-list-group-action-font-weight);
     /* top: 0; */
     left: -300px;
     bottom: 0;
-    width: 206px;
+    width: 275px;
     z-index: 1001;
     transition: all 0.3s;
     padding: 30px 0;
@@ -1075,7 +1075,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 
   #main,
   #footer {
-    margin-left: 187px;
+    margin-left: 255px;
   }
 }
 
@@ -1726,6 +1726,12 @@ font-weight: var(--bs-list-group-action-font-weight);
 @media (min-width: 992px) {
   .error-404 img {
     max-width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .header .toggle-sidebar-btn {
+    padding-left: 0;
   }
 }
 
