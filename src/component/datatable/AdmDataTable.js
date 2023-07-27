@@ -13,35 +13,21 @@ const AdminTableNew = (props) => {
 
     const listDeskel = useMemo(() => {
         setSelectedDesa("");
-        return list_desa.filter(desa => {
+        return list_desa ? list_desa.filter(desa => {
             let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
             return kode_kec === selectedKec
-        })
-    }, [list_desa, selectedKec])
+        }) : [];
+    }, [list_desa, selectedKec]);
 
     const listKec = useMemo(() => {
         return list_kecamatan
     }, [list_kecamatan])
 
     const DATA = useMemo(() => {
-        // let data = list_administrasi[selectedType];
-        // if (selectedKec !== "" && selectedKec !== '0') {
-        //     data = data.filter(item => {
-        //         let itemKec = `${item.k1}.${item.k2}.${item.k3}`
 
-        //         return itemKec === selectedKec
-        //     })
-        // }
+        const selectedData = list_administrasi[selectedType] || [];
 
-        // if (selectedDesa !== "" && selectedDesa !== '0') {
-        //     data = data.filter(item => {
-        //         let itemDesa = `${item.k1}.${item.k2}.${item.k3}.${item.k4}`
-
-        //         return itemDesa === selectedDesa
-        //     })
-        // }
-
-        const data = list_administrasi[selectedType].filter(desa => {
+        const data = selectedData.filter(desa => {
             if (query !== "") {
                 if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
                     return true;
@@ -123,17 +109,20 @@ const AdminTableNew = (props) => {
                     sortable: true,
                     selector: (row) => row.lampiran,
                     cell: (row) => {
-
-                        let download = {
-                            '': { 'class': '' },
-                            'null': { 'class': 'disabled' },
-                        };
-
+                        if (!row.lampiran) {
+                            // If no lampiran is available, don't render the download button
+                            return null;
+                        }
                         return (
-                            <a href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`} rel="noreferrer" target={"_blank"} className={`btn btn-primary`}>
+                            <a
+                                href={`https://online.digitaldesa.id/uploads/${row.kode_wilayah}/buku-peraturan-di-desa/${row.lampiran}`}
+                                rel="noreferrer"
+                                target={"_blank"}
+                                className={`btn btn-primary`}
+                            >
                                 Download
                             </a>
-                        )
+                        );
                     },
                     width: "150px",
                 }
@@ -633,8 +622,7 @@ const AdminTableNew = (props) => {
         };
 
         return [cols[selectedType], data];
-
-    }, [selectedType, selectedKec, selectedDesa, query, list_administrasi])
+    }, [selectedType, selectedKec, selectedDesa, query, list_administrasi]);
 
     const customStyles = {
         headCells: {

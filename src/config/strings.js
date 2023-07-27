@@ -1,3 +1,8 @@
+import Enrekang from '../../src/assets/bg/enrekangkab.png'
+import Luwu from '../../src/assets/bg/luwukab.png'
+import Gowa from '../../src/assets/bg/gowakab.jpg'
+import Wajo from '../../src/assets/bg/wajokab.png'
+
 export const STRINGS = {
     enrekangkab: {
         title: "SI MAWAR KEMBANG DESA",
@@ -7,7 +12,7 @@ export const STRINGS = {
         slogan: "Tana Rigalla' Tana Riabussungi",
         logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/enrekang.png",
         logo_dss_url: "https://online.digitaldesa.id/templates/homepage/img/logo_desa_emas_enrekang.svg",
-        bg_jumbotron: "https://emonev.afila.co.id/assets/media/login/frame_login_ilustrasi.png",
+        bg_jumbotron: Enrekang,
         nama_user: "Muslimin Bando",
         jabatan_user: "Bupati Enrekang",
         foto_profil: "https://mitrasulawesi.id/wp-content/uploads/2022/10/IMG_20221014_232402.jpg",
@@ -19,6 +24,26 @@ export const STRINGS = {
         font_color_jumbotron: "#ffffff",
         logo_second_size: "enrekang",
     },
+    luwukab: {
+        title: "PENDEKAR",
+        desc: "Pemantauan Desa dan Kelurahan Terintegrasi",
+        nama: "PENDEKAR",
+        kabkota: 'Kabupaten Luwu',
+        slogan: "Luwu Wanua Mappatuo'e Naewai Alena, Toddo Puli Temmalara Te'bakke Tongengnge",
+        logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/luwu.png",
+        logo_dss_url: "",
+        bg_jumbotron: Luwu,
+        nama_user: "Basmin Mattayang",
+        jabatan_user: "Bupati Luwu",
+        foto_profil: "https://berita.news/wp-content/uploads/2021/02/bupati-luwu-1.jpg",
+        logo_hide: "hide",
+        logo_first: "",
+        background_color: "#3B2D64",
+        font_color: "#ffffff",
+        bg_color_jumbotron: "#642ee2",
+        font_color_jumbotron: "#ffffff",
+        logo_second_size: "",
+    },
     gowakab: {
         title: "PENDEKAR",
         desc: "Pemantauan Desa dan Kelurahan Terintegrasi",
@@ -27,7 +52,7 @@ export const STRINGS = {
         slogan: "Rewako Gowa",
         logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/gowakab.png",
         logo_dss_url: "",
-        bg_jumbotron: "https://i.postimg.cc/fWFtzVwG/photo-2023-07-23-06-36-21.jpg",
+        bg_jumbotron: Gowa,
         nama_user: "Adnan Purichta Ichsan",
         jabatan_user: "Bupati Gowa",
         foto_profil: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bupati_Gowa_Adnan_Purichta_Ichsan.jpg/480px-Bupati_Gowa_Adnan_Purichta_Ichsan.jpg",
@@ -47,16 +72,16 @@ export const STRINGS = {
         slogan: "Maradeka Towajoe Ade'na Napopuang",
         logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/wajokab.png",
         logo_dss_url: "https://i.postimg.cc/XYfS3Cfp/Logo-Mabello1-removebg-preview.png",
-        bg_jumbotron: "https://i.postimg.cc/ydKPFDt3/5-removebg-preview-removebg-preview.png",
+        bg_jumbotron: Wajo,
         nama_user: "Amran Mahmud",
         jabatan_user: "Bupati Wajo",
         foto_profil: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bupati_Gowa_Adnan_Purichta_Ichsan.jpg/480px-Bupati_Gowa_Adnan_Purichta_Ichsan.jpg",
         logo_hide: "",
         logo_first: "gap",
-        background_color: "#EF0017",
+        background_color: "#327A6E",
         font_color: "#ffffff",
-        bg_color_jumbotron: "#F03043",
-        font_color_jumbotron: "#ffffff",
+        bg_color_jumbotron: "#92D1C6",
+        font_color_jumbotron: "#202020",
         logo_second_size: "",
     },
 }
