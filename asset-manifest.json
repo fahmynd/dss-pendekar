@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.d9301f69.css",
-    "main.js": "/static/js/main.b0c0d736.js",
+    "main.js": "/static/js/main.0239f1a1.js",
     "static/media/boxicons.svg": "/static/media/boxicons.61829f134e586c0c9e89.svg",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.1664a258a7e7714f6f8d.svg",
     "static/media/gowakab.jpg": "/static/media/gowakab.5b631ea98b714089c937.jpg",
     "static/media/boxicons.eot": "/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
     "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
-    "static/media/wajokab.png": "/static/media/wajokab.85aa1b49f53a8254d40b.png",
     "static/media/boxicons.woff": "/static/media/boxicons.d12afc36557395143e4b.woff",
     "static/media/boxicons.ttf": "/static/media/boxicons.db9ddb1898dbd76badca.ttf",
+    "static/media/wajokab.png": "/static/media/wajokab.05105211a3d4191650b5.png",
     "static/media/enrekangkab.png": "/static/media/enrekangkab.0d8ce7a47ca3b4bbf956.png",
     "static/media/frame_login_ilustrasi.png": "/static/media/frame_login_ilustrasi.0d8ce7a47ca3b4bbf956.png",
     "static/media/luwukab.png": "/static/media/luwukab.ef3196e0a55dd60c3778.png",
@@ -26,10 +26,10 @@
     "static/media/kk.svg": "/static/media/kk.212001f5b0c414ead557959dd3eae584.svg",
     "static/media/show-password.svg": "/static/media/show-password.7468b27017e6d779e083dd0beabf4efa.svg",
     "main.d9301f69.css.map": "/static/css/main.d9301f69.css.map",
-    "main.b0c0d736.js.map": "/static/js/main.b0c0d736.js.map"
+    "main.0239f1a1.js.map": "/static/js/main.0239f1a1.js.map"
   },
   "entrypoints": [
     "static/css/main.d9301f69.css",
-    "static/js/main.b0c0d736.js"
+    "static/js/main.0239f1a1.js"
   ]
 }
