@@ -2,6 +2,7 @@ import Enrekang from '../../src/assets/bg/enrekangkab.png'
 import Luwu from '../../src/assets/bg/luwukab.png'
 import Gowa from '../../src/assets/bg/gowakab.jpg'
 import Wajo from '../../src/assets/bg/wajokab.png'
+import Mamasa from '../../src/assets/bg/mamasakab.png'
 
 export const STRINGS = {
     enrekangkab: {
@@ -44,12 +45,32 @@ export const STRINGS = {
         font_color_jumbotron: "#ffffff",
         logo_second_size: "",
     },
+    mamasakab: {
+        title: "PENDEKAR",
+        desc: "Pemantauan Desa dan Kelurahan Terintegrasi",
+        nama: "PENDEKAR",
+        kabkota: 'Kabupaten Mamasa',
+        slogan: "Mesa Kada Dipotuo, Pantan Kada Dipomate",
+        logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/mamasakab.png",
+        logo_dss_url: "",
+        bg_jumbotron: Mamasa,
+        nama_user: "Ramlan Badawi",
+        jabatan_user: "Bupati Mamasa",
+        foto_profil: "https://mamasakab.go.id/2020/img/app239.jpg",
+        logo_hide: "hide",
+        logo_first: "",
+        background_color: "#3B2D64",
+        font_color: "#ffffff",
+        bg_color_jumbotron: "#642ee2",
+        font_color_jumbotron: "#ffffff",
+        logo_second_size: "",
+    },
     gowakab: {
         title: "PENDEKAR",
         desc: "Pemantauan Desa dan Kelurahan Terintegrasi",
         nama: "PENDEKAR",
         kabkota: 'Kabupaten Gowa',
-        slogan: "Rewako Gowa",
+        slogan: "Butta Patturioloang",
         logo_kab_url: "https://digitaldesa.id/uploads/logo-desa/gowakab.png",
         logo_dss_url: "",
         bg_jumbotron: Gowa,
