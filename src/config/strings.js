@@ -3,6 +3,11 @@ import Luwu from '../../src/assets/bg/luwukab.png'
 import Gowa from '../../src/assets/bg/gowakab.jpg'
 import Wajo from '../../src/assets/bg/wajokab.png'
 import Mamasa from '../../src/assets/bg/mamasakab.png'
+import bupatiEnrekang from '../../src/assets/profil/bupati_enrekang.jpg'
+import bupatiLuwu from '../../src/assets/profil/bupati_luwu.jpg'
+import bupatiGowa from '../../src/assets/profil/bupati_gowa.jpg'
+import bupatiWajo from '../../src/assets/profil/bupati_wajo.jpg'
+import bupatiMamasa from '../../src/assets/profil/bupati_mamasa.jpg'
 
 export const STRINGS = {
     enrekangkab: {
@@ -16,7 +21,7 @@ export const STRINGS = {
         bg_jumbotron: Enrekang,
         nama_user: "Muslimin Bando",
         jabatan_user: "Bupati Enrekang",
-        foto_profil: "https://mitrasulawesi.id/wp-content/uploads/2022/10/IMG_20221014_232402.jpg",
+        foto_profil: bupatiEnrekang,
         logo_hide: "",
         logo_first: "gap",
         background_color: "#3B2D64",
@@ -36,7 +41,7 @@ export const STRINGS = {
         bg_jumbotron: Luwu,
         nama_user: "Basmin Mattayang",
         jabatan_user: "Bupati Luwu",
-        foto_profil: "https://berita.news/wp-content/uploads/2021/02/bupati-luwu-1.jpg",
+        foto_profil: bupatiLuwu,
         logo_hide: "hide",
         logo_first: "",
         background_color: "#3B2D64",
@@ -56,7 +61,7 @@ export const STRINGS = {
         bg_jumbotron: Mamasa,
         nama_user: "Ramlan Badawi",
         jabatan_user: "Bupati Mamasa",
-        foto_profil: "https://mamasakab.go.id/2020/img/app239.jpg",
+        foto_profil: bupatiMamasa,
         logo_hide: "hide",
         logo_first: "",
         background_color: "#3B2D64",
@@ -76,7 +81,7 @@ export const STRINGS = {
         bg_jumbotron: Gowa,
         nama_user: "Adnan Purichta Ichsan",
         jabatan_user: "Bupati Gowa",
-        foto_profil: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bupati_Gowa_Adnan_Purichta_Ichsan.jpg/480px-Bupati_Gowa_Adnan_Purichta_Ichsan.jpg",
+        foto_profil: bupatiGowa,
         logo_hide: "hide",
         logo_first: "",
         background_color: "#327A6E",
@@ -96,7 +101,7 @@ export const STRINGS = {
         bg_jumbotron: Wajo,
         nama_user: "Amran Mahmud",
         jabatan_user: "Bupati Wajo",
-        foto_profil: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Bupati_Gowa_Adnan_Purichta_Ichsan.jpg/480px-Bupati_Gowa_Adnan_Purichta_Ichsan.jpg",
+        foto_profil: bupatiWajo,
         logo_hide: "",
         logo_first: "gap",
         background_color: "#327A6E",

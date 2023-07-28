@@ -8,7 +8,7 @@ import { BASE_API_URL, KODE_SLUG } from '../utils/api'
 // import Map from '../component/mapPopup'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
-import MapChart from '../component/chart/map'
+// import MapChart from '../component/chart/map'
 import { Potensi } from '../component/potensi/potensi'
 import NewsTicker from "react-advanced-news-ticker";
 import { format_tgl } from '../utils/helper.min';
@@ -150,7 +150,7 @@ const Dashboard = (props) => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">CAPAIAN & POTENSI DESA</h5>
-                                    <p>Menampilkan Potensi Kecamatan, Desa/Kelurahan</p>
+                                    <p>Menampilkan Potensi Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/pembangunan`)}>Export Report</button>
                                     </div>
