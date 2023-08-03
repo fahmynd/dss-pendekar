@@ -31,88 +31,89 @@ function AdmUmur(props) {
                 x: am5.p50
             })
         );
+
         legend.data.setAll(chart.series.values);
 
         var data = [
             {
                 age: "75+",
-                Laki: -0,
-                Perempuan: props.data.u75.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u75.perempuan
             },
             {
                 age: "70-74",
-                Laki: -0,
-                Perempuan: props.data.u70.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u70.perempuan
             },
             {
                 age: "65-69",
-                Laki: -0,
-                Perempuan: props.data.u65.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u65.perempuan
             },
             {
                 age: "60-64",
-                Laki: -0,
-                Perempuan: props.data.u60.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u60.perempuan
             },
             {
                 age: "55-59",
-                Laki: -0,
-                Perempuan: props.data.u55.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u55.perempuan
             },
             {
                 age: "50-54",
-                Laki: -0,
-                Perempuan: props.data.u50.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u50.perempuan
             },
             {
                 age: "45-49",
-                Laki: -0,
-                Perempuan: props.data.u45.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u45.perempuan
             },
             {
                 age: "40-44",
-                Laki: -0,
-                Perempuan: props.data.u40.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u40.perempuan
             },
             {
                 age: "35-39",
-                Laki: -0,
-                Perempuan: props.data.u35.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u35.perempuan
             },
             {
                 age: "30-34",
-                Laki: -0,
-                Perempuan: props.data.u30.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u30.perempuan
             },
             {
                 age: "25-29",
-                Laki: -0,
-                Perempuan: props.data.u25.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u25.perempuan
             },
             {
                 age: "20-24",
-                Laki: -0,
-                Perempuan: props.data.u20.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u20.perempuan
             },
             {
                 age: "15-19",
-                Laki: -0,
-                Perempuan: props.data.u15.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u15.perempuan
             },
             {
                 age: "10-14",
-                Laki: -0,
-                Perempuan: props.data.u10.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u10.perempuan
             },
             {
                 age: "5-9",
-                Laki: -0,
-                Perempuan: props.data.u5.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u5.perempuan
             },
             {
                 age: "0-4",
-                Laki: -0,
-                Perempuan: props.data.u0.perempuan
+                "Laki-Laki": -500,
+                "Perempuan": props.data.u0.perempuan
             }
         ];
 
@@ -123,13 +124,14 @@ function AdmUmur(props) {
                     minGridDistance: 0,
                     inversed: true,
                     cellStartLocation: 0.1,
-                    cellEndLocation: 0.9
+                    cellEndLocation: 0.9,
+                    strokeOpacity: 0,
                 })
             })
         );
 
+        yAxis.get("renderer").labels.template.set("fontSize", "12px");
         yAxis.data.setAll(data);
-
 
         var xAxis = chart.xAxes.push(
             am5xy.ValueAxis.new(root, {
@@ -139,9 +141,11 @@ function AdmUmur(props) {
             })
         );
 
+        xAxis.get("renderer").labels.template.set("fontSize", "12px");
+
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-        function createSeries(field, labelCenterX, pointerOrientation, rangeValue) {
+        function createSeries(field, labelCenterX, pointerOrientation, rangeValue, fill) {
             var series = chart.series.push(
                 am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
@@ -152,8 +156,9 @@ function AdmUmur(props) {
                     clustered: false,
                     tooltip: am5.Tooltip.new(root, {
                         pointerOrientation: pointerOrientation,
-                        labelText: "{categoryY}: {valueX}"
-                    })
+                        labelText: "{categoryY}: {valueX} " + (field === "Laki-Laki" ? "Laki-Laki " : " "),
+                    }),
+                    fill: fill,
                 })
             );
 
@@ -171,15 +176,14 @@ function AdmUmur(props) {
                         centerY: am5.p50,
                         text: "{valueX}",
                         populateText: true,
-                        centerX: labelCenterX
+                        centerX: labelCenterX,
+                        fontSize: "12px"
                     })
                 });
             });
 
             series.data.setAll(data);
             series.appear();
-            // series.set("fill", am5.color("#2CA454"));
-            // series.set("stroke", am5.color("rgba(255,0,0,0)"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
@@ -193,11 +197,12 @@ function AdmUmur(props) {
             var label = rangeDataItem.get("label");
             label.setAll({
                 text: field,
-                fontSize: "1em",
+                fontSize: "14px",
                 fill: series.get("stroke"),
-                paddingTop: -20,
+                paddingTop: -18,
                 isMeasured: false,
-                centerX: labelCenterX
+                centerX: labelCenterX,
+                fontWeight: "bold"
             });
             label.adapters.add("dy", function () {
                 return -chart.plotContainer.height();
@@ -206,8 +211,8 @@ function AdmUmur(props) {
             return series;
         }
 
-        // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", -20);
+        // createSeries("Laki-Laki", am5.p100, "right", -2, am5.color("#25A68D"));
+        createSeries("Perempuan", 0, "left", -20, am5.color("#E77624"));
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
@@ -230,4 +235,4 @@ function AdmUmur(props) {
     );
 }
 
-export default AdmUmur
+export default AdmUmur;

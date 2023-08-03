@@ -1,7 +1,7 @@
 import Enrekang from '../../src/assets/bg/enrekangkab.png'
 import Luwu from '../../src/assets/bg/luwukab.png'
 import Gowa from '../../src/assets/bg/gowakab.jpg'
-import Wajo from '../../src/assets/bg/wajokab.png'
+import Wajo from '../../src/assets/bg/wajokab.jpg'
 import Mamasa from '../../src/assets/bg/mamasakab.png'
 import bupatiEnrekang from '../../src/assets/profil/bupati_enrekang.jpg'
 import bupatiLuwu from '../../src/assets/profil/bupati_luwu.jpg'
@@ -29,6 +29,8 @@ export const STRINGS = {
         bg_color_jumbotron: "#642ee2",
         font_color_jumbotron: "#ffffff",
         logo_second_size: "enrekang",
+        menu_pelayanan: "hide",
+        theme: "",
     },
     luwukab: {
         title: "PENDEKAR",
@@ -49,6 +51,8 @@ export const STRINGS = {
         bg_color_jumbotron: "#642ee2",
         font_color_jumbotron: "#ffffff",
         logo_second_size: "",
+        menu_pelayanan: "hide",
+        theme: "",
     },
     mamasakab: {
         title: "PENDEKAR",
@@ -69,6 +73,8 @@ export const STRINGS = {
         bg_color_jumbotron: "#642ee2",
         font_color_jumbotron: "#ffffff",
         logo_second_size: "",
+        menu_pelayanan: "",
+        theme: "",
     },
     gowakab: {
         title: "PENDEKAR",
@@ -89,6 +95,8 @@ export const STRINGS = {
         bg_color_jumbotron: "#92D1C6",
         font_color_jumbotron: "#202020",
         logo_second_size: "",
+        menu_pelayanan: "hide",
+        theme: "",
     },
     wajokab: {
         title: "PENDEKAR",
@@ -109,5 +117,7 @@ export const STRINGS = {
         bg_color_jumbotron: "#92D1C6",
         font_color_jumbotron: "#202020",
         logo_second_size: "",
+        menu_pelayanan: "hide",
+        theme: "alternative",
     },
 }

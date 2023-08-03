@@ -12,6 +12,8 @@ import Wisata from "../screens/wisata";
 import LogIn from "../component/Login/LogIn";
 import { Routes, Route, Navigate } from "react-router-dom";
 import useAuth from "../context/Auth/hooks/useAuth";
+import Persuratan from "../screens/persuratan";
+import Kios from "../screens/kios";
 
 const DashboardRoute = () => {
     const auth = useAuth()
@@ -39,6 +41,8 @@ const DashboardRoute = () => {
                 <Route path="umkm" element={<Umkm />} />
                 <Route path="profil-desa" element={<ProfilDesa />} />
                 <Route path="wisata" element={<Wisata />} />
+                <Route path="persuratan" element={<Persuratan />} />
+                <Route path="kios" element={<Kios />} />
             </Routes>
         </DashboardShell>
     )

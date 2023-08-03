@@ -116,7 +116,7 @@ function AdmKeluarga(props) {
 
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-        function createSeries(field, labelCenterX, pointerOrientation, rangeValue) {
+        function createSeries(field, labelCenterX, pointerOrientation, rangeValue, fill) {
             var series = chart.series.push(
                 am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
@@ -128,7 +128,8 @@ function AdmKeluarga(props) {
                     tooltip: am5.Tooltip.new(root, {
                         pointerOrientation: pointerOrientation,
                         labelText: "{categoryY}: {valueX}"
-                    })
+                    }),
+                    fill: fill
                 })
             );
 
@@ -181,8 +182,8 @@ function AdmKeluarga(props) {
             return series;
         }
 
-        // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", -20);
+        // createSeries("Laki", am5.p100, "right", -2, am5.color("#25A68D"));
+        createSeries("Perempuan", 0, "left", -20, am5.color("#E77624"));
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {

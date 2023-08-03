@@ -36,53 +36,53 @@ function AdmPendidikan(props) {
         var data = [
             {
                 pendidikan: "Tidak/Belum Sekolah",
-                Laki: -0,
-                Perempuan: props.data.tidak_blm_sekolah.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.tidak_blm_sekolah.perempuan
             },
             {
                 pendidikan: "Belum Tamat SD/Sederajat",
-                Laki: -0,
-                Perempuan: props.data.belum_tamat_sd.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.belum_tamat_sd.perempuan
             },
             {
                 pendidikan: "Tamat SD/Sederajat",
-                Laki: -0,
-                Perempuan: props.data.tamat_sd.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.tamat_sd.perempuan
             },
             {
                 pendidikan: "SLTP/Sederajat",
-                Laki: -0,
-                Perempuan: props.data.sltp.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.sltp.perempuan
             },
             {
                 pendidikan: "SLTA/Sederajat",
-                Laki: -0,
-                Perempuan: props.data.slta.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.slta.perempuan
             },
             {
                 pendidikan: "Diploma I/II",
-                Laki: -0,
-                Perempuan: props.data.d1_dan_d2.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.d1_dan_d2.perempuan
             },
             {
                 pendidikan: "Diploma III/Sarjana Muda",
-                Laki: -0,
-                Perempuan: props.data.d3.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.d3.perempuan
             },
             {
                 pendidikan: "Diploma IV/Strata I",
-                Laki: -0,
-                Perempuan: props.data.s1.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.s1.perempuan
             },
             {
                 pendidikan: "Strata II",
-                Laki: -0,
-                Perempuan: props.data.s2.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.s2.perempuan
             },
             {
                 pendidikan: "Strata III",
-                Laki: -0,
-                Perempuan: props.data.s3.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.s3.perempuan
             },
         ];
 
@@ -98,6 +98,7 @@ function AdmPendidikan(props) {
             })
         );
 
+        yAxis.get("renderer").labels.template.set("fontSize", "12px");
         yAxis.data.setAll(data);
 
 
@@ -109,9 +110,11 @@ function AdmPendidikan(props) {
             })
         );
 
+        xAxis.get("renderer").labels.template.set("fontSize", "12px");
+
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-        function createSeries(field, labelCenterX, pointerOrientation, rangeValue) {
+        function createSeries(field, labelCenterX, pointerOrientation, rangeValue, fill) {
             var series = chart.series.push(
                 am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
@@ -122,8 +125,9 @@ function AdmPendidikan(props) {
                     clustered: false,
                     tooltip: am5.Tooltip.new(root, {
                         pointerOrientation: pointerOrientation,
-                        labelText: "{categoryY}: {valueX}"
-                    })
+                        labelText: "{categoryY}: {valueX} " + (field === "Laki-Laki" ? "Laki-Laki " : " "),
+                    }),
+                    fill: fill
                 })
             );
 
@@ -131,6 +135,7 @@ function AdmPendidikan(props) {
                 height: am5.p100,
                 strokeOpacity: 0,
                 fillOpacity: 1,
+                fontSize: "5px"
             });
 
             series.bullets.push(function () {
@@ -141,15 +146,14 @@ function AdmPendidikan(props) {
                         centerY: am5.p50,
                         text: "{valueX}",
                         populateText: true,
-                        centerX: labelCenterX
+                        centerX: labelCenterX,
+                        fontSize: "12px"
                     })
                 });
             });
 
             series.data.setAll(data);
             series.appear();
-            // series.set("fill", am5.color("#2CA454"));
-            series.set("stroke", am5.color("#00FFFFFF"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
@@ -163,11 +167,12 @@ function AdmPendidikan(props) {
             var label = rangeDataItem.get("label");
             label.setAll({
                 text: field,
-                fontSize: "1em",
+                fontSize: "14px",
                 fill: series.get("stroke"),
-                paddingTop: -20,
+                paddingTop: -18,
                 isMeasured: false,
-                centerX: labelCenterX
+                centerX: labelCenterX,
+                fontWeight: "bold"
             });
             label.adapters.add("dy", function () {
                 return -chart.plotContainer.height();
@@ -176,8 +181,8 @@ function AdmPendidikan(props) {
             return series;
         }
 
-        // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", -20);
+        // createSeries("Laki-Laki", am5.p100, "right", -2, am5.color("#25A68D"));
+        createSeries("Perempuan", 0, "left", -20, am5.color("#E77624"));
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {

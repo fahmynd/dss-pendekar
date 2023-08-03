@@ -36,38 +36,38 @@ function AdmAgama(props) {
         var data = [
             {
                 agama: "Islam",
-                Laki: -0,
-                Perempuan: props.data.islam.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.islam.perempuan
             },
             {
                 agama: "Kristen",
-                Laki: -0,
-                Perempuan: props.data.kristen.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.kristen.perempuan
             },
             {
                 agama: "Katolik",
-                Laki: -0,
-                Perempuan: props.data.katholik.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.katholik.perempuan
             },
             {
                 agama: "Hindu",
-                Laki: -0,
-                Perempuan: props.data.hindu.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.hindu.perempuan
             },
             {
                 agama: "Buddha",
-                Laki: -0,
-                Perempuan: props.data.budha.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.budha.perempuan
             },
             {
                 agama: "Konghuchu",
-                Laki: -0,
-                Perempuan: props.data.konghucu.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.konghucu.perempuan
             },
             {
                 agama: "Kepercayaan Lainnya",
-                Laki: -0,
-                Perempuan: props.data.kepercayaan.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.kepercayaan.perempuan
             },
         ];
 
@@ -83,6 +83,7 @@ function AdmAgama(props) {
             })
         );
 
+        yAxis.get("renderer").labels.template.set("fontSize", "12px");
         yAxis.data.setAll(data);
 
 
@@ -94,9 +95,11 @@ function AdmAgama(props) {
             })
         );
 
+        xAxis.get("renderer").labels.template.set("fontSize", "12px");
+
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-        function createSeries(field, labelCenterX, pointerOrientation, rangeValue) {
+        function createSeries(field, labelCenterX, pointerOrientation, rangeValue, fill) {
             var series = chart.series.push(
                 am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
@@ -107,8 +110,9 @@ function AdmAgama(props) {
                     clustered: false,
                     tooltip: am5.Tooltip.new(root, {
                         pointerOrientation: pointerOrientation,
-                        labelText: "{categoryY}: {valueX}"
-                    })
+                        labelText: "{categoryY}: {valueX} " + (field === "Laki-Laki" ? "Laki-Laki " : " ")
+                    }),
+                    fill: fill
                 })
             );
 
@@ -126,7 +130,8 @@ function AdmAgama(props) {
                         centerY: am5.p50,
                         text: "{valueX}",
                         populateText: true,
-                        centerX: labelCenterX
+                        centerX: labelCenterX,
+                        fontSize: "12px"
                     })
                 });
             });
@@ -148,11 +153,12 @@ function AdmAgama(props) {
             var label = rangeDataItem.get("label");
             label.setAll({
                 text: field,
-                fontSize: "1em",
+                fontSize: "14px",
                 fill: series.get("stroke"),
-                paddingTop: -20,
+                paddingTop: -18,
                 isMeasured: false,
-                centerX: labelCenterX
+                centerX: labelCenterX,
+                fontWeight: "bold"
             });
             label.adapters.add("dy", function () {
                 return -chart.plotContainer.height();
@@ -161,8 +167,8 @@ function AdmAgama(props) {
             return series;
         }
 
-        // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", -20);
+        // createSeries("Laki-Laki", am5.p100, "right", -2, am5.color("#25A68D"));
+        createSeries("Perempuan", 0, "left", -20, am5.color("#E77624"));
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {

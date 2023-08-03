@@ -36,23 +36,23 @@ function AdmPerkawinan(props) {
         var data = [
             {
                 perkawinan: "Belum Kawin",
-                Laki: -0,
-                Perempuan: props.data.belum_kawin.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.belum_kawin.perempuan
             },
             {
                 perkawinan: "Kawin",
-                Laki: -0,
-                Perempuan: props.data.kawin.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.kawin.perempuan
             },
             {
                 perkawinan: "Cerai Hidup",
-                Laki: -0,
-                Perempuan: props.data.cerai_hidup.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.cerai_hidup.perempuan
             },
             {
                 perkawinan: "Cerai Mati",
-                Laki: -0,
-                Perempuan: props.data.cerai_mati.perempuan
+                "Laki-Laki": -0,
+                "Perempuan": props.data.cerai_mati.perempuan
             },
         ];
 
@@ -68,6 +68,7 @@ function AdmPerkawinan(props) {
             })
         );
 
+        yAxis.get("renderer").labels.template.set("fontSize", "12px");
         yAxis.data.setAll(data);
 
 
@@ -79,9 +80,11 @@ function AdmPerkawinan(props) {
             })
         );
 
+        xAxis.get("renderer").labels.template.set("fontSize", "12px");
+
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-        function createSeries(field, labelCenterX, pointerOrientation, rangeValue) {
+        function createSeries(field, labelCenterX, pointerOrientation, rangeValue, fill) {
             var series = chart.series.push(
                 am5xy.ColumnSeries.new(root, {
                     xAxis: xAxis,
@@ -92,8 +95,9 @@ function AdmPerkawinan(props) {
                     clustered: false,
                     tooltip: am5.Tooltip.new(root, {
                         pointerOrientation: pointerOrientation,
-                        labelText: "{categoryY}: {valueX}"
-                    })
+                        labelText: "{categoryY}: {valueX} " + (field === "Laki-Laki" ? "Laki-Laki " : " "),
+                    }),
+                    fill: fill
                 })
             );
 
@@ -111,15 +115,14 @@ function AdmPerkawinan(props) {
                         centerY: am5.p50,
                         text: "{valueX}",
                         populateText: true,
-                        centerX: labelCenterX
+                        centerX: labelCenterX,
+                        fontSize: "12px"
                     })
                 });
             });
 
             series.data.setAll(data);
             series.appear();
-            // series.set("fill", am5.color("#2CA454"));
-            series.set("stroke", am5.color("#00FFFFFF"));
 
             var rangeDataItem = xAxis.makeDataItem({
                 value: rangeValue
@@ -133,11 +136,12 @@ function AdmPerkawinan(props) {
             var label = rangeDataItem.get("label");
             label.setAll({
                 text: field,
-                fontSize: "1em",
+                fontSize: "14px",
                 fill: series.get("stroke"),
-                paddingTop: -20,
+                paddingTop: -18,
                 isMeasured: false,
-                centerX: labelCenterX
+                centerX: labelCenterX,
+                fontWeight: "bold"
             });
             label.adapters.add("dy", function () {
                 return -chart.plotContainer.height();
@@ -146,8 +150,8 @@ function AdmPerkawinan(props) {
             return series;
         }
 
-        // createSeries("Laki", am5.p100, "right", -2);
-        createSeries("Perempuan", 0, "left", -20);
+        // createSeries("Laki-Laki", am5.p100, "right", -2, am5.color("#25A68D"));
+        createSeries("Perempuan", 0, "left", -20, am5.color("#E77624"));
 
         // chart.set("cursor", am5xy.XYCursor.new(root, {}));
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {

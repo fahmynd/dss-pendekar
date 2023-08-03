@@ -1,9 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { STRINGS } from '../config/strings'
 import { KODE_SLUG } from '../utils/api'
 
 const Sidebar = () => {
+
+    useEffect(() => {
+        const pelayanan = `${STRINGS[KODE_SLUG].menu_pelayanan}`;
+        if (pelayanan === "hide") {
+            document.getElementById("menu_pelayanan").style.display = "none";
+        }
+    }, [])
+
     return (
         <Fragment>
             <aside id="sidebar" className="sidebar">
@@ -106,6 +114,25 @@ const Sidebar = () => {
                             <i className="ri-building-4-line"></i>
                             <span>Bansos</span>
                         </NavLink>
+                    </li>
+
+                    <li id='menu_pelayanan' className="nav-item">
+                        <NavLink className="nav-link" data-bs-target="#informasi" data-bs-toggle="collapse" to="*">
+                            <i className="ri-file-copy-2-line"></i>
+                            <span>Informasi</span><i className="bi bi-chevron-right ms-auto"></i>
+                        </NavLink>
+                        <ul id="informasi" className="nav-content collapse" data-bs-parent="#sidebar-nav">
+                            <li>
+                                <NavLink to="persuratan">
+                                    <i className="bi bi-circle"></i><span>Pelayanan Persuratan</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="kios">
+                                    <i className="bi bi-circle"></i><span>KIOS DIGIDES</span>
+                                </NavLink>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>
