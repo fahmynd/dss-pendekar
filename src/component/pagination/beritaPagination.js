@@ -5,6 +5,7 @@ export default function BeritaPagination(props) {
     const { list_kecamatan, list_desa } = props.resultData;
     let { list_berita } = props.resultData;
 
+    const [loading, setLoading] = useState(true);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -50,8 +51,14 @@ export default function BeritaPagination(props) {
     }, [selectedKec, selectedDesa, query, filteredBerita]);
 
     useEffect(() => {
+        setLoading(true);
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(filteredBerita.slice(itemOffset, endOffset));
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
     }, [itemOffset, itemsPerPage, filteredBerita]);
 
     const handlePageClick = (event) => {
@@ -116,46 +123,60 @@ export default function BeritaPagination(props) {
                     </select>
                 </div>
             </div>
-            {currentItems.map((item, key) => (
-                <div key={key} className="post-item clearfix">
-                    <img
-                        src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`}
-                        alt="News"
-                    />
-                    <h4>
-                        <a
-                            href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`}
-                            rel="noreferrer"
-                            target={"_blank"}
-                        >
-                            {item.judul}
-                        </a>
-                    </h4>
-                    <p>{item.isi}</p>
+            {loading ? (
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-            ))}
-            <ReactPaginate
-                className="pagination justify-content-center"
-                nextLabel="Next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                forcePage={itemOffset / itemsPerPage}
-                renderOnZeroPageCount={null}
-            />
+            ) : filteredBerita.length === 0 ? (
+                <div className="d-flex justify-content-center">
+                    <p>Tidak ada data ditemukan</p>
+                </div>
+            ) : (
+                <div>
+                    {currentItems.map((item, key) => (
+                        <div key={key} className="post-item clearfix">
+                            <img
+                                src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`}
+                                alt="News"
+                            />
+                            <h4>
+                                <a
+                                    href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`}
+                                    rel="noreferrer"
+                                    target={"_blank"}
+                                >
+                                    {item.judul}
+                                </a>
+                            </h4>
+                            <p>{item.isi}</p>
+                        </div>
+                    ))}
+                    <ReactPaginate
+                        className="pagination justify-content-center"
+                        nextLabel="Next >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        pageCount={pageCount}
+                        previousLabel="< Previous"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel="..."
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        forcePage={itemOffset / itemsPerPage}
+                        renderOnZeroPageCount={null}
+                    />
+                </div>
+            )}
         </Fragment>
     );
 }

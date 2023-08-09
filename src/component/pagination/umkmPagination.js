@@ -6,6 +6,7 @@ export default function UmkmPagination(props) {
     const { list_kecamatan, list_desa } = props.resultData;
     let { list_umkm } = props.resultData;
 
+    const [loading, setLoading] = useState(true);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -52,8 +53,14 @@ export default function UmkmPagination(props) {
     }, [selectedKec, selectedDesa, query, filteredUmkm]);
 
     useEffect(() => {
+        setLoading(true);
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(filteredUmkm.slice(itemOffset, endOffset));
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
     }, [itemOffset, itemsPerPage, filteredUmkm]);
 
     const handlePageClick = (event) => {
@@ -130,73 +137,87 @@ export default function UmkmPagination(props) {
                     </select>
                 </div>
             </div>
-            <div className="row">
-                {currentItems.map((item, key) => {
-                    return (
-                        <div key={key} className="col-md-4">
-                            <div className="card p-2 mb-3">
-                                <div className="row g-0 align-items-center">
-                                    <div className="col-5 item">
-                                        <span className="notify-badge">{item.tipe_usaha}</span>
-                                        <img
-                                            src={`https://api.digitaldesa.id/uploads/belanja/${item.foto}`}
-                                            className="img-fluid rounded-start"
-                                            alt="..."
-                                        />
-                                    </div>
-                                    <div className="col-7 direction">
-                                        <div className="card-body-produk">
-                                            <h6 className="fw-bold m-0">{item.nama_usaha}</h6>
-                                            <p className="fw-bold smaller m-0">
-                                                Desa {item.nama_deskel}, Kec. {item.nama_kecamatan}
-                                            </p>
-                                            <div className="smaller">
-                                                <p className="m-0">Order via:</p>
-                                                <ul className="m-0">
-                                                    <li>DIGIDES</li>
-                                                    <li>Tokopedia</li>
-                                                    <li>Grab/Gojek</li>
-                                                </ul>
+            {loading ? (
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            ) : filteredUmkm.length === 0 ? (
+                <div className="d-flex justify-content-center">
+                    <p>Tidak ada data ditemukan</p>
+                </div>
+            ) : (
+                <div>
+                    <div className="row">
+                        {currentItems.map((item, key) => {
+                            return (
+                                <div key={key} className="col-md-4">
+                                    <div className="card p-2 mb-3">
+                                        <div className="row g-0 align-items-center">
+                                            <div className="col-5 item">
+                                                <span className="notify-badge">{item.tipe_usaha}</span>
+                                                <img
+                                                    src={`https://api.digitaldesa.id/uploads/belanja/${item.foto}`}
+                                                    className="img-fluid rounded-start"
+                                                    alt="..."
+                                                />
                                             </div>
-                                            <a
-                                                href={item.map}
-                                                target={"_blank"}
-                                                rel="noreferrer"
-                                                className="small"
-                                            >
-                                                <i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
-                                                &nbsp; Petunjuk Arah
-                                            </a>
+                                            <div className="col-7 direction">
+                                                <div className="card-body-produk">
+                                                    <h6 className="fw-bold m-0">{item.nama_usaha}</h6>
+                                                    <p className="fw-bold smaller m-0">
+                                                        Desa {item.nama_deskel}, Kec. {item.nama_kecamatan}
+                                                    </p>
+                                                    <div className="smaller">
+                                                        <p className="m-0">Order via:</p>
+                                                        <ul className="m-0">
+                                                            <li>DIGIDES</li>
+                                                            <li>Tokopedia</li>
+                                                            <li>Grab/Gojek</li>
+                                                        </ul>
+                                                    </div>
+                                                    <a
+                                                        href={item.map}
+                                                        target={"_blank"}
+                                                        rel="noreferrer"
+                                                        className="small"
+                                                    >
+                                                        <i className="fa-sharp fa-solid fa-diamond-turn-right"></i>
+                                                        &nbsp; Petunjuk Arah
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-            <ReactPaginate
-                className="pagination justify-content-center"
-                nextLabel="Next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                forcePage={itemOffset / itemsPerPage}
-                renderOnZeroPageCount={null}
-            />
+                            );
+                        })}
+                    </div>
+                    <ReactPaginate
+                        className="pagination justify-content-center"
+                        nextLabel="Next >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        pageCount={pageCount}
+                        previousLabel="< Previous"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel="..."
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        forcePage={itemOffset / itemsPerPage}
+                        renderOnZeroPageCount={null}
+                    />
+                </div>
+            )}
         </Fragment>
     );
 }

@@ -1,4 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
+import "./sidebar.css";
+// import alternativeStyle from "./sidebarAlternative.module.css";
 import { Link, NavLink } from 'react-router-dom'
 import { STRINGS } from '../config/strings'
 import { KODE_SLUG } from '../utils/api'
@@ -10,6 +12,7 @@ const Sidebar = () => {
         if (pelayanan === "hide") {
             document.getElementById("menu_pelayanan").style.display = "none";
         }
+
     }, [])
 
     return (

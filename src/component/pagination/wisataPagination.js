@@ -7,6 +7,7 @@ export default function WisataPagination(props) {
     const { list_kecamatan, list_desa } = props.resultData
     let { list_wisata } = props.resultData
 
+    const [loading, setLoading] = useState(true);
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
@@ -52,8 +53,14 @@ export default function WisataPagination(props) {
     }, [selectedKec, selectedDesa, query, filteredWisata]);
 
     useEffect(() => {
+        setLoading(true);
         const endOffset = itemOffset + itemsPerPage;
         setCurrentItems(filteredWisata.slice(itemOffset, endOffset));
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
     }, [itemOffset, itemsPerPage, filteredWisata]);
 
     const handlePageClick = (event) => {
@@ -121,45 +128,59 @@ export default function WisataPagination(props) {
                     <button type="button" className="btn btn-primary bg-white" onClick={() => window.open(`${BASE_API_URL}export/wisata`)}>Export Report</button>
                 </div>
             </div>
-            <div className="row">
-                {currentItems.map((item, key) => {
-                    return (
-                        <div key={key} className="col-md-4">
-                            <div className="card">
-                                <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/wisata/${item.foto}`} className="card-img-top" alt="..." />
-                                <div className="card-body">
-                                    <h5 className="card-title">{item.judul}</h5>
-                                    <p className="card-text">{item.subjudul}</p>
-                                    <a href={`https://profil.digitaldesa.id/${item.slug_desa}/wisata/${item.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
+            {loading ? (
+                <div className="d-flex justify-content-center">
+                    <div className="spinner-border text-dark" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            ) : filteredWisata.length === 0 ? (
+                <div className="d-flex justify-content-center">
+                    <p>Tidak ada data ditemukan</p>
+                </div>
+            ) : (
+                <div>
+                    <div className="row">
+                        {currentItems.map((item, key) => {
+                            return (
+                                <div key={key} className="col-md-4">
+                                    <div className="card">
+                                        <img src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/wisata/${item.foto}`} className="card-img-top" alt="..." />
+                                        <div className="card-body">
+                                            <h5 className="card-title">{item.judul}</h5>
+                                            <p className="card-text">{item.subjudul}</p>
+                                            <a href={`https://profil.digitaldesa.id/${item.slug_desa}/wisata/${item.slug}`} rel='noreferrer' target={'_blank'} className="stretched-link"> </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )
-                })
-                }
-            </div>
-            <ReactPaginate
-                className="pagination justify-content-center"
-                nextLabel="Next >"
-                onPageChange={handlePageClick}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                pageCount={pageCount}
-                previousLabel="< Previous"
-                pageClassName="page-item"
-                pageLinkClassName="page-link"
-                previousClassName="page-item"
-                previousLinkClassName="page-link"
-                nextClassName="page-item"
-                nextLinkClassName="page-link"
-                breakLabel="..."
-                breakClassName="page-item"
-                breakLinkClassName="page-link"
-                containerClassName="pagination"
-                activeClassName="active"
-                forcePage={itemOffset / itemsPerPage}
-                renderOnZeroPageCount={null}
-            />
+                            )
+                        })
+                        }
+                    </div>
+                    <ReactPaginate
+                        className="pagination justify-content-center"
+                        nextLabel="Next >"
+                        onPageChange={handlePageClick}
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={2}
+                        pageCount={pageCount}
+                        previousLabel="< Previous"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel="..."
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        forcePage={itemOffset / itemsPerPage}
+                        renderOnZeroPageCount={null}
+                    />
+                </div>
+            )}
         </Fragment>
     );
 }

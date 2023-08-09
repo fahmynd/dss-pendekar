@@ -5,15 +5,13 @@ import BalitaStuntingJumlah from '../component/chart/balitaStuntingJumlah'
 import BalitaYoY from '../component/chart/balitaStuntingYoY'
 import axios from 'axios'
 import { BASE_API_URL, KODE_SLUG } from '../utils/api'
-// import Map from '../component/mapPopup'
 import LoadingSpinner from '../utils/LoadingSpinner'
 import RekomendasiTable from '../component/datatable/RekomendasiDataTable'
-// import MapChart from '../component/chart/map'
 import { Potensi } from '../component/potensi/potensi'
 import NewsTicker from "react-advanced-news-ticker";
 import { format_tgl } from '../utils/helper.min';
-import MapPopup from '../component/mapPopup'
 import { STRINGS } from '../config/strings'
+import MapWithPolygons from '../component/mapWithPolygon'
 
 const Dashboard = (props) => {
     const ref = useRef(null);
@@ -168,11 +166,9 @@ const Dashboard = (props) => {
                                         </div>
                                     </div>
 
-                                    {/* <MapChart /> */}
-
-                                    {resultData && <MapPopup resultData={resultData} />}
-
+                                    {resultData && <MapWithPolygons resultData={resultData} />}
                                     <br />
+
                                     <div className="row g-0">
                                         <div className="col-sm-2 fw-bold">Keterangan:</div>
                                         <div className="col-sm-3">

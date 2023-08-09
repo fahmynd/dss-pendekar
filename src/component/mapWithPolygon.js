@@ -1,30 +1,21 @@
-import React, { useState } from "react";
-import { MapContainer as LeafletMap, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
+import React, { useState } from 'react';
+import { MapContainer, TileLayer, Polygon, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
 import "leaflet-defaulticon-compatibility";
-import L from "leaflet";
-import { polygon } from "../config/mapPolygons";
 
-const customMarker = new L.Icon({
-    iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
-    iconSize: [25, 41],
-    iconAnchor: [10, 41],
-    popupAnchor: [2, -40]
-});
-
-const MapPopup = (props) => {
+const MapWithPolygons = (props) => {
     const [resultData] = useState(props.resultData);
-    const [zoom] = useState(12);
-    const [polygonCoords] = useState(polygon[props.resultData.dss.slug_kabkota]);
 
-    const mergedArrays = resultData.data.list_desa.map((item) => ({
+    const [polygonCoordKab] = useState(props.resultData.data.list_kabupaten[0].map_polygon);
+    const polygonCoordKec = resultData.data.list_kecamatan.map((item) => ({
+        polyKec: item.map_polygon
+    }));
+    const polygonCoordDesa = resultData.data.list_desa.map((item) => ({
         provinsi: resultData.dss.provinsi,
         kabupaten: resultData.dss.kabkota,
         kecamatan: item.nama_kecamatan,
         deskel: item.nama_deskel,
-        lat: item.lat,
-        lng: item.lng,
         ar: item.capaian.ar,
         idm: item.capaian.idm,
         kd: item.capaian.kd,
@@ -34,27 +25,33 @@ const MapPopup = (props) => {
         sarpras: item.potensi.sarpras,
         sda: item.potensi.sda,
         sdm: item.potensi.sdm,
+        polyDes: item.map_polygon
     }));
 
+    const kabOptions = { color: '#EEEEEE', fillColor: '#73C897', weight: '3', fillOpacity: '1' }
+    const kecOptions = { color: 'white', fillColor: 'white', weight: '1', fillOpacity: '0.4' }
+    const desaOptions = { color: '#EEEEEE', fillColor: '#139A68', weight: '1', fillOpacity: '1' }
+
     return (
-        <LeafletMap
-            zoom={zoom}
+        <MapContainer
+            zoom={13}
             scrollWheelZoom={false}
             style={{ height: "500px" }}
-            bounds={polygonCoords}
+            bounds={polygonCoordKab}
             boundsOptions={{ padding: [1, 1] }}
         >
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            />
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-            <Polygon positions={polygonCoords} />
+            <Polygon positions={polygonCoordKab} pathOptions={kabOptions} />
 
-            {mergedArrays.map(({ lat, lng, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
-                <Marker position={[lat, lng]} icon={customMarker} key={index}>
-                    <Popup closeButton={false}>
-                        <div className='card-map'>
+            {polygonCoordKec.map(({ polyKec }, index) => (
+                <Polygon key={index} positions={polyKec} pathOptions={kecOptions} />
+            ))}
+
+            {polygonCoordDesa.map(({ polyDes, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
+                <Polygon key={index} positions={polyDes} pathOptions={desaOptions}>
+                    <Tooltip sticky>
+                        <div className='card-map p-3'>
                             <div className='card-body-map'>
                                 <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
                                 <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
@@ -71,7 +68,7 @@ const MapPopup = (props) => {
                                             <div className='col-6'>: {kd}</div>
                                             <div className='col-6'>IDM</div>
                                             <div className='col-6'>: {idm}</div>
-                                            <div className='col-6'>SDGS</div>
+                                            <div className='col-6'>SDGs</div>
                                             <div className='col-6'>: {sdgs}</div>
                                             <div className='col-6'>AR</div>
                                             <div className='col-6'>: {ar}</div>
@@ -88,18 +85,18 @@ const MapPopup = (props) => {
                                             <div className='col-6'>: {sdm}</div>
                                             <div className='col-6'>LK</div>
                                             <div className='col-6'>: {lk}</div>
-                                            <div className='col-6'>Sarana Prasarana</div>
+                                            <div className='col-6'>SarPras</div>
                                             <div className='col-6'>: {sarpras}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </Popup>
-                </Marker>
+                    </Tooltip>
+                </Polygon>
             ))}
-        </LeafletMap>
+        </MapContainer>
     );
-}
+};
 
-export default MapPopup;
+export default MapWithPolygons;
