@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.c5a8f360.css",
-    "main.js": "/static/js/main.a6387b91.js",
+    "main.css": "/static/css/main.e065f452.css",
+    "main.js": "/static/js/main.f4833ad9.js",
     "static/media/boxicons.svg": "/static/media/boxicons.61829f134e586c0c9e89.svg",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.1664a258a7e7714f6f8d.svg",
     "static/media/gowakab.jpg": "/static/media/gowakab.5b631ea98b714089c937.jpg",
+    "static/media/mamasakab.jpg": "/static/media/mamasakab.22c7233cd0c2b3a4d62c.jpg",
     "static/media/wajokab.jpg": "/static/media/wajokab.88ef33d830c0ca344f98.jpg",
     "static/media/boxicons.eot": "/static/media/boxicons.65a8ce52fc5427e8f94d.eot",
     "static/media/remixicon.eot?t=1590207869815": "/static/media/remixicon.5cb99e6cba5a4619063f.eot",
     "static/media/remixicon.ttf?t=1590207869815": "/static/media/remixicon.f2616f597cf98f38d234.ttf",
+    "static/media/luwukab.jpg": "/static/media/luwukab.c9262e3935fde93dabee.jpg",
     "static/media/boxicons.woff": "/static/media/boxicons.d12afc36557395143e4b.woff",
     "static/media/boxicons.ttf": "/static/media/boxicons.db9ddb1898dbd76badca.ttf",
     "static/media/enrekangkab.png": "/static/media/enrekangkab.0d8ce7a47ca3b4bbf956.png",
     "static/media/frame_login_ilustrasi.png": "/static/media/frame_login_ilustrasi.0d8ce7a47ca3b4bbf956.png",
-    "static/media/luwukab.png": "/static/media/luwukab.ef3196e0a55dd60c3778.png",
-    "static/media/mamasakab.png": "/static/media/mamasakab.d0b986cf40ed71ea80c2.png",
     "static/media/remixicon.woff?t=1590207869815": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
     "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
     "static/media/remixicon.woff2?t=1590207869815": "/static/media/remixicon.90668f6f9b3c2c18a090.woff2",
@@ -31,11 +31,11 @@
     "static/media/hide-password.svg": "/static/media/hide-password.2aaf769dde9be37e683f78d543bb61d8.svg",
     "static/media/kk.svg": "/static/media/kk.212001f5b0c414ead557959dd3eae584.svg",
     "static/media/show-password.svg": "/static/media/show-password.7468b27017e6d779e083dd0beabf4efa.svg",
-    "main.c5a8f360.css.map": "/static/css/main.c5a8f360.css.map",
-    "main.a6387b91.js.map": "/static/js/main.a6387b91.js.map"
+    "main.e065f452.css.map": "/static/css/main.e065f452.css.map",
+    "main.f4833ad9.js.map": "/static/js/main.f4833ad9.js.map"
   },
   "entrypoints": [
-    "static/css/main.c5a8f360.css",
-    "static/js/main.a6387b91.js"
+    "static/css/main.e065f452.css",
+    "static/js/main.f4833ad9.js"
   ]
 }
