@@ -6,7 +6,7 @@ import "leaflet-defaulticon-compatibility";
 
 const MapWithPolygons = (props) => {
     const [resultData] = useState(props.resultData);
-    const [polygonCenter] = useState(props.resultData.data.list_kabupaten[0].map_polygon) || [0, 0];
+    const [polygonCenter] = useState(props.resultData.data.list_kabupaten[0].map_polygon) || null;
     const polygonCoordKab = resultData.data.list_kabupaten.map((item) => ({
         provinsi: resultData.dss.provinsi,
         kabupaten: resultData.dss.kabkota,
@@ -62,12 +62,10 @@ const MapWithPolygons = (props) => {
             zoom={13}
             scrollWheelZoom={false}
             style={{ height: "500px" }}
-            bounds={polygonCenter}
+            bounds={polygonCenter || [[-90, -180], [90, 180]]}
             boundsOptions={{ padding: [1, 1] }}
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-            {/* <Polygon positions={polygonCoordKab} pathOptions={kabOptions} /> */}
 
             {polygonCoordKab.map(({ polyKab, provinsi, kabupaten, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
                 <Polygon key={index} positions={polyKab} pathOptions={kabOptions}>
