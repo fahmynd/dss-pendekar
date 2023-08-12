@@ -53,9 +53,9 @@ const MapWithPolygons = (props) => {
         polyDes: item.map_polygon
     }));
 
-    const kabOptions = { color: '#EEEEEE', fillColor: '#E0B2C1', weight: '2', fillOpacity: '1' }
-    const kecOptions = { color: '#EEEEEE', fillColor: '#7B3577', weight: '1', fillOpacity: '1' }
-    const desaOptions = { color: '#EEEEEE', fillColor: '#350241', weight: '1', fillOpacity: '1' }
+    const kabOptions = { color: '#EEEEEE', fillColor: '#A3FFC2', weight: '2', fillOpacity: '1' }
+    const kecOptions = { color: '#EEEEEE', fillColor: '#73C897', weight: '1', fillOpacity: '1' }
+    const desaOptions = { color: '#EEEEEE', fillColor: '#2EA256', weight: '1', fillOpacity: '1' }
 
     return (
         <MapContainer
@@ -65,7 +65,7 @@ const MapWithPolygons = (props) => {
             bounds={polygonCenter || [[-90, -180], [90, 180]]}
             boundsOptions={{ padding: [1, 1] }}
         >
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
             {polygonCoordKab.map(({ polyKab, provinsi, kabupaten, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => (
                 <Polygon key={index} positions={polyKab} pathOptions={kabOptions}>
