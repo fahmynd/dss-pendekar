@@ -1,8 +1,8 @@
 import Enrekang from '../../src/assets/bg/enrekangkab.png'
-import Luwu from '../../src/assets/bg/luwukab.png'
+import Luwu from '../../src/assets/bg/luwukab.jpg'
 import Gowa from '../../src/assets/bg/gowakab.jpg'
 import Wajo from '../../src/assets/bg/wajokab.jpg'
-import Mamasa from '../../src/assets/bg/mamasakab.png'
+import Mamasa from '../../src/assets/bg/mamasakab.jpg'
 import bupatiEnrekang from '../../src/assets/profil/bupati_enrekang.jpg'
 import bupatiLuwu from '../../src/assets/profil/bupati_luwu.jpg'
 import bupatiGowa from '../../src/assets/profil/bupati_gowa.jpg'
@@ -46,10 +46,10 @@ export const STRINGS = {
         foto_profil: bupatiLuwu,
         logo_hide: "hide",
         logo_first: "",
-        background_color: "#3B2D64",
+        background_color: "#327A6E",
         font_color: "#ffffff",
-        bg_color_jumbotron: "#642ee2",
-        font_color_jumbotron: "#ffffff",
+        bg_color_jumbotron: "#92D1C6",
+        font_color_jumbotron: "#202020",
         logo_second_size: "",
         menu_pelayanan: "hide",
         theme: "",
@@ -68,10 +68,10 @@ export const STRINGS = {
         foto_profil: bupatiMamasa,
         logo_hide: "hide",
         logo_first: "",
-        background_color: "#3B2D64",
+        background_color: "#327A6E",
         font_color: "#ffffff",
-        bg_color_jumbotron: "#642ee2",
-        font_color_jumbotron: "#ffffff",
+        bg_color_jumbotron: "#92D1C6",
+        font_color_jumbotron: "#202020",
         logo_second_size: "",
         menu_pelayanan: "",
         theme: "",

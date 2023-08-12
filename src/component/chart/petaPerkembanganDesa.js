@@ -2,12 +2,15 @@ import React, { useMemo } from "react";
 import ReactEcharts from "echarts-for-react"
 
 const STATUS_DESA = ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI']
+const STATUS_COLORS = ['#E84C30', '#EA9501', '#4B7DB8', '#499841', '#327A6D'] // Update with desired colors
 
 export const PetaPerkembangan = (props) => {
     const data = useMemo(() => {
         const { list_desa } = props.resultData.data
 
-        const transformed = list_desa.map(desa => {
+        const transformed = list_desa.map((desa, index) => {
+            const statusIndex = STATUS_DESA.indexOf(desa.current_status);
+            const color = STATUS_COLORS[statusIndex] || '#000000'; // Default to black if status is not recognized
 
             return {
                 name: `${desa.nama_deskel}: SDGS ${desa.capaian.sdgs} | IDM ${desa.capaian.idm} (${desa.current_status})`,
@@ -19,12 +22,15 @@ export const PetaPerkembangan = (props) => {
                     ],
                 ],
                 symbolSize: 25,
-                colorBy: 'data',
+                itemStyle: {
+                    color: color
+                }
             }
         })
 
         return transformed;
     }, [props.resultData])
+
 
     const chartSettings = useMemo(() => {
         return {
