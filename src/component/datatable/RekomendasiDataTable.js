@@ -1,5 +1,6 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
+import "./RekomendasiDataTable.css";
 
 const RekomendasiTable = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
@@ -169,7 +170,7 @@ const RekomendasiTable = (props) => {
             />
 
             <div className="modal fade" id="disablebackdrop" tabIndex="-1" data-bs-backdrop="false">
-                <div className="modal-dialog modal-lg shadow-lg rounded">
+                <div className="modal-dialog modal-fullscreen shadow-lg rounded">
                     <div id="item-rekomendasi" className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Rekomendasi</h5>
@@ -178,49 +179,52 @@ const RekomendasiTable = (props) => {
                             </div>
                         </div>
                         <div className="modal-body">
-                            <h5><span className="badge bg-super-prioritas">Super Prioritas</span></h5>
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr style={{ background: '#EDEDED' }}>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Kategori</th>
+                            <table className="tg" style={{ width: '100%' }}>
+                                <thead style={{ backgroundColor: '#317A75', color: 'white' }}>
+                                    <tr>
+                                        <th className="tg-amwm" rowSpan="2">No</th>
+                                        <th className="tg-amwm" rowSpan="2">Indikator IDM</th>
+                                        <th className="tg-amwm" rowSpan="2" >Skor</th>
+                                        <th className="tg-amwm" rowSpan="2">Keterangan</th>
+                                        <th className="tg-amwm" rowSpan="2">Kegiatan yang dapat dilakukan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
+                                        <td className="tg-baqh">-</td>
                                     </tr>
                                     <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
+                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
                                     </tr>
                                     <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <h5><span className="badge bg-prioritas">Prioritas</span></h5>
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr style={{ background: '#EDEDED' }}>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Kategori</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
+                                        <td className="tg-baqh">-</td>
                                     </tr>
                                     <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
+                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
                                     </tr>
                                     <tr>
-                                        <td>Tersedianya Lembaga Pebankan Umum dan BPR</td>
-                                        <td>Kesehatan</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh">-</td>
+                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
+                                        <td className="tg-baqh">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="tg-zwfm text-center" colSpan="12">IDM <span id="tahunIDM" name="tahunIDM">-</span> : -</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="tg-zwfm text-center" colSpan="12">STATUS IDM <span id="tahunIDM" name="tahunIDM">-</span> : -</td>
                                     </tr>
                                 </tbody>
                             </table>

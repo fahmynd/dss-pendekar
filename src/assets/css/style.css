@@ -1576,12 +1576,12 @@ font-weight: var(--bs-list-group-action-font-weight);
   flex-shrink: 0;
   align-items: center;
   justify-content: space-between;
-  background: #327A6D;
+  background: #3B2D64;
   color: #FFFFFF;
   padding: var(--bs-modal-header-padding);
   border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
-  border-top-left-radius: var(--bs-modal-inner-border-radius);
-  border-top-right-radius: var(--bs-modal-inner-border-radius);
+  /* border-top-left-radius: var(--bs-modal-inner-border-radius);
+  border-top-right-radius: var(--bs-modal-inner-border-radius); */
 }
 
 .lazy-load {

@@ -167,29 +167,6 @@ const Dashboard = (props) => {
                                     </div>
 
                                     {resultData && <MapWithPolygons resultData={resultData} />}
-                                    <br />
-
-                                    <div className="row g-0">
-                                        <div className="col-sm-2 fw-bold">Keterangan:</div>
-                                        <div className="col-sm-3">
-                                            <div className="row">
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#A3FFC2' }}></i> &lt; 100</p>
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#518F6B' }}></i> 1.001 - 5.000</p>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-3">
-                                            <div className="row">
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#73C897' }}></i> 101 - 500</p>
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#223D2D' }}></i> 5.001 - 10.000</p>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-3">
-                                            <div className="row">
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#2EA256' }}></i> 501 - 1.000</p>
-                                                <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#E84C30' }}></i> &gt; 10.000</p>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
