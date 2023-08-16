@@ -13,7 +13,7 @@ import { format_tgl } from '../utils/helper.min';
 import { STRINGS } from '../config/strings'
 import MapWithPolygons from '../component/mapWithPolygon'
 
-const Dashboard = (props) => {
+const Dashboard = () => {
     const ref = useRef(null);
     const [resultData, setResultData] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -148,22 +148,9 @@ const Dashboard = (props) => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title-potensi">CAPAIAN & POTENSI DESA</h5>
-                                    <p>Menampilkan Capaian & Potensi Kabupaten, Kecamatan, dan Desa/Kelurahan</p>
+                                    <p>Menampilkan Capaian & Potensi Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/pembangunan`)}>Export Report</button>
-                                    </div>
-                                    <div className="row g-1 mb-4 d-none">
-                                        <div className="col-3">
-                                            <select defaultValue={'DEFAULT'} className="form-select" aria-label="Default select example">
-                                                <option value={'DEFAULT'}>Capaian & Potensi</option>
-                                                {/* <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option> */}
-                                            </select>
-                                        </div>
-                                        <div className="col-3">
-                                            <button type="button" className="btn btn-cari"><i className="bi bi-search me-1"></i> Temukan</button>
-                                        </div>
                                     </div>
 
                                     {resultData && <MapWithPolygons resultData={resultData} />}
@@ -276,7 +263,7 @@ const Dashboard = (props) => {
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/peta_perkembangan`)}>Export Report</button>
                                     </div>
-                                    {/* <canvas id="bubbleChart" style={{ maxHeight: '400px' }}></canvas> */}
+
                                     {resultData && <PetaPerkembangan resultData={resultData} />}
 
                                 </div>

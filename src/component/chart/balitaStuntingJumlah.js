@@ -10,44 +10,53 @@ const BalitaStuntingJumlah = (props) => {
 
     const listDeskel = useMemo(() => {
         setSelectedDeskel("");
-        return data.list_desa.filter((desa) => {
-            const kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
-            return kode_kec === selectedKec;
-        });
-    }, [data.list_desa, selectedKec]);
+        return data.list_desa.filter(desa => {
+            let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+            return kode_kec === selectedKec
+        })
+    }, [data, selectedKec])
 
-    const listKec = useMemo(() => data.list_kecamatan, [data.list_kecamatan]);
+    const listKec = useMemo(() => {
+        return data.list_kecamatan
+    }, [data])
 
     const dataChart = useMemo(() => {
-        const deskel = data.list_desa.filter((desa) => {
-            if (query && desa.nama_deskel.toLowerCase().includes(query.toLowerCase())) {
-                return true;
+        const deskel = data.list_desa.filter(desa => {
+            if (query !== "") {
+                if (desa.nama_deskel.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
             if (selectedKec && selectedDeskel) {
                 return desa.kode_wilayah === selectedDeskel;
             } else if (selectedKec) {
-                const kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
-                return kode_kec === selectedKec;
+                let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`
+                return kode_kec === selectedKec
             } else {
                 return true;
             }
         });
 
-        const sortedData = deskel.map((desa) => ({
-            nama_desa: desa.nama_deskel,
-            keluarga_sasaran: desa.keluarga_sasaran_2022,
-            berisiko: desa.berisiko_2022,
-            kk_memiliki_baduta: desa.kk_memiliki_baduta_2022,
-            kk_memiliki_balita: desa.kk_memiliki_balita_2022,
-            kk_memiliki_pus: desa.kk_memiliki_pus_2022,
-            kk_memiliki_pushamil: desa.kk_memiliki_pushamil_2022,
-            persen_stunting: desa.persen_stunting_2022,
-        }));
+        let data_stunting = deskel.map(desa => {
+            return {
+                nama_desa: desa.nama_deskel,
+                keluarga_sasaran: desa.keluarga_sasaran_2022,
+                berisiko: desa.berisiko_2022,
+                kk_memiliki_baduta: desa.kk_memiliki_baduta_2022,
+                kk_memiliki_balita: desa.kk_memiliki_balita_2022,
+                kk_memiliki_pus: desa.kk_memiliki_pus_2022,
+                kk_memiliki_pushamil: desa.kk_memiliki_pushamil_2022,
+                persen_stunting: desa.persen_stunting_2022,
+            }
+        })
 
-        sortedData.sort((a, b) => b.keluarga_sasaran - a.keluarga_sasaran);
+        data_stunting.sort((a, b) => b.keluarga_sasaran - a.keluarga_sasaran);
 
-        return sortedData;
-    }, [selectedKec, selectedDeskel, data.list_desa, query]);
+        return data_stunting;
+
+    }, [selectedKec, selectedDeskel, listDeskel, query])
 
     const options = useMemo(() => {
         const chart_desa = dataChart.map((item) => item.nama_desa);
