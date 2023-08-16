@@ -28,9 +28,9 @@ const Dashboard = (props) => {
     const [skor_iks_now, setSkor_iks_now] = useState([]);
     const [skor_ike_now, setSkor_ike_now] = useState([]);
     const [skor_ikl_now, setSkor_ikl_now] = useState([]);
-    const [jml_stunting_now, setJml_stunting_now] = useState([]);
-    const [persen_stunting_now, setPersen_stunting_now] = useState([]);
-    const [prevalensi_now, setPrevalensi_now] = useState([]);
+    // const [jml_stunting_now, setJml_stunting_now] = useState([]);
+    // const [persen_stunting_now, setPersen_stunting_now] = useState([]);
+    // const [prevalensi_now, setPrevalensi_now] = useState([]);
     const [news, setNews] = useState([]);
     const [update, setUpdate] = useState();
 
@@ -57,10 +57,10 @@ const Dashboard = (props) => {
                 setSkor_ike_now(idm[2].skor_ike)
                 setSkor_ikl_now(idm[2].skor_ikl)
 
-                const stunting = result.data.data.stunting;
-                setJml_stunting_now(stunting[7].jml_stunting)
-                setPersen_stunting_now(stunting[7].persen_stunting)
-                setPrevalensi_now(stunting[7].prevalensi)
+                // const stunting = result.data.data.stunting;
+                // setJml_stunting_now(stunting[7].jml_stunting)
+                // setPersen_stunting_now(stunting[7].persen_stunting)
+                // setPrevalensi_now(stunting[7].prevalensi)
 
             })
             .catch(error => {
@@ -302,14 +302,14 @@ const Dashboard = (props) => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body pb-0">
-                                    <h5 className="card-title-potensi pb-0">KESEHATAN - STUNTING</h5>
+                                    <h5 className="card-title-potensi pb-0">DATA STUNTING</h5>
                                     <p>Menampilkan Stunting Kecamatan, Desa/Kelurahan</p>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/stunting`)}>Export Report</button>
                                     </div>
 
                                     <div className="row g-md-0">
-                                        <div className="col-md-6">
+                                        {/* <div className="col-md-6">
                                             <div className="stunting-card">
                                                 <div className="card-body-kesehatan">
                                                     <div className="ps-2">
@@ -335,12 +335,12 @@ const Dashboard = (props) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                         <div className="col-12">
                                             <div className="stunting-card">
                                                 <div className="box-featured">
-                                                    <h5 className="card-title">BALITA STUNTING DARI TAHUN KE TAHUN</h5>
+                                                    <h5 className="card-title">DATA STUNTING DARI TAHUN KE TAHUN</h5>
                                                 </div>
                                                 <div className="card-body-chart mt-4">
                                                     {resultData && <BalitaYoY resultData={resultData} />}

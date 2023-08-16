@@ -10,9 +10,10 @@ export const PetaPerkembangan = (props) => {
 
         const transformed = list_desa.map((desa, index) => {
             const statusIndex = STATUS_DESA.indexOf(desa.current_status);
-            const color = STATUS_COLORS[statusIndex] || '#000000'; // Default to black if status is not recognized
+            const color = STATUS_COLORS[statusIndex] || '#000000';
 
             return {
+                // name: desa.current_status,
                 name: `${desa.nama_deskel}: SDGS ${desa.capaian.sdgs} | IDM ${desa.capaian.idm} (${desa.current_status})`,
                 type: "scatter",
                 data: [
@@ -43,18 +44,8 @@ export const PetaPerkembangan = (props) => {
                     }
                 }
             },
-            // toolbox: {
-            //     feature: {
-            //         dataView: { show: true, readOnly: false },
-            //         magicType: { show: true, type: ['line', 'bar'] },
-            //         restore: { show: true },
-            //         saveAsImage: { show: true }
-            //     },
-            //     right: 65,
-            //     top: 20
-            // },
             legend: {
-                show: false
+                show: false,
             },
             grid: {
                 left: "3%",
@@ -67,6 +58,8 @@ export const PetaPerkembangan = (props) => {
                 }
             },
             xAxis: {
+                type: "value",
+                name: "IDM",
                 scale: true,
                 axisLabel: {
                     formatter: "{value}"
@@ -92,7 +85,7 @@ export const PetaPerkembangan = (props) => {
             },
             yAxis: {
                 type: "value",
-                name: "SDGS",
+                name: "SDGs",
                 scale: true,
                 axisLabel: {
                     formatter: "{value}"

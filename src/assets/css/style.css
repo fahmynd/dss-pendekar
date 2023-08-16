@@ -263,6 +263,18 @@ h6 {
   color: #3B2D64;
 }
 
+.bg-cctv {
+  background-color: rgba(50, 122, 109, 0.05);
+  border-color: rgba(50, 122, 109, 0.05);
+  color: #3B2D64;
+}
+
+.bg-cctv:hover {
+  background-color: #3B2D64;
+  border-color: #3B2D64;
+  color: #FFFFFF;
+}
+
 .bg-update {
   background-color: #7862B9;
   border-color: #7862B9;

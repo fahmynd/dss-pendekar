@@ -84,14 +84,15 @@
 .bugisse_text {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  padding: 18px;
-  /* width: 83%; */
+  padding: 10px 12px 10px 12px;
   margin-top: 1rem;
   font-family: "Inter", sans-serif;
   font-style: oblique;
-  /* color: #ffffff; */
-  /* font-weight: 800; */
-  font-size: 32px;
+  font-size: 16px;
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+  top: -20px;
 }
 
 .items-tes {
@@ -278,12 +279,12 @@
     /* width: 358px; */
   }
 
-  .bugisse_text {
+  /* .bugisse_text {
     font-size: 16px;
     padding: 10px 12px 10px 12px;
     position: relative;
     bottom: 25px;
-  }
+  } */
 
   .jumbotron_ h4 {
     font-size: 14px;
