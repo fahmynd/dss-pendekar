@@ -205,7 +205,7 @@ const MapWithPolygons = (props) => {
                                         <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
                                         <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
                                         <div className="filter-primary">
-                                            <a href='#'>
+                                            <a href='/' target='_blank' rel='noreferrer'>
                                                 <h5>
                                                     <span className="badge bg-cctv"><i className='bx bx-cctv'></i> CCTV</span>
                                                 </h5>
@@ -250,28 +250,6 @@ const MapWithPolygons = (props) => {
             </MapContainer>
 
             {generateLegend()}
-
-            <div className="d-none row g-0">
-                <div className="col-sm-2 fw-bold">Keterangan:</div>
-                <div className="col-sm-3">
-                    <div className="row">
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#00DCB8' }}></i> &lt; 100</p>
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#6FABA1' }}></i> 1.001 - 5.000</p>
-                    </div>
-                </div>
-                <div className="col-sm-3">
-                    <div className="row">
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#C2DCD8' }}></i> 101 - 500</p>
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#4E9387' }}></i> 5.001 - 10.000</p>
-                    </div>
-                </div>
-                <div className="col-sm-3">
-                    <div className="row">
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#96C4BC' }}></i> 501 - 1.000</p>
-                        <p className="col-12"><i className="bi bi-square-fill" style={{ color: '#327A6E' }}></i> &gt; 10.000</p>
-                    </div>
-                </div>
-            </div>
 
         </Fragment>
     );

@@ -340,7 +340,7 @@ const Dashboard = (props) => {
                                         <div className="col-12">
                                             <div className="stunting-card">
                                                 <div className="box-featured">
-                                                    <h5 className="card-title">DATA STUNTING DARI TAHUN KE TAHUN</h5>
+                                                    <h5 className="card-title">STUNTING DARI TAHUN KE TAHUN</h5>
                                                 </div>
                                                 <div className="card-body-chart mt-4">
                                                     {resultData && <BalitaYoY resultData={resultData} />}

@@ -76,7 +76,7 @@ h6 {
   opacity: 0;
   right: 15px;
   bottom: 15px;
-  z-index: 99999;
+  z-index: 1054;
   background: #4154f1;
   width: 40px;
   height: 40px;
@@ -536,7 +536,7 @@ font-weight: var(--bs-list-group-action-font-weight);
 .card-body-chart {
   padding: 5px;
   border: none;
-  height: 600px;
+  height: 540px;
 }
 
 .progress-bar {

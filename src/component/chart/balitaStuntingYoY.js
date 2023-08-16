@@ -22,7 +22,7 @@ const BalitaYoY = (props) => {
             bottom: "-5",
         },
         grid: {
-            top: 40,
+            top: 10,
             right: 20,
             bottom: 60,
             left: 45,
