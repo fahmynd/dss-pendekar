@@ -1,164 +1,147 @@
-import React, { useMemo } from "react";
-import ReactEcharts from "echarts-for-react"
+import React from "react";
+import ReactECharts from "echarts-for-react";
 import { formatAngka } from "../../utils/helper.min";
 
 const BalitaYoY = (props) => {
     const { stunting } = props.resultData.data;
-    const dataChart = useMemo(() => {
-        const sortedData = stunting.map(item => ({
-            tahun: item.tahun,
-            nama_keluarga_sasaran: item.keluarga_sasaran,
-            nama_berisiko: item.berisiko,
-            nama_kk_memiliki_baduta: item.kk_memiliki_baduta,
-        }));
 
-        sortedData.sort((a, b) => b.nama_keluarga_sasaran - a.nama_keluarga_sasaran);
+    const legendData = stunting.map((item) => `Data Tahun ${item.tahun}`);
 
-        return sortedData;
-    }, [stunting]);
-
-    const options = useMemo(() => {
-        const chart_tahun = dataChart.map(item => item.tahun);
-        const chart_keluarga_sasaran = dataChart.map(item => item.nama_keluarga_sasaran);
-        const chart_berisiko = dataChart.map(item => item.nama_berisiko);
-        const chart_kk_memiliki_baduta = dataChart.map(item => item.nama_kk_memiliki_baduta);
-
-        return {
-            title: {
-                show: false
+    const chartOptions = {
+        title: {
+            show: false,
+        },
+        tooltip: {
+            trigger: "axis",
+            axisPointer: {
+                type: "shadow",
             },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                },
-            },
-            legend: {
-                bottom: '-5'
-            },
-            grid: {
-                top: 40,
-                right: 40,
-                bottom: 60,
-                left: 100,
-                // containLabel: true
-            },
-            xAxis: {
-                type: "category",
-                data: chart_tahun,
-                splitLine: {
-                    show: true,
-                    lineStyle: {
-                        type: "dashed"
+        },
+        legend: {
+            data: legendData,
+            bottom: "-5",
+        },
+        grid: {
+            top: 40,
+            right: 20,
+            bottom: 60,
+            left: 45,
+        },
+        xAxis: {
+            type: "category",
+            // data: ["Keluarga Sasaran", "Berisiko", "Baduta", "Balita", "Pasangan Usia Subur (PUS)", "PUS Hamil"],
+            data: [
+                {
+                    value: "Keluarga Sasaran",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-            },
-            yAxis: {
-                type: "value",
-                min: 0,
-                max: function (value) {
-                    return value.max;
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {
-                        width: 0,
-                        type: "dashed"
+                {
+                    value: "Berisiko",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-                splitLine: {
-                    show: true,
-                    lineStyle: {
-                        type: "dashed"
+                {
+                    value: "Baduta",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-            },
-            series: [{
-                name: 'Data Tahun 2021',
-                type: 'bar',
-                data: chart_keluarga_sasaran,
-                color: '#9AD295',
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return formatAngka(value);
+                {
+                    value: "Balita",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-                label: {
-                    show: false,
-                    position: "top"
-                },
-                itemStyle: {
-                    borderRadius: [5, 5, 0, 0]
-                },
-                cursor: "auto"
-            },
-            {
-                name: 'Data Tahun 2022',
-                type: 'bar',
-                data: chart_berisiko,
-                color: '#499841',
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return formatAngka(value);
+                {
+                    value: "PUS",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-                label: {
-                    show: false,
-                    position: "top",
-                    // formatter: '{c}%'
-                },
-                itemStyle: {
-                    borderRadius: [5, 5, 0, 0]
-                },
-                cursor: "auto"
-            },
-            {
-                name: 'Data Tahun 2023',
-                type: 'bar',
-                data: chart_kk_memiliki_baduta,
-                color: '#327A6D',
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return formatAngka(value);
+                {
+                    value: "PUS Hamil",
+                    textStyle: {
+                        fontSize: 9,
+                        fontWeight: "bold",
                     }
                 },
-                label: {
-                    show: false,
-                    position: "top",
-                    // formatter: '{c}%'
-                },
-                itemStyle: {
-                    borderRadius: [5, 5, 0, 0]
-                },
-                cursor: "auto"
-            }
             ],
-            // tooltip: {
-            //     trigger: "axis"
-            // },
-            // dataZoom: [{
-            //     type: 'inside',
-            //     id: 'insideX',
-            //     yAxisIndex: 0,
-            //     startValue: 100,
-            //     endValue: 100,
-            //     filterMode: 'empty',
-            //     zoomOnMouseWheel: false,
-            //     moveOnMouseMove: true,
-            //     moveOnMouseWheel: true
-            // }]
-        }
-    }, [dataChart])
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    type: "dashed",
+                },
+            },
+            boundaryGap: true
+        },
+        yAxis: {
+            type: "value",
+            min: 0,
+            axisTick: {
+                show: false,
+            },
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    width: 0,
+                    type: "dashed",
+                },
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    type: "dashed",
+                },
+            },
+        },
+        series: stunting.map((item) => ({
+            name: `Data Tahun ${item.tahun}`,
+            type: "bar",
+            data: [
+                item.keluarga_sasaran,
+                item.berisiko,
+                item.kk_memiliki_baduta,
+                item.kk_memiliki_balita,
+                item.kk_memiliki_pus,
+                item.kk_memiliki_pushamil
+            ],
+            label: {
+                show: true,
+                formatter: function (params) {
+                    return formatAngka(params.value);
+                },
+                position: "top",
+            },
+            itemStyle: {
+                borderRadius: [5, 5, 0, 0],
+            },
+            cursor: "auto",
+        })),
+        // dataZoom: [
+        //     {
+        //         type: "inside", // Use a slider dataZoom component
+        //         show: false,
+        //         xAxisIndex: [0], // Link to the first xAxis
+        //         start: 0, // Initial zoom start position (percentage)
+        //         end: 100, // Initial zoom end position (percentage)
+        //     },
+        // ],
+    };
 
     return (
-        <ReactEcharts
-            option={options}
-            style={{ width: "auto", height: "500px" }}
-        ></ReactEcharts>
-    )
-}
+        <ReactECharts
+            option={chartOptions}
+            style={{ width: "100%", height: "500px" }}
+        />
+    );
+};
 
-export default BalitaYoY
+export default BalitaYoY;
