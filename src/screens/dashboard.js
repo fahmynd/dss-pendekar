@@ -259,7 +259,7 @@ const Dashboard = () => {
                         <div className="col-lg-12">
                             <div className="card">
                                 <div className="card-body">
-                                    <h5 className="card-title-potensi">PETA PERKEMBANGAN DESA (BERDASARKAN SDGS & IDM DESA)</h5>
+                                    <h5 className="card-title-potensi">PETA PERKEMBANGAN DESA (BERDASARKAN SDGs & IDM DESA)</h5>
                                     <div className="filter-primary">
                                         <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/peta_perkembangan`)}>Export Report</button>
                                     </div>
