@@ -56,6 +56,7 @@ const MapWithPolygons = (props) => {
         kabupaten: resultData.dss.kabkota,
         kecamatan: item.nama_kecamatan,
         deskel: item.nama_deskel,
+        link: item.slug_desa,
         ar: item.capaian.ar,
         idm: item.capaian.idm,
         kd: item.capaian.kd,
@@ -166,7 +167,7 @@ const MapWithPolygons = (props) => {
                     )
                 })}
 
-                {polygonCoordDesa.map(({ polyDes, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => {
+                {polygonCoordDesa.map(({ polyDes, provinsi, kabupaten, kecamatan, deskel, link, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => {
                     const capaianValue = selectedOption === 'kd' ? kd : selectedOption === 'idm' ? idm : selectedOption === 'sdgs' ? sdgs : selectedOption === 'ar' ? ar : selectedOption === 'program' ? program : selectedOption === 'sda' ? sda : selectedOption === 'sdm' ? sdm : selectedOption === 'lk' ? lk : selectedOption === 'sarpras' ? sarpras : 0;
                     const desaColor = getColorForValue(capaianValue, selectedOption);
                     const desaPathOptions = { ...desaOptions, fillColor: desaColor };
@@ -221,7 +222,7 @@ const MapWithPolygons = (props) => {
                                         <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
                                         <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
                                         <div className="filter-primary">
-                                            <a href='/' target='_blank' rel='noreferrer'>
+                                            <a href={`https://profil.digitaldesa.id/${link}`} target='_blank' rel='noreferrer'>
                                                 <h5>
                                                     <span className="badge bg-cctv"><i className='bx bx-cctv'></i> CCTV</span>
                                                 </h5>
