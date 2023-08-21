@@ -1,5 +1,6 @@
 import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
+import axios from 'axios';
 import "./RekomendasiDataTable.css";
 
 const RekomendasiTable = (props) => {
@@ -8,6 +9,32 @@ const RekomendasiTable = (props) => {
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
     const [query, setQuery] = useState("")
+    const [modalData, setModalData] = useState(null);
+    const [iks, setIks] = useState();
+    const [ike, setIke] = useState();
+    const [ikl, setIkl] = useState();
+    const [skor_idm, setSkor_idm] = useState();
+    const [status, setStatus] = useState();
+    const [tahun_idm, setTahun_idm] = useState();
+    const [desa, setDesa] = useState();
+
+    const fetchRekomendasiData = async (kodeWilayah, tahun) => {
+        try {
+            const response = await axios.get(`https://enrekangkab.pendekar.digital/api/pembangunan/rekomendasi/${kodeWilayah}/${tahun}`);
+            const data = response.data.data.idm.mapData
+            setModalData(data.ROW);
+            setIks(data.ROW[35])
+            setIke(data.ROW[48])
+            setIkl(data.ROW[52])
+            setSkor_idm(data.SUMMARIES.SKOR_SAAT_INI)
+            setStatus(data.SUMMARIES.STATUS)
+            setTahun_idm(data.SUMMARIES.TAHUN)
+            setDesa(data.IDENTITAS[0].nama_desa)
+            // console.log(data);
+        } catch (error) {
+            console.error("Error fetching rekomendasi data:", error);
+        }
+    };
 
     const listDeskel = useMemo(() => {
         setSelectedDesa("");
@@ -152,14 +179,17 @@ const RekomendasiTable = (props) => {
                             name: "Rekomendasi",
                             sortable: true,
                             selector: (row) => row.rekomendasi,
-                            cell: (row) => {
-                                return (
-                                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#disablebackdrop">
-                                        Lihat Rekomendasi
-                                    </button>
-                                )
-                            },
+                            cell: (row) => (
+                                <button
+                                    type="button"
+                                    className="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#disablebackdrop"
+                                    onClick={() => fetchRekomendasiData(row.kode_wilayah, row.tahun)}
+                                >
+                                    Lihat Rekomendasi
+                                </button>
+                            ),
                             width: "220px"
                         }
                     ]
@@ -173,7 +203,7 @@ const RekomendasiTable = (props) => {
                 <div className="modal-dialog modal-fullscreen shadow-lg rounded">
                     <div id="item-rekomendasi" className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Rekomendasi</h5>
+                            <h5 className="modal-title">[IDM] REKOMENDASI UNTUK DESA {desa}</h5>
                             <div data-bs-dismiss="modal" aria-label="Close" style={{ cursor: 'pointer' }}>
                                 <span>Tutup</span>
                             </div>
@@ -189,44 +219,82 @@ const RekomendasiTable = (props) => {
                                         <th className="tg-amwm" rowSpan="2">Kegiatan yang dapat dilakukan</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
-                                        <td className="tg-baqh">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
-                                        <td className="tg-baqh">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh">-</td>
-                                        <td className="tg-baqh"><span style={{ fontWeight: '400', fontStyle: 'normal' }}>-</span></td>
-                                        <td className="tg-baqh">-</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-zwfm text-center" colSpan="12">SKOR - : -</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-zwfm text-center" colSpan="12">IDM <span id="tahunIDM" name="tahunIDM">-</span> : -</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="tg-zwfm text-center" colSpan="12">STATUS IDM <span id="tahunIDM" name="tahunIDM">-</span> : -</td>
-                                    </tr>
-                                </tbody>
+                                {modalData ? (
+                                    <tbody>
+                                        {modalData?.slice(0, 35).map((item, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td className="tg-baqh">{item.NO}</td>
+                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                </tr>
+                                            );
+                                        })}
+
+                                        {iks && (
+                                            <tr>
+                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                    SKOR {iks.INDIKATOR} : {Number(iks.SKOR).toFixed(4)}
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                        {modalData?.slice(36, 48).map((item, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td className="tg-baqh">{item.NO}</td>
+                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                </tr>
+                                            );
+                                        })}
+
+                                        {ike && (
+                                            <tr>
+                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                    SKOR {ike.INDIKATOR} : {Number(ike.SKOR).toFixed(4)}
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                        {modalData?.slice(49, 52).map((item, key) => {
+                                            return (
+                                                <tr key={key}>
+                                                    <td className="tg-baqh">{item.NO}</td>
+                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                </tr>
+                                            );
+                                        })}
+
+                                        {ikl && (
+                                            <tr>
+                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                    SKOR {ikl.INDIKATOR} : {Number(ikl.SKOR).toFixed(4)}
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                        <tr>
+                                            <td className="tg-zwfm text-center" colSpan="12">IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {Number(skor_idm).toFixed(4)}</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="tg-zwfm text-center" colSpan="12">STATUS IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {status}</td>
+                                        </tr>
+                                    </tbody>
+                                ) : (
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan="5" className="text-center">Loading...</td>
+                                        </tr>
+                                    </tbody>
+                                )}
                             </table>
                         </div>
                     </div>

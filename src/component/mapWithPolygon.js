@@ -7,18 +7,20 @@ import "leaflet-defaulticon-compatibility";
 
 const getColorForValue = (value, property) => {
     const colorScales = {
-        idm: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#327A6E', '#327A6E'],
-        sdgs: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        ar: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        program: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sda: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sdm: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        lk: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sarpras: ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        kd: ['#EEEEEE', '#96C4BC', '#327A6E'],
+        idm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#4E9387', '#327A6E'],
+        sdgs: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        ar: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        program: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        sda: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        sdm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        lk: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        sarpras: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
     };
 
     const thresholds = {
-        idm: [0.491, 0.599, 0.707, 0.815, 0.9, 1],
+        kd: [1, 2, 3],
+        idm: [0.491, 0.599, 0.707, 0.815, 1],
         sdgs: [10, 20, 30, 50, 80, 100],
         ar: [1, 3, 5, 8, 10, 20],
         program: [1, 3, 5, 8, 10, 20],
@@ -67,16 +69,28 @@ const MapWithPolygons = (props) => {
     }));
 
     const kabOptions = { color: 'white', fillColor: '#D4DCC2', weight: '2', fillOpacity: '1' }
-    const kecOptions = { color: '#EEEEEE', fillColor: '#D4DCC2', weight: '1', fillOpacity: '1' }
-    const desaOptions = { color: '#EEEEEE', fillColor: '#96C4BC', weight: '1', fillOpacity: '1' }
+    const kecOptions = { color: 'white', fillColor: '#D4DCC2', weight: '1', fillOpacity: '1' }
+    const desaOptions = { color: 'white', fillColor: '#96C4BC', weight: '1', fillOpacity: '1' }
 
     const handleChangeOption = (option) => {
         setSelectedOption(option);
     };
 
     const generateLegend = () => {
+        const colorScales = {
+            kd: ['#EEEEEE', '#96C4BC', '#327A6E'],
+            idm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#4E9387', '#327A6E'],
+            sdgs: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            ar: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            program: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            sda: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            sdm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            lk: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            sarpras: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        };
         const thresholds = {
-            idm: ['< 0,491', '0,492 - 0,599', '0,6 - 0,707', '0,708 - 0,815', '0,816 - 0,9', '> 0,9'],
+            kd: ['SWASEMBADA', 'SWAKARYA', 'SWADAYA'],
+            idm: ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI'],
             sdgs: ['< 10', '11 - 20', '21 - 30', '31 - 50', '51 - 80', '> 80'],
             ar: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
             program: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
@@ -86,7 +100,7 @@ const MapWithPolygons = (props) => {
             sarpras: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
         };
 
-        const staticLegendColors = ['#00DCB8', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'];
+        const colorScale = colorScales[selectedOption];
         const legendValues = thresholds[selectedOption];
 
         return (
@@ -98,7 +112,7 @@ const MapWithPolygons = (props) => {
                             <div className="col-sm-4" key={index}>
                                 <div className='row'>
                                     <p className="col-12">
-                                        <i className="bi bi-square-fill" style={{ color: staticLegendColors[index] }}></i> {legend}
+                                        <i className="bi bi-square-fill" style={{ color: colorScale[index] }}></i> {legend}
                                     </p>
                                 </div>
                             </div>
@@ -119,13 +133,14 @@ const MapWithPolygons = (props) => {
                         className="form-select"
                         aria-label="Default select example"
                     >
+                        <option value="kd">[Capaian] Klasifikasi Desa</option>
                         <option value="idm">[Capaian] Indeks Desa Membangun</option>
                         <option value="sdgs">[Capaian] SDGs</option>
                         <option value="ar">[Capaian] AR</option>
                         <option value="program">[Capaian] Program</option>
                         <option value="sda">[Potensi] Sumber Daya Alam</option>
                         <option value="sdm">[Potensi] Sumber Daya Manusia</option>
-                        <option value="lk">[Potensi] LK</option>
+                        <option value="lk">[Potensi] Lembaga Kemasyarakatan</option>
                         <option value="sarpras">[Potensi] Sarana & Prasarana</option>
                     </select>
 
@@ -139,7 +154,7 @@ const MapWithPolygons = (props) => {
                 scrollWheelZoom={false}
                 style={{ height: "500px" }}
                 bounds={polygonCoordKab || [[-90, -180], [90, 180]]}
-                boundsOptions={{ padding: [1, 1] }}
+            // boundsOptions={{ padding: [1, 1] }}
             >
                 <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
@@ -152,14 +167,7 @@ const MapWithPolygons = (props) => {
                 })}
 
                 {polygonCoordDesa.map(({ polyDes, provinsi, kabupaten, kecamatan, deskel, kd, idm, sdgs, ar, program, sda, sdm, lk, sarpras }, index) => {
-                    const capaianValue = selectedOption === 'idm' ? idm :
-                        selectedOption === 'sdgs' ? sdgs :
-                            selectedOption === 'ar' ? ar :
-                                selectedOption === 'program' ? program :
-                                    selectedOption === 'sda' ? sda :
-                                        selectedOption === 'sdm' ? sdm :
-                                            selectedOption === 'lk' ? lk :
-                                                selectedOption === 'sarpras' ? sarpras : 0;
+                    const capaianValue = selectedOption === 'kd' ? kd : selectedOption === 'idm' ? idm : selectedOption === 'sdgs' ? sdgs : selectedOption === 'ar' ? ar : selectedOption === 'program' ? program : selectedOption === 'sda' ? sda : selectedOption === 'sdm' ? sdm : selectedOption === 'lk' ? lk : selectedOption === 'sarpras' ? sarpras : 0;
                     const desaColor = getColorForValue(capaianValue, selectedOption);
                     const desaPathOptions = { ...desaOptions, fillColor: desaColor };
                     return (
