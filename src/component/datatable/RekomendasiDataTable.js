@@ -2,6 +2,7 @@ import React, { useMemo, useState, Fragment } from "react";
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import "./RekomendasiDataTable.css";
+import { BASE_API_URL } from "../../utils/api";
 
 const RekomendasiTable = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
@@ -20,7 +21,7 @@ const RekomendasiTable = (props) => {
 
     const fetchRekomendasiData = async (kodeWilayah, tahun) => {
         try {
-            const response = await axios.get(`https://enrekangkab.pendekar.digital/api/pembangunan/rekomendasi/${kodeWilayah}/${tahun}`);
+            const response = await axios.get(`${BASE_API_URL}pembangunan/rekomendasi/${kodeWilayah}/${tahun}`);
             const data = response.data.data.idm.mapData
             setModalData(data.ROW);
             setIks(data.ROW[35])
