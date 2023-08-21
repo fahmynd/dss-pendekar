@@ -1,4 +1,4 @@
-import React, { useMemo, useState, Fragment } from "react";
+import React, { useMemo, useState, Fragment, useEffect } from "react";
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import "./RekomendasiDataTable.css";
@@ -7,6 +7,7 @@ import { BASE_API_URL } from "../../utils/api";
 const RekomendasiTable = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
 
+    const [loadingModal, setLoadingModal] = useState(false);
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
     const [query, setQuery] = useState("")
@@ -21,21 +22,36 @@ const RekomendasiTable = (props) => {
 
     const fetchRekomendasiData = async (kodeWilayah, tahun) => {
         try {
+            setLoadingModal(true); // Set loading to true when fetching data
             const response = await axios.get(`${BASE_API_URL}pembangunan/rekomendasi/${kodeWilayah}/${tahun}`);
-            const data = response.data.data.idm.mapData
-            setModalData(data.ROW);
-            setIks(data.ROW[35])
-            setIke(data.ROW[48])
-            setIkl(data.ROW[52])
-            setSkor_idm(data.SUMMARIES.SKOR_SAAT_INI)
-            setStatus(data.SUMMARIES.STATUS)
-            setTahun_idm(data.SUMMARIES.TAHUN)
-            setDesa(data.IDENTITAS[0].nama_desa)
-            // console.log(data);
+            // console.log(response.data);
+            if (response.data?.data?.idm?.mapData) {
+                const data = response.data.data.idm.mapData;
+                setModalData(data.ROW);
+                setIks(data.ROW[35])
+                setIke(data.ROW[48])
+                setIkl(data.ROW[52])
+                setSkor_idm(data.SUMMARIES.SKOR_SAAT_INI)
+                setStatus(data.SUMMARIES.STATUS)
+                setTahun_idm(data.SUMMARIES.TAHUN)
+                setDesa(data.IDENTITAS[0].nama_desa)
+                setLoadingModal(false); // Set loading back to false after fetching data
+            } else {
+                alert("No Data Available");
+            }
         } catch (error) {
             console.error("Error fetching rekomendasi data:", error);
+            setLoadingModal(false); // Set loading back to false in case of error
         }
     };
+
+    useEffect(() => {
+        // console.log("modalData has changed:", modalData);
+        if (modalData !== null) {
+            setLoadingModal(false);
+        }
+    }, [modalData]);
+
 
     const listDeskel = useMemo(() => {
         setSelectedDesa("");
@@ -191,8 +207,8 @@ const RekomendasiTable = (props) => {
                                     Lihat Rekomendasi
                                 </button>
                             ),
-                            width: "220px"
-                        }
+                            width: "220px",
+                        },
                     ]
                 }
                 data={rows}
@@ -200,108 +216,125 @@ const RekomendasiTable = (props) => {
                 pagination
             />
 
-            <div className="modal fade" id="disablebackdrop" tabIndex="-1" data-bs-backdrop="false">
-                <div className="modal-dialog modal-fullscreen shadow-lg rounded">
-                    <div id="item-rekomendasi" className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title">[IDM] REKOMENDASI UNTUK DESA {desa}</h5>
-                            <div data-bs-dismiss="modal" aria-label="Close" style={{ cursor: 'pointer' }}>
-                                <span>Tutup</span>
-                            </div>
-                        </div>
-                        <div className="modal-body">
-                            <table className="tg" style={{ width: '100%' }}>
-                                <thead style={{ backgroundColor: '#317A75', color: 'white' }}>
-                                    <tr>
-                                        <th className="tg-amwm" rowSpan="2">No</th>
-                                        <th className="tg-amwm" rowSpan="2">Indikator IDM</th>
-                                        <th className="tg-amwm" rowSpan="2" >Skor</th>
-                                        <th className="tg-amwm" rowSpan="2">Keterangan</th>
-                                        <th className="tg-amwm" rowSpan="2">Kegiatan yang dapat dilakukan</th>
-                                    </tr>
-                                </thead>
-                                {modalData ? (
-                                    <tbody>
-                                        {modalData?.slice(0, 35).map((item, key) => {
-                                            return (
-                                                <tr key={key}>
-                                                    <td className="tg-baqh">{item.NO}</td>
-                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
-                                                    <td className="tg-baqh">{item.SKOR}</td>
-                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
-                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
-                                                </tr>
-                                            );
-                                        })}
-
-                                        {iks && (
-                                            <tr>
-                                                <td className="tg-zwfm text-center" colSpan="12">
-                                                    SKOR {iks.INDIKATOR} : {Number(iks.SKOR).toFixed(4)}
-                                                </td>
-                                            </tr>
-                                        )}
-
-                                        {modalData?.slice(36, 48).map((item, key) => {
-                                            return (
-                                                <tr key={key}>
-                                                    <td className="tg-baqh">{item.NO}</td>
-                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
-                                                    <td className="tg-baqh">{item.SKOR}</td>
-                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
-                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
-                                                </tr>
-                                            );
-                                        })}
-
-                                        {ike && (
-                                            <tr>
-                                                <td className="tg-zwfm text-center" colSpan="12">
-                                                    SKOR {ike.INDIKATOR} : {Number(ike.SKOR).toFixed(4)}
-                                                </td>
-                                            </tr>
-                                        )}
-
-                                        {modalData?.slice(49, 52).map((item, key) => {
-                                            return (
-                                                <tr key={key}>
-                                                    <td className="tg-baqh">{item.NO}</td>
-                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
-                                                    <td className="tg-baqh">{item.SKOR}</td>
-                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
-                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
-                                                </tr>
-                                            );
-                                        })}
-
-                                        {ikl && (
-                                            <tr>
-                                                <td className="tg-zwfm text-center" colSpan="12">
-                                                    SKOR {ikl.INDIKATOR} : {Number(ikl.SKOR).toFixed(4)}
-                                                </td>
-                                            </tr>
-                                        )}
-
-                                        <tr>
-                                            <td className="tg-zwfm text-center" colSpan="12">IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {Number(skor_idm).toFixed(4)}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="tg-zwfm text-center" colSpan="12">STATUS IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {status}</td>
-                                        </tr>
-                                    </tbody>
+            {modalData !== null && (
+                <div className="modal fade" id="disablebackdrop" tabIndex="-1" data-bs-backdrop="static">
+                    <div className="modal-dialog modal-fullscreen shadow-lg rounded">
+                        <div id="item-rekomendasi" className="modal-content">
+                            <div className="modal-header">
+                                {loadingModal ? (
+                                    <h5 className="modal-title">Loading...</h5>
+                                ) : modalData !== null ? (
+                                    <h5 className="modal-title">[IDM] REKOMENDASI UNTUK DESA {desa}</h5>
                                 ) : (
-                                    <tbody>
-                                        <tr>
-                                            <td colSpan="5" className="text-center">Loading...</td>
-                                        </tr>
-                                    </tbody>
+                                    <h5 className="modal-title">No Data Available</h5>
                                 )}
-                            </table>
+                                <div data-bs-dismiss="modal" aria-label="Close" style={{ cursor: 'pointer' }}>
+                                    <span>Tutup</span>
+                                </div>
+                            </div>
+                            <div className="modal-body">
+                                {loadingModal ? (
+                                    <p>Loading...</p>
+                                ) : (
+                                    <div>
+                                        {modalData ? (
+                                            <table className="tg" style={{ width: '100%' }}>
+                                                <thead style={{ backgroundColor: '#317A75', color: 'white' }}>
+                                                    <tr>
+                                                        <th className="tg-amwm" rowSpan="2">No</th>
+                                                        <th className="tg-amwm" rowSpan="2">Indikator IDM</th>
+                                                        <th className="tg-amwm" rowSpan="2" >Skor</th>
+                                                        <th className="tg-amwm" rowSpan="2">Keterangan</th>
+                                                        <th className="tg-amwm" rowSpan="2">Kegiatan yang dapat dilakukan</th>
+                                                    </tr>
+                                                </thead>
+                                                {modalData ? (
+                                                    <tbody>
+                                                        {modalData?.slice(0, 35).map((item, key) => {
+                                                            return (
+                                                                <tr key={key}>
+                                                                    <td className="tg-baqh">{item.NO}</td>
+                                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                                </tr>
+                                                            );
+                                                        })}
+
+                                                        {iks && (
+                                                            <tr>
+                                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                                    SKOR {iks.INDIKATOR} : {Number(iks.SKOR).toFixed(4)}
+                                                                </td>
+                                                            </tr>
+                                                        )}
+
+                                                        {modalData?.slice(36, 48).map((item, key) => {
+                                                            return (
+                                                                <tr key={key}>
+                                                                    <td className="tg-baqh">{item.NO}</td>
+                                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                                </tr>
+                                                            );
+                                                        })}
+
+                                                        {ike && (
+                                                            <tr>
+                                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                                    SKOR {ike.INDIKATOR} : {Number(ike.SKOR).toFixed(4)}
+                                                                </td>
+                                                            </tr>
+                                                        )}
+
+                                                        {modalData?.slice(49, 52).map((item, key) => {
+                                                            return (
+                                                                <tr key={key}>
+                                                                    <td className="tg-baqh">{item.NO}</td>
+                                                                    <td className="tg-baqh">{item.INDIKATOR}</td>
+                                                                    <td className="tg-baqh">{item.SKOR}</td>
+                                                                    <td className="tg-baqh">{item.KETERANGAN}</td>
+                                                                    <td className="tg-baqh">{item.KEGIATAN}</td>
+                                                                </tr>
+                                                            );
+                                                        })}
+
+                                                        {ikl && (
+                                                            <tr>
+                                                                <td className="tg-zwfm text-center" colSpan="12">
+                                                                    SKOR {ikl.INDIKATOR} : {Number(ikl.SKOR).toFixed(4)}
+                                                                </td>
+                                                            </tr>
+                                                        )}
+
+                                                        <tr>
+                                                            <td className="tg-zwfm text-center" colSpan="12">IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {Number(skor_idm).toFixed(4)}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td className="tg-zwfm text-center" colSpan="12">STATUS IDM <span id="tahunIDM" name="tahunIDM">{tahun_idm}</span> : {status}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                ) : (
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colSpan="5" className="text-center">Loading...</td>
+                                                        </tr>
+                                                    </tbody>
+                                                )}
+                                            </table>
+                                        ) : (
+                                            <p>No Data Available</p>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            )}
         </Fragment>
     )
 }
