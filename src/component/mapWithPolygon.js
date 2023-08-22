@@ -7,39 +7,46 @@ import "leaflet-defaulticon-compatibility";
 
 const getColorForValue = (value, property) => {
     const colorScales = {
-        kd: ['#EEEEEE', '#96C4BC', '#327A6E'],
-        idm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#4E9387', '#327A6E'],
-        sdgs: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        ar: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        program: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sda: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sdm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        lk: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-        sarpras: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+        kd: {
+            'SWASEMBADA': '#D7F4D7',
+            'SWAKARYA': '#7CBF5F',
+            'SWADAYA': '#186C3F'
+        },
+        idm: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#186C3F'],
+        sdgs: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        ar: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        program: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        sda: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        sdm: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        lk: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+        sarpras: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
     };
 
-    const thresholds = {
-        kd: [1, 2, 3],
-        idm: [0.491, 0.599, 0.707, 0.815, 1],
-        sdgs: [10, 20, 30, 50, 80, 100],
-        ar: [1, 3, 5, 8, 10, 20],
-        program: [1, 3, 5, 8, 10, 20],
-        sda: [1, 3, 5, 8, 10, 20],
-        sdm: [100, 500, 1000, 3000, 5000, 10000],
-        lk: [1, 3, 5, 8, 10, 20],
-        sarpras: [1, 3, 5, 8, 10, 20],
-    };
+    if (colorScales[property]) {
+        if (property === 'kd') {
+            return colorScales[property][value] || '#EEEEEE';
+        } else {
+            const thresholds = {
+                idm: [0.491, 0.599, 0.707, 0.815, 999999],
+                sdgs: [10, 20, 30, 50, 80, 999999],
+                ar: [0, 3, 5, 8, 10, 999999],
+                program: [0, 3, 5, 8, 10, 999999],
+                sda: [0, 3, 5, 8, 10, 999999],
+                sdm: [100, 500, 1000, 3000, 5000, 999999],
+                lk: [0, 3, 5, 8, 10, 999999],
+                sarpras: [0, 3, 5, 8, 10, 999999],
+            };
 
-    const scale = colorScales[property];
-    const thresholdArray = thresholds[property];
+            const thresholdArray = thresholds[property];
+            const colorScale = colorScales[property];
 
-    if (scale && thresholdArray) {
-        for (let i = 0; i < thresholdArray.length; i++) {
-            if (value <= thresholdArray[i]) {
-                return scale[i];
+            for (let i = 0; i < thresholdArray.length; i++) {
+                if (value <= thresholdArray[i]) {
+                    return colorScale[i];
+                }
             }
+            return colorScale[colorScale.length - 1];
         }
-        return scale[scale.length - 1];
     }
     return '#EEEEEE';
 };
@@ -71,7 +78,7 @@ const MapWithPolygons = (props) => {
 
     const kabOptions = { color: 'white', fillColor: '#D4DCC2', weight: '2', fillOpacity: '1' }
     const kecOptions = { color: 'white', fillColor: '#D4DCC2', weight: '1', fillOpacity: '1' }
-    const desaOptions = { color: 'white', fillColor: '#96C4BC', weight: '1', fillOpacity: '1' }
+    const desaOptions = { color: 'white', fillColor: '#7CBF5F', weight: '1', fillOpacity: '1' }
 
     const handleChangeOption = (option) => {
         setSelectedOption(option);
@@ -79,26 +86,26 @@ const MapWithPolygons = (props) => {
 
     const generateLegend = () => {
         const colorScales = {
-            kd: ['#EEEEEE', '#96C4BC', '#327A6E'],
-            idm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#4E9387', '#327A6E'],
-            sdgs: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            ar: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            program: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            sda: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            sdm: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            lk: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
-            sarpras: ['#EEEEEE', '#C2DCD8', '#96C4BC', '#6FABA1', '#4E9387', '#327A6E'],
+            kd: ['#D7F4D7', '#7CBF5F', '#186C3F'],
+            idm: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#228B22', '#186C3F'],
+            sdgs: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            ar: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            program: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            sda: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            sdm: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            lk: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
+            sarpras: ['#D7F4D7', '#A9DFBF', '#7CBF5F', '#3AA655', '#228B22', '#186C3F'],
         };
         const thresholds = {
             kd: ['SWASEMBADA', 'SWAKARYA', 'SWADAYA'],
             idm: ['SANGAT TERTINGGAL', 'TERTINGGAL', 'BERKEMBANG', 'MAJU', 'MANDIRI'],
             sdgs: ['< 10', '11 - 20', '21 - 30', '31 - 50', '51 - 80', '> 80'],
-            ar: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
-            program: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
-            sda: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
-            sdm: ['< 100', '101 - 500', '501 - 1,000', '1,001 - 3,000', '3,001 - 5,000', '> 5,000'],
-            lk: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
-            sarpras: ['< 1', '2 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
+            ar: ['0', '1 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
+            program: ['0', '1 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
+            sda: ['0', '1 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
+            sdm: ['< 100', '101 - 500', '501 - 1.000', '1.001 - 3,000', '3.001 - 5.000', '> 5.000'],
+            lk: ['0', '1 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
+            sarpras: ['0', '1 - 3', '4 - 5', '6 - 8', '9 - 10', '> 10'],
         };
 
         const colorScale = colorScales[selectedOption];
