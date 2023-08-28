@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.2e2a3c4f.css",
-    "main.js": "/static/js/main.e8366850.js",
+    "main.js": "/static/js/main.668dbf8a.js",
     "static/media/boxicons.svg": "/static/media/boxicons.61829f134e586c0c9e89.svg",
     "static/media/remixicon.svg?t=1590207869815": "/static/media/remixicon.1664a258a7e7714f6f8d.svg",
     "static/media/gowakab.jpg": "/static/media/gowakab.5b631ea98b714089c937.jpg",
@@ -26,16 +26,34 @@
     "static/media/bupati_gowa.jpg": "/static/media/bupati_gowa.fc91e379d70c012939fd.jpg",
     "static/media/bupati_wajo.jpg": "/static/media/bupati_wajo.55246774a96cd06af5b8.jpg",
     "static/media/dots.svg": "/static/media/dots.65d9ffee4ff527583b44.svg",
+    "static/media/kelembagaanDesaDinamisDanBudayaDesaAdaptif.webp": "/static/media/kelembagaanDesaDinamisDanBudayaDesaAdaptif.4f6df6e80a6ccb06ec8c.webp",
+    "static/media/infrastrukturDanInovasiDesaSesuaiKebutuhan.webp": "/static/media/infrastrukturDanInovasiDesaSesuaiKebutuhan.6c9d0032d21782dcad1e.webp",
+    "static/media/desaPeduliLingkunganLaut.webp": "/static/media/desaPeduliLingkunganLaut.be1fdafc4b5d8b54850e.webp",
+    "static/media/kemitraanUntukPembangunanDesa.webp": "/static/media/kemitraanUntukPembangunanDesa.a0747d3f6cd35275bc2b.webp",
+    "static/media/desaBerenergiBersihDanTerbarukan.webp": "/static/media/desaBerenergiBersihDanTerbarukan.c2f29b53229bfe55d0ca.webp",
+    "static/media/konsumsiDanProduksiDesaSadarLingkungan.webp": "/static/media/konsumsiDanProduksiDesaSadarLingkungan.42b2b271f8001c25aef0.webp",
+    "static/media/kawasanPermukimanDesaAmanDanNyaman.webp": "/static/media/kawasanPermukimanDesaAmanDanNyaman.3f6a43446874b91a6e14.webp",
+    "static/media/desaPeduliLingkunganDarat.webp": "/static/media/desaPeduliLingkunganDarat.6c24120580f9ff34e4eb.webp",
+    "static/media/desaDamaiBerkeadilan.webp": "/static/media/desaDamaiBerkeadilan.a1c90ccce760adaec2cd.webp",
+    "static/media/desaSehatDanSejahtera.webp": "/static/media/desaSehatDanSejahtera.de107fdf8f38645e999b.webp",
+    "static/media/keterlibatanPerempuanDesa.webp": "/static/media/keterlibatanPerempuanDesa.34eea965aee79fe5b15b.webp",
+    "static/media/pendidikanDesaBerkualitas.webp": "/static/media/pendidikanDesaBerkualitas.7d7f72a9e8298f405d54.webp",
+    "static/media/pertumbuhanEkonomiDesaMerata.webp": "/static/media/pertumbuhanEkonomiDesaMerata.32bcb6f59e11a3fcc9ff.webp",
+    "static/media/desaTanpaKemiskinan.webp": "/static/media/desaTanpaKemiskinan.ef3c5ea32fac98f12c4c.webp",
+    "static/media/desaTanpaKelaparan.webp": "/static/media/desaTanpaKelaparan.806238eed63230981b1c.webp",
+    "static/media/desaAirBersihSanitasi.webp": "/static/media/desaAirBersihSanitasi.ad38c4b70680a7c1abf0.webp",
+    "static/media/desaTanggapPerubahanIklim.webp": "/static/media/desaTanggapPerubahanIklim.afea99b1b6bebc4a2da5.webp",
+    "static/media/desaTanpaKesenjangan.webp": "/static/media/desaTanpaKesenjangan.98bf3daa0303f182d70e.webp",
     "static/media/mendapatBantuan.svg": "/static/media/mendapatBantuan.90166b4d0e770441516feda35d8ba8eb.svg",
     "index.html": "/index.html",
     "static/media/hide-password.svg": "/static/media/hide-password.2aaf769dde9be37e683f78d543bb61d8.svg",
     "static/media/kk.svg": "/static/media/kk.212001f5b0c414ead557959dd3eae584.svg",
     "static/media/show-password.svg": "/static/media/show-password.7468b27017e6d779e083dd0beabf4efa.svg",
     "main.2e2a3c4f.css.map": "/static/css/main.2e2a3c4f.css.map",
-    "main.e8366850.js.map": "/static/js/main.e8366850.js.map"
+    "main.668dbf8a.js.map": "/static/js/main.668dbf8a.js.map"
   },
   "entrypoints": [
     "static/css/main.2e2a3c4f.css",
-    "static/js/main.e8366850.js"
+    "static/js/main.668dbf8a.js"
   ]
 }
