@@ -31,6 +31,7 @@ export const STRINGS = {
         logo_second_size: "enrekang",
         menu_pelayanan: "hide",
         theme: "",
+        alternative_style: "assets/css/style.css",
     },
     luwukab: {
         title: "PENDEKAR",
@@ -53,6 +54,7 @@ export const STRINGS = {
         logo_second_size: "",
         menu_pelayanan: "hide",
         theme: "",
+        alternative_style: "assets/css/alternative-style.css",
     },
     mamasakab: {
         title: "PENDEKAR",
@@ -75,6 +77,7 @@ export const STRINGS = {
         logo_second_size: "",
         menu_pelayanan: "",
         theme: "",
+        alternative_style: "assets/css/alternative-style.css",
     },
     gowakab: {
         title: "PENDEKAR",
@@ -97,6 +100,7 @@ export const STRINGS = {
         logo_second_size: "",
         menu_pelayanan: "hide",
         theme: "",
+        alternative_style: "assets/css/alternative-style.css",
     },
     wajokab: {
         title: "PENDEKAR",
@@ -119,5 +123,6 @@ export const STRINGS = {
         logo_second_size: "",
         menu_pelayanan: "hide",
         theme: "alternative",
+        alternative_style: "assets/css/alternative-style.css",
     },
 }

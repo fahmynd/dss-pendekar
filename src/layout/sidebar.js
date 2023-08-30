@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
-import "./sidebar.css";
+// import "./sidebar.css";
 // import alternativeStyle from "./sidebarAlternative.module.css";
 import { Link, NavLink } from 'react-router-dom'
 import { STRINGS } from '../config/strings'

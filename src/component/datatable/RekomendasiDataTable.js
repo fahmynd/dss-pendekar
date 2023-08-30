@@ -3,6 +3,24 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import "./RekomendasiDataTable.css";
 import { BASE_API_URL } from "../../utils/api";
+import desaTanpaKemiskinan from '../../assets/img/sdgs/desaTanpaKemiskinan.webp'
+import desaTanpaKelaparan from '../../assets/img/sdgs/desaTanpaKelaparan.webp'
+import desaSehatDanSejahtera from '../../assets/img/sdgs/desaSehatDanSejahtera.webp'
+import pendidikanDesaBerkualitas from '../../assets/img/sdgs/pendidikanDesaBerkualitas.webp'
+import keterlibatanPerempuanDesa from '../../assets/img/sdgs/keterlibatanPerempuanDesa.webp'
+import desaAirBersihSanitasi from '../../assets/img/sdgs/desaAirBersihSanitasi.webp'
+import desaBerenergiBersihDanTerbarukan from '../../assets/img/sdgs/desaBerenergiBersihDanTerbarukan.webp'
+import pertumbuhanEkonomiDesaMerata from '../../assets/img/sdgs/pertumbuhanEkonomiDesaMerata.webp'
+import infrastrukturDanInovasiDesaSesuaiKebutuhan from '../../assets/img/sdgs/infrastrukturDanInovasiDesaSesuaiKebutuhan.webp'
+import desaTanpaKesenjangan from '../../assets/img/sdgs/desaTanpaKesenjangan.webp'
+import kawasanPermukimanDesaAmanDanNyaman from '../../assets/img/sdgs/kawasanPermukimanDesaAmanDanNyaman.webp'
+import konsumsiDanProduksiDesaSadarLingkungan from '../../assets/img/sdgs/konsumsiDanProduksiDesaSadarLingkungan.webp'
+import desaTanggapPerubahanIklim from '../../assets/img/sdgs/desaTanggapPerubahanIklim.webp'
+import desaPeduliLingkunganLaut from '../../assets/img/sdgs/desaPeduliLingkunganLaut.webp'
+import desaPeduliLingkunganDarat from '../../assets/img/sdgs/desaPeduliLingkunganDarat.webp'
+import desaDamaiBerkeadilan from '../../assets/img/sdgs/desaDamaiBerkeadilan.webp'
+import kemitraanUntukPembangunanDesa from '../../assets/img/sdgs/kemitraanUntukPembangunanDesa.webp'
+import kelembagaanDesaDinamisDanBudayaDesaAdaptif from '../../assets/img/sdgs/kelembagaanDesaDinamisDanBudayaDesaAdaptif.webp'
 
 const RekomendasiTable = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
@@ -11,7 +29,7 @@ const RekomendasiTable = (props) => {
     const [selectedKec, setSelectedKec] = useState("")
     const [selectedDesa, setSelectedDesa] = useState("")
     const [query, setQuery] = useState("")
-    const [modalData, setModalData] = useState(null);
+    const [modalIdmData, setModalIdmData] = useState(null);
     const [iks, setIks] = useState();
     const [ike, setIke] = useState();
     const [ikl, setIkl] = useState();
@@ -25,10 +43,11 @@ const RekomendasiTable = (props) => {
             setLoadingModal(true); // Set loading to true when fetching data
             const response = await axios.get(`${BASE_API_URL}pembangunan/rekomendasi/${kodeWilayah}/${tahun}`);
             const data = response.data.data.idm;
+            // const sdgs = response.data.data.sdgs;
 
             if (data && data.mapData) {
                 const mapData = data.mapData;
-                setModalData(mapData.ROW || []);
+                setModalIdmData(mapData.ROW || []);
                 setIks(mapData.ROW ? mapData.ROW[35] : null);
                 setIke(mapData.ROW ? mapData.ROW[48] : null);
                 setIkl(mapData.ROW ? mapData.ROW[52] : null);
@@ -48,11 +67,11 @@ const RekomendasiTable = (props) => {
     };
 
     useEffect(() => {
-        // console.log("modalData has changed:", modalData);
-        if (modalData !== null) {
+        // console.log("modalIdmData has changed:", modalIdmData);
+        if (modalIdmData !== null) {
             setLoadingModal(false);
         }
-    }, [modalData]);
+    }, [modalIdmData]);
 
 
     const listDeskel = useMemo(() => {
@@ -199,15 +218,25 @@ const RekomendasiTable = (props) => {
                             sortable: true,
                             selector: (row) => row.rekomendasi,
                             cell: (row) => (
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#disablebackdrop"
-                                    onClick={() => fetchRekomendasiData(row.kode_wilayah, row.tahun)}
-                                >
-                                    Lihat Rekomendasi
-                                </button>
+                                <div className="row g-2 my-2">
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary col-12"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#idmModal"
+                                        onClick={() => fetchRekomendasiData(row.kode_wilayah, row.tahun)}
+                                    >
+                                        Rekomendasi IDM
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="btn btn-primary col-12"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#sdgsModal"
+                                    >
+                                        Rekomendasi SDGs
+                                    </button>
+                                </div>
                             ),
                             width: "220px",
                         },
@@ -218,13 +247,13 @@ const RekomendasiTable = (props) => {
                 pagination
             />
 
-            <div className="modal fade" id="disablebackdrop" tabIndex="-1" data-bs-backdrop="false">
+            <div className="modal fade" id="idmModal" tabIndex="-1" data-bs-backdrop="false">
                 <div className="modal-dialog modal-fullscreen shadow-lg rounded">
                     <div id="item-rekomendasi" className="modal-content">
                         <div className="modal-header">
                             {loadingModal ? (
                                 <h5 className="modal-title">Loading...</h5>
-                            ) : modalData !== null && modalData.length > 0 ? (
+                            ) : modalIdmData !== null && modalIdmData.length > 0 ? (
                                 <h5 className="modal-title">[IDM] REKOMENDASI UNTUK DESA {desa}</h5>
                             ) : (
                                 <h5 className="modal-title">No Data Available</h5>
@@ -236,7 +265,7 @@ const RekomendasiTable = (props) => {
                         <div className="modal-body">
                             {loadingModal ? (
                                 <p>Loading...</p>
-                            ) : modalData !== null && modalData.length > 0 ? (
+                            ) : modalIdmData !== null && modalIdmData.length > 0 ? (
                                 <div>
 
                                     <table className="tg" style={{ width: '100%' }}>
@@ -249,9 +278,9 @@ const RekomendasiTable = (props) => {
                                                 <th className="tg-amwm" rowSpan="2">Kegiatan yang dapat dilakukan</th>
                                             </tr>
                                         </thead>
-                                        {modalData ? (
+                                        {modalIdmData ? (
                                             <tbody>
-                                                {modalData?.slice(0, 35).map((item, key) => {
+                                                {modalIdmData?.slice(0, 35).map((item, key) => {
                                                     return (
                                                         <tr key={key}>
                                                             <td className="tg-baqh">{item.NO}</td>
@@ -271,7 +300,7 @@ const RekomendasiTable = (props) => {
                                                     </tr>
                                                 )}
 
-                                                {modalData?.slice(36, 48).map((item, key) => {
+                                                {modalIdmData?.slice(36, 48).map((item, key) => {
                                                     return (
                                                         <tr key={key}>
                                                             <td className="tg-baqh">{item.NO}</td>
@@ -291,7 +320,7 @@ const RekomendasiTable = (props) => {
                                                     </tr>
                                                 )}
 
-                                                {modalData?.slice(49, 52).map((item, key) => {
+                                                {modalIdmData?.slice(49, 52).map((item, key) => {
                                                     return (
                                                         <tr key={key}>
                                                             <td className="tg-baqh">{item.NO}</td>
@@ -335,6 +364,176 @@ const RekomendasiTable = (props) => {
                 </div>
             </div>
 
+            <div className="modal fade" id="sdgsModal" tabIndex="-1" data-bs-backdrop="false">
+                <div className="modal-dialog modal-fullscreen shadow-lg rounded">
+                    <div id="item-rekomendasi" className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">[SDGs] REKOMENDASI UNTUK DESA</h5>
+                            <div data-bs-dismiss="modal" aria-label="Close" style={{ cursor: 'pointer' }}>
+                                <span>Tutup</span>
+                            </div>
+                        </div>
+                        <div className="modal-body">
+                            <div className="row">
+                                <div className="col-md-12 text-center">
+                                    <h4 className="fw-bold">52.52</h4>
+                                    <p>Skor SDGs Desa</p>
+                                </div>
+                            </div>
+                            <div className="row mt-3">
+                                <div className="col-md-12">
+                                    <div className="row text-center">
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaTanpaKemiskinan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaTanpaKelaparan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>50</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaSehatDanSejahtera} alt="icon jumlah perempuan" height="100" />
+                                                    <p>82.26</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={pendidikanDesaBerkualitas} alt="icon jumlah perempuan" height="100" />
+                                                    <p>14.85</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={keterlibatanPerempuanDesa} alt="icon jumlah perempuan" height="100" />
+                                                    <p>0.99</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaAirBersihSanitasi} alt="icon jumlah perempuan" height="100" />
+                                                    <p>88.2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaBerenergiBersihDanTerbarukan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>99.82</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={pertumbuhanEkonomiDesaMerata} alt="icon jumlah perempuan" height="100" />
+                                                    <p>35.82</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={infrastrukturDanInovasiDesaSesuaiKebutuhan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaTanpaKesenjangan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>50.84</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={kawasanPermukimanDesaAmanDanNyaman} alt="icon jumlah perempuan" height="100" />
+                                                    <p>56.58</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={konsumsiDanProduksiDesaSadarLingkungan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaTanggapPerubahanIklim} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaPeduliLingkunganLaut} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaPeduliLingkunganDarat} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={desaDamaiBerkeadilan} alt="icon jumlah perempuan" height="100" />
+                                                    <p>80.86</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={kemitraanUntukPembangunanDesa} alt="icon jumlah perempuan" height="100" />
+                                                    <p>N/A</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="col-6 col-lg-2 mb-3">
+                                            <div className="card card-demografi-penduduk">
+                                                <div className="card-body">
+                                                    <img src={kelembagaanDesaDinamisDanBudayaDesaAdaptif} alt="icon jumlah perempuan" height="100" />
+                                                    <p>17.55</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </Fragment>
     )
 }

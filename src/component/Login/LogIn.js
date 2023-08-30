@@ -41,9 +41,6 @@ const LogIn = () => {
 
     document.getElementById("hr_").style.borderLeft = `4px solid ${STRINGS[KODE_SLUG].font_color_jumbotron}`;
 
-    const favicon = document.querySelector('link[rel="icon"]');
-    favicon.href = `${STRINGS[KODE_SLUG].logo_kab_url}`;
-
     document.title = `Login | ${STRINGS[KODE_SLUG].title}`;
 
     const button = document.getElementById("button")
