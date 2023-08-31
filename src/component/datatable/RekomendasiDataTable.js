@@ -166,11 +166,14 @@ const RekomendasiTable = (props) => {
             if (selectedImage && selectedImage.detail && selectedImage.detail.recom && selectedImage.detail.recom.length > 0) {
                 return (
                     <div>
-                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" />
+                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" style={{ cursor: 'pointer' }} onClick={() => setSelectedImageIndex(null)} />
                         <h5 className="m-0">{selectedImage.title}</h5>
                         <h1 className="m-0">{selectedImage.score}</h1>
                         <br />
                         <div>
+                            <div className="filter-primary">
+                                <i className='ri-close-circle-line h1' style={{ cursor: 'pointer' }} onClick={() => setSelectedImageIndex(null)}></i>
+                            </div>
                             <ul className="nav nav-tabs" id="myTab" role="tablist">
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link active" id="rekomendasi-tab" data-bs-toggle="tab" data-bs-target="#rekomendasi" type="button" role="tab" aria-controls="rekomendasi" aria-selected="true">Rekomendasi Program</button>
@@ -217,7 +220,7 @@ const RekomendasiTable = (props) => {
                                                         <Fragment key={index}>
                                                             <tr>
                                                                 <td>{item.kdind}</td>
-                                                                <td style={{ position: 'sticky', left: 0, backgroundColor: 'white' }}>{item.deskripsi}</td>
+                                                                <td style={{ position: 'sticky', left: 0, backgroundColor: '#FFFFFF' }}>{item.deskripsi}</td>
                                                                 <td>Rekomendasi th2022 : {item.anrekom.th2022}</td>
                                                                 <td>Rekomendasi th2023 : {item.anrekom.th2023}</td>
                                                                 <td>Rekomendasi th2024 : {item.anrekom.th2024}</td>
@@ -261,10 +264,13 @@ const RekomendasiTable = (props) => {
                 // Handle the case when "detail" value is null or empty
                 return (
                     <div>
-                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" />
+                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" style={{ cursor: 'pointer' }} onClick={() => setSelectedImageIndex(null)} />
                         <p className="m-0">{selectedImage.title}</p>
                         <h1 className="m-0">{selectedImage.score}</h1>
                         <hr />
+                        <div className="filter-primary">
+                            <i className='ri-close-circle-line h1' style={{ cursor: 'pointer' }} onClick={() => setSelectedImageIndex(null)}></i>
+                        </div>
                         <p>No recommendation available for this item.</p>
                         <div className="mt-3">
                             <button className="btn btn-secondary" onClick={() => setSelectedImageIndex(null)}>Kembali</button>
@@ -288,7 +294,7 @@ const RekomendasiTable = (props) => {
                                     <div key={key} className="col-6 col-lg-2 mb-3">
                                         <button className="btn btn-link" style={{ textDecoration: 'none', color: '#202020' }} onClick={() => setSelectedImageIndex(key)}>
                                             <img src={imagePaths[key]} alt={`SDGs ${key}`} height="100" />
-                                            <p>{item.score}</p>
+                                            <p className="fw-bold">{item.score}</p>
                                         </button>
                                     </div>
                                 ))}
