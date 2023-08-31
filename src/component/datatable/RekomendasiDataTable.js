@@ -4,6 +4,25 @@ import axios from 'axios';
 import "./RekomendasiDataTable.css";
 import { BASE_API_URL } from "../../utils/api";
 
+import goals1 from '../../assets/img/sdgs/1.webp'
+import goals2 from '../../assets/img/sdgs/2.webp'
+import goals3 from '../../assets/img/sdgs/3.webp'
+import goals4 from '../../assets/img/sdgs/4.webp'
+import goals5 from '../../assets/img/sdgs/5.webp'
+import goals6 from '../../assets/img/sdgs/6.webp'
+import goals7 from '../../assets/img/sdgs/7.webp'
+import goals8 from '../../assets/img/sdgs/8.webp'
+import goals9 from '../../assets/img/sdgs/9.webp'
+import goals10 from '../../assets/img/sdgs/10.webp'
+import goals11 from '../../assets/img/sdgs/11.webp'
+import goals12 from '../../assets/img/sdgs/12.webp'
+import goals13 from '../../assets/img/sdgs/13.webp'
+import goals14 from '../../assets/img/sdgs/14.webp'
+import goals15 from '../../assets/img/sdgs/15.webp'
+import goals16 from '../../assets/img/sdgs/16.webp'
+import goals17 from '../../assets/img/sdgs/17.webp'
+import goals18 from '../../assets/img/sdgs/18.webp'
+
 const RekomendasiTable = (props) => {
     const { list_kecamatan, list_desa } = props.resultData.data;
 
@@ -74,7 +93,6 @@ const RekomendasiTable = (props) => {
 
     }, [modalIdmData, modalSdgsData]);
 
-
     const listDeskel = useMemo(() => {
         setSelectedDesa("");
         return list_desa.filter(desa => {
@@ -137,28 +155,102 @@ const RekomendasiTable = (props) => {
         'MANDIRI': { 'class': 'bg-verifikasi' },
     };
 
+    const imagePaths = [goals1, goals2, goals3, goals4, goals5, goals6, goals7, goals8, goals9, goals10, goals11, goals12, goals13, goals14, goals15, goals16, goals17, goals18];
+
+
     const sdgsContent = () => {
+
         if (selectedImageIndex !== null) {
-            const selectedItem = modalSdgsData[selectedImageIndex];
-            if (selectedItem.detail && selectedItem.detail.recom && selectedItem.detail.recom.length > 0) {
+            const selectedImage = modalSdgsData[selectedImageIndex];
+            const imagePath = imagePaths[selectedImageIndex];
+            if (selectedImage && selectedImage.detail && selectedImage.detail.recom && selectedImage.detail.recom.length > 0) {
                 return (
                     <div>
-                        <img src={selectedItem.image} alt="SDGs" width="75" className="float-left me-2 mb-3" />
-                        <h5 className="m-0">{selectedItem.title}</h5>
-                        <h1 className="m-0">{selectedItem.score}</h1>
-                        <hr />
+                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" />
+                        <h5 className="m-0">{selectedImage.title}</h5>
+                        <h1 className="m-0">{selectedImage.score}</h1>
+                        <br />
                         <div>
-                            {selectedItem.detail.recom.map((recommendation, index) => (
-                                <div key={index}>
-                                    <ul>
-                                        <li>
-                                            <h5>{recommendation.name}</h5>
-                                        </li>
-                                    </ul>
-                                    {recommendation.recommendation && <div dangerouslySetInnerHTML={{ __html: recommendation.recommendation }} />}
-                                    <hr />
+                            <ul className="nav nav-tabs" id="myTab" role="tablist">
+                                <li className="nav-item" role="presentation">
+                                    <button className="nav-link active" id="rekomendasi-tab" data-bs-toggle="tab" data-bs-target="#rekomendasi" type="button" role="tab" aria-controls="rekomendasi" aria-selected="true">Rekomendasi Program</button>
+                                </li>
+                                <li className="nav-item" role="presentation">
+                                    <button className="nav-link" id="target-tab" data-bs-toggle="tab" data-bs-target="#target" type="button" role="tab" aria-controls="target" aria-selected="false">Target Capaian</button>
+                                </li>
+                            </ul>
+                            <div className="tab-content pt-2" id="myTabContent">
+                                <div className="tab-pane fade show active" id="rekomendasi" role="tabpanel" aria-labelledby="rekomendasi-tab">
+                                    <div className="table-responsive">
+                                        <table className="gs table-hover" style={{ width: '100%' }}>
+                                            <thead style={{ backgroundColor: '#317A75', color: 'white' }}>
+                                                <tr>
+                                                    <th className="gs-amwm" rowSpan="2">NO</th>
+                                                    <th className="gs-amwm" rowSpan="2">SASARAN</th>
+                                                    <th className="gs-amwm" rowSpan="2" >SKOR</th>
+                                                    <th className="gs-amwm" rowSpan="2">VOLUME</th>
+                                                    <th className="gs-amwm" rowSpan="2">SATUAN</th>
+                                                    <th className="gs-amwm" colSpan="2">REKOMENDASI PROGRAM</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {selectedImage.detail?.recom.map((item, index) => (
+                                                    <tr key={index}>
+                                                        <td className="gs-baqh">{item.no}</td>
+                                                        <td className="gs-baqh text-start">{item.name}</td>
+                                                        <td className="gs-baqh">{item.score}</td>
+                                                        <td className="gs-baqh" dangerouslySetInnerHTML={{ __html: item.bnba }}></td>
+                                                        <td className="gs-baqh">{item.unit}</td>
+                                                        <td className="p-0 m-0" dangerouslySetInnerHTML={{ __html: item.recommendation }}></td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            ))}
+                                <div className="tab-pane fade" id="target" role="tabpanel" aria-labelledby="target-tab">
+                                    <div className="table-responsive">
+                                        <div style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
+                                            <table className="table table-bordered table-hover">
+                                                <tbody>
+                                                    {selectedImage.detail?.target.map((item, index) => (
+                                                        <Fragment key={index}>
+                                                            <tr>
+                                                                <td>{item.kdind}</td>
+                                                                <td style={{ position: 'sticky', left: 0, backgroundColor: 'white' }}>{item.deskripsi}</td>
+                                                                <td>Rekomendasi th2022 : {item.anrekom.th2022}</td>
+                                                                <td>Rekomendasi th2023 : {item.anrekom.th2023}</td>
+                                                                <td>Rekomendasi th2024 : {item.anrekom.th2024}</td>
+                                                                <td>Rekomendasi th2025 : {item.anrekom.th2025}</td>
+                                                                <td>Rekomendasi th2026 : {item.anrekom.th2026}</td>
+                                                                <td>Rekomendasi th2027 : {item.anrekom.th2027}</td>
+                                                                <td>Rekomendasi th2028 : {item.anrekom.th2028}</td>
+                                                                <td>Rekomendasi th2029 : {item.anrekom.th2029}</td>
+                                                                <td>Rekomendasi th2030 : {item.anrekom.th2030}</td>
+                                                                <td>Nilai Awal : {item.nilaiawal}</td>
+                                                                <td>Volume : {item.volume}</td>
+                                                                <td>Satuan : {item.satuan}</td>
+                                                                <td>Skor th2022 : {item.skor.th2022}</td>
+                                                                <td>Skor th2023 : {item.skor.th2023}</td>
+                                                                <td>Skor th2024 : {item.skor.th2024}</td>
+                                                                <td>Skor th2025 : {item.skor.th2025}</td>
+                                                                <td>Skor th2026 : {item.skor.th2026}</td>
+                                                                <td>Skor th2027 : {item.skor.th2027}</td>
+                                                                <td>Skor th2028 : {item.skor.th2028}</td>
+                                                                <td>Skor th2029 : {item.skor.th2029}</td>
+                                                                <td>Skor th2030 : {item.skor.th2030}</td>
+                                                                <td>Perkiraan Biaya : {item.prakiraanbiaya}</td>
+                                                                <td>Sumber : {item.sumber}</td>
+                                                                <td>Pola Pelaksanaan : {item.polapelaksanaan}</td>
+                                                            </tr>
+                                                        </Fragment>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="mt-3">
                             <button className="btn btn-secondary" onClick={() => setSelectedImageIndex(null)}>Kembali</button>
@@ -169,9 +261,9 @@ const RekomendasiTable = (props) => {
                 // Handle the case when "detail" value is null or empty
                 return (
                     <div>
-                        <img src={selectedItem.image} alt="SDGs" width="75" className="float-left me-2 mb-3" />
-                        <p className="m-0">{selectedItem.title}</p>
-                        <h1 className="m-0">{selectedItem.score}</h1>
+                        <img src={imagePath} alt="SDGs" width="75" className="float-left me-2 mb-3" />
+                        <p className="m-0">{selectedImage.title}</p>
+                        <h1 className="m-0">{selectedImage.score}</h1>
                         <hr />
                         <p>No recommendation available for this item.</p>
                         <div className="mt-3">
@@ -195,7 +287,7 @@ const RekomendasiTable = (props) => {
                                 {modalSdgsData?.map((item, key) => (
                                     <div key={key} className="col-6 col-lg-2 mb-3">
                                         <button className="btn btn-link" style={{ textDecoration: 'none', color: '#202020' }} onClick={() => setSelectedImageIndex(key)}>
-                                            <img src={item.image} alt="SDGs" height="100" />
+                                            <img src={imagePaths[key]} alt={`SDGs ${key}`} height="100" />
                                             <p>{item.score}</p>
                                         </button>
                                     </div>
