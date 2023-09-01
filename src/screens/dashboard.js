@@ -28,9 +28,6 @@ const Dashboard = () => {
     const [skor_iks_now, setSkor_iks_now] = useState([]);
     const [skor_ike_now, setSkor_ike_now] = useState([]);
     const [skor_ikl_now, setSkor_ikl_now] = useState([]);
-    // const [jml_stunting_now, setJml_stunting_now] = useState([]);
-    // const [persen_stunting_now, setPersen_stunting_now] = useState([]);
-    // const [prevalensi_now, setPrevalensi_now] = useState([]);
     const [news, setNews] = useState([]);
     const [update, setUpdate] = useState();
 
@@ -56,12 +53,6 @@ const Dashboard = () => {
                 setSkor_iks_now(idm[2].skor_iks)
                 setSkor_ike_now(idm[2].skor_ike)
                 setSkor_ikl_now(idm[2].skor_ikl)
-
-                // const stunting = result.data.data.stunting;
-                // setJml_stunting_now(stunting[7].jml_stunting)
-                // setPersen_stunting_now(stunting[7].persen_stunting)
-                // setPrevalensi_now(stunting[7].prevalensi)
-
             })
             .catch(error => {
                 alert(error.message);

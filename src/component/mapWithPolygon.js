@@ -183,7 +183,7 @@ const MapWithPolygons = (props) => {
                             <Tooltip sticky>
                                 <div className='card-map p-3'>
                                     <div className='card-body-map'>
-                                        <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
+                                        <h5 className="title-desa card-title-potensi p-0">Desa {deskel}</h5>
                                         <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
                                         <div className="filter-primary">
                                             <h5>
@@ -226,7 +226,7 @@ const MapWithPolygons = (props) => {
                             <Popup closeButton={false}>
                                 <div className='card-map'>
                                     <div className='card-body-map'>
-                                        <h5 className="card-title-potensi p-0" style={{ color: '#3B2D64' }}>Desa {deskel}</h5>
+                                        <h5 className="title-desa card-title-potensi p-0">Desa {deskel}</h5>
                                         <p className='text-capitalize'>Kec. {kecamatan}, {kabupaten.toString().toLowerCase()}, Prov. {provinsi.toString().toLowerCase()}</p>
                                         <div className="filter-primary">
                                             <a href={`https://profil.digitaldesa.id/${link}`} target='_blank' rel='noreferrer'>

@@ -1,35 +1,12 @@
 import { React, Fragment, useEffect, useState } from 'react'
-// import SweetAlert from 'react-bootstrap-sweetalert';
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import useAuth from '../context/Auth/hooks/useAuth';
 import { STRINGS } from '../config/strings';
 import { KODE_SLUG } from '../utils/api';
 
-const Header = (props) => {
+const Header = () => {
     const auth = useAuth()
-    const [username, setUsername] = useState(props.name);
-    const [board, setBoard] = useState([]);
-    const [boardItem, setBoardItem] = useState("");
-    const [toggle, setToggle] = useState(false);
-    const [submit, setSubmit] = useState(true);
     const [logout, setLogout] = useState(false);
-    const [loggedInUserObj, setLoggedInUserObj] = useState({});
-
-    const _ = require("lodash");
-
-    const onLogoutYes = () => {
-        setSubmit({ submit: false });
-        setToggle({ toggle: true });
-        const userObj = JSON.parse(
-            localStorage.getItem(_.get(loggedInUserObj, "userName", ""))
-        );
-        userObj.isUserLoggedIn = false;
-        localStorage.setItem(
-            _.get(loggedInUserObj, "userName", ""),
-            JSON.stringify(userObj)
-        );
-    };
-
     const onLogout = () => {
         setLogout({
             logout: !logout,
@@ -38,12 +15,6 @@ const Header = (props) => {
     };
 
     useEffect(() => {
-        const loggedInUserName = _.get(props.location, "userName", {});
-        setLoggedInUserObj({
-            loggedInUserObj: JSON.parse(localStorage.getItem(loggedInUserName)),
-        });
-
-
         const script = document.createElement("script");
         script.src = "/assets/js/main.js";
         script.async = true;
@@ -57,12 +28,6 @@ const Header = (props) => {
         }
 
     }, [])
-
-    const localUname = `${_.get(
-        loggedInUserObj,
-        "firstName",
-        ""
-    )} ${_.get(loggedInUserObj, "lastName", "")}`;
 
     return (
         <Fragment>
@@ -215,23 +180,7 @@ const Header = (props) => {
 
                     </ul>
                 </nav>
-
             </header>
-            {/* {!submit ? <Navigate to={`/`} /> : null}
-            {logout ? (
-                <SweetAlert
-                    warning
-                    showCancel
-                    confirmBtnText="Yes"
-                    confirmBtnBsStyle="danger"
-                    title="Are you sure?"
-                    onConfirm={onLogoutYes}
-                    onCancel={onLogout}
-                    focusCancelBtn
-                ></SweetAlert>
-            ) : (
-                ""
-            )} */}
         </Fragment>
     )
 }

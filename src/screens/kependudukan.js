@@ -1,8 +1,6 @@
 import axios from 'axios'
 import React, { Fragment, useEffect, useState } from 'react'
 import { BASE_API_URL, KODE_SLUG } from '../utils/api';
-// import PendudukJumlah from '../component/chart/pendudukJumlah';
-// import PendudukTable from '../component/datatable/PdkDataTable';
 import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
 import LoadingSpinner from '../utils/LoadingSpinner';
 import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
@@ -13,8 +11,8 @@ import { STRINGS } from '../config/strings';
 const Kependudukan = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [resultData, setResultData] = useState();
-    const [kec, setKec] = useState([]);
-    const [desa, setDesa] = useState([]);
+    // const [kec, setKec] = useState([]);
+    // const [desa, setDesa] = useState([]);
     const [update, setUpdate] = useState();
 
     useEffect(() => {
@@ -24,8 +22,8 @@ const Kependudukan = () => {
                 // console.log(result.data.data)
                 const data = result.data.data;
                 setResultData(data);
-                setKec(data.list_kecamatan)
-                setDesa(data.list_desa)
+                // setKec(data.list_kecamatan)
+                // setDesa(data.list_desa)
                 setUpdate(data.last_updated)
             })
             .catch(error => {
