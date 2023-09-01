@@ -76,7 +76,7 @@ h6 {
   opacity: 0;
   right: 15px;
   bottom: 15px;
-  z-index: 99999;
+  z-index: 1054;
   background: #4154f1;
   width: 40px;
   height: 40px;
@@ -261,6 +261,22 @@ h6 {
   background-color: rgba(50, 122, 109, 0.05);
   border-color: rgba(50, 122, 109, 0.05);
   color: #327A6D;
+}
+
+.bg-cctv {
+  background-color: rgba(50, 122, 109, 0.05);
+  border-color: rgba(50, 122, 109, 0.05);
+  color: #327A6D;
+}
+
+.bg-cctv:hover {
+  background-color: #327A6D;
+  border-color: #327A6D;
+  color: #FFFFFF;
+}
+
+.title-desa {
+  color: #327A6D !important;
 }
 
 .bg-update {
@@ -1771,8 +1787,8 @@ font-weight: var(--bs-list-group-action-font-weight);
   color: #FFFFFF;
   padding: var(--bs-modal-header-padding);
   border-bottom: var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);
-  border-top-left-radius: var(--bs-modal-inner-border-radius);
-  border-top-right-radius: var(--bs-modal-inner-border-radius);
+  /* border-top-left-radius: var(--bs-modal-inner-border-radius);
+  border-top-right-radius: var(--bs-modal-inner-border-radius); */
 }
 
 .lazy-load {
