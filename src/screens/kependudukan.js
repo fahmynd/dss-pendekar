@@ -1,60 +1,56 @@
-import axios from 'axios'
-import React, { Fragment, useEffect, useState } from 'react'
-import { BASE_API_URL, KODE_SLUG } from '../utils/api';
-import RekapPendudukTable from '../component/datatable/RekapPdkDataTable';
-import LoadingSpinner from '../utils/LoadingSpinner';
-import MiskinPendudukTable from '../component/datatable/MiskinPdkDataTable';
-import { format_tgl } from '../utils/helper.min';
-import ChartKependudukan from '../component/administrasi/chart-kependudukan';
-import { STRINGS } from '../config/strings';
+import axios from "axios";
+import React, { Fragment, useEffect, useState } from "react";
+import { BASE_API_URL, KODE_SLUG } from "../utils/api";
+import RekapPendudukTable from "../component/datatable/RekapPdkDataTable";
+import LoadingSpinner from "../utils/LoadingSpinner";
+import MiskinPendudukTable from "../component/datatable/MiskinPdkDataTable";
+import { format_tgl } from "../utils/helper.min";
+import ChartKependudukan from "../component/administrasi/chart-kependudukan";
+import { STRINGS } from "../config/strings";
 
 const Kependudukan = () => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [resultData, setResultData] = useState();
-    // const [kec, setKec] = useState([]);
-    // const [desa, setDesa] = useState([]);
-    const [update, setUpdate] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [resultData, setResultData] = useState();
+  const [update, setUpdate] = useState();
 
-    useEffect(() => {
-        setIsLoading(true);
-        axios.get(`${BASE_API_URL}kependudukan?k3=&k4=`)
-            .then((result) => {
-                // console.log(result.data.data)
-                const data = result.data.data;
-                setResultData(data);
-                // setKec(data.list_kecamatan)
-                // setDesa(data.list_desa)
-                setUpdate(data.last_updated)
-            })
-            .catch(error => {
-                alert(error.message);
-            })
-            .finally(() => setIsLoading(false)); // complete loading success/fail
+  useEffect(() => {
+    setIsLoading(true);
+    axios
+      .get(`${BASE_API_URL}kependudukan?k3=&k4=`)
+      .then((result) => {
+        // console.log(result.data.data)
+        const data = result.data.data;
+        setResultData(data);
+        setUpdate(data.last_updated);
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+      .finally(() => setIsLoading(false)); // complete loading success/fail
 
-        document.title = `Kependudukan | ${STRINGS[KODE_SLUG].title}`;
+    document.title = `Kependudukan | ${STRINGS[KODE_SLUG].title}`;
+  }, []);
 
-    }, [])
+  if (isLoading) return <LoadingSpinner />;
 
-    if (isLoading) return <LoadingSpinner />;
+  return (
+    <Fragment>
+      <main id="main" className="main">
+        <div className="pagetitle mt-3 mb-5">
+          <h1>Administrasi Kependudukan</h1>
+        </div>
 
-    return (
-        <Fragment>
-            <main id="main" className="main">
+        <div className="filter-update">
+          <h5>
+            <span className="badge bg-update py-3">
+              Last Update : {format_tgl(update)}
+            </span>
+          </h5>
+        </div>
 
-                <div className="pagetitle mt-3 mb-5">
-                    <h1>Administrasi Kependudukan</h1>
-                </div>
-
-                <div className="filter-update">
-                    <h5>
-                        <span className="badge bg-update py-3">Last Update : {format_tgl(update)}</span>
-                    </h5>
-                </div>
-
-                <section className="section dashboard">
-                    <div className="row g-2">
-
-                        {/* <div className="col-md-6 d-none">
+        <section className="section dashboard">
+          <div className="row g-2">
+            {/* <div className="col-md-6 d-none">
                             <div className="card">
                                 <div className="card-body-demografi pb-0">
                                     <h5 className="card-title-potensi pb-0">Tampilkan Berdasarkan</h5>
@@ -126,44 +122,52 @@ const Kependudukan = () => {
                             </div>
                         </div> */}
 
-                        <div className="col-lg-12">
-                            {resultData && <ChartKependudukan data={resultData} />}
-                        </div>
+            <div className="col-lg-12">
+              {resultData && <ChartKependudukan data={resultData} />}
+            </div>
 
-                        <div className="d-none col-lg-12">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title-potensi">Kemiskinan Ekstrim</h5>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary">Export Report</button>
-                                    </div>
+            <div className="d-none col-lg-12">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title-potensi">Kemiskinan Ekstrim</h5>
+                  <div className="filter-primary">
+                    <button type="button" className="btn btn-primary">
+                      Export Report
+                    </button>
+                  </div>
 
-                                    {resultData && <MiskinPendudukTable resultData={resultData} />}
+                  {resultData && (
+                    <MiskinPendudukTable resultData={resultData} />
+                  )}
+                </div>
+              </div>
+            </div>
 
-                                </div>
-                            </div>
-                        </div>
+            <div className="col-lg-12">
+              <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title-potensi">Rekap Kependudukan</h5>
+                  <div className="filter-primary">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() =>
+                        window.open(`${BASE_API_URL}export/rekap_kependudukan`)
+                      }
+                    >
+                      Export Report
+                    </button>
+                  </div>
 
-                        <div className="col-lg-12">
-                            <div className="card">
-                                <div className="card-body">
-                                    <h5 className="card-title-potensi">Rekap Kependudukan</h5>
-                                    <div className="filter-primary">
-                                        <button type="button" className="btn btn-primary" onClick={() => window.open(`${BASE_API_URL}export/rekap_kependudukan`)}>Export Report</button>
-                                    </div>
+                  {resultData && <RekapPendudukTable resultData={resultData} />}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </Fragment>
+  );
+};
 
-                                    {resultData && <RekapPendudukTable resultData={resultData} />}
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-            </main>
-        </Fragment>
-    )
-}
-
-export default Kependudukan
+export default Kependudukan;

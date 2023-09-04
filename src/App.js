@@ -8,27 +8,26 @@ import React, { useEffect } from "react";
 // import './assets/css/style.css'
 // import alternativeStyle from './assets/css/alternative-style.module.css'
 
-import './config/axios'
+import "./config/axios";
 import AppRoute from "./route/route";
 import AuthProvider from "./context/Auth/AuthProvider";
 import { STRINGS } from "./config/strings";
 import { KODE_SLUG } from "./utils/api";
 
 const App = () => {
-
   useEffect(() => {
     const favicon = document.querySelector('link[rel="icon"]');
     favicon.href = `${STRINGS[KODE_SLUG].logo_kab_url}`;
 
-    const alternativeStyle = document.getElementById("customCss")
+    const alternativeStyle = document.getElementById("customCss");
     alternativeStyle.href = `${STRINGS[KODE_SLUG].alternative_style}`;
-  }, [])
+  }, []);
 
   return (
     <AuthProvider>
       <AppRoute />
     </AuthProvider>
   );
-}
+};
 
-export default App
+export default App;

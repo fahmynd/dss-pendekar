@@ -1,4 +1,4 @@
-import DashboardShell from "../layout/dashboard"
+import DashboardShell from "../layout/dashboard";
 import Setting from "../layout/setting";
 import Dashboard from "../screens/dashboard";
 import BantuanSosial from "../screens/bantuanSosial";
@@ -16,46 +16,40 @@ import Persuratan from "../screens/persuratan";
 import Kios from "../screens/kios";
 
 const DashboardRoute = () => {
-    const auth = useAuth()
+  const auth = useAuth();
 
-    if (!auth.isLogged) {
-        return <Navigate to={"/login"} />
-    }
+  if (!auth.isLogged) {
+    return <Navigate to={"/login"} />;
+  }
 
-
-    // const script = document.createElement("script");
-    // script.src = "/assets/js/main.js";
-    // script.async = true;
-    // document.body.appendChild(script);
-
-    return (
-        <DashboardShell>
-            <Routes>
-                <Route index element={<Dashboard />} />
-                <Route path="pengaturan" element={<Setting />} />
-                <Route path="administrasi-umum" element={<AdministrasiUmum />} />
-                <Route path="kependudukan" element={<Kependudukan />} />
-                <Route path="bantuan-sosial" element={<BantuanSosial />} />
-                <Route path="berita" element={<BeritaPage />} />
-                <Route path="pembangunan" element={<Keuangan />} />
-                <Route path="umkm" element={<Umkm />} />
-                <Route path="profil-desa" element={<ProfilDesa />} />
-                <Route path="wisata" element={<Wisata />} />
-                <Route path="persuratan" element={<Persuratan />} />
-                <Route path="kios" element={<Kios />} />
-            </Routes>
-        </DashboardShell>
-    )
-}
+  return (
+    <DashboardShell>
+      <Routes>
+        <Route index element={<Dashboard />} />
+        <Route path="pengaturan" element={<Setting />} />
+        <Route path="administrasi-umum" element={<AdministrasiUmum />} />
+        <Route path="kependudukan" element={<Kependudukan />} />
+        <Route path="bantuan-sosial" element={<BantuanSosial />} />
+        <Route path="berita" element={<BeritaPage />} />
+        <Route path="pembangunan" element={<Keuangan />} />
+        <Route path="umkm" element={<Umkm />} />
+        <Route path="profil-desa" element={<ProfilDesa />} />
+        <Route path="wisata" element={<Wisata />} />
+        <Route path="persuratan" element={<Persuratan />} />
+        <Route path="kios" element={<Kios />} />
+      </Routes>
+    </DashboardShell>
+  );
+};
 
 const AppRoute = () => {
-    return (
-        <Routes>
-            <Route path="/" exact element={<Navigate to="/dashboard" />} />
-            <Route path="/login" exact element={<LogIn />} />
-            <Route path="/dashboard/*" element={<DashboardRoute />} />
-        </Routes>
-    )
-}
+  return (
+    <Routes>
+      <Route path="/" exact element={<Navigate to="/dashboard" />} />
+      <Route path="/login" exact element={<LogIn />} />
+      <Route path="/dashboard/*" element={<DashboardRoute />} />
+    </Routes>
+  );
+};
 
 export default AppRoute;

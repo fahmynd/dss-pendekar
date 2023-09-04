@@ -1,3 +1,3 @@
-import {Potensi}  from "./potensi";
+import { Potensi } from "./potensi";
 
 export default Potensi;

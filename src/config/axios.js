@@ -2,23 +2,23 @@ import axios from "axios";
 import { clearApiToken, getApiToken } from "../utils/api";
 
 axios.interceptors.request.use((config) => {
-    const token = getApiToken()
+  const token = getApiToken();
 
-    config.headers.Authorization = token;
+  config.headers.Authorization = token;
 
-    return config
-})
+  return config;
+});
 
 axios.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        if (error?.response?.status === 401) {
-            clearApiToken()
-            window.location.href = "/"
-        }    
-
-        return Promise.reject(error)
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error?.response?.status === 401) {
+      clearApiToken();
+      window.location.href = "/";
     }
-)
+
+    return Promise.reject(error);
+  }
+);
