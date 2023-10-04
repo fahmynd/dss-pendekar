@@ -5,21 +5,24 @@ import { format_tgl } from "../utils/helper.min";
 import { STRINGS } from "../config/strings";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import PersuratanTable from "../component/datatable/RekapPersuratanDataTable";
+import FilterPersuratan from "../component/filterPersuratan";
 
 const Persuratan = () => {
-  // const [resultData, setResultData] = useState();
+  const [resultData, setResultData] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [jenis_surat, setJenisSurat] = useState([]);
   const [update, setUpdate] = useState();
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get(`${BASE_API_URL}administrasi-umum?k3=&k4=`)
+      .get(`${BASE_API_URL}pelayanan`)
       .then((result) => {
-        // console.log(result.data.data.jumlah)
-        // setResultData(result.data);
+        // console.log(result.data);
+        setResultData(result.data);
 
         const data = result.data.data;
+        setJenisSurat(data.jenis_surat);
         setUpdate(data.last_updated);
       })
       .catch((error) => {
@@ -50,128 +53,7 @@ const Persuratan = () => {
         <section className="section dashboard">
           <div className="row">
             <div className="col-lg-12">
-              <div className="card">
-                <div className="card-body">
-                  <div className="filter-primary">
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() =>
-                        window.open(`${BASE_API_URL}export/rekap_bansos`)
-                      }
-                    >
-                      Export Report
-                    </button>
-                  </div>
-                  <div className="row g-1 my-4">
-                    <div className="col-3">
-                      <select
-                        defaultValue={"DEFAULT"}
-                        className="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option value={"DEFAULT"}>Semua Kecamatan</option>
-                      </select>
-                    </div>
-
-                    <div className="col-3">
-                      <select
-                        defaultValue={"DEFAULT"}
-                        className="form-select"
-                        aria-label="Default select example"
-                      >
-                        <option value={"DEFAULT"}>Semua Kecamatan</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="row g-md-0">
-                    <div className="col-md-3">
-                      <div className="keuangan-card">
-                        <div className="card-body-persuratan">
-                          <h6>Hari ini</h6>
-                          <h5 className="fw-bold">0 Surat</h5>
-                          <div className="progress">
-                            <div
-                              className="progress-bar"
-                              role="progressbar"
-                              style={{ width: "100%" }}
-                              aria-valuenow="100"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              100%
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3">
-                      <div className="keuangan-card">
-                        <div className="card-body-persuratan">
-                          <h6>Minggu ini</h6>
-                          <h5 className="fw-bold">0 Surat</h5>
-                          <div className="progress">
-                            <div
-                              className="progress-bar"
-                              role="progressbar"
-                              style={{ width: "100%" }}
-                              aria-valuenow="100"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              100%
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3">
-                      <div className="keuangan-card">
-                        <div className="card-body-persuratan">
-                          <h6>Bulan ini</h6>
-                          <h5 className="fw-bold">0 Surat</h5>
-                          <div className="progress">
-                            <div
-                              className="progress-bar"
-                              role="progressbar"
-                              style={{ width: "100%" }}
-                              aria-valuenow="100"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              100%
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-md-3">
-                      <div className="keuangan-card">
-                        <div className="card-body-persuratan">
-                          <h6>Tahun ini</h6>
-                          <h5 className="fw-bold">0 Surat</h5>
-                          <div className="progress">
-                            <div
-                              className="progress-bar"
-                              role="progressbar"
-                              style={{ width: "100%" }}
-                              aria-valuenow="100"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                            >
-                              100%
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {resultData && <FilterPersuratan resultData={resultData} />}
             </div>
 
             <div className="col-lg-12">
@@ -189,7 +71,12 @@ const Persuratan = () => {
                       Export Report
                     </button>
                   </div>
-                  <PersuratanTable />
+                  {resultData && (
+                    <PersuratanTable
+                      resultData={resultData}
+                      jenis={jenis_surat[0].title}
+                    />
+                  )}
                 </div>
               </div>
             </div>

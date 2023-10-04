@@ -117,15 +117,6 @@ export default function UmkmPagination(props) {
             ))}
           </select>
         </div>
-        <div className="col-2 text-end">
-          <button
-            type="button"
-            className="btn btn-primary bg-white"
-            onClick={() => window.open(`${BASE_API_URL}export/umkm`)}
-          >
-            Export Report
-          </button>
-        </div>
         <div className="col d-none">
           <select
             defaultValue={"DEFAULT"}
@@ -134,6 +125,15 @@ export default function UmkmPagination(props) {
           >
             <option value={"DEFAULT"}>Jenis Usaha</option>
           </select>
+        </div>
+        <div className="col-2 text-end">
+          <button
+            type="button"
+            className="btn btn-primary bg-white"
+            onClick={() => window.open(`${BASE_API_URL}export/umkm`)}
+          >
+            Export Report
+          </button>
         </div>
       </div>
       {loading ? (
@@ -200,7 +200,7 @@ export default function UmkmPagination(props) {
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
             pageCount={pageCount}
-            previousLabel="<div Previous"
+            previousLabel="< Previous"
             pageClassName="page-item"
             pageLinkClassName="page-link"
             previousClassName="page-item"

@@ -50,7 +50,7 @@ const LogIn = () => {
     const jumbotron = document.getElementById("content_jumbotron");
     jumbotron.style.backgroundColor = `${STRINGS[KODE_SLUG].bg_color_jumbotron}`;
     jumbotron.style.color = `${STRINGS[KODE_SLUG].font_color_jumbotron}`;
-  }, [auth]);
+  }, [auth, navigate]);
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -130,6 +130,7 @@ const LogIn = () => {
                   <img
                     title={isRevealPwd ? "Hide password" : "Show password"}
                     src={isRevealPwd ? hidePwdImg : showPwdImg}
+                    alt="..."
                     onClick={() => setIsRevealPwd((prevState) => !prevState)}
                   />
                 </div>

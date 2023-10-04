@@ -125,7 +125,7 @@ const RekomendasiTable = (props) => {
     });
 
     return deskel;
-  }, [selectedKec, selectedDesa, query, listDeskel]);
+  }, [list_desa, query, selectedKec, selectedDesa]);
 
   const customStyles = {
     headCells: {

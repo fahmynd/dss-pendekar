@@ -1,3 +1,4 @@
+import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardShell from "../layout/dashboard";
 import Setting from "../layout/setting";
 import Dashboard from "../screens/dashboard";
@@ -10,10 +11,11 @@ import Umkm from "../screens/umkm";
 import ProfilDesa from "../screens/profilDesa";
 import Wisata from "../screens/wisata";
 import LogIn from "../component/Login/LogIn";
-import { Routes, Route, Navigate } from "react-router-dom";
 import useAuth from "../context/Auth/hooks/useAuth";
 import Persuratan from "../screens/persuratan";
 import Kios from "../screens/kios";
+import Notification from "../layout/notification";
+import NotificationDetail from "../layout/notificationDetail";
 
 const DashboardRoute = () => {
   const auth = useAuth();
@@ -27,6 +29,11 @@ const DashboardRoute = () => {
       <Routes>
         <Route index element={<Dashboard />} />
         <Route path="pengaturan" element={<Setting />} />
+        <Route path="notifikasi" element={<Notification />} />
+        <Route
+          path="notifikasi/notifikasi-detail"
+          element={<NotificationDetail />}
+        />
         <Route path="administrasi-umum" element={<AdministrasiUmum />} />
         <Route path="kependudukan" element={<Kependudukan />} />
         <Route path="bantuan-sosial" element={<BantuanSosial />} />

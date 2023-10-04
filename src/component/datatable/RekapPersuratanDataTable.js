@@ -1,7 +1,67 @@
-import React, { Fragment } from "react";
+import React, { useMemo, useState, Fragment } from "react";
 import DataTable from "react-data-table-component";
+import { tgl_indo } from "../../utils/helper.min";
 
-const PersuratanTable = () => {
+const PersuratanTable = (props) => {
+  const { list_kecamatan, list_desa, jenis_surat, list_surat } =
+    props.resultData.data;
+
+  const [selectedKec, setSelectedKec] = useState("");
+  const [selectedDesa, setSelectedDesa] = useState("");
+  const [selectedJenisSurat, setSelectedJenisSurat] = useState("");
+  const [query, setQuery] = useState("");
+
+  const listDeskel = useMemo(() => {
+    setSelectedDesa("");
+    return list_desa.filter((desa) => {
+      let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+      return kode_kec === selectedKec;
+    });
+  }, [list_desa, selectedKec]);
+
+  const listKec = useMemo(() => {
+    return list_kecamatan;
+  }, [list_kecamatan]);
+
+  const rows = useMemo(() => {
+    const formattedRows = list_surat.map((surat) => {
+      const kecamatan = list_kecamatan.find(
+        (kec) => kec.kode_wilayah === surat.kode_wilayah
+      );
+      const desa = list_desa.find(
+        (des) => des.kode_wilayah === surat.kode_wilayah
+      );
+
+      return {
+        nama_kecamatan: kecamatan ? kecamatan.nama_kecamatan : "",
+        nama_deskel: desa ? desa.nama_deskel : "",
+        tanggal_input: tgl_indo(surat.tanggal_input),
+        jenis_surat: surat.jenis_surat,
+        nomor_surat: surat.nomor_surat,
+        is_andi: surat.is_andi,
+      };
+    });
+
+    if (query !== "") {
+      return formattedRows.filter((row) =>
+        row.nama_deskel.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    if (selectedKec !== "" && selectedDesa !== "") {
+      return formattedRows.filter(
+        (row) =>
+          row.nama_kecamatan === selectedKec && row.nama_deskel === selectedDesa
+      );
+    }
+
+    if (selectedKec !== "") {
+      return formattedRows.filter((row) => row.nama_kecamatan === selectedKec);
+    }
+
+    return formattedRows;
+  }, [selectedKec, selectedDesa, query, list_desa, list_kecamatan, list_surat]);
+
   const customStyles = {
     headCells: {
       style: {
@@ -10,6 +70,7 @@ const PersuratanTable = () => {
         backgroundColor: "#F1ECFF",
         borderRight: "1px solid #EDEDED",
         borderTop: "1px solid #EDEDED",
+        wordWrap: "break-word",
       },
     },
     cells: {
@@ -20,57 +81,61 @@ const PersuratanTable = () => {
     },
   };
 
-  const data = [
-    {
-      id: 1,
-      kecamatan: "Kecamatan A",
-      desa: "Desa A",
-      day: "100",
-      week: "100",
-      month: "100",
-      year: "100",
-    },
-  ];
-
   return (
     <Fragment>
-      <div className="row g-1 mb-4">
+      <div className="row g-1 my-4">
         <div className="col-3">
           <select
-            defaultValue={"DEFAULT"}
+            value={selectedJenisSurat}
+            onChange={(e) => setSelectedJenisSurat(e.target.value)}
             className="form-select"
-            aria-label="Default select example"
+            aria-label="Filter Jenis Surat"
           >
-            <option value={"DEFAULT"}>Jenis Surat</option>
+            <option value={""}>Semua Jenis Surat</option>
+            {jenis_surat.map((item) => (
+              <option key={item.id} value={item.title}>
+                {item.title}
+              </option>
+            ))}
           </select>
         </div>
         <div className="col-3">
           <select
-            defaultValue={"DEFAULT"}
+            value={selectedKec}
+            onChange={(e) => setSelectedKec(e.target.value)}
             className="form-select"
-            aria-label="Default select example"
+            aria-label="Filter by Kecamatan"
           >
-            <option value={"DEFAULT"}>Semua Kecamatan</option>
+            <option value={""}>Semua Kecamatan</option>
+            {listKec.map((item) => (
+              <option key={item.kode_wilayah} value={item.kode_wilayah}>
+                {item.nama_kecamatan}
+              </option>
+            ))}
           </select>
         </div>
+
         <div className="col-3">
           <select
-            defaultValue={"DEFAULT"}
+            value={selectedDesa}
+            onChange={(e) => setSelectedDesa(e.target.value)}
             className="form-select"
-            aria-label="Default select example"
+            aria-label="Filter by Desa"
           >
-            <option value={"DEFAULT"}>Semua Desa</option>
+            <option value={""}>Semua Desa</option>
+            {listDeskel.map((item) => (
+              <option key={item.kode_wilayah} value={item.kode_wilayah}>
+                {item.nama_deskel}
+              </option>
+            ))}
           </select>
         </div>
         <div className="col-3">
           <div className="search-produk">
-            <form
-              className="search-form-produk d-flex align-items-center"
-              method="POST"
-              action="/"
-            >
+            <form className="search-form-produk d-flex align-items-center">
               <input
-                value=""
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
                 type="text"
                 name="query"
                 placeholder="Cari Desa/Kelurahan..."
@@ -88,7 +153,7 @@ const PersuratanTable = () => {
           {
             name: "No",
             selector: (row, index) => index + 1,
-            width: "70px",
+            width: "60px",
             style: {
               borderLeft: "1px solid #EDEDED",
             },
@@ -96,35 +161,47 @@ const PersuratanTable = () => {
           {
             name: "Kecamatan",
             sortable: true,
-            selector: (row) => row.kecamatan,
+            selector: (row) => row.nama_kecamatan,
+            width: "180px",
+            wrap: true,
           },
           {
             name: "Desa",
             sortable: true,
-            selector: (row) => row.desa,
+            selector: (row) => row.nama_deskel,
+            width: "180px",
+            wrap: true,
           },
           {
-            name: "Hari ini",
+            name: "Tanggal Input",
             sortable: true,
-            selector: (row) => row.day,
+            selector: (row) => row.tanggal_input,
+            width: "180px",
+            wrap: true,
           },
           {
-            name: "Minggu ini",
+            name: "Jenis Surat",
             sortable: true,
-            selector: (row) => row.week,
+            selector: (row) => row.jenis_surat,
+            width: "180px",
+            wrap: true,
           },
           {
-            name: "Bulan ini",
+            name: "Nomor Surat",
             sortable: true,
-            selector: (row) => row.month,
+            selector: (row) => row.nomor_surat,
+            width: "180px",
+            wrap: true,
           },
           {
-            name: "Tahun ini",
+            name: "Andi Smart",
             sortable: true,
-            selector: (row) => row.year,
+            selector: (row) => row.is_andi,
+            width: "180px",
+            wrap: true,
           },
         ]}
-        data={data}
+        data={rows}
         customStyles={customStyles}
         pagination
       />

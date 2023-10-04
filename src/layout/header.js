@@ -15,12 +15,11 @@ const Header = () => {
   };
 
   useEffect(() => {
+    // document.getElementById("logo_").style.fontSize = `${STRINGS[KODE_SLUG].font_color_jumbotron}`;
     const script = document.createElement("script");
     script.src = "/assets/js/main.js";
     script.async = true;
     document.body.appendChild(script);
-
-    // document.getElementById("logo_").style.fontSize = `${STRINGS[KODE_SLUG].font_color_jumbotron}`;
 
     const desaEmas = `${STRINGS[KODE_SLUG].logo_second_size}`;
     if (desaEmas === "enrekang") {
@@ -57,10 +56,10 @@ const Header = () => {
 
         <nav className="header-nav ms-auto">
           <ul className="d-flex align-items-center">
-            <li className="d-none nav-item dropdown">
+            <li className="nav-item dropdown">
               <Link
                 className="nav-link nav-icon"
-                to={"/"}
+                to={"notifikasi"}
                 data-bs-toggle="dropdown"
               >
                 <i className="bi bi-bell"></i>
@@ -70,7 +69,7 @@ const Header = () => {
               <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                 <li className="dropdown-header">
                   You have 4 new notifications
-                  <Link to={"/"}>
+                  <Link to={"notifikasi"}>
                     <span className="badge rounded-pill bg-primary p-2 ms-2">
                       View all
                     </span>
@@ -81,38 +80,15 @@ const Header = () => {
                 </li>
 
                 <li className="notification-item">
-                  <i className="bi bi-exclamation-circle text-warning"></i>
-                  <div>
-                    <h4>Lorem Ipsum</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
+                  <i className="bi bi-info-circle text-primary"></i>
+                  <Link
+                    to={"notifikasi/notifikasi-detail"}
+                    className="text-dark"
+                  >
+                    <h4>Performance Recap</h4>
+                    <p>Rekapitulasi performance PENDEKAR bulan september</p>
                     <p>30 min. ago</p>
-                  </div>
-                </li>
-
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-
-                <li className="notification-item">
-                  <i className="bi bi-x-circle text-danger"></i>
-                  <div>
-                    <h4>Atque rerum nesciunt</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>1 hr. ago</p>
-                  </div>
-                </li>
-
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-
-                <li className="notification-item">
-                  <i className="bi bi-check-circle text-success"></i>
-                  <div>
-                    <h4>Sit rerum fuga</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>2 hrs. ago</p>
-                  </div>
+                  </Link>
                 </li>
 
                 <li>
@@ -121,18 +97,21 @@ const Header = () => {
 
                 <li className="notification-item">
                   <i className="bi bi-info-circle text-primary"></i>
-                  <div>
-                    <h4>Dicta reprehenderit</h4>
-                    <p>Quae dolorem earum veritatis oditseno</p>
-                    <p>4 hrs. ago</p>
-                  </div>
+                  <Link
+                    to={"notifikasi/notifikasi-detail"}
+                    className="text-dark"
+                  >
+                    <h4>Performance Recap</h4>
+                    <p>Rekapitulasi performance PENDEKAR bulan oktober</p>
+                    <p>1 hr. ago</p>
+                  </Link>
                 </li>
 
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
                 <li className="dropdown-footer">
-                  <Link to={"/"}>Show all notifications</Link>
+                  <Link to={"notifikasi"}>Show all notifications</Link>
                 </li>
               </ul>
             </li>
