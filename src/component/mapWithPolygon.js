@@ -62,7 +62,6 @@ const MapWithPolygons = props => {
 	const [polygonCoordKab, setPolygonCoordKab] = useState([]);
 	const [polygonCoordKec, setPolygonCoordKec] = useState([]);
 	const [polygonCoordDesa, setPolygonCoordDesa] = useState([]);
-	const enrekangCenter = [-3.54, 119.8];
 
 	const fetchDataMap = async url => {
 		try {
@@ -111,7 +110,6 @@ const MapWithPolygons = props => {
 		}
 	};
 
-	// Contoh pemanggilan dengan URL yang dapat menghasilkan 404 (Not Found)
 	const fetchDataMapKab = (k1, k2) =>
 		fetchDataMap(`http://localhost:3000/assets/assets/geojson/${k1}/${k2}.json`);
 	const fetchDataMapKec = (k1, k2, k3) =>
@@ -183,12 +181,19 @@ const MapWithPolygons = props => {
 				});
 		}
 
-		if (resultData && resultData.data && resultData.data.list_kabupaten) {
-			const newPolygonCoordKab = resultData.data.list_kabupaten[0];
-			fetchDataMapKab(newPolygonCoordKab.k1, newPolygonCoordKab.k2);
-		}
+		  if (resultData && resultData.data && resultData.data.list_kabupaten) {
+				const newPolygonCoordKab = resultData.data.list_kabupaten[0];
+				fetchDataMapKab(newPolygonCoordKab.k1, newPolygonCoordKab.k2)
+				.then(polygonData => {
+					setPolygonCoordKab(polygonData); // Menyimpan data yang diterima dalam state
+					console.log(polygonData); // Sekarang, Anda dapat menampilkan data di sini
+				})
+				.catch(error => {
+					console.error("Error fetching kabupaten data:", error);
+				});
+			}
 	}, [resultData]);
-
+console.log(polygonCoordKab[0]);
 	const [selectedOption, setSelectedOption] = useState("sdm");
 
 	const kabOptions = {
@@ -313,183 +318,185 @@ const MapWithPolygons = props => {
 					</button>
 				</div>
 			</div>
-			<MapContainer
-				zoom={10}
-				scrollWheelZoom={false}
-				style={{ height: "500px" }}
-				center={enrekangCenter}
-				// boundsOptions={{ padding: [1, 1] }}
-			>
-				<TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
+			{polygonCoordKab && polygonCoordKab.length > 0 && (
+						<MapContainer
+							zoom={10}
+							scrollWheelZoom={false}
+							style={{ height: "500px" }}
+							center={polygonCoordKab[0]}
+							// boundsOptions={{ padding: [1, 1] }}
+						>
+							<TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
-				<Polygon positions={polygonCoordKab} pathOptions={kabOptions} />
+							<Polygon positions={polygonCoordKab} pathOptions={kabOptions} />
 
-				{polygonCoordKec.map(({ polyKec }, index) => {
-					return (
-						<Polygon key={index} positions={polyKec} pathOptions={kecOptions} />
-					);
-				})}
+							{polygonCoordKec.map(({ polyKec }, index) => {
+								return (
+									<Polygon key={index} positions={polyKec} pathOptions={kecOptions} />
+								);
+							})}
 
-				{polygonCoordDesa.map(
-					(
-						{
-							polyDes,
-							provinsi,
-							kabupaten,
-							kecamatan,
-							deskel,
-							link,
-							kd,
-							idm,
-							sdgs,
-							ar,
-							program,
-							sda,
-							sdm,
-							lk,
-							sarpras,
-						},
-						index
-					) => {
-						const capaianValue =
-							selectedOption === "kd"
-								? kd
-								: selectedOption === "idm"
-								? idm
-								: selectedOption === "sdgs"
-								? sdgs
-								: selectedOption === "ar"
-								? ar
-								: selectedOption === "program"
-								? program
-								: selectedOption === "sda"
-								? sda
-								: selectedOption === "sdm"
-								? sdm
-								: selectedOption === "lk"
-								? lk
-								: selectedOption === "sarpras"
-								? sarpras
-								: 0;
-						const desaColor = getColorForValue(capaianValue, selectedOption);
-						const desaPathOptions = { ...desaOptions, fillColor: desaColor };
-						return (
-							<Polygon
-								key={index}
-								positions={polyDes}
-								pathOptions={desaPathOptions}
-							>
-								<Tooltip sticky>
-									<div className="card-map p-3">
-										<div className="card-body-map">
-											<h5 className="title-desa card-title-potensi p-0">
-												Desa {deskel}
-											</h5>
-											<p className="text-capitalize">
-												Kec. {kecamatan}, {kabupaten.toString().toLowerCase()},
-												Prov. {provinsi.toString().toLowerCase()}
-											</p>
-											<div className="filter-primary">
-												<h5>
-													<span className="badge bg-verifikasi">
-														<i className="bx bx-cctv"></i> CCTV
-													</span>
-												</h5>
-											</div>
-											<div className="row">
-												<div className="col-md fw-bold">
-													<h5 className="fw-bold">Capaian</h5>
-													<div className="row g-2">
-														<div className="col-6">KD</div>
-														<div className="col-6">: {kd}</div>
-														<div className="col-6">IDM</div>
-														<div className="col-6">: {idm}</div>
-														<div className="col-6">SDGs</div>
-														<div className="col-6">: {sdgs}</div>
-														<div className="col-6">AR</div>
-														<div className="col-6">: {ar}</div>
-														<div className="col-6">Program</div>
-														<div className="col-6">: {program}</div>
+							{polygonCoordDesa.map(
+								(
+									{
+										polyDes,
+										provinsi,
+										kabupaten,
+										kecamatan,
+										deskel,
+										link,
+										kd,
+										idm,
+										sdgs,
+										ar,
+										program,
+										sda,
+										sdm,
+										lk,
+										sarpras,
+									},
+									index
+								) => {
+									const capaianValue =
+										selectedOption === "kd"
+											? kd
+											: selectedOption === "idm"
+											? idm
+											: selectedOption === "sdgs"
+											? sdgs
+											: selectedOption === "ar"
+											? ar
+											: selectedOption === "program"
+											? program
+											: selectedOption === "sda"
+											? sda
+											: selectedOption === "sdm"
+											? sdm
+											: selectedOption === "lk"
+											? lk
+											: selectedOption === "sarpras"
+											? sarpras
+											: 0;
+									const desaColor = getColorForValue(capaianValue, selectedOption);
+									const desaPathOptions = { ...desaOptions, fillColor: desaColor };
+									return (
+										<Polygon
+											key={index}
+											positions={polyDes}
+											pathOptions={desaPathOptions}
+										>
+											<Tooltip sticky>
+												<div className="card-map p-3">
+													<div className="card-body-map">
+														<h5 className="title-desa card-title-potensi p-0">
+															Desa {deskel}
+														</h5>
+														<p className="text-capitalize">
+															Kec. {kecamatan}, {kabupaten.toString().toLowerCase()},
+															Prov. {provinsi.toString().toLowerCase()}
+														</p>
+														<div className="filter-primary">
+															<h5>
+																<span className="badge bg-verifikasi">
+																	<i className="bx bx-cctv"></i> CCTV
+																</span>
+															</h5>
+														</div>
+														<div className="row">
+															<div className="col-md fw-bold">
+																<h5 className="fw-bold">Capaian</h5>
+																<div className="row g-2">
+																	<div className="col-6">KD</div>
+																	<div className="col-6">: {kd}</div>
+																	<div className="col-6">IDM</div>
+																	<div className="col-6">: {idm}</div>
+																	<div className="col-6">SDGs</div>
+																	<div className="col-6">: {sdgs}</div>
+																	<div className="col-6">AR</div>
+																	<div className="col-6">: {ar}</div>
+																	<div className="col-6">Program</div>
+																	<div className="col-6">: {program}</div>
+																</div>
+															</div>
+															<div className="col-md fw-bold">
+																<h5 className="fw-bold">Potensi</h5>
+																<div className="row g-2">
+																	<div className="col-6">SDA</div>
+																	<div className="col-6">: {sda}</div>
+																	<div className="col-6">SDM</div>
+																	<div className="col-6">: {sdm}</div>
+																	<div className="col-6">LK</div>
+																	<div className="col-6">: {lk}</div>
+																	<div className="col-6">SarPras</div>
+																	<div className="col-6">: {sarpras}</div>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div className="col-md fw-bold">
-													<h5 className="fw-bold">Potensi</h5>
-													<div className="row g-2">
-														<div className="col-6">SDA</div>
-														<div className="col-6">: {sda}</div>
-														<div className="col-6">SDM</div>
-														<div className="col-6">: {sdm}</div>
-														<div className="col-6">LK</div>
-														<div className="col-6">: {lk}</div>
-														<div className="col-6">SarPras</div>
-														<div className="col-6">: {sarpras}</div>
+											</Tooltip>
+											<Popup closeButton={false}>
+												<div className="card-map">
+													<div className="card-body-map">
+														<h5 className="title-desa card-title-potensi p-0">
+															Desa {deskel}
+														</h5>
+														<p className="text-capitalize">
+															Kec. {kecamatan}, {kabupaten.toString().toLowerCase()},
+															Prov. {provinsi.toString().toLowerCase()}
+														</p>
+														<div className="filter-primary">
+															<a
+																href={`https://profil.digitaldesa.id/${link}`}
+																target="_blank"
+																rel="noreferrer"
+															>
+																<h5>
+																	<span className="badge bg-cctv">
+																		<i className="bx bx-cctv"></i> CCTV
+																	</span>
+																</h5>
+															</a>
+														</div>
+														<div className="row">
+															<div className="col-md fw-bold">
+																<h5 className="fw-bold">Capaian</h5>
+																<div className="row g-2">
+																	<div className="col-6">KD</div>
+																	<div className="col-6">: {kd}</div>
+																	<div className="col-6">IDM</div>
+																	<div className="col-6">: {idm}</div>
+																	<div className="col-6">SDGs</div>
+																	<div className="col-6">: {sdgs}</div>
+																	<div className="col-6">AR</div>
+																	<div className="col-6">: {ar}</div>
+																	<div className="col-6">Program</div>
+																	<div className="col-6">: {program}</div>
+																</div>
+															</div>
+															<div className="col-md fw-bold">
+																<h5 className="fw-bold">Potensi</h5>
+																<div className="row g-2">
+																	<div className="col-6">SDA</div>
+																	<div className="col-6">: {sda}</div>
+																	<div className="col-6">SDM</div>
+																	<div className="col-6">: {sdm}</div>
+																	<div className="col-6">LK</div>
+																	<div className="col-6">: {lk}</div>
+																	<div className="col-6">SarPras</div>
+																	<div className="col-6">: {sarpras}</div>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-											</div>
-										</div>
-									</div>
-								</Tooltip>
-								<Popup closeButton={false}>
-									<div className="card-map">
-										<div className="card-body-map">
-											<h5 className="title-desa card-title-potensi p-0">
-												Desa {deskel}
-											</h5>
-											<p className="text-capitalize">
-												Kec. {kecamatan}, {kabupaten.toString().toLowerCase()},
-												Prov. {provinsi.toString().toLowerCase()}
-											</p>
-											<div className="filter-primary">
-												<a
-													href={`https://profil.digitaldesa.id/${link}`}
-													target="_blank"
-													rel="noreferrer"
-												>
-													<h5>
-														<span className="badge bg-cctv">
-															<i className="bx bx-cctv"></i> CCTV
-														</span>
-													</h5>
-												</a>
-											</div>
-											<div className="row">
-												<div className="col-md fw-bold">
-													<h5 className="fw-bold">Capaian</h5>
-													<div className="row g-2">
-														<div className="col-6">KD</div>
-														<div className="col-6">: {kd}</div>
-														<div className="col-6">IDM</div>
-														<div className="col-6">: {idm}</div>
-														<div className="col-6">SDGs</div>
-														<div className="col-6">: {sdgs}</div>
-														<div className="col-6">AR</div>
-														<div className="col-6">: {ar}</div>
-														<div className="col-6">Program</div>
-														<div className="col-6">: {program}</div>
-													</div>
-												</div>
-												<div className="col-md fw-bold">
-													<h5 className="fw-bold">Potensi</h5>
-													<div className="row g-2">
-														<div className="col-6">SDA</div>
-														<div className="col-6">: {sda}</div>
-														<div className="col-6">SDM</div>
-														<div className="col-6">: {sdm}</div>
-														<div className="col-6">LK</div>
-														<div className="col-6">: {lk}</div>
-														<div className="col-6">SarPras</div>
-														<div className="col-6">: {sarpras}</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</Popup>
-							</Polygon>
-						);
-					}
-				)}
-			</MapContainer>
+											</Popup>
+										</Polygon>
+									);
+								}
+							)}
+						</MapContainer>
+			)}
 
 			{generateLegend()}
 		</Fragment>
