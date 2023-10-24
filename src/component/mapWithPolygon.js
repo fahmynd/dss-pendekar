@@ -114,7 +114,7 @@ const MapWithPolygons = (props) => {
   const BASE_URL =
     SLUG === "localhost"
       ? "http://localhost:3000"
-      : window.location.hostname.split(".")[0];
+      : `https://${window.location.hostname.split(".")[0]}.pendekar.digital`;
 
   useEffect(() => {
     const fetchDataMapKab = (k1, k2) =>
