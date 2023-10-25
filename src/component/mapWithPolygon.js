@@ -10,6 +10,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import axios from "axios";
+import { BASE_API_URL } from "../utils/api";
 
 const getColorForValue = (value, property) => {
   const colorScales = {
@@ -113,17 +114,17 @@ const MapWithPolygons = (props) => {
   const SLUG = window.location.hostname.split(".")[0];
   const BASE_URL =
     SLUG === "localhost"
-      ? "http://localhost:3000"
-      : `https://${window.location.hostname.split(".")[0]}.pendekar.digital`;
+      ? "http://localhost:3000/assets/"
+      : BASE_API_URL;
 
   useEffect(() => {
     const fetchDataMapKab = (k1, k2) =>
-      fetchDataMap(`${BASE_URL}/assets/assets/geojson/${k1}/${k2}.json`);
+      fetchDataMap(`${BASE_URL}assets/geojson/${k1}/${k2}.json`);
     const fetchDataMapKec = (k1, k2, k3) =>
-      fetchDataMap(`${BASE_URL}/assets/assets/geojson/${k1}/${k2}/${k3}.json`);
+      fetchDataMap(`${BASE_URL}assets/geojson/${k1}/${k2}/${k3}.json`);
     const fetchDataMapDesa = (k1, k2, k3, k4) =>
       fetchDataMap(
-        `${BASE_URL}/assets/assets/geojson/${k1}/${k2}/${k3}/${k4}.json`
+        `${BASE_URL}assets/geojson/${k1}/${k2}/${k3}/${k4}.json`
       );
 
     if (resultData && resultData.data && resultData.data.list_desa) {
@@ -330,7 +331,7 @@ const MapWithPolygons = (props) => {
           scrollWheelZoom={false}
           style={{ height: "500px" }}
           center={polygonCoordKab[0]}
-          //   boundsOptions={{ padding: [1, 1] }}
+        //   boundsOptions={{ padding: [1, 1] }}
         >
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
@@ -371,22 +372,22 @@ const MapWithPolygons = (props) => {
                 selectedOption === "kd"
                   ? kd
                   : selectedOption === "idm"
-                  ? idm
-                  : selectedOption === "sdgs"
-                  ? sdgs
-                  : selectedOption === "ar"
-                  ? ar
-                  : selectedOption === "program"
-                  ? program
-                  : selectedOption === "sda"
-                  ? sda
-                  : selectedOption === "sdm"
-                  ? sdm
-                  : selectedOption === "lk"
-                  ? lk
-                  : selectedOption === "sarpras"
-                  ? sarpras
-                  : 0;
+                    ? idm
+                    : selectedOption === "sdgs"
+                      ? sdgs
+                      : selectedOption === "ar"
+                        ? ar
+                        : selectedOption === "program"
+                          ? program
+                          : selectedOption === "sda"
+                            ? sda
+                            : selectedOption === "sdm"
+                              ? sdm
+                              : selectedOption === "lk"
+                                ? lk
+                                : selectedOption === "sarpras"
+                                  ? sarpras
+                                  : 0;
               const desaColor = getColorForValue(capaianValue, selectedOption);
               const desaPathOptions = { ...desaOptions, fillColor: desaColor };
               return (
