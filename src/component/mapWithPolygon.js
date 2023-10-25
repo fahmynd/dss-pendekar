@@ -78,6 +78,7 @@ const MapWithPolygons = (props) => {
         response.data.features &&
         response.data.features.length > 0
       ) {
+console.log(response.data);
         const mapPolygon = [];
         const coordinates = response.data.features[0].geometry.coordinates;
 
@@ -89,6 +90,7 @@ const MapWithPolygons = (props) => {
                 polygon.push([coord[1], coord[0]]);
               });
               mapPolygon.push(polygon);
+console.log(polygon);
             });
           } else {
             coordinates[0].forEach((item) => {
@@ -330,8 +332,12 @@ const MapWithPolygons = (props) => {
           zoom={10}
           scrollWheelZoom={false}
           style={{ height: "500px" }}
-          center={polygonCoordKab[0]}
-        //   boundsOptions={{ padding: [1, 1] }}
+            bounds={
+          polygonCoordKab || [
+            [-90, -180],
+            [90, 180],
+          ]
+        }
         >
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
