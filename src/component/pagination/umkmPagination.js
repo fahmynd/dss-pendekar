@@ -76,7 +76,7 @@ export default function UmkmPagination(props) {
 		const newOffset = event.selected * itemsPerPage;
 		setItemOffset(newOffset);
 	};
-	console.log(selectedJenisUmkm);
+	// console.log(selectedJenisUmkm);
 
 	return (
 		<Fragment>
