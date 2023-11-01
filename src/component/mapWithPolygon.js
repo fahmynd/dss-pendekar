@@ -78,7 +78,6 @@ const MapWithPolygons = (props) => {
         response.data.features &&
         response.data.features.length > 0
       ) {
-console.log(response.data);
         const mapPolygon = [];
         const coordinates = response.data.features[0].geometry.coordinates;
 
@@ -90,7 +89,6 @@ console.log(response.data);
                 polygon.push([coord[1], coord[0]]);
               });
               mapPolygon.push(polygon);
-console.log(polygon);
             });
           } else {
             coordinates[0].forEach((item) => {
@@ -164,7 +162,6 @@ console.log(polygon);
       Promise.all(newPolygonCoordDesa)
         .then((completedPolygonCoordDesa) => {
           setPolygonCoordDesa(completedPolygonCoordDesa);
-          // console.log(completedPolygonCoordDesa);
         })
         .catch((error) => {
           console.error("Error fetching desa data:", error);
@@ -183,7 +180,6 @@ console.log(polygon);
       Promise.all(promises)
         .then((newPolygonCoordKec) => {
           setPolygonCoordKec(newPolygonCoordKec);
-          // console.log(newPolygonCoordKec);
         })
         .catch((error) => {
           console.error("Error fetching kecamatan data:", error);
@@ -195,14 +191,12 @@ console.log(polygon);
       fetchDataMapKab(newPolygonCoordKab.k1, newPolygonCoordKab.k2)
         .then((polygonData) => {
           setPolygonCoordKab(polygonData); // Menyimpan data yang diterima dalam state
-          //   console.log(polygonData); // Sekarang, Anda dapat menampilkan data di sini
         })
         .catch((error) => {
           console.error("Error fetching kabupaten data:", error);
         });
     }
   }, [BASE_URL, resultData]);
-  // console.log(newPolygonCoordKab);
   const [selectedOption, setSelectedOption] = useState("sdm");
 
   const kabOptions = {
@@ -332,12 +326,12 @@ console.log(polygon);
           zoom={10}
           scrollWheelZoom={false}
           style={{ height: "500px" }}
-            bounds={
-          polygonCoordKab || [
-            [-90, -180],
-            [90, 180],
-          ]
-        }
+          bounds={
+            polygonCoordKab || [
+              [-90, -180],
+              [90, 180],
+            ]
+          }
         >
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png" />
 
