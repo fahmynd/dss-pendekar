@@ -37,26 +37,41 @@ export default function UmkmPagination(props) {
 
 	const filteredUmkm = useMemo(() => {
 		const filtered = list_umkm.filter(umkm => {
-			if (query !== "") {
-				return umkm.nama_usaha.toLowerCase().indexOf(query.toLowerCase()) > -1;
-			}
-			if (selectedJenisUmkm && selectedJenisUmkm != null) {
-				return umkm.tipe_usaha === selectedJenisUmkm;
-			}
+			// Filter berdasarkan query
+			const isMatchByQuery =
+				!query || umkm.nama_usaha.toLowerCase().includes(query.toLowerCase());
+
+			// Filter berdasarkan jenis umkm
+			const isMatchByJenisUmkm =
+				!selectedJenisUmkm || umkm.tipe_usaha === selectedJenisUmkm;
+
+			// Filter berdasarkan kecamatan dan desa
+			let isMatchByWilayah;
+
 			if (selectedKec && selectedDesa) {
-				return umkm.kode_wilayah === selectedDesa;
+				isMatchByWilayah = umkm.kode_wilayah === selectedDesa;
 			} else if (selectedKec && !selectedDesa) {
 				let kode_kec = `${umkm.k1}.${umkm.k2}.${umkm.k3}`;
-				return kode_kec === selectedKec;
+				isMatchByWilayah = kode_kec === selectedKec;
 			} else if (!selectedKec && !selectedDesa) {
-				return true;
+				isMatchByWilayah = true;
 			}
-			return false;
+
+			// Gabungkan semua filter
+			return isMatchByQuery && isMatchByJenisUmkm && isMatchByWilayah;
 		});
 
 		setPageCount(Math.ceil(filtered.length / itemsPerPage));
 		return filtered;
-	}, [selectedJenisUmkm, selectedKec, selectedDesa, query, list_umkm, itemsPerPage]);
+	}, [
+		selectedJenisUmkm,
+		selectedKec,
+		selectedDesa,
+		query,
+		list_umkm,
+		itemsPerPage,
+	]);
+
 
 	useEffect(() => {
 		setItemOffset(0);

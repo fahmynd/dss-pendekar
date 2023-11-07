@@ -26,20 +26,28 @@ const PersuratanTable = props => {
 	const rows = useMemo(() => {
 		const filteredRows = list_surat
 			.filter(surat => {
+				const kecamatanDesaFilter =
+					(!selectedKec && !selectedDesa) || // Tidak ada filter kecamatan atau desa
+					(selectedKec &&
+						selectedDesa &&
+						`${surat.k1}.${surat.k2}.${surat.k3}.${surat.k4}` ===
+							selectedDesa) || // Kedua kecamatan dan desa dipilih
+					(selectedKec &&
+						!selectedDesa &&
+						`${surat.k1}.${surat.k2}.${surat.k3}` === selectedKec); // Hanya kecamatan dipilih
+
+				const jenisSuratFilter =
+					!selectedJenisSurat || surat.jenis_surat === selectedJenisSurat;
+
 				if (query && query !== "") {
-					return surat.nama_deskel.toLowerCase().includes(query.toLowerCase());
+					return (
+						surat.nama_deskel.toLowerCase().includes(query.toLowerCase()) &&
+						kecamatanDesaFilter &&
+						jenisSuratFilter
+					);
 				}
-				if (selectedKec && selectedDesa) {
-						return `${surat.k1}.${surat.k2}.${surat.k3}.${surat.k4}` === selectedDesa;
-				}
-				if (selectedKec && !selectedDesa) {
-					let kode_kec = `${surat.k1}.${surat.k2}.${surat.k3}`;
-					return kode_kec === selectedKec;
-				}
-				if (selectedJenisSurat && selectedJenisSurat !== "") {
-					return surat.jenis_surat === selectedJenisSurat;
-				}
-				return true;
+
+				return kecamatanDesaFilter && jenisSuratFilter;
 			})
 			.map(surat => {
 				const kecamatan = listKec.find(
