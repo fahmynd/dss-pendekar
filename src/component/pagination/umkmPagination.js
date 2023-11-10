@@ -51,7 +51,10 @@ export default function UmkmPagination(props) {
 			if (selectedKec && selectedDesa) {
 				isMatchByWilayah = umkm.kode_wilayah === selectedDesa;
 			} else if (selectedKec && !selectedDesa) {
-				let kode_kec = `${umkm.k1}.${umkm.k2}.${umkm.k3}`;
+				let kode_kec = `${umkm.k1}.${umkm.k2}.${umkm.k3
+					.toString()
+					.padStart(2, "0")}`;
+console.log(kode_kec);
 				isMatchByWilayah = kode_kec === selectedKec;
 			} else if (!selectedKec && !selectedDesa) {
 				isMatchByWilayah = true;
@@ -71,7 +74,6 @@ export default function UmkmPagination(props) {
 		list_umkm,
 		itemsPerPage,
 	]);
-
 
 	useEffect(() => {
 		setItemOffset(0);
