@@ -14,7 +14,9 @@ const PersuratanTable = props => {
 	const listDeskel = useMemo(() => {
 		setSelectedDesa("");
 		return list_desa.filter(desa => {
-			let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+			let kode_kec = `${desa.k1}.${desa.k2
+				.toString()
+				.padStart(2, "0")}.${desa.k3.toString().padStart(2, "0")}`;
 			return kode_kec === selectedKec;
 		});
 	}, [list_desa, selectedKec]);
@@ -30,11 +32,14 @@ const PersuratanTable = props => {
 					(!selectedKec && !selectedDesa) || // Tidak ada filter kecamatan atau desa
 					(selectedKec &&
 						selectedDesa &&
-						`${surat.k1}.${surat.k2}.${surat.k3}.${surat.k4}` ===
-							selectedDesa) || // Kedua kecamatan dan desa dipilih
+						`${surat.k1}.${surat.k2.toString().padStart(2, "0")}.${surat.k3
+							.toString()
+							.padStart(2, "0")}.${surat.k4}` === selectedDesa) || // Kedua kecamatan dan surat dipilih
 					(selectedKec &&
 						!selectedDesa &&
-						`${surat.k1}.${surat.k2}.${surat.k3}` === selectedKec); // Hanya kecamatan dipilih
+						`${surat.k1}.${surat.k2.toString().padStart(2, "0")}.${surat.k3
+							.toString()
+							.padStart(2, "0")}` === selectedKec); // Hanya kecamatan dipilih
 
 				const jenisSuratFilter =
 					!selectedJenisSurat || surat.jenis_surat === selectedJenisSurat;
@@ -51,7 +56,11 @@ const PersuratanTable = props => {
 			})
 			.map(surat => {
 				const kecamatan = listKec.find(
-					kec => kec.kode_wilayah === `${surat.k1}.${surat.k2}.${surat.k3}`
+					kec =>
+						kec.kode_wilayah ===
+						`${surat.k1}.${surat.k2.toString().padStart(2, "0")}.${surat.k3
+							.toString()
+							.padStart(2, "0")}`
 				);
 				const desa = list_desa.find(
 					des => des.kode_wilayah === surat.kode_wilayah

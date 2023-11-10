@@ -26,7 +26,9 @@ export default function UmkmPagination(props) {
 	const listDeskel = useMemo(() => {
 		setSelectedDesa("");
 		return list_desa.filter(desa => {
-			let kode_kec = `${desa.k1}.${desa.k2}.${desa.k3}`;
+			let kode_kec = `${desa.k1}.${desa.k2
+				.toString()
+				.padStart(2, "0")}.${desa.k3.toString().padStart(2, "0")}`;
 			return kode_kec === selectedKec;
 		});
 	}, [list_desa, selectedKec]);
@@ -51,10 +53,9 @@ export default function UmkmPagination(props) {
 			if (selectedKec && selectedDesa) {
 				isMatchByWilayah = umkm.kode_wilayah === selectedDesa;
 			} else if (selectedKec && !selectedDesa) {
-				let kode_kec = `${umkm.k1}.${umkm.k2}.${umkm.k3
+				let kode_kec = `${umkm.k1}.${umkm.k2
 					.toString()
-					.padStart(2, "0")}`;
-console.log(kode_kec);
+					.padStart(2, "0")}.${umkm.k3.toString().padStart(2, "0")}`;
 				isMatchByWilayah = kode_kec === selectedKec;
 			} else if (!selectedKec && !selectedDesa) {
 				isMatchByWilayah = true;
