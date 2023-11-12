@@ -8,6 +8,7 @@ import bupatiLuwu from "../../src/assets/profil/bupati_luwu.jpg";
 import bupatiGowa from "../../src/assets/profil/bupati_gowa.jpg";
 import bupatiWajo from "../../src/assets/profil/bupati_wajo.jpg";
 import bupatiMamasa from "../../src/assets/profil/bupati_mamasa.jpg";
+import bupatiKonawe from "../../src/assets/profil/bupati_konawe.jpg";
 
 export const STRINGS = {
   enrekangkab: {
@@ -119,6 +120,29 @@ export const STRINGS = {
     foto_profil: bupatiWajo,
     logo_hide: "",
     logo_first: "gap",
+    background_color: "#327A6E",
+    font_color: "#ffffff",
+    bg_color_jumbotron: "#327A6E",
+    font_color_jumbotron: "#ffffff",
+    logo_second_size: "",
+    menu_pelayanan: "hide",
+    theme: "alternative",
+    alternative_style: "assets/css/alternative-style.css",
+  },
+  konawekab: {
+    title: "SIMONI ADIK BANGDES",
+    desc: "Sistem Informasi Monitoring Administrasi Kinerja Pembangunan Desa",
+    nama: "PENDEKAR",
+    kabkota: "Kabupaten Konawe",
+    slogan: "Wawonii Bangkit",
+    logo_kab_url: "https://konawekab.go.id/assets/more_images/logo_besar.png",
+    logo_dss_url: "",
+    bg_jumbotron: Wajo,
+    nama_user: "Harmin Ramba",
+    jabatan_user: "Pj. Bupati Konawe",
+    foto_profil: bupatiKonawe,
+    logo_hide: "hide",
+    logo_first: "",
     background_color: "#327A6E",
     font_color: "#ffffff",
     bg_color_jumbotron: "#327A6E",
