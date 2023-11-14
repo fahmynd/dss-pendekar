@@ -172,7 +172,8 @@
   border-radius: 4px;
 }
 
-.btn-general, .btn-general:hover {
+.btn-general,
+.btn-general:hover {
   background: #452292;
   border-radius: 4px;
   font-family: "Inter", sans-serif;
@@ -270,6 +271,7 @@
 
   .title_logo {
     margin-top: 20px;
+    color: #327a6e;
     /* margin-left: 55px; */
   }
 

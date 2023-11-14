@@ -3,6 +3,7 @@ import Luwu from "../../src/assets/bg/luwukab.jpg";
 import Gowa from "../../src/assets/bg/gowakab.jpg";
 import Wajo from "../../src/assets/bg/wajokab.jpg";
 import Mamasa from "../../src/assets/bg/mamasakab.jpg";
+import Konawe from "../../src/assets/bg/konawekab.jpg";
 import bupatiEnrekang from "../../src/assets/profil/bupati_enrekang.jpg";
 import bupatiLuwu from "../../src/assets/profil/bupati_luwu.jpg";
 import bupatiGowa from "../../src/assets/profil/bupati_gowa.jpg";
@@ -137,7 +138,7 @@ export const STRINGS = {
     slogan: "Wawonii Bangkit",
     logo_kab_url: "https://konawekab.go.id/assets/more_images/logo_besar.png",
     logo_dss_url: "",
-    bg_jumbotron: Wajo,
+    bg_jumbotron: Konawe,
     nama_user: "Harmin Ramba",
     jabatan_user: "Pj. Bupati Konawe",
     foto_profil: bupatiKonawe,
