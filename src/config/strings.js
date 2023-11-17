@@ -135,7 +135,7 @@ export const STRINGS = {
     desc: "Sistem Informasi Monitoring Administrasi Kinerja Pembangunan Desa",
     nama: "PENDEKAR",
     kabkota: "Kabupaten Konawe",
-    slogan: "Wawonii Bangkit",
+    slogan: "Konawe Harapan Rakyat",
     logo_kab_url: "https://konawekab.go.id/assets/more_images/logo_besar.png",
     logo_dss_url: "",
     bg_jumbotron: Konawe,
