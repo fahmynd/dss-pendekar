@@ -56,7 +56,7 @@ const Header = () => {
 
         <nav className="header-nav ms-auto">
           <ul className="d-flex align-items-center">
-            <li className="nav-item dropdown">
+            <li className="d-none nav-item dropdown">
               <Link
                 className="nav-link nav-icon"
                 to={"notifikasi"}

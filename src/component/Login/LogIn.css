@@ -119,7 +119,7 @@
   font-size: 24px;
   line-height: 33px;
   text-align: center;
-  color: #327a6e;
+  /* color: #327a6e; */
   margin-top: 28px;
 }
 
@@ -276,7 +276,7 @@
 
   .title_logo {
     margin-top: 20px;
-    color: #327a6e;
+    /* color: #327a6e; */
     /* margin-left: 55px; */
   }
 

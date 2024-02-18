@@ -1,4 +1,4 @@
-import Enrekang from "../../src/assets/bg/enrekangkab.png";
+import Enrekang from "../../src/assets/bg/enrekangkab.jpg";
 import Luwu from "../../src/assets/bg/luwukab.jpg";
 import Gowa from "../../src/assets/bg/gowakab.jpg";
 import Wajo from "../../src/assets/bg/wajokab.jpg";
@@ -13,8 +13,8 @@ import bupatiKonawe from "../../src/assets/profil/bupati_konawe.jpg";
 
 export const STRINGS = {
   enrekangkab: {
-    title: "SI MAWAR KEMBANG DESA",
-    desc: "Sistem Informasi Monitoring Pengawasan Administrasi dan Kinerja Pembangunan Desa",
+    title: "PENDEKAR",
+    desc: "Pemantauan Desa dan Kelurahan Terintegrasi",
     nama: "Desa Emas",
     kabkota: "Kabupaten Enrekang",
     slogan: "Tana Rigalla' Tana Riabussungi",
@@ -22,8 +22,8 @@ export const STRINGS = {
     logo_dss_url:
       "https://online.digitaldesa.id/templates/homepage/img/logo_desa_emas_enrekang.svg",
     bg_jumbotron: Enrekang,
-    nama_user: "Muslimin Bando",
-    jabatan_user: "Bupati Enrekang",
+    nama_user: "Dr. H. Baba, SE., MM.",
+    jabatan_user: "Pj. Bupati Enrekang",
     foto_profil: bupatiEnrekang,
     logo_hide: "",
     logo_first: "gap",

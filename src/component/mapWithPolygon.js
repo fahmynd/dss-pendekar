@@ -205,6 +205,7 @@ const MapWithPolygons = props => {
 				);
 			}
 		}
+		
 	}, [BASE_URL, resultData]);
 	const [selectedOption, setSelectedOption] = useState("sdm");
 
