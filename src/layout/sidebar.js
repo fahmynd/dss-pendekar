@@ -174,6 +174,13 @@ const Sidebar = () => {
               </li>
             </ul>
           </li>
+
+          <li className="nav-item">
+            <NavLink className="nav-link" to="pengaduan">
+              <i className="bi bi-headset"></i>
+              <span>Pengaduan</span>
+            </NavLink>
+          </li>
         </ul>
       </aside>
     </Fragment>

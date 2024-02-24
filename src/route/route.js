@@ -16,6 +16,7 @@ import Persuratan from "../screens/persuratan";
 import Kios from "../screens/kios";
 import Notification from "../layout/notification";
 import NotificationDetail from "../layout/notificationDetail";
+import Pengaduan from "../screens/pengaduan";
 
 const DashboardRoute = () => {
   const auth = useAuth();
@@ -44,6 +45,7 @@ const DashboardRoute = () => {
         <Route path="wisata" element={<Wisata />} />
         <Route path="persuratan" element={<Persuratan />} />
         <Route path="kios" element={<Kios />} />
+        <Route path="pengaduan" element={<Pengaduan />} />
       </Routes>
     </DashboardShell>
   );

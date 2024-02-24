@@ -324,3 +324,19 @@
   right: 8px;
   top: 42px;
 }
+
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 30px;
+  right: 30px;
+  color: #FFF;
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 40px;
+  /* box-shadow: 2px 2px 3px #999; */
+  background-color: #999;
+  z-index: 100;
+}

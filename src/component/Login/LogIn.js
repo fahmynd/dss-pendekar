@@ -197,6 +197,87 @@ const LogIn = () => {
           </div>
         </div>
       </div>
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#disablebackdrop"
+        className="float"
+      >
+        <i className="bi bi-headset"></i>
+      </button>
+      <div
+        className="modal fade"
+        id="disablebackdrop"
+        tabindex="-1"
+        data-bs-backdrop="false"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Form Pengaduan</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <form className="row g-3">
+                <div className="col-md-12">
+                  <div className="form-floating">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="floatingName"
+                      placeholder="Masukkan nama Anda"
+                    />
+                    <label for="floatingName">Nama</label>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="form-floating">
+                    <input
+                      type="number"
+                      onKeyDown="return false"
+                      className="form-control"
+                      id="floatingPhone"
+                      placeholder="Masukkan nomor telpon Anda"
+                    />
+                    <label for="floatingPhone">Nomor Telpon</label>
+                  </div>
+                </div>
+                <div className="col-md-12">
+                  <div className="form-floating mb-3">
+                    <select className="form-select" id="floatingSelect" aria-label="State">
+                      <option selected>-</option>
+                      <option value="1">-</option>
+                      <option value="2">-</option>
+                    </select>
+                    <label for="floatingSelect">Kategori Pengaduan</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <textarea
+                      className="form-control"
+                      placeholder="Masukkan kesan atau aduan Anda"
+                      id="floatingTextarea"
+                      style={{ height: "100px" }}
+                    ></textarea>
+                    <label for="floatingTextarea">Pengaduan</label>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <button type="submit" className="btn btn-primary">
+                    Kirim
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </Fragment>
   );
 };
