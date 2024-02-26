@@ -11,6 +11,11 @@ const Sidebar = () => {
     if (pelayanan === "hide") {
       document.getElementById("menu_pelayanan").style.display = "none";
     }
+
+    const pengaduan = `${STRINGS[KODE_SLUG].menu_pengaduan}`;
+    if (pengaduan === "hide") {
+      document.getElementById("menu_pengaduan").style.display = "none";
+    }
   }, []);
 
   return (
@@ -175,7 +180,7 @@ const Sidebar = () => {
             </ul>
           </li>
 
-          <li className="nav-item">
+          <li id="menu_pengaduan" className="nav-item">
             <NavLink className="nav-link" to="pengaduan">
               <i className="bi bi-headset"></i>
               <span>Pengaduan</span>

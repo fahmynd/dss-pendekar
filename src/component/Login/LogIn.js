@@ -29,6 +29,11 @@ const LogIn = () => {
       navigate("/");
     }
 
+    const pengaduan = `${STRINGS[KODE_SLUG].menu_pengaduan}`;
+    if (pengaduan === "hide") {
+      document.getElementById("menu_pengaduan").style.display = "none";
+    }
+
     const desaEmas = `${STRINGS[KODE_SLUG].logo_second_size}`;
     if (desaEmas === "enrekang") {
       document.getElementById("logo-dss").classList = "logo_";
@@ -250,6 +255,7 @@ const LogIn = () => {
         </div>
       </div>
       <button
+        id="menu_pengaduan"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#complaintFormModal"
