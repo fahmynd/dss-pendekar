@@ -13,9 +13,16 @@ const LogIn = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [nama, setNama] = useState("");
+  const [kontak, setKontak] = useState("");
+  const [jenis, setJenis] = useState("");
+  const [aduan, setAduan] = useState("");
+  const [isError, setIsError] = useState("");
   const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState("");
+  const [isLoading, setIsLoading] = useState("");
+  const [loading, setLoading] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (auth.isLogged) {
@@ -54,8 +61,8 @@ const LogIn = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
+    setIsLoading(true);
+    setIsError("");
 
     let form = new FormData();
     form.append("username", username);
@@ -70,12 +77,57 @@ const LogIn = () => {
         if (res.success) {
           auth.handleLogin(res.data.token);
         } else {
-          setError(res.message);
+          setIsError(res.message);
         }
       })
       .catch((err) => {
         console.log(err, "error");
       });
+
+    setIsLoading(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // Check if the "aduan" field is filled
+    if (aduan.trim() === "") {
+      setError("Pengaduan harus diisi");
+      setLoading(false);
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("nama", nama);
+    formData.append("kontak", kontak);
+    formData.append("jenis", jenis);
+    formData.append("aduan", aduan);
+
+    try {
+      const response = await fetch(BASE_API_URL + "pengaduan/insert", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        // Clear form fields after successful submission
+        setNama("");
+        setKontak("");
+        setJenis("");
+        setAduan("");
+
+        setSuccessMessage("Pengaduan berhasil dikirim!");
+      } else {
+        const data = await response.json();
+        setError(
+          data.message || "Something went wrong. Please try again later."
+        );
+      }
+    } catch (error) {
+      setError("Network error. Please try again later.");
+    }
 
     setLoading(false);
   };
@@ -99,7 +151,7 @@ const LogIn = () => {
               <form onSubmit={loginHandler}>
                 <input type="hidden" name="" value="" />
                 <h1>Masuk Akun</h1>
-                {error && <div className="alert alert-danger">{error}</div>}
+                {isError && <div className="alert alert-danger">{isError}</div>}
                 <div className="form-group">
                   <label className="text-dark">Username</label>
                   <input
@@ -200,21 +252,24 @@ const LogIn = () => {
       <button
         type="button"
         data-bs-toggle="modal"
-        data-bs-target="#disablebackdrop"
+        data-bs-target="#complaintFormModal"
         className="float"
       >
         <i className="bi bi-headset"></i>
       </button>
       <div
         className="modal fade"
-        id="disablebackdrop"
-        tabindex="-1"
-        data-bs-backdrop="false"
+        id="complaintFormModal"
+        tabIndex="-1"
+        aria-labelledby="complaintFormModalLabel"
+        aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Form Pengaduan</h5>
+              <h5 className="modal-title" id="complaintFormModalLabel">
+                Form Pengaduan
+              </h5>
               <button
                 type="button"
                 className="btn-close"
@@ -223,54 +278,73 @@ const LogIn = () => {
               ></button>
             </div>
             <div className="modal-body">
-              <form className="row g-3">
-                <div className="col-md-12">
-                  <div className="form-floating">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="floatingName"
-                      placeholder="Masukkan nama Anda"
-                    />
-                    <label for="floatingName">Nama</label>
-                  </div>
+              {error && <div className="alert alert-danger">{error}</div>}
+              {successMessage && (
+                <div className="alert alert-success">{successMessage}</div>
+              )}
+              <form onSubmit={handleSubmit}>
+                {error && <div className="alert alert-danger">{error}</div>}
+                <div className="mb-3">
+                  <label htmlFor="nama" className="form-label">
+                    Nama
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="nama"
+                    value={nama}
+                    onChange={(e) => setNama(e.target.value)}
+                  />
                 </div>
-                <div className="col-md-12">
-                  <div className="form-floating">
-                    <input
-                      type="number"
-                      onKeyDown="return false"
-                      className="form-control"
-                      id="floatingPhone"
-                      placeholder="Masukkan nomor telpon Anda"
-                    />
-                    <label for="floatingPhone">Nomor Telpon</label>
-                  </div>
+                <div className="mb-3">
+                  <label htmlFor="kontak" className="form-label">
+                    Kontak
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="kontak"
+                    value={kontak}
+                    onChange={(e) => setKontak(e.target.value)}
+                  />
                 </div>
-                <div className="col-md-12">
-                  <div className="form-floating mb-3">
-                    <select className="form-select" id="floatingSelect" aria-label="State">
-                      <option selected>-</option>
-                      <option value="1">-</option>
-                      <option value="2">-</option>
-                    </select>
-                    <label for="floatingSelect">Kategori Pengaduan</label>
-                  </div>
+                <div className="mb-3">
+                  <label htmlFor="jenis" className="form-label">
+                    Jenis
+                  </label>
+                  <select
+                    className="form-select"
+                    id="jenis"
+                    value={jenis}
+                    onChange={(e) => setJenis(e.target.value)}
+                  >
+                    <option value="">Pilih Kategori</option>
+                    <option value="Umum">Umum</option>
+                    <option value="Sosial">Sosial</option>
+                    <option value="Keamanan">Keamanan</option>
+                    <option value="Kesehatan">Kesehatan</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Permintaan">Permintaan</option>
+                  </select>
                 </div>
-                <div className="col-12">
-                  <div className="form-floating">
-                    <textarea
-                      className="form-control"
-                      placeholder="Masukkan kesan atau aduan Anda"
-                      id="floatingTextarea"
-                      style={{ height: "100px" }}
-                    ></textarea>
-                    <label for="floatingTextarea">Pengaduan</label>
-                  </div>
+                <div className="mb-3">
+                  <label htmlFor="aduan" className="form-label">
+                    Aduan
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="aduan"
+                    value={aduan}
+                    onChange={(e) => setAduan(e.target.value)}
+                  />
                 </div>
-                <div className="text-center">
-                  <button type="submit" className="btn btn-primary">
-                    Kirim
+                <div className="text-end">
+                  <button
+                    type="submit"
+                    className="btn btn-success"
+                    disabled={loading}
+                  >
+                    {loading ? "Sedang mengirim..." : "Kirim"}
                   </button>
                 </div>
               </form>
