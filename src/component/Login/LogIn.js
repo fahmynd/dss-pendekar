@@ -260,10 +260,10 @@ const LogIn = () => {
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#complaintFormModal"
-        className="float"
+        className="float d-flex align-items-center justify-content-center"
       >
         {/* <i className="bi bi-headset"></i> */}
-        <img alt="Pengaduan" src={complaint} width={45}/>
+        <img alt="Pengaduan" src={complaint} width={150}/>
       </button>
       <div
         className="modal fade"
