@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import showPwdImg from "../../assets/show-password.svg";
 import hidePwdImg from "../../assets/hide-password.svg";
+import complaint from "../../assets/pengaduan.png";
 
 const LogIn = () => {
   const auth = useAuth();
@@ -98,11 +99,11 @@ const LogIn = () => {
     setError("");
 
     // Check if the "aduan" field is filled
-    if (aduan.trim() === "") {
-      setError("Pengaduan harus diisi");
-      setLoading(false);
-      return;
-    }
+    // if (aduan.trim() === "") {
+    //   setError("Pengaduan harus diisi");
+    //   setLoading(false);
+    //   return;
+    // }
 
     const formData = new FormData();
     formData.append("nama", nama);
@@ -261,7 +262,8 @@ const LogIn = () => {
         data-bs-target="#complaintFormModal"
         className="float"
       >
-        <i className="bi bi-headset"></i>
+        {/* <i className="bi bi-headset"></i> */}
+        <img alt="Pengaduan" src={complaint} width={45}/>
       </button>
       <div
         className="modal fade"
@@ -300,11 +302,12 @@ const LogIn = () => {
                     id="nama"
                     value={nama}
                     onChange={(e) => setNama(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="kontak" className="form-label">
-                    Kontak
+                    Nomor Telepon
                   </label>
                   <input
                     type="text"
@@ -312,17 +315,19 @@ const LogIn = () => {
                     id="kontak"
                     value={kontak}
                     onChange={(e) => setKontak(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="jenis" className="form-label">
-                    Jenis
+                    Kategori Pengaduan
                   </label>
                   <select
                     className="form-select"
                     id="jenis"
                     value={jenis}
                     onChange={(e) => setJenis(e.target.value)}
+                    required
                   >
                     <option value="">Pilih Kategori</option>
                     <option value="Umum">Umum</option>
@@ -335,13 +340,15 @@ const LogIn = () => {
                 </div>
                 <div className="mb-3">
                   <label htmlFor="aduan" className="form-label">
-                    Aduan
+                    Pengaduan
                   </label>
                   <textarea
                     className="form-control"
+                    rows={7}
                     id="aduan"
                     value={aduan}
                     onChange={(e) => setAduan(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="text-end">
