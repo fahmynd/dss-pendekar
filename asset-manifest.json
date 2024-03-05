@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.784b2ffd.css",
-    "main.js": "/static/js/main.953790a5.js",
+    "main.css": "/static/css/main.85ae62d8.css",
+    "main.js": "/static/js/main.c999e1c8.js",
     "static/media/gowakab.jpg": "/static/media/gowakab.5b631ea98b714089c937.jpg",
     "static/media/mamasakab.jpg": "/static/media/mamasakab.22c7233cd0c2b3a4d62c.jpg",
     "static/media/wajokab.jpg": "/static/media/wajokab.88ef33d830c0ca344f98.jpg",
@@ -17,7 +17,6 @@
     "static/media/dots.svg": "/static/media/dots.3efaaee2572408179f8e.svg",
     "static/media/18.webp": "/static/media/18.4f6df6e80a6ccb06ec8c.webp",
     "static/media/9.webp": "/static/media/9.6c9d0032d21782dcad1e.webp",
-    "static/media/pengaduan.png": "/static/media/pengaduan.135c822be32f785d31d8.png",
     "static/media/14.webp": "/static/media/14.be1fdafc4b5d8b54850e.webp",
     "static/media/17.webp": "/static/media/17.a0747d3f6cd35275bc2b.webp",
     "static/media/7.webp": "/static/media/7.c2f29b53229bfe55d0ca.webp",
@@ -39,11 +38,11 @@
     "static/media/hide-password.svg": "/static/media/hide-password.2aaf769dde9be37e683f78d543bb61d8.svg",
     "static/media/kk.svg": "/static/media/kk.89104248563c070beeb4ec833854662f.svg",
     "static/media/show-password.svg": "/static/media/show-password.7468b27017e6d779e083dd0beabf4efa.svg",
-    "main.784b2ffd.css.map": "/static/css/main.784b2ffd.css.map",
-    "main.953790a5.js.map": "/static/js/main.953790a5.js.map"
+    "main.85ae62d8.css.map": "/static/css/main.85ae62d8.css.map",
+    "main.c999e1c8.js.map": "/static/js/main.c999e1c8.js.map"
   },
   "entrypoints": [
-    "static/css/main.784b2ffd.css",
-    "static/js/main.953790a5.js"
+    "static/css/main.85ae62d8.css",
+    "static/js/main.c999e1c8.js"
   ]
 }
