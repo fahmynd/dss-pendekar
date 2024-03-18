@@ -19,6 +19,7 @@
     "echarts-for-react": "^3.0.2",
     "formik": "^2.2.9",
     "jquery": "^3.6.4",
+    "ky": "^1.2.2",
     "leaflet": "^1.9.3",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geosearch": "^3.7.0",
@@ -41,6 +42,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:2925": "PORT=2925 react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build && rm -rf build/assets/assets",
@@ -66,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "*",
     "faker": "^5.5.3",
     "gh-pages": "^5.0.0"
   }
