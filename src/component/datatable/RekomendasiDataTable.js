@@ -2,7 +2,7 @@ import React, { useMemo, useState, Fragment, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import axios from "axios";
 import "./RekomendasiDataTable.css";
-import { BASE_API_URL } from "../../utils/api";
+import { CDN_URL } from "../../utils/api";
 
 import goals1 from "../../assets/img/sdgs/1.webp";
 import goals2 from "../../assets/img/sdgs/2.webp";
@@ -46,10 +46,13 @@ const RekomendasiTable = props => {
 		try {
 			setLoadingModal(true); // Set loading to true when fetching data
 			const response = await axios.get(
-				`${BASE_API_URL}pembangunan/rekomendasi/${kodeWilayah}/${tahun}`
+				`${CDN_URL}statics/idm/${kodeWilayah}/${tahun}`
+			);
+			const responseSdgs = await axios.get(
+				`${CDN_URL}statics/sdgs/${kodeWilayah}`
 			);
 			const idm = response.data.data.idm;
-			const sdgs = response.data.data.sdgs;
+			const sdgs = responseSdgs.data.data.sdgs;
 
 			if (idm && idm.mapData) {
 				const mapData = idm.mapData;

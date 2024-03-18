@@ -32,7 +32,7 @@ const LogIn = () => {
 
     const pengaduan = `${STRINGS[KODE_SLUG].menu_pengaduan}`;
     if (pengaduan === "hide") {
-      document.getElementById("menu_pengaduan").style.display = "none";
+      document.getElementById("menu_pengaduan").style = 'display:none !important';
     }
 
     const desaEmas = `${STRINGS[KODE_SLUG].logo_second_size}`;
@@ -146,7 +146,7 @@ const LogIn = () => {
             <div className="text-center">
               <img
                 alt="Logo"
-                src="https://digitaldesa.id/templates/homepage/media/misc/favicon/digides.png"
+                src="https://cdn.digitaldesa.com/statics/landing/homepage/media/misc/favicon/digides.png"
                 className="w-25"
               />
             </div>
@@ -256,7 +256,7 @@ const LogIn = () => {
         </div>
       </div>
       <button
-        id="menu_pengaduan"
+        id="menu_pengaduan" 
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#complaintFormModal"
