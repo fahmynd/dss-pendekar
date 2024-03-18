@@ -9,7 +9,6 @@ import {
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import axios from "axios";
 import { CDN_URL } from "../utils/api";
 
 const getColorForValue = (value, property) => {
@@ -65,157 +64,158 @@ const MapWithPolygons = (props) => {
   const [polygonCoordDesa, setPolygonCoordDesa] = useState([]);
 
   const fetchDataMap = async (url) => {
-    try {
-      const response = await axios.get(url);
-
-      if (!response || response.status === 404) {
-        console.error("Data not found or URL is empty");
-        return null;
-      }
-
-      if (
-        response.data &&
-        response.data.features &&
-        response.data.features.length > 0
-      ) {
-        const mapPolygon = [];
-        const coordinates = response.data.features[0].geometry.coordinates;
-
-        if (coordinates && coordinates.length > 0) {
-          if (response.data.features[0].geometry.type === "MultiPolygon") {
-            coordinates.forEach((coords) => {
-              const polygon = [];
-              coords[0].forEach((coord) => {
-                polygon.push([coord[1], coord[0]]);
-              });
-              mapPolygon.push(polygon);
-            });
-          } else {
-            coordinates[0].forEach((item) => {
-              mapPolygon.push([item[1], item[0]]);
-            });
-          }
-        } else {
-          console.error("Coordinates are empty or missing");
-          return null;
-        }
-
-        return mapPolygon;
-      } else {
-        console.error("Response data is empty or missing expected structure");
-        return null;
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    const fetchDataMapKab = (k1, k2) =>
-      fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}.json`, {
-        method: "GET",
-      });
-
-    const fetchDataMapKec = (k1, k2, k3) =>
-      fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}/${k3}.json`, {
-        method: "GET",
-      });
-
-    const fetchDataMapDesa = (k1, k2, k3, k4) =>
-      fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}/${k3}/${k4}.json`, {
-        method: "GET",
-      });
-
-    if (resultData && resultData.data && resultData.data.list_desa) {
-      const newPolygonCoordDesa = resultData.data.list_desa.map(
-        async (item) => {
-          let mapPolygonResponse;
-          if (item.k1 && item.k2 && item.k3 && item.k4) {
-            mapPolygonResponse = await fetchDataMapDesa(
-              item.k1,
-              item.k2,
-              item.k3,
-              item.k4
-            );
-          }
-          const mapPolygonData = mapPolygonResponse ? mapPolygonResponse : null;
-
-          return {
-            provinsi: resultData.dss.provinsi,
-            kabupaten: resultData.dss.kabkota,
-            kecamatan: item.nama_kecamatan,
-            deskel: item.nama_deskel,
-            link: item.slug_desa,
-            ar: item.capaian.ar,
-            idm: item.capaian.idm,
-            kd: item.capaian.kd,
-            program: item.capaian.program,
-            sdgs: item.capaian.sdgs,
-            lk: item.potensi.lk,
-            sarpras: item.potensi.sarpras,
-            sda: item.potensi.sda,
-            sdm: item.potensi.sdm,
-            polyDes: mapPolygonData,
-          };
-        }
-      );
-
-      // Gunakan Promise.all untuk menunggu semua permintaan selesai
-      Promise.all(newPolygonCoordDesa)
-        .then((completedPolygonCoordDesa) => {
-          setPolygonCoordDesa(completedPolygonCoordDesa);
-        })
-        .catch((error) => {
-          console.error("Error fetching desa data:", error);
-        });
-    }
-
-    if (resultData && resultData.data && resultData.data.list_kecamatan) {
-      const kecamatanData = resultData.data.list_kecamatan;
-      const promises = kecamatanData.map(async (item) => {
-        // Untuk setiap item (kecamatan), panggil fetchDataMapKec
-        const mapPolygonData = await fetchDataMapKec(item.k1, item.k2, item.k3);
-        return { polyKec: mapPolygonData }; // Bentuk objek yang sesuai
-      });
-
-      // Gunakan Promise.all untuk menunggu semua permintaan selesai
-      Promise.all(promises)
-        .then((newPolygonCoordKec) => {
-          setPolygonCoordKec(newPolygonCoordKec);
-        })
-        .catch((error) => {
-          console.error("Error fetching kecamatan data:", error);
-        });
-    }
-
-    if (
-      resultData &&
-      resultData.data &&
-      resultData.data.list_kabupaten &&
-      resultData.data.list_kabupaten.length > 0
-    ) {
-      const newPolygonCoordKab = resultData.data.list_kabupaten[0];
-
-      if (
-        newPolygonCoordKab &&
-        newPolygonCoordKab.k1 &&
-        newPolygonCoordKab.k2
-      ) {
-        fetchDataMapKab(newPolygonCoordKab.k1, newPolygonCoordKab.k2)
-          .then((polygonData) => {
-            setPolygonCoordKab(polygonData); // Menyimpan data yang diterima dalam state
-          })
-          .catch((error) => {
-            console.error("Error fetching kabupaten data:", error);
-          });
-      } else {
-        console.error(
-          "Invalid data for fetching kabupaten. Missing 'k1' or 'k2'."
-        );
-      }
-    }
-  }, [resultData]);
+		try {
+			const response = await fetch(url, {
+				method: 'GET'
+			});
+	
+			if (!response || response.status === 404) {
+				console.error("Data not found or URL is empty");
+				return null;
+			}
+	
+			const responseData = await response.json();
+	
+			if (
+				responseData &&
+				responseData.features &&
+				responseData.features.length > 0
+			) {
+				const mapPolygon = [];
+				const coordinates = responseData.features[0].geometry.coordinates;
+	
+				if (coordinates && coordinates.length > 0) {
+					if (responseData.features[0].geometry.type === "MultiPolygon") {
+						coordinates.forEach((coords) => {
+							const polygon = [];
+							coords[0].forEach((coord) => {
+								polygon.push([coord[1], coord[0]]);
+							});
+							mapPolygon.push(polygon);
+						});
+					} else {
+						coordinates[0].forEach((item) => {
+							mapPolygon.push([item[1], item[0]]);
+						});
+					}
+				} else {
+					console.error("Coordinates are empty or missing");
+					return null;
+				}
+	
+				return mapPolygon;
+			} else {
+				console.error("Response data is empty or missing expected structure");
+				return null;
+			}
+		} catch (error) {
+			console.error("Error:", error);
+			return null;
+		}
+	};
+	
+	useEffect(() => {
+		const fetchDataMapKab = (k1, k2) =>
+			fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}.json`);
+	
+		const fetchDataMapKec = (k1, k2, k3) =>
+			fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}/${k3}.json`);
+	
+		const fetchDataMapDesa = (k1, k2, k3, k4) =>
+			fetchDataMap(`${CDN_URL}statics/geojson/${k1}/${k2}/${k3}/${k4}.json`);
+	
+		if (resultData && resultData.data && resultData.data.list_desa) {
+			const newPolygonCoordDesa = resultData.data.list_desa.map(
+				async (item) => {
+					let mapPolygonResponse;
+					if (item.k1 && item.k2 && item.k3 && item.k4) {
+						mapPolygonResponse = await fetchDataMapDesa(
+							item.k1,
+							item.k2,
+							item.k3,
+							item.k4
+						);
+					}
+					const mapPolygonData = mapPolygonResponse ? mapPolygonResponse : null;
+	
+					return {
+						provinsi: resultData.dss.provinsi,
+						kabupaten: resultData.dss.kabkota,
+						kecamatan: item.nama_kecamatan,
+						deskel: item.nama_deskel,
+						link: item.slug_desa,
+						ar: item.capaian.ar,
+						idm: item.capaian.idm,
+						kd: item.capaian.kd,
+						program: item.capaian.program,
+						sdgs: item.capaian.sdgs,
+						lk: item.potensi.lk,
+						sarpras: item.potensi.sarpras,
+						sda: item.potensi.sda,
+						sdm: item.potensi.sdm,
+						polyDes: mapPolygonData,
+					};
+				}
+			);
+	
+			Promise.all(newPolygonCoordDesa)
+				.then((completedPolygonCoordDesa) => {
+					setPolygonCoordDesa(completedPolygonCoordDesa);
+				})
+				.catch((error) => {
+					console.error("Error fetching desa data:", error);
+				});
+		}
+	
+		if (resultData && resultData.data && resultData.data.list_kecamatan) {
+			const kecamatanData = resultData.data.list_kecamatan;
+			const promises = kecamatanData.map(async (item) => {
+		
+				const mapPolygonData = await fetchDataMapKec(
+					item.k1,
+					item.k2,
+					item.k3
+				);
+				return { polyKec: mapPolygonData }; 
+			});
+	
+			Promise.all(promises)
+				.then((newPolygonCoordKec) => {
+					setPolygonCoordKec(newPolygonCoordKec);
+				})
+				.catch((error) => {
+					console.error("Error fetching kecamatan data:", error);
+				});
+		}
+	
+		if (
+			resultData &&
+			resultData.data &&
+			resultData.data.list_kabupaten &&
+			resultData.data.list_kabupaten.length > 0
+		) {
+			const newPolygonCoordKab = resultData.data.list_kabupaten[0];
+	
+			if (
+				newPolygonCoordKab &&
+				newPolygonCoordKab.k1 &&
+				newPolygonCoordKab.k2
+			) {
+				fetchDataMapKab(newPolygonCoordKab.k1, newPolygonCoordKab.k2)
+					.then((polygonData) => {
+						setPolygonCoordKab(polygonData);
+					})
+					.catch((error) => {
+						console.error("Error fetching kabupaten data:", error);
+					});
+			} else {
+				console.error(
+					"Invalid data for fetching kabupaten. Missing 'k1' or 'k2'."
+				);
+			}
+		}
+	}, [resultData]);
+	
 
   const [selectedOption, setSelectedOption] = useState("sdm");
 
