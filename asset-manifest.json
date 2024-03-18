@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.85ae62d8.css",
-    "main.js": "/static/js/main.57ce750e.js",
+    "main.js": "/static/js/main.881e302f.js",
     "static/media/gowakab.jpg": "/static/media/gowakab.5b631ea98b714089c937.jpg",
     "static/media/mamasakab.jpg": "/static/media/mamasakab.22c7233cd0c2b3a4d62c.jpg",
     "static/media/wajokab.jpg": "/static/media/wajokab.88ef33d830c0ca344f98.jpg",
@@ -39,10 +39,10 @@
     "static/media/kk.svg": "/static/media/kk.89104248563c070beeb4ec833854662f.svg",
     "static/media/show-password.svg": "/static/media/show-password.7468b27017e6d779e083dd0beabf4efa.svg",
     "main.85ae62d8.css.map": "/static/css/main.85ae62d8.css.map",
-    "main.57ce750e.js.map": "/static/js/main.57ce750e.js.map"
+    "main.881e302f.js.map": "/static/js/main.881e302f.js.map"
   },
   "entrypoints": [
     "static/css/main.85ae62d8.css",
-    "static/js/main.57ce750e.js"
+    "static/js/main.881e302f.js"
   ]
 }
