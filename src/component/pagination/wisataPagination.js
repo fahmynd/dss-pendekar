@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, useMemo } from "react";
 import ReactPaginate from "react-paginate";
-import { BASE_API_URL } from "../../utils/api";
+import { BASE_API_URL, CDN_URL } from "../../utils/api";
 
 export default function WisataPagination(props) {
   const { list_kecamatan, list_desa } = props.resultData;
@@ -148,7 +148,7 @@ export default function WisataPagination(props) {
                 <div key={key} className="col-md-4">
                   <div className="card">
                     <img
-                      src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/${item.foto}`}
+                      src={`${CDN_URL}uploads/profil/${item.kode_wilayah}/berita/${item.foto}`}
                       className="card-img-top"
                       alt="..."
                     />
@@ -156,7 +156,7 @@ export default function WisataPagination(props) {
                       <h5 className="card-title">{item.judul}</h5>
                       <p className="card-text">{item.subjudul}</p>
                       <a
-                        href={`https://profil.digitaldesa.id/${item.slug_desa}/wisata/${item.slug}`}
+                        href={`https://${item.slug_desa}.digitaldesa.id/wisata/${item.slug}`}
                         rel="noreferrer"
                         target={"_blank"}
                         className="stretched-link"

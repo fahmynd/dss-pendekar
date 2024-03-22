@@ -472,7 +472,7 @@ const MapWithPolygons = (props) => {
                         </p>
                         <div className="filter-primary">
                           <a
-                            href={`https://profil.digitaldesa.id/${link}`}
+                            href={`https://${link}.digitaldesa.id`}
                             target="_blank"
                             rel="noreferrer"
                           >

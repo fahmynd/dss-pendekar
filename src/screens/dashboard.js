@@ -4,7 +4,7 @@ import { PetaPerkembangan } from "../component/chart/petaPerkembanganDesa";
 import BalitaStuntingJumlah from "../component/chart/balitaStuntingJumlah";
 import BalitaYoY from "../component/chart/balitaStuntingYoY";
 import axios from "axios";
-import { BASE_API_URL, KODE_SLUG } from "../utils/api";
+import { BASE_API_URL, CDN_URL, KODE_SLUG } from "../utils/api";
 import LoadingSpinner from "../utils/LoadingSpinner";
 import RekomendasiTable from "../component/datatable/RekomendasiDataTable";
 import { Potensi } from "../component/potensi/potensi";
@@ -109,7 +109,7 @@ const Dashboard = () => {
                               <div className="row g-1">
                                 <div className="col-2 align-items-center justify-content-center">
                                   <img
-                                    src={`https://profil.digitaldesa.id/uploads/${item.kode_wilayah}/berita/thumbs/${item.foto}`}
+                                    src={`${CDN_URL}uploads/profil/${item.kode_wilayah}/berita/thumbs/${item.foto}`}
                                     className="w-100 mb-2 ms-2 rounded"
                                     alt="..."
                                     style={{ height: "50px" }}
@@ -121,7 +121,7 @@ const Dashboard = () => {
                                       {item.judul}
                                     </h6>
                                     <a
-                                      href={`https://profil.digitaldesa.id/${item.slug_desa}/berita/${item.slug}`}
+                                      href={`https://${item.slug_desa}.digitaldesa.id/berita/${item.slug}`}
                                       rel="noreferrer"
                                       target={"_blank"}
                                       className="stretched-link"

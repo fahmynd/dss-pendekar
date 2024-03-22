@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import { BASE_API_URL } from "../utils/api";
+import { BASE_API_URL, CDN_URL } from "../utils/api";
 import NewsTicker from "react-advanced-news-ticker";
 import LoadingSpinner from "../utils/LoadingSpinner";
 
@@ -123,7 +123,7 @@ function Berita(props) {
       <div className="row g-1">
         <div className="col-md-2 align-items-center justify-content-center">
           <img
-            src={`https://profil.digitaldesa.id/uploads/${props.kode}/berita/thumbs/${props.foto}`}
+            src={`${CDN_URL}uploads/profil/${props.kode}/berita/thumbs/${props.foto}`}
             className="w-100 mb-2 ms-2 rounded"
             alt="..."
             style={{ height: "50px" }}
@@ -133,7 +133,7 @@ function Berita(props) {
           <div className="berita-card-body">
             <h6 className="ms-1 fw-bold text-capitalize">{props.judul}</h6>
             <a
-              href={`https://profil.digitaldesa.id/${props.slug_desa}/berita/${props.slug}`}
+              href={`https://${props.slug_desa}.digitaldesa.id/berita/${props.slug}`}
               rel="noreferrer"
               target={"_blank"}
               className="stretched-link"
